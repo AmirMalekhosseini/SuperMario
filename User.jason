@@ -1,0 +1,86 @@
+[ {
+  "userHighScore" : {
+    "userScore" : 499
+  },
+  "username" : "amir",
+  "password" : "1234",
+  "userCoinValue" : 7,
+  "userChooseNormal_RedMario" : true,
+  "userChooseCoin_YellowMario" : false,
+  "userChooseJumper_GreenMario" : false,
+  "userChooseRunner_BlueMario" : false,
+  "userChooseShooter_BlackMario" : false,
+  "userBoughtJumperMario" : true,
+  "userBoughtShooterMario" : false,
+  "userBoughtCoinMario" : false,
+  "userBoughtNormalMario" : true,
+  "userBoughtRunnerMario" : false
+}, {
+  "userHighScore" : {
+    "userScore" : 0
+  },
+  "username" : "sina",
+  "password" : "1234",
+  "userCoinValue" : 0,
+  "userChooseNormal_RedMario" : true,
+  "userChooseCoin_YellowMario" : false,
+  "userChooseJumper_GreenMario" : false,
+  "userChooseRunner_BlueMario" : false,
+  "userChooseShooter_BlackMario" : false,
+  "userBoughtJumperMario" : false,
+  "userBoughtShooterMario" : false,
+  "userBoughtCoinMario" : false,
+  "userBoughtNormalMario" : true,
+  "userBoughtRunnerMario" : false
+}, {
+  "userHighScore" : {
+    "userScore" : 0
+  },
+  "username" : "reza",
+  "password" : "1234",
+  "userCoinValue" : 0,
+  "userChooseNormal_RedMario" : true,
+  "userChooseCoin_YellowMario" : false,
+  "userChooseJumper_GreenMario" : false,
+  "userChooseRunner_BlueMario" : false,
+  "userChooseShooter_BlackMario" : false,
+  "userBoughtJumperMario" : false,
+  "userBoughtShooterMario" : false,
+  "userBoughtCoinMario" : false,
+  "userBoughtNormalMario" : true,
+  "userBoughtRunnerMario" : false
+}, {
+  "userHighScore" : {
+    "userScore" : 0
+  },
+  "username" : "ali",
+  "password" : "1234",
+  "userCoinValue" : 0,
+  "userChooseNormal_RedMario" : true,
+  "userChooseCoin_YellowMario" : false,
+  "userChooseJumper_GreenMario" : false,
+  "userChooseRunner_BlueMario" : false,
+  "userChooseShooter_BlackMario" : false,
+  "userBoughtJumperMario" : false,
+  "userBoughtShooterMario" : false,
+  "userBoughtCoinMario" : false,
+  "userBoughtNormalMario" : true,
+  "userBoughtRunnerMario" : false
+}, {
+  "userHighScore" : {
+    "userScore" : 497
+  },
+  "username" : "amir1",
+  "password" : "1234",
+  "userCoinValue" : 37,
+  "userChooseNormal_RedMario" : true,
+  "userChooseCoin_YellowMario" : false,
+  "userChooseJumper_GreenMario" : false,
+  "userChooseRunner_BlueMario" : false,
+  "userChooseShooter_BlackMario" : false,
+  "userBoughtJumperMario" : false,
+  "userBoughtShooterMario" : false,
+  "userBoughtCoinMario" : false,
+  "userBoughtNormalMario" : true,
+  "userBoughtRunnerMario" : false
+} ]
