@@ -29,7 +29,7 @@ public class MarioMover implements KeyListener {
 
     public void move() {
 
-        if (gameScreenFrame.getxLevelOneBackgroundPanel() >= -6700) {// Game is in SectionOne
+        if (gameScreenFrame.getXLevelOneBackgroundPanel() >= -6700) {// Game is in SectionOne
 
             if (gameScreenFrame.levelOneSectionOneScreen.thisSectionTime.getSectionTime() == 0) {
                 gameScreenFrame.gameData.isGameFinish = true;
@@ -37,7 +37,7 @@ public class MarioMover implements KeyListener {
 
             try {
                 if (gameScreenFrame.levelOneSectionOneScreen.activeMario.get(0).getX() >= 6380) {// Go to Section Two
-                    gameScreenFrame.setxLevelOneBackgroundPanel(-6800);
+                    gameScreenFrame.setXLevelOneBackgroundPanel(-6800);
 
                 }
 
@@ -70,8 +70,8 @@ public class MarioMover implements KeyListener {
                     if (gameScreenFrame.levelOneSectionOneScreen.activeMario.get(0).getX() < 830 || gameScreenFrame.levelOneSectionOneScreen.activeMario.get(0).getX() >= 5800) {// Move Mario
                         gameScreenFrame.levelOneSectionOneScreen.activeMario.get(0).setX(gameScreenFrame.levelOneSectionOneScreen.activeMario.get(0).getX() + 5);
                     } else {// Move Panel
-                        int xLevelOneBackgroundPanel = gameScreenFrame.getxLevelOneBackgroundPanel();
-                        gameScreenFrame.setxLevelOneBackgroundPanel(xLevelOneBackgroundPanel - 10);
+                        int xLevelOneBackgroundPanel = gameScreenFrame.getXLevelOneBackgroundPanel();
+                        gameScreenFrame.setXLevelOneBackgroundPanel(xLevelOneBackgroundPanel - 10);
                         gameScreenFrame.levelOneSectionOneScreen.activeMario.get(0).setX(gameScreenFrame.levelOneSectionOneScreen.activeMario.get(0).getX() + 10);
                         gameScreenFrame.levelOneSectionOneScreen.XThisGameCoinImage += 10;
                         gameScreenFrame.levelOneSectionOneScreen.thisGameCoinImage.setX(gameScreenFrame.levelOneSectionOneScreen.XThisGameCoinImage);
@@ -87,8 +87,8 @@ public class MarioMover implements KeyListener {
                     if (gameScreenFrame.levelOneSectionOneScreen.activeMario.get(0).getX() < 840 || gameScreenFrame.levelOneSectionOneScreen.activeMario.get(0).getX() >= 5800) {// Move Mario
                         gameScreenFrame.levelOneSectionOneScreen.activeMario.get(0).setX(gameScreenFrame.levelOneSectionOneScreen.activeMario.get(0).getX() - 5);
                     } else {// Move Panel
-                        int xLevelOneBackgroundPanel = gameScreenFrame.getxLevelOneBackgroundPanel();
-                        gameScreenFrame.setxLevelOneBackgroundPanel(xLevelOneBackgroundPanel + 10);
+                        int xLevelOneBackgroundPanel = gameScreenFrame.getXLevelOneBackgroundPanel();
+                        gameScreenFrame.setXLevelOneBackgroundPanel(xLevelOneBackgroundPanel + 10);
                         gameScreenFrame.levelOneSectionOneScreen.activeMario.get(0).setX(gameScreenFrame.levelOneSectionOneScreen.activeMario.get(0).getX() - 10);
                         gameScreenFrame.levelOneSectionOneScreen.XThisGameCoinImage -= 10;
                         gameScreenFrame.levelOneSectionOneScreen.thisGameCoinImage.setX(gameScreenFrame.levelOneSectionOneScreen.XThisGameCoinImage);
@@ -154,8 +154,8 @@ public class MarioMover implements KeyListener {
                     if (gameScreenFrame.levelOneSectionTwoScreen.activeMario.get(0).getX() < 830 || gameScreenFrame.levelOneSectionTwoScreen.activeMario.get(0).getX() >= 5800) {// Move Mario
                         gameScreenFrame.levelOneSectionTwoScreen.activeMario.get(0).setX(gameScreenFrame.levelOneSectionTwoScreen.activeMario.get(0).getX() + 5);
                     } else {// Move Panel
-                        int xLevelOneBackgroundPanel = gameScreenFrame.getxLevelOneBackgroundPanel();
-                        gameScreenFrame.setxLevelOneBackgroundPanel(xLevelOneBackgroundPanel - 10);
+                        int xLevelOneBackgroundPanel = gameScreenFrame.getXLevelOneBackgroundPanel();
+                        gameScreenFrame.setXLevelOneBackgroundPanel(xLevelOneBackgroundPanel - 10);
                         gameScreenFrame.levelOneSectionTwoScreen.activeMario.get(0).setX(gameScreenFrame.levelOneSectionTwoScreen.activeMario.get(0).getX() + 10);
                         gameScreenFrame.levelOneSectionTwoScreen.XThisGameCoinImage += 10;
                         gameScreenFrame.levelOneSectionTwoScreen.thisGameCoinImage.setX(gameScreenFrame.levelOneSectionTwoScreen.XThisGameCoinImage);
@@ -172,8 +172,8 @@ public class MarioMover implements KeyListener {
                         gameScreenFrame.levelOneSectionTwoScreen.activeMario.get(0).setX(gameScreenFrame.levelOneSectionTwoScreen.activeMario.get(0).getX() - 5);
 
                     } else {// Move Panel
-                        int xLevelOneBackgroundPanel = gameScreenFrame.getxLevelOneBackgroundPanel();
-                        gameScreenFrame.setxLevelOneBackgroundPanel(xLevelOneBackgroundPanel + 10);
+                        int xLevelOneBackgroundPanel = gameScreenFrame.getXLevelOneBackgroundPanel();
+                        gameScreenFrame.setXLevelOneBackgroundPanel(xLevelOneBackgroundPanel + 10);
                         gameScreenFrame.levelOneSectionTwoScreen.activeMario.get(0).setX(gameScreenFrame.levelOneSectionTwoScreen.activeMario.get(0).getX() - 10);
                         gameScreenFrame.levelOneSectionTwoScreen.XThisGameCoinImage -= 10;
                         gameScreenFrame.levelOneSectionTwoScreen.thisGameCoinImage.setX(gameScreenFrame.levelOneSectionTwoScreen.XThisGameCoinImage);

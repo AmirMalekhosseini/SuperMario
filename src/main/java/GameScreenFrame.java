@@ -46,11 +46,11 @@ public class GameScreenFrame extends JFrame {
 
     }
 
-    public int getxLevelOneBackgroundPanel() {
+    public int getXLevelOneBackgroundPanel() {
         return xLevelOneBackgroundPanel;
     }
 
-    public void setxLevelOneBackgroundPanel(int xLevelOneBackgroundPanel) {
+    public void setXLevelOneBackgroundPanel(int xLevelOneBackgroundPanel) {
         this.xLevelOneBackgroundPanel = xLevelOneBackgroundPanel;
     }
 

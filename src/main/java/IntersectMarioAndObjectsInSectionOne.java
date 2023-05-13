@@ -42,9 +42,6 @@ public class IntersectMarioAndObjectsInSectionOne {
                     if (!((PrizeInAir) levelOneSectionOneScreen.objectsInThisSection.get(i)).coinCatch) {
                         ((PrizeInAir) levelOneSectionOneScreen.objectsInThisSection.get(i)).coinCatch = true;
                         levelOneSectionOneScreen.gameData.thisGameCoin++;
-//                        int x = levelOneSectionOneScreen.objectsInThisSection.get(i).getX();
-//                        int y = levelOneSectionOneScreen.objectsInThisSection.get(i).getY();
-//                        ((PrizeInAir) levelOneSectionOneScreen.objectsInThisSection.get(i)).coinInPrizeInAirs = new CoinInPrizeInAirs(x, y);
                     }
                 }
 

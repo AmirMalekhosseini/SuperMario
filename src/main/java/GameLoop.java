@@ -23,7 +23,7 @@ public class GameLoop {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (!gameScreenFrame.gameData.isGameFinish) {
-                    int xLevelOneBackgroundPanel = gameScreenFrame.getxLevelOneBackgroundPanel();
+                    int xLevelOneBackgroundPanel = gameScreenFrame.getXLevelOneBackgroundPanel();
                     gameScreenFrame.levelOneGameBackgroundPanel.setLocation(xLevelOneBackgroundPanel, 0);
                     setLocationOfEnemiesInSectionOneLevelOne();
                     setLocationOfEnemiesInSectionTwoLevelOne();
@@ -112,7 +112,7 @@ public class GameLoop {
 
     public void setLocationAfterLooseInSectionOneLevelOne() {
 
-        gameScreenFrame.setxLevelOneBackgroundPanel(0);
+        gameScreenFrame.setXLevelOneBackgroundPanel(0);
         gameScreenFrame.levelOneSectionOneScreen.activeMario.get(0).setX(100);
         gameScreenFrame.levelOneSectionOneScreen.XUserHeartImage = 1520;
         gameScreenFrame.levelOneSectionOneScreen.userHeartImage.setX(gameScreenFrame.levelOneSectionOneScreen.XUserHeartImage);
@@ -127,7 +127,7 @@ public class GameLoop {
 
     public void setLocationAfterLooseInSectionTwoLevelOne() {
 
-        gameScreenFrame.setxLevelOneBackgroundPanel(-6800);
+        gameScreenFrame.setXLevelOneBackgroundPanel(-6800);
         gameScreenFrame.levelOneSectionTwoScreen.activeMario.get(0).setX(100);
         gameScreenFrame.levelOneSectionTwoScreen.XUserHeartImage = 1520;
         gameScreenFrame.levelOneSectionTwoScreen.userHeartImage.setX(gameScreenFrame.levelOneSectionTwoScreen.XUserHeartImage);

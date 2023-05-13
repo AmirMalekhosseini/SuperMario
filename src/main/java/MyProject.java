@@ -26,11 +26,6 @@ public class MyProject {
         activeUser.add(new User());
         MyProjectData myProjectData = new MyProjectData();
         LoginPageScreen loginPageScreen = new LoginPageScreen();
-//        MainMenuScreen mainMenuScreen = new MainMenuScreen();
-//        NewGameScreen newGameScreen = new NewGameScreen();
-//        Game newGame = new Game();
-//        StoreScreen storeScreen = new StoreScreen();
-//        UserProfileScreen userProfileScreen = new UserProfileScreen();
 
     }
 
