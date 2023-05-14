@@ -1,5 +1,7 @@
 package Graphic;
 
+import MyProject.MyProject;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -25,14 +27,7 @@ public class CoinInPrizeInAirs extends Coin{
 
         this.setSize(width, height);
 
-        try {
-            String pathBackground = "Coin.png";
-            File fileBackground = new File(pathBackground);
-            background = ImageIO.read(fileBackground);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        background = MyProject.projectData.getCoinInPrizeInAirs();
 
         this.x = xx;
         this.y = yy;

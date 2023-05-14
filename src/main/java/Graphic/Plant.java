@@ -1,5 +1,7 @@
 package Graphic;
 
+import MyProject.MyProject;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -24,14 +26,7 @@ public class Plant extends Enemy {
     Plant(int xx, int yy) {
         this.setSize(width, height);
 
-        try {
-            String pathBackground = "Enemy/Plant.png";
-            File fileBackground = new File(pathBackground);
-            background = ImageIO.read(fileBackground);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        background = MyProject.projectData.getPlant();
 
         this.x = xx;
         this.y = yy;

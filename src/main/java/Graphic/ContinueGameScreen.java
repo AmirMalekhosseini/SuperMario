@@ -17,10 +17,11 @@ public class ContinueGameScreen extends JFrame implements ActionListener {
     JLabel backgroundImageLabel;
 
     ContinueGameScreen() {
-        ImageIcon backgroundImage = MyProjectData.gameMenuImage;
-        ImageIcon gameIcon = MyProjectData.gameIcon;
-        Font font35 = MyProjectData.font35;
-        Font font20 = MyProjectData.font20;
+
+        ImageIcon backgroundImage = MyProject.projectData.getGameMenuImage();
+        ImageIcon gameIcon = MyProject.projectData.getGameIcon();
+        Font font35 = MyProject.projectData.getFont35();
+        Font font20 = MyProject.projectData.getFont20();
 
         this.setSize(650, 700);
         this.setLayout(null);
@@ -87,7 +88,7 @@ public class ContinueGameScreen extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == backButton) {
-            MainMenuScreen mainMenuScreen = new MainMenuScreen();
+            new MainMenuScreen();
             this.dispose();
         }
 

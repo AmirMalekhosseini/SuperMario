@@ -1,6 +1,8 @@
 package Graphic;
 
 import Model.*;
+import MyProject.MyProject;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -23,23 +25,8 @@ public class PrizeInAir extends ObjectsInGame {
 
         this.setSize(width, height);
 
-        try {
-            String pathBackground = "PrizeInAir_Active.png";
-            File fileBackground = new File(pathBackground);
-            background_Active = ImageIO.read(fileBackground);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            String pathBackground = "PrizeInAir_InActive.png";
-            File fileBackground = new File(pathBackground);
-            background_InActive = ImageIO.read(fileBackground);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        background_Active = MyProject.projectData.getActivePrizeInAir();
+        background_InActive = MyProject.projectData.getInActivePrizeInAir();
 
         this.x = x;
         this.y = y;

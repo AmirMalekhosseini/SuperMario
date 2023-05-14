@@ -31,93 +31,17 @@ public class ShooterMario extends Mario {
     ShooterMario(int x, int y) {
 
         this.setSize(this.width, this.height);
-
-        try {
-            String pathBackground = "mario/BlackMario_Shooter/run_1_Black_Shooter.png";
-            File fileBackground = new File(pathBackground);
-            run_1 = ImageIO.read(fileBackground);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            String pathBackground = "mario/BlackMario_Shooter/run_2_Black_Shooter.png";
-            File fileBackground = new File(pathBackground);
-            run_2 = ImageIO.read(fileBackground);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            String pathBackground = "mario/BlackMario_Shooter/run_3_Black_Shooter.png";
-            File fileBackground = new File(pathBackground);
-            run_3 = ImageIO.read(fileBackground);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            String pathBackground = "mario/BlackMario_Shooter/stand_Black_Shooter.png";
-            File fileBackground = new File(pathBackground);
-            stand = ImageIO.read(fileBackground);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            String pathBackground = "mario/BlackMario_Shooter/jump_Black_Shooter.png";
-            File fileBackground = new File(pathBackground);
-            jump = ImageIO.read(fileBackground);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
-        try {
-            String pathBackground = "MarioFilliped/BlackMario_Shooter/run_1_Black_Shooter.png";
-            File fileBackground = new File(pathBackground);
-            run_1_Flipped = ImageIO.read(fileBackground);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            String pathBackground = "MarioFilliped/BlackMario_Shooter/run_2_Black_Shooter.png";
-            File fileBackground = new File(pathBackground);
-            run_2_Flipped = ImageIO.read(fileBackground);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            String pathBackground = "MarioFilliped/BlackMario_Shooter/run_3_Black_Shooter.png";
-            File fileBackground = new File(pathBackground);
-            run_3_Flipped = ImageIO.read(fileBackground);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            String pathBackground = "MarioFilliped/BlackMario_Shooter/stand_Black_Shooter.png";
-            File fileBackground = new File(pathBackground);
-            stand_Flipped = ImageIO.read(fileBackground);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            String pathBackground = "MarioFilliped/BlackMario_Shooter/jump_Black_Shooter.png";
-            File fileBackground = new File(pathBackground);
-            jump_Flipped = ImageIO.read(fileBackground);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        MyProjectData projectData = new MyProjectData();
+        run_1 = projectData.getShooterMario_Run_1();
+        run_2 = projectData.getShooterMario_Run_2();
+        run_3 = projectData.getShooterMario_Run_3();
+        stand = projectData.getShooterMario_Stand();
+        jump = projectData.getShooterMario_jump();
+        run_1_Flipped = projectData.getShooterMario_Run_1_Flipped();
+        run_2_Flipped = projectData.getShooterMario_Run_2_Flipped();
+        run_3_Flipped = projectData.getShooterMario_Run_3_Flipped();
+        jump_Flipped = projectData.getShooterMario_jump_Flipped();
+        stand_Flipped = projectData.getShooterMario_Stand_Flipped();
 
         this.x = x;
         this.y = y;

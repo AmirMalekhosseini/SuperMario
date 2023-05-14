@@ -27,10 +27,11 @@ public class LeaderBoardScreen extends JFrame implements ActionListener {
     JButton backButton;
 
     public LeaderBoardScreen() {
-        ImageIcon backgroundImage = MyProjectData.gameMenuImage;
-        ImageIcon gameIcon = MyProjectData.gameIcon;
-        Font font20 = MyProjectData.font20;
-        Font font35 = MyProjectData.font35;
+
+        ImageIcon backgroundImage = MyProject.projectData.getGameMenuImage();
+        ImageIcon gameIcon = MyProject.projectData.getGameIcon();
+        Font font20 = MyProject.projectData.getFont20();
+        Font font35 = MyProject.projectData.getFont35();
 
         scores.add(-1);
         scores.add(-1);
@@ -130,7 +131,7 @@ public class LeaderBoardScreen extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == backButton) {
-            MainMenuScreen mainMenuScreen = new MainMenuScreen();
+            new MainMenuScreen();
             this.dispose();
         }
     }

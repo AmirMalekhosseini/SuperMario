@@ -25,9 +25,9 @@ public class LoginPageScreen extends JFrame implements ActionListener {
         objectMapper = new ObjectMapper();
         objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
         objectMapper.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
-        ImageIcon backgroundImage = MyProjectData.gameMenuImage;
-        ImageIcon gameIcon = MyProjectData.gameIcon;
-        Font font20 = MyProjectData.font20;
+        ImageIcon backgroundImage = MyProject.projectData.getGameMenuImage();
+        ImageIcon gameIcon = MyProject.projectData.getGameIcon();
+        Font font20 = MyProject.projectData.getFont20();
 
 
         this.setSize(650, 700);
@@ -87,7 +87,7 @@ public class LoginPageScreen extends JFrame implements ActionListener {
                 password = JOptionPane.showInputDialog("Enter Password");
                 if (usernameLogic.checkPassword(password)) {
                     JOptionPane.showMessageDialog(null, "Signed In Successfully", "Sign In", JOptionPane.INFORMATION_MESSAGE);
-                    MainMenuScreen mainMenuScreen = new MainMenuScreen();
+                    new MainMenuScreen();
                     this.dispose();
                     try {
                         objectMapper.writeValue(new File("User.jason"), MyProject.allUsers);

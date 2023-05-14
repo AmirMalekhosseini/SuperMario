@@ -44,17 +44,17 @@ public class UserProfileScreen extends JFrame implements ActionListener {
         objectMapper = new ObjectMapper();
         objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
         objectMapper.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
-        ImageIcon backgroundImage = MyProjectData.gameMenuImage;
-        ImageIcon gameIcon = MyProjectData.gameIcon;
-        ImageIcon normalMarioImage = MyProjectData.normalMarioImage;
-        ImageIcon coinMarioImage = MyProjectData.coinMarioImage;
-        ImageIcon runnerMarioImage = MyProjectData.runnerMarioImage;
-        ImageIcon shooterMarioImage = MyProjectData.shooterMarioImage;
-        ImageIcon jumperMarioImage = MyProjectData.jumperMarioImage;
+        ImageIcon backgroundImage = MyProject.projectData.getGameMenuImage();
+        ImageIcon gameIcon = MyProject.projectData.getGameIcon();
+        ImageIcon normalMarioImage = MyProject.projectData.getNormalMarioImage();
+        ImageIcon coinMarioImage = MyProject.projectData.getCoinMarioImage();
+        ImageIcon runnerMarioImage = MyProject.projectData.getRunnerMarioImage();
+        ImageIcon shooterMarioImage = MyProject.projectData.getShooterMarioImage();
+        ImageIcon jumperMarioImage = MyProject.projectData.getJumperMarioImage();
 
-        Font font12 = MyProjectData.font12;
-        Font font22 = MyProjectData.font22;
-        Font font10 = MyProjectData.font10;
+        Font font12 = MyProject.projectData.getFont12();
+        Font font22 = MyProject.projectData.getFont22();
+        Font font10 = MyProject.projectData.getFont10();
 
 
         this.setSize(650, 700);
@@ -225,7 +225,7 @@ public class UserProfileScreen extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == backButton) {
-            MainMenuScreen mainMenuScreen = new MainMenuScreen();
+            new MainMenuScreen();
             this.dispose();
             try {
                 objectMapper.writeValue(new File("User.jason"), MyProject.allUsers);

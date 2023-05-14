@@ -19,10 +19,12 @@ public class NewGameScreen extends JFrame implements ActionListener {
 
     public NewGameScreen(GameData gameData) {
 
-        ImageIcon backgroundImage = MyProjectData.gameMenuImage;
-        ImageIcon gameIcon = MyProjectData.gameIcon;
-        Font font35 = MyProjectData.font35;
-        Font font20 = MyProjectData.font20;
+        MyProjectData projectData = new MyProjectData();
+
+        ImageIcon backgroundImage = projectData.getGameMenuImage();
+        ImageIcon gameIcon = projectData.getGameIcon();
+        Font font35 = projectData.getFont35();
+        Font font20 = projectData.getFont20();
 
         this.setSize(650, 700);
         this.setLayout(null);

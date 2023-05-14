@@ -36,17 +36,18 @@ public class ChooseCharacterForStartNewGame extends JFrame implements ActionList
     GameData gameData;
 
     ChooseCharacterForStartNewGame() {
-        ImageIcon backgroundImage = MyProjectData.gameMenuImage;
-        ImageIcon gameIcon = MyProjectData.gameIcon;
-        ImageIcon normalMarioImage = MyProjectData.normalMarioImage;
-        ImageIcon coinMarioImage = MyProjectData.coinMarioImage;
-        ImageIcon runnerMarioImage = MyProjectData.runnerMarioImage;
-        ImageIcon shooterMarioImage = MyProjectData.shooterMarioImage;
-        ImageIcon jumperMarioImage = MyProjectData.jumperMarioImage;
 
-        Font font12 = MyProjectData.font12;
-        Font font22 = MyProjectData.font22;
-        Font font10 = MyProjectData.font10;
+        ImageIcon backgroundImage = MyProject.projectData.getGameMenuImage();
+        ImageIcon gameIcon = MyProject.projectData.getGameIcon();
+        ImageIcon normalMarioImage = MyProject.projectData.getNormalMarioImage();
+        ImageIcon coinMarioImage = MyProject.projectData.getCoinMarioImage();
+        ImageIcon runnerMarioImage = MyProject.projectData.getRunnerMarioImage();
+        ImageIcon shooterMarioImage = MyProject.projectData.getShooterMarioImage();
+        ImageIcon jumperMarioImage = MyProject.projectData.getJumperMarioImage();
+
+        Font font12 = MyProject.projectData.getFont12();
+        Font font22 = MyProject.projectData.getFont22();
+        Font font10 = MyProject.projectData.getFont10();
 
 
         this.setSize(650, 700);
@@ -244,12 +245,12 @@ public class ChooseCharacterForStartNewGame extends JFrame implements ActionList
         }
 
         if (e.getSource() == backButton) {
-            MainMenuScreen mainMenuScreen = new MainMenuScreen();
+            new MainMenuScreen();
             this.dispose();
         }
 
         if (e.getSource() == OKButton) {
-            NewGameScreen newGameScreen = new NewGameScreen(gameData);
+            new NewGameScreen(gameData);
             this.dispose();
         }
 

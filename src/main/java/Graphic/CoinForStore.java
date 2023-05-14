@@ -1,5 +1,7 @@
 package Graphic;
 
+import MyProject.MyProject;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -19,14 +21,7 @@ public class CoinForStore extends JLabel {
 
         this.setSize(width, height);
 
-        try {
-            String pathBackground = "CoinForStore.png";
-            File fileBackground = new File(pathBackground);
-            background = ImageIO.read(fileBackground);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        background = MyProject.projectData.getCoinForStore();
 
         this.x = x;
         this.y = y;

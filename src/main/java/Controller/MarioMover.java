@@ -210,8 +210,7 @@ public class MarioMover implements KeyListener {
         if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
             gameScreenFrame.dispose();
             gameScreenFrame.getGameData().setGamePause(true);
-//            MyProject.gameSaves.set(gameScreenFrame.gameData.gameSave,)
-            MainMenuScreen mainMenuScreen = new MainMenuScreen();
+            new MainMenuScreen();
             try {
                 objectMapper.writeValue(new File("User.jason"), MyProject.allUsers);
             } catch (IOException ex) {
@@ -251,11 +250,6 @@ public class MarioMover implements KeyListener {
 
     @Override
     public void keyReleased(KeyEvent e) {
-
-
-        if (e.getKeyChar() == 'w') {
-//            upMario = false;
-        }
 
         if (e.getKeyChar() == 's') {
             downMario = false;

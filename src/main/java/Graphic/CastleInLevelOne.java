@@ -1,6 +1,8 @@
 package Graphic;
 
 import Model.*;
+import MyProject.MyProject;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -19,14 +21,7 @@ public class CastleInLevelOne extends JLabel {
     public CastleInLevelOne(int x, int y) {
         this.setSize(width, height);
 
-        try {
-            String pathBackground = "Castle.png";
-            File fileBackground = new File(pathBackground);
-            castleImage = ImageIO.read(fileBackground);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        castleImage = MyProject.projectData.getCastleLevelOne();
 
         this.x = x;
         this.y = y;

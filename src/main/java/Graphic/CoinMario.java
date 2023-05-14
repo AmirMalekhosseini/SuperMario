@@ -32,92 +32,17 @@ public class CoinMario extends Mario {
 
         this.setSize(this.width, this.height);
 
-        try {
-            String pathBackground = "mario/YellowMario_Coin/run_1_Yellow_Coin.png";
-            File fileBackground = new File(pathBackground);
-            run_1 = ImageIO.read(fileBackground);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            String pathBackground = "mario/YellowMario_Coin/run_2_Yellow_Coin.png";
-            File fileBackground = new File(pathBackground);
-            run_2 = ImageIO.read(fileBackground);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            String pathBackground = "mario/YellowMario_Coin/run_3_Yellow_Coin.png";
-            File fileBackground = new File(pathBackground);
-            run_3 = ImageIO.read(fileBackground);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            String pathBackground = "mario/YellowMario_Coin/stand_Yellow_Coin.png";
-            File fileBackground = new File(pathBackground);
-            stand = ImageIO.read(fileBackground);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            String pathBackground = "mario/YellowMario_Coin/jump_Yellow_Coin.png";
-            File fileBackground = new File(pathBackground);
-            jump = ImageIO.read(fileBackground);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
-        try {
-            String pathBackground = "MarioFilliped/YellowMario_Coin/run_1_Yellow_Coin.png";
-            File fileBackground = new File(pathBackground);
-            run_1_Flipped = ImageIO.read(fileBackground);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            String pathBackground = "MarioFilliped/YellowMario_Coin/run_2_Yellow_Coin.png";
-            File fileBackground = new File(pathBackground);
-            run_2_Flipped = ImageIO.read(fileBackground);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            String pathBackground = "MarioFilliped/YellowMario_Coin/run_3_Yellow_Coin.png";
-            File fileBackground = new File(pathBackground);
-            run_3_Flipped = ImageIO.read(fileBackground);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            String pathBackground = "MarioFilliped/YellowMario_Coin/stand_Yellow_Coin.png";
-            File fileBackground = new File(pathBackground);
-            stand_Flipped = ImageIO.read(fileBackground);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            String pathBackground = "MarioFilliped/YellowMario_Coin/jump_Yellow_Coin.png";
-            File fileBackground = new File(pathBackground);
-            jump_Flipped = ImageIO.read(fileBackground);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        MyProjectData projectData = new MyProjectData();
+        run_1 = projectData.getCoinMario_Run_1();
+        run_2 = projectData.getCoinMario_Run_2();
+        run_3 = projectData.getCoinMario_Run_3();
+        stand = projectData.getCoinMario_Stand();
+        jump = projectData.getCoinMario_jump();
+        run_1_Flipped = projectData.getCoinMario_Run_1_Flipped();
+        run_2_Flipped = projectData.getCoinMario_Run_2_Flipped();
+        run_3_Flipped = projectData.getCoinMario_Run_3_Flipped();
+        jump_Flipped = projectData.getCoinMario_jump_Flipped();
+        stand_Flipped = projectData.getCoinMario_Stand_Flipped();
 
         this.x = x;
         this.y = y;

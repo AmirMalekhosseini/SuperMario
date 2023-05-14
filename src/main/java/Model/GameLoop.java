@@ -14,8 +14,6 @@ public class GameLoop {
 
     ObjectMapper objectMapper;
     GameScreenFrame gameScreenFrame;
-
-    private boolean stopTimer;
     public GameLoop(GameScreenFrame gameScreenFrame) {
         objectMapper = new ObjectMapper();
         objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
@@ -30,8 +28,12 @@ public class GameLoop {
                     gameScreenFrame.getLevelOneGameBackgroundPanel().setLocation(xLevelOneBackgroundPanel, 0);
                     setLocationOfEnemiesInSectionOneLevelOne();
                     setLocationOfEnemiesInSectionTwoLevelOne();
-                    gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).setLocation(gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).getX(), gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).getY());
-                    gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).setLocation(gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).getX(), gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).getY());
+                    gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).setLocation
+                            (gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).getX(),
+                                    gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).getY());
+                    gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).setLocation
+                            (gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).getX(),
+                                    gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).getY());
                     gameScreenFrame.marioMover.move();
                     gameScreenFrame.intersectMarioAndObjectsInSectionOne.refreshIntersectsBooleans();
                     gameScreenFrame.intersectMarioAndObjectsInSectionOne.intersect();
@@ -71,7 +73,7 @@ public class GameLoop {
                     }
 
                     gameScreenFrame.dispose();
-                    MainMenuScreen mainMenuScreen = new MainMenuScreen();
+                    new MainMenuScreen();
                     ((Timer)e.getSource()).stop();
 
                     try {

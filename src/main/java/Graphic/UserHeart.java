@@ -1,5 +1,7 @@
 package Graphic;
 
+import MyProject.MyProject;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -20,14 +22,7 @@ public class UserHeart extends JLabel {
 
         this.setSize(width, height);
 
-        try {
-            String pathBackground = "Heart.png";
-            File fileBackground = new File(pathBackground);
-            background = ImageIO.read(fileBackground);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        background = MyProject.projectData.getUserHeart();
 
         this.x = x;
         this.y = y;

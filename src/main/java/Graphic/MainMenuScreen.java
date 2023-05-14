@@ -28,10 +28,10 @@ public class MainMenuScreen extends JFrame implements ActionListener {
         objectMapper = new ObjectMapper();
         objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
         objectMapper.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
-        ImageIcon backgroundImage = MyProjectData.gameMenuImage;
-        ImageIcon gameIcon = MyProjectData.gameIcon;
-        Font font20 = MyProjectData.font20;
-        Font font15 = MyProjectData.font15;
+        ImageIcon backgroundImage = MyProject.projectData.getGameMenuImage();
+        ImageIcon gameIcon = MyProject.projectData.getGameIcon();
+        Font font20 = MyProject.projectData.getFont20();
+        Font font15 = MyProject.projectData.getFont15();
 
         this.setSize(650, 700);
         this.setLayout(null);
@@ -112,7 +112,7 @@ public class MainMenuScreen extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == backButton) {
-            LoginPageScreen loginPageScreen = new LoginPageScreen();
+            new LoginPageScreen();
             this.dispose();
             try {
                 objectMapper.writeValue(new File("User.jason"), MyProject.allUsers);
@@ -122,27 +122,27 @@ public class MainMenuScreen extends JFrame implements ActionListener {
         }
 
         if (e.getSource() == continueButton) {
-            ContinueGameScreen continueGameScreen = new ContinueGameScreen();
+            new ContinueGameScreen();
             this.dispose();
         }
 
         if (e.getSource() == newGameButton) {
-            ChooseCharacterForStartNewGame chooseCharacterForStartNewGame = new ChooseCharacterForStartNewGame();
+            new ChooseCharacterForStartNewGame();
             this.dispose();
         }
 
         if (e.getSource() == LeaderBoardButton) {
-            LeaderBoardScreen leaderBoardScreen = new LeaderBoardScreen();
+            new LeaderBoardScreen();
             this.dispose();
         }
 
         if (e.getSource() == storeButton) {
-            StoreScreen storeScreen = new StoreScreen();
+            new StoreScreen();
             this.dispose();
         }
 
         if (e.getSource() == profileButton) {
-            UserProfileScreen userProfileScreen = new UserProfileScreen();
+            new UserProfileScreen();
             this.dispose();
         }
 

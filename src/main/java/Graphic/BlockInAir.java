@@ -1,5 +1,8 @@
 package Graphic;
 
+import Model.MyProjectData;
+import MyProject.MyProject;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -19,14 +22,7 @@ public class BlockInAir extends ObjectsInGame {
     BlockInAir(int x, int y) {
         this.setSize(width, height);
 
-        try {
-            String pathBackground = "BlockInAir.png";
-            File fileBackground = new File(pathBackground);
-            background = ImageIO.read(fileBackground);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        background = MyProject.projectData.getBlockInAir();
 
         this.x = x;
         this.y = y;
