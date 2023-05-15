@@ -4,17 +4,17 @@
   },
   "username" : "amir",
   "password" : "1234",
-  "userCoinValue" : 7,
-  "userChooseNormal_RedMario" : true,
+  "userCoinValue" : 40,
+  "userChooseNormal_RedMario" : false,
   "userChooseCoin_YellowMario" : false,
   "userChooseJumper_GreenMario" : false,
   "userChooseRunner_BlueMario" : false,
-  "userChooseShooter_BlackMario" : false,
-  "userBoughtJumperMario" : true,
-  "userBoughtShooterMario" : false,
-  "userBoughtCoinMario" : false,
+  "userChooseShooter_BlackMario" : true,
   "userBoughtNormalMario" : true,
-  "userBoughtRunnerMario" : false
+  "userBoughtRunnerMario" : false,
+  "userBoughtJumperMario" : true,
+  "userBoughtShooterMario" : true,
+  "userBoughtCoinMario" : false
 }, {
   "userHighScore" : {
     "userScore" : 0
@@ -27,11 +27,11 @@
   "userChooseJumper_GreenMario" : false,
   "userChooseRunner_BlueMario" : false,
   "userChooseShooter_BlackMario" : false,
+  "userBoughtNormalMario" : true,
+  "userBoughtRunnerMario" : false,
   "userBoughtJumperMario" : false,
   "userBoughtShooterMario" : false,
-  "userBoughtCoinMario" : false,
-  "userBoughtNormalMario" : true,
-  "userBoughtRunnerMario" : false
+  "userBoughtCoinMario" : false
 }, {
   "userHighScore" : {
     "userScore" : 0
@@ -44,11 +44,11 @@
   "userChooseJumper_GreenMario" : false,
   "userChooseRunner_BlueMario" : false,
   "userChooseShooter_BlackMario" : false,
+  "userBoughtNormalMario" : true,
+  "userBoughtRunnerMario" : false,
   "userBoughtJumperMario" : false,
   "userBoughtShooterMario" : false,
-  "userBoughtCoinMario" : false,
-  "userBoughtNormalMario" : true,
-  "userBoughtRunnerMario" : false
+  "userBoughtCoinMario" : false
 }, {
   "userHighScore" : {
     "userScore" : 0
@@ -61,11 +61,11 @@
   "userChooseJumper_GreenMario" : false,
   "userChooseRunner_BlueMario" : false,
   "userChooseShooter_BlackMario" : false,
+  "userBoughtNormalMario" : true,
+  "userBoughtRunnerMario" : false,
   "userBoughtJumperMario" : false,
   "userBoughtShooterMario" : false,
-  "userBoughtCoinMario" : false,
-  "userBoughtNormalMario" : true,
-  "userBoughtRunnerMario" : false
+  "userBoughtCoinMario" : false
 }, {
   "userHighScore" : {
     "userScore" : 497
@@ -78,9 +78,9 @@
   "userChooseJumper_GreenMario" : false,
   "userChooseRunner_BlueMario" : false,
   "userChooseShooter_BlackMario" : false,
+  "userBoughtNormalMario" : true,
+  "userBoughtRunnerMario" : false,
   "userBoughtJumperMario" : false,
   "userBoughtShooterMario" : false,
-  "userBoughtCoinMario" : false,
-  "userBoughtNormalMario" : true,
-  "userBoughtRunnerMario" : false
+  "userBoughtCoinMario" : false
 } ]
