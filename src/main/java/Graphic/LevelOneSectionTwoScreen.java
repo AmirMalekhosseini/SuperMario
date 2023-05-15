@@ -15,10 +15,10 @@ public class LevelOneSectionTwoScreen extends JLayeredPane {
     public ArrayList<Mario> activeMario;
 
     GameData gameData;
-    JLabel backgroundLabelSceneOne;
-    JLabel backgroundLabelSceneTwo;
-    JLabel backgroundLabelSceneThree;
-    JLabel backgroundLabelSceneFour;
+    public JLabel backgroundLabelSceneOne;
+    public JLabel backgroundLabelSceneTwo;
+    public JLabel backgroundLabelSceneThree;
+    public JLabel backgroundLabelSceneFour;
 
     Coin firstCoinOnGroundSceneOne;
     Coin secondCoinOnGroundSceneOne;

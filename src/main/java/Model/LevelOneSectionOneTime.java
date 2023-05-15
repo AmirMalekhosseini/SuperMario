@@ -14,7 +14,7 @@ public class LevelOneSectionOneTime {
 
     public LevelOneSectionOneTime(LevelOneSectionOneScreen levelOneSectionOneScreen) {
         this.levelOneSectionOneScreen = levelOneSectionOneScreen;
-        sectionTime = 100;
+        sectionTime = 50;
         timer=new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

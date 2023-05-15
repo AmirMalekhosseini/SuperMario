@@ -34,11 +34,8 @@ public class MarioMover implements KeyListener {
 
     public void move() {
 
-        if (gameScreenFrame.getXLevelOneBackgroundPanel() >= -6700) {// Game is in SectionOne
-
-            if (gameScreenFrame.getLevelOneSectionOneScreen().thisSectionTime.getSectionTime() == 0) {
-                gameScreenFrame.getGameData().setGameFinish(true);
-            }
+        if (gameScreenFrame.getXLevelOneBackgroundPanel() >= -6700) {// Game is in LevelOne SectionOne
+            gameScreenFrame.getGameData().setMarioLocation("levelonesectionone");
 
             try {
                 if (gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).getX() >= 6380) {// Go to Section Two
@@ -53,10 +50,10 @@ public class MarioMover implements KeyListener {
                     gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).setVelocityY(gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).getVelocityY() + (Gravity.gravity * Gravity.dt));
                     gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).setY((int) (gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).getY() + gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).getVelocityY()));
                     gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).setMarioJumping(true);// Mario is jumping
-                    if (gameScreenFrame.intersectMarioAndObjectsInSectionOne.isMarioHitsDownOfTheObject()) {// Mario hits down of an object and comes back to ground
+                    if (gameScreenFrame.intersectMarioAndObjectsInLevelOneSectionOne.isMarioHitsDownOfTheObject()) {// Mario hits down of an object and comes back to ground
                         gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).setVelocityY(0);
                         gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).setY((gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).getY() + 2));
-                    } else if (gameScreenFrame.intersectMarioAndObjectsInSectionOne.isMarioHitsUpOfTheObject()) {// Mario hits up an object and stand on it
+                    } else if (gameScreenFrame.intersectMarioAndObjectsInLevelOneSectionOne.isMarioHitsUpOfTheObject()) {// Mario hits up an object and stand on it
                         gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).setVelocityY(0);
                         gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).setY((gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).getY() - 2));
                         gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).setMarioJumping(false);// Mario stop jumping
@@ -71,38 +68,38 @@ public class MarioMover implements KeyListener {
 
                 }
 
-                if (rightMario && !leftMario && !gameScreenFrame.intersectMarioAndObjectsInSectionOne.isMarioHitsLeftOfTheObject()) {// Go Right
+                if (rightMario && !leftMario && !gameScreenFrame.intersectMarioAndObjectsInLevelOneSectionOne.isMarioHitsLeftOfTheObject()) {// Go Right
                     if (gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).getX() < 830 || gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).getX() >= 5800) {// Move Mario
                         gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).setX(gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).getX() + 5);
                     } else {// Move Panel
                         int xLevelOneBackgroundPanel = gameScreenFrame.getXLevelOneBackgroundPanel();
-                        gameScreenFrame.setXLevelOneBackgroundPanel(xLevelOneBackgroundPanel - 10);
-                        gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).setX(gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).getX() + 10);
-                        gameScreenFrame.getLevelOneSectionOneScreen().XThisGameCoinImage += 10;
+                        gameScreenFrame.setXLevelOneBackgroundPanel(xLevelOneBackgroundPanel - 5);
+                        gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).setX(gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).getX() + 5);
+                        gameScreenFrame.getLevelOneSectionOneScreen().XThisGameCoinImage += 5;
                         gameScreenFrame.getLevelOneSectionOneScreen().thisGameCoinImage.setX(gameScreenFrame.getLevelOneSectionOneScreen().XThisGameCoinImage);
-                        gameScreenFrame.getLevelOneSectionOneScreen().XThisGameCoin += 10;
-                        gameScreenFrame.getLevelOneSectionOneScreen().XThisSectionTimeLabel += 10;
-                        gameScreenFrame.getLevelOneSectionOneScreen().XUserHeartImage += 10;
+                        gameScreenFrame.getLevelOneSectionOneScreen().XThisGameCoin += 5;
+                        gameScreenFrame.getLevelOneSectionOneScreen().XThisSectionTimeLabel += 5;
+                        gameScreenFrame.getLevelOneSectionOneScreen().XUserHeartImage += 5;
                         gameScreenFrame.getLevelOneSectionOneScreen().userHeartImage.setX(gameScreenFrame.getLevelOneSectionOneScreen().XUserHeartImage);
-                        gameScreenFrame.getLevelOneSectionOneScreen().XUserScoreLabel += 10;
-                        gameScreenFrame.getLevelOneSectionOneScreen().XUserHeartValueLabel += 10;
+                        gameScreenFrame.getLevelOneSectionOneScreen().XUserScoreLabel += 5;
+                        gameScreenFrame.getLevelOneSectionOneScreen().XUserHeartValueLabel += 5;
                     }
                 }
-                if (leftMario && !rightMario && !gameScreenFrame.intersectMarioAndObjectsInSectionOne.isMarioHitsRightOfTheObject()) {// Go Left
+                if (leftMario && !rightMario && !gameScreenFrame.intersectMarioAndObjectsInLevelOneSectionOne.isMarioHitsRightOfTheObject()) {// Go Left
                     if (gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).getX() < 840 || gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).getX() >= 5800) {// Move Mario
                         gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).setX(gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).getX() - 5);
                     } else {// Move Panel
                         int xLevelOneBackgroundPanel = gameScreenFrame.getXLevelOneBackgroundPanel();
-                        gameScreenFrame.setXLevelOneBackgroundPanel(xLevelOneBackgroundPanel + 10);
-                        gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).setX(gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).getX() - 10);
-                        gameScreenFrame.getLevelOneSectionOneScreen().XThisGameCoinImage -= 10;
+                        gameScreenFrame.setXLevelOneBackgroundPanel(xLevelOneBackgroundPanel + 5);
+                        gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).setX(gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).getX() - 5);
+                        gameScreenFrame.getLevelOneSectionOneScreen().XThisGameCoinImage -= 5;
                         gameScreenFrame.getLevelOneSectionOneScreen().thisGameCoinImage.setX(gameScreenFrame.getLevelOneSectionOneScreen().XThisGameCoinImage);
-                        gameScreenFrame.getLevelOneSectionOneScreen().XThisGameCoin -= 10;
-                        gameScreenFrame.getLevelOneSectionOneScreen().XThisSectionTimeLabel -= 10;
-                        gameScreenFrame.getLevelOneSectionOneScreen().XUserHeartImage -= 10;
+                        gameScreenFrame.getLevelOneSectionOneScreen().XThisGameCoin -= 5;
+                        gameScreenFrame.getLevelOneSectionOneScreen().XThisSectionTimeLabel -= 5;
+                        gameScreenFrame.getLevelOneSectionOneScreen().XUserHeartImage -= 5;
                         gameScreenFrame.getLevelOneSectionOneScreen().userHeartImage.setX(gameScreenFrame.getLevelOneSectionOneScreen().XUserHeartImage);
-                        gameScreenFrame.getLevelOneSectionOneScreen().XUserScoreLabel -= 10;
-                        gameScreenFrame.getLevelOneSectionOneScreen().XUserHeartValueLabel -= 10;
+                        gameScreenFrame.getLevelOneSectionOneScreen().XUserScoreLabel -= 5;
+                        gameScreenFrame.getLevelOneSectionOneScreen().XUserHeartValueLabel -= 5;
                     }
                 }
 
@@ -112,13 +109,10 @@ public class MarioMover implements KeyListener {
 
         } else {// Game is in SectionTwo
 
-            if (gameScreenFrame.getLevelOneSectionTwoScreen().thisSectionTime.getSectionTime() == 0) {
-                gameScreenFrame.getGameData().setGameFinish(true);
-            }
-
+            gameScreenFrame.getGameData().setMarioLocation("levelonesectiontwo");
             if (!marioEnterInSectionTwo) {
                 marioEnterInSectionTwo = true;
-                gameScreenFrame.getLevelOneSectionTwoScreen().thisSectionTime.setSectionTime(100);
+                gameScreenFrame.getLevelOneSectionTwoScreen().thisSectionTime.setSectionTime(50);
                 // Add Score At The End Of SectionOne
                 gameScreenFrame.calculateScore.calculateScoreInSectionOneLevelOne();
             }
@@ -136,10 +130,10 @@ public class MarioMover implements KeyListener {
                     gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).setVelocityY(gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).getVelocityY() + (Gravity.gravity * Gravity.dt));
                     gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).setY((int) (gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).getY() + gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).getVelocityY()));
                     gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).setMarioJumping(true);// Mario is jumping
-                    if (gameScreenFrame.intersectMarioAndObjectsInSectionTwo.isMarioHitsDownOfTheObject()) {// Mario hits down of an object and comes back to ground
+                    if (gameScreenFrame.intersectMarioAndObjectsInLevelOneSectionTwo.isMarioHitsDownOfTheObject()) {// Mario hits down of an object and comes back to ground
                         gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).setVelocityY(0);
                         gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).setY((gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).getY() + 2));
-                    } else if (gameScreenFrame.intersectMarioAndObjectsInSectionTwo.isMarioHitsUpOfTheObject()) {// Mario hits up an object and stand on it
+                    } else if (gameScreenFrame.intersectMarioAndObjectsInLevelOneSectionTwo.isMarioHitsUpOfTheObject()) {// Mario hits up an object and stand on it
                         gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).setVelocityY(0);
                         gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).setY((gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).getY() - 2));
                         gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).setMarioJumping(false);// Mario stop jumping
@@ -155,39 +149,39 @@ public class MarioMover implements KeyListener {
                 }
 
 
-                if (rightMario && !leftMario && !gameScreenFrame.intersectMarioAndObjectsInSectionTwo.isMarioHitsLeftOfTheObject()) {
+                if (rightMario && !leftMario && !gameScreenFrame.intersectMarioAndObjectsInLevelOneSectionTwo.isMarioHitsLeftOfTheObject()) {
                     if (gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).getX() < 830 || gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).getX() >= 5800) {// Move Mario
                         gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).setX(gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).getX() + 5);
                     } else {// Move Panel
                         int xLevelOneBackgroundPanel = gameScreenFrame.getXLevelOneBackgroundPanel();
-                        gameScreenFrame.setXLevelOneBackgroundPanel(xLevelOneBackgroundPanel - 10);
-                        gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).setX(gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).getX() + 10);
-                        gameScreenFrame.getLevelOneSectionTwoScreen().XThisGameCoinImage += 10;
+                        gameScreenFrame.setXLevelOneBackgroundPanel(xLevelOneBackgroundPanel - 5);
+                        gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).setX(gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).getX() + 5);
+                        gameScreenFrame.getLevelOneSectionTwoScreen().XThisGameCoinImage += 5;
                         gameScreenFrame.getLevelOneSectionTwoScreen().thisGameCoinImage.setX(gameScreenFrame.getLevelOneSectionTwoScreen().XThisGameCoinImage);
-                        gameScreenFrame.getLevelOneSectionTwoScreen().XThisGameCoin += 10;
-                        gameScreenFrame.getLevelOneSectionTwoScreen().XThisSectionTimeLabel += 10;
-                        gameScreenFrame.getLevelOneSectionTwoScreen().XUserHeartImage += 10;
+                        gameScreenFrame.getLevelOneSectionTwoScreen().XThisGameCoin += 5;
+                        gameScreenFrame.getLevelOneSectionTwoScreen().XThisSectionTimeLabel += 5;
+                        gameScreenFrame.getLevelOneSectionTwoScreen().XUserHeartImage += 5;
                         gameScreenFrame.getLevelOneSectionTwoScreen().userHeartImage.setX(gameScreenFrame.getLevelOneSectionTwoScreen().XUserHeartImage);
-                        gameScreenFrame.getLevelOneSectionTwoScreen().XUserScoreLabel += 10;
-                        gameScreenFrame.getLevelOneSectionTwoScreen().XUserHeartValueLabel += 10;
+                        gameScreenFrame.getLevelOneSectionTwoScreen().XUserScoreLabel += 5;
+                        gameScreenFrame.getLevelOneSectionTwoScreen().XUserHeartValueLabel += 5;
                     }
                 }
-                if (leftMario && !rightMario && !gameScreenFrame.intersectMarioAndObjectsInSectionTwo.isMarioHitsRightOfTheObject()) {
+                if (leftMario && !rightMario && !gameScreenFrame.intersectMarioAndObjectsInLevelOneSectionTwo.isMarioHitsRightOfTheObject()) {
                     if (gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).getX() < 840 || gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).getX() >= 5800) {// Move Mario
                         gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).setX(gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).getX() - 5);
 
                     } else {// Move Panel
                         int xLevelOneBackgroundPanel = gameScreenFrame.getXLevelOneBackgroundPanel();
-                        gameScreenFrame.setXLevelOneBackgroundPanel(xLevelOneBackgroundPanel + 10);
-                        gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).setX(gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).getX() - 10);
-                        gameScreenFrame.getLevelOneSectionTwoScreen().XThisGameCoinImage -= 10;
+                        gameScreenFrame.setXLevelOneBackgroundPanel(xLevelOneBackgroundPanel + 5);
+                        gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).setX(gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).getX() - 5);
+                        gameScreenFrame.getLevelOneSectionTwoScreen().XThisGameCoinImage -= 5;
                         gameScreenFrame.getLevelOneSectionTwoScreen().thisGameCoinImage.setX(gameScreenFrame.getLevelOneSectionTwoScreen().XThisGameCoinImage);
-                        gameScreenFrame.getLevelOneSectionTwoScreen().XThisGameCoin -= 10;
-                        gameScreenFrame.getLevelOneSectionTwoScreen().XThisSectionTimeLabel -= 10;
-                        gameScreenFrame.getLevelOneSectionTwoScreen().XUserHeartImage -= 10;
+                        gameScreenFrame.getLevelOneSectionTwoScreen().XThisGameCoin -= 5;
+                        gameScreenFrame.getLevelOneSectionTwoScreen().XThisSectionTimeLabel -= 5;
+                        gameScreenFrame.getLevelOneSectionTwoScreen().XUserHeartImage -= 5;
                         gameScreenFrame.getLevelOneSectionTwoScreen().userHeartImage.setX(gameScreenFrame.getLevelOneSectionTwoScreen().XUserHeartImage);
-                        gameScreenFrame.getLevelOneSectionTwoScreen().XUserScoreLabel -= 10;
-                        gameScreenFrame.getLevelOneSectionTwoScreen().XUserHeartValueLabel -= 10;
+                        gameScreenFrame.getLevelOneSectionTwoScreen().XUserScoreLabel -= 5;
+                        gameScreenFrame.getLevelOneSectionTwoScreen().XUserHeartValueLabel -= 5;
                     }
                 }
 

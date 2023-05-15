@@ -15,10 +15,10 @@ public class LevelOneSectionOneScreen extends JLayeredPane {
     public ArrayList<Mario> activeMario;
 
     GameData gameData;
-    JLabel backgroundLabelSceneOne;
-    JLabel backgroundLabelSceneTwo;
-    JLabel backgroundLabelSceneThree;
-    JLabel backgroundLabelSceneFour;
+    public JLabel backgroundLabelSceneOne;
+    public JLabel backgroundLabelSceneTwo;
+    public JLabel backgroundLabelSceneThree;
+    public JLabel backgroundLabelSceneFour;
     BlockInAir firstBlockInAirSceneOne;
     Coin coinOnFirstBlockInAirSceneOne;
     BlockInAir secondBlockInAirSceneOne;
@@ -90,6 +90,11 @@ public class LevelOneSectionOneScreen extends JLayeredPane {
 
 
     LevelOneSectionOneScreen(GameData gameData) {
+        init(gameData);
+    }
+
+    private void init(GameData gameData) {
+
         this.gameData = gameData;
         ImageIcon backgroundImage = new ImageIcon("BackgroundSections.jpg");
         activeMario = new ArrayList<>();
@@ -99,7 +104,6 @@ public class LevelOneSectionOneScreen extends JLayeredPane {
 
         this.setSize(6800, 1100);
         this.setVisible(true);
-
 
         backgroundLabelSceneOne = new JLabel(backgroundImage);
         backgroundLabelSceneOne.setBounds(0, 0, 1700, 1100);
@@ -162,8 +166,6 @@ public class LevelOneSectionOneScreen extends JLayeredPane {
             shooterMario = new ShooterMario(100, 840);
             activeMario.set(0, shooterMario);
             this.add(shooterMario, Integer.valueOf(2));
-        } else {
-            System.out.println("WTF");
         }
 
         // Scene One:

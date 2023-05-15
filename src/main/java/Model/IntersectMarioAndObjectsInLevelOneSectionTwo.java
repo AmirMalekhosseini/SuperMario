@@ -1,7 +1,7 @@
 package Model;
 
 import Graphic.*;
-public class IntersectMarioAndObjectsInSectionTwo{
+public class IntersectMarioAndObjectsInLevelOneSectionTwo {
 
     GameScreenFrame gameScreenFrame;
     LevelOneSectionTwoScreen levelOneSectionTwoScreen;
@@ -10,7 +10,7 @@ public class IntersectMarioAndObjectsInSectionTwo{
     protected boolean marioHitsUpOfTheObject;
     protected boolean marioHitsDownOfTheObject;
 
-    public IntersectMarioAndObjectsInSectionTwo(GameScreenFrame gameScreenFrame) {
+    public IntersectMarioAndObjectsInLevelOneSectionTwo(GameScreenFrame gameScreenFrame) {
         this.gameScreenFrame = gameScreenFrame;
         this.levelOneSectionTwoScreen = gameScreenFrame.getLevelOneSectionTwoScreen();
     }

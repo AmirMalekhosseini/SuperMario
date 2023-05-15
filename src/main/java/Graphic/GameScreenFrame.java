@@ -10,8 +10,8 @@ public class GameScreenFrame extends JFrame {
     protected JPanel levelOneGameBackgroundPanel;
     protected LevelOneSectionOneScreen levelOneSectionOneScreen;
     protected LevelOneSectionTwoScreen levelOneSectionTwoScreen;
-    public IntersectMarioAndObjectsInSectionOne intersectMarioAndObjectsInSectionOne;
-    public IntersectMarioAndObjectsInSectionTwo intersectMarioAndObjectsInSectionTwo;
+    public IntersectMarioAndObjectsInLevelOneSectionOne intersectMarioAndObjectsInLevelOneSectionOne;
+    public IntersectMarioAndObjectsInLevelOneSectionTwo intersectMarioAndObjectsInLevelOneSectionTwo;
     public MarioMover marioMover;
     public GameLoop gameLoop;
     public CalculateScore calculateScore;
@@ -33,11 +33,11 @@ public class GameScreenFrame extends JFrame {
             @Override
             public void startModel(GameScreenFrame gameScreenFrame) {
 
-                gameLoop = new GameLoop(gameScreenFrame);
                 calculateScore = new CalculateScore(gameScreenFrame);
                 marioMover = new MarioMover(gameScreenFrame);
-                intersectMarioAndObjectsInSectionTwo = new IntersectMarioAndObjectsInSectionTwo(gameScreenFrame);
-                intersectMarioAndObjectsInSectionOne = new IntersectMarioAndObjectsInSectionOne(gameScreenFrame);
+                intersectMarioAndObjectsInLevelOneSectionTwo = new IntersectMarioAndObjectsInLevelOneSectionTwo(gameScreenFrame);
+                intersectMarioAndObjectsInLevelOneSectionOne = new IntersectMarioAndObjectsInLevelOneSectionOne(gameScreenFrame);
+                gameLoop = new GameLoop(gameScreenFrame);
 
             }
         };

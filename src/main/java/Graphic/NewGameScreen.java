@@ -96,7 +96,7 @@ public class NewGameScreen extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == backButton) {
-            MainMenuScreen mainMenuScreen = new MainMenuScreen();
+            new MainMenuScreen();
             this.dispose();
         }
 
