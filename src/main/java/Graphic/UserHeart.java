@@ -1,5 +1,6 @@
 package Graphic;
 
+import Model.MyProjectData;
 import MyProject.MyProject;
 
 import javax.imageio.ImageIO;
@@ -22,7 +23,7 @@ public class UserHeart extends JLabel {
 
         this.setSize(width, height);
 
-        background = MyProject.projectData.getUserHeart();
+        background = MyProjectData.getProjectData().getUserHeart();
 
         this.x = x;
         this.y = y;

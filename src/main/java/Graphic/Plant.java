@@ -1,5 +1,6 @@
 package Graphic;
 
+import Model.MyProjectData;
 import MyProject.MyProject;
 
 import javax.imageio.ImageIO;
@@ -26,7 +27,7 @@ public class Plant extends Enemy {
     Plant(int xx, int yy) {
         this.setSize(width, height);
 
-        background = MyProject.projectData.getPlant();
+        background = MyProjectData.getProjectData().getPlant();
 
         this.x = xx;
         this.y = yy;

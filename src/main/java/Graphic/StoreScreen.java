@@ -48,22 +48,26 @@ public class StoreScreen extends JFrame implements ActionListener {
     public JLabel userCoinValue;
 
 
-    public StoreScreen() {
+    StoreScreen() {
+        init();
+    }
+
+    private void init() {
 
         objectMapper = new ObjectMapper();
         objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
         objectMapper.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
-        ImageIcon backgroundImage = MyProject.projectData.getGameMenuImage();
-        ImageIcon gameIcon = MyProject.projectData.getGameIcon();
-        ImageIcon normalMarioImage = MyProject.projectData.getNormalMarioImage();
-        ImageIcon coinMarioImage = MyProject.projectData.getCoinMarioImage();
-        ImageIcon runnerMarioImage = MyProject.projectData.getRunnerMarioImage();
-        ImageIcon shooterMarioImage = MyProject.projectData.getShooterMarioImage();
-        ImageIcon jumperMarioImage = MyProject.projectData.getJumperMarioImage();
+        ImageIcon backgroundImage = MyProjectData.getProjectData().getGameMenuImage();
+        ImageIcon gameIcon = MyProjectData.getProjectData().getGameIcon();
+        ImageIcon normalMarioImage = MyProjectData.getProjectData().getNormalMarioImage();
+        ImageIcon coinMarioImage = MyProjectData.getProjectData().getCoinMarioImage();
+        ImageIcon runnerMarioImage = MyProjectData.getProjectData().getRunnerMarioImage();
+        ImageIcon shooterMarioImage = MyProjectData.getProjectData().getShooterMarioImage();
+        ImageIcon jumperMarioImage = MyProjectData.getProjectData().getJumperMarioImage();
 
-        Font font10 = MyProject.projectData.getFont10();
-        Font font12 = MyProject.projectData.getFont12();
-        Font font22 = MyProject.projectData.getFont22();
+        Font font10 = MyProjectData.getProjectData().getFont10();
+        Font font12 = MyProjectData.getProjectData().getFont12();
+        Font font22 = MyProjectData.getProjectData().getFont22();
 
         this.setSize(650, 700);
         this.setLayout(null);
@@ -250,6 +254,7 @@ public class StoreScreen extends JFrame implements ActionListener {
         backgroundPanel.add(backButton, Integer.valueOf(1));
 
         this.add(backgroundPanel);
+
     }
 
     @Override
@@ -267,7 +272,7 @@ public class StoreScreen extends JFrame implements ActionListener {
 
         if (e.getSource() == runnerMarioBuyButton) {
 
-            if(!runnerMarioBuyButton.isButtonChoose()) {
+            if(runnerMarioBuyButton.isButtonChoose()) {
                 StoreBuyLogic buyLogic = new StoreBuyLogic("runner mario",this);
                 if (buyLogic.canUserBuyMario()) {
                     userCoinValue.setText(String.valueOf(MyProject.activeUser.get(0).getUserCoinValue()));
@@ -282,7 +287,7 @@ public class StoreScreen extends JFrame implements ActionListener {
 
         if (e.getSource() == jumperMarioBuyButton) {
 
-            if(!jumperMarioBuyButton.isButtonChoose()) {
+            if(jumperMarioBuyButton.isButtonChoose()) {
                 StoreBuyLogic buyLogic = new StoreBuyLogic("jumper mario",this);
                 if (buyLogic.canUserBuyMario()) {
                     userCoinValue.setText(String.valueOf(MyProject.activeUser.get(0).getUserCoinValue()));
@@ -297,7 +302,7 @@ public class StoreScreen extends JFrame implements ActionListener {
 
         if (e.getSource() == shooterMarioBuyButton) {
 
-            if(!shooterMarioBuyButton.isButtonChoose()) {
+            if(shooterMarioBuyButton.isButtonChoose()) {
                 StoreBuyLogic buyLogic = new StoreBuyLogic("shooter mario",this);
                 if (buyLogic.canUserBuyMario()) {
                     userCoinValue.setText(String.valueOf(MyProject.activeUser.get(0).getUserCoinValue()));
@@ -312,7 +317,7 @@ public class StoreScreen extends JFrame implements ActionListener {
 
         if (e.getSource() == coinMarioBuyButton) {
 
-            if(!coinMarioBuyButton.isButtonChoose()) {
+            if(coinMarioBuyButton.isButtonChoose()) {
                 StoreBuyLogic buyLogic = new StoreBuyLogic("coin mario",this);
                 if (buyLogic.canUserBuyMario()) {
                     userCoinValue.setText(String.valueOf(MyProject.activeUser.get(0).getUserCoinValue()));

@@ -22,7 +22,7 @@ public class Pipe extends ObjectsInGame {
 
         this.setSize(width, height);
 
-        background = MyProject.projectData.getPipe();
+        background = MyProjectData.getProjectData().getPipe();
 
         this.x = x;
         this.y = y;

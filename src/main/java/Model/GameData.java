@@ -2,8 +2,8 @@ package Model;
 
 public class GameData {
 
-    protected boolean isGameFinish;
-    protected boolean isGamePause;
+    protected volatile boolean isGameFinish;
+    protected volatile boolean isGamePause;
     protected int userHeartValue = 3;
     protected int thisGameScore = 0;
     protected int thisGameCoin = 0;

@@ -1,5 +1,6 @@
 package Graphic;
 
+import Model.MyProjectData;
 import MyProject.MyProject;
 
 import javax.imageio.ImageIO;
@@ -21,7 +22,7 @@ public class CoinForStore extends JLabel {
 
         this.setSize(width, height);
 
-        background = MyProject.projectData.getCoinForStore();
+        background = MyProjectData.getProjectData().getCoinForStore();
 
         this.x = x;
         this.y = y;

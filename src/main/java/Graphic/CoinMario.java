@@ -32,7 +32,7 @@ public class CoinMario extends Mario {
 
         this.setSize(this.width, this.height);
 
-        MyProjectData projectData = new MyProjectData();
+        MyProjectData projectData = MyProjectData.getProjectData();
         run_1 = projectData.getCoinMario_Run_1();
         run_2 = projectData.getCoinMario_Run_2();
         run_3 = projectData.getCoinMario_Run_3();

@@ -21,7 +21,7 @@ public class CastleInLevelOne extends JLabel {
     public CastleInLevelOne(int x, int y) {
         this.setSize(width, height);
 
-        castleImage = MyProject.projectData.getCastleLevelOne();
+        castleImage = MyProjectData.getProjectData().getCastleLevelOne();
 
         this.x = x;
         this.y = y;

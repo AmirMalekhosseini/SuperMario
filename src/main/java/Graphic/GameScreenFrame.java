@@ -9,9 +9,9 @@ public class GameScreenFrame extends JFrame {
     protected GameData gameData;
     protected JPanel levelOneGameBackgroundPanel;
     protected LevelOneSectionOneScreen levelOneSectionOneScreen;
+    protected LevelOneSectionTwoScreen levelOneSectionTwoScreen;
     public IntersectMarioAndObjectsInSectionOne intersectMarioAndObjectsInSectionOne;
     public IntersectMarioAndObjectsInSectionTwo intersectMarioAndObjectsInSectionTwo;
-    protected LevelOneSectionTwoScreen levelOneSectionTwoScreen;
     public MarioMover marioMover;
     public GameLoop gameLoop;
     public CalculateScore calculateScore;
@@ -19,16 +19,30 @@ public class GameScreenFrame extends JFrame {
     private int xLevelOneBackgroundPanel = 0;
 
     GameScreenFrame(GameData gameData) {
+        init(gameData);
+    }
+
+    private void init(GameData gameData) {
+
         this.gameData = gameData;
         ImageIcon gameIcon = new ImageIcon("GameIcon.jpeg");
         levelOneSectionOneScreen = new LevelOneSectionOneScreen(gameData);
-        intersectMarioAndObjectsInSectionOne = new IntersectMarioAndObjectsInSectionOne(this);
         levelOneSectionTwoScreen = new LevelOneSectionTwoScreen(gameData, levelOneSectionOneScreen);
-        intersectMarioAndObjectsInSectionTwo = new IntersectMarioAndObjectsInSectionTwo(this);
-        marioMover = new MarioMover(this);
         levelOneGameBackgroundPanel = new JPanel();
-        gameLoop = new GameLoop(this);
-        calculateScore = new CalculateScore(this);
+        Model modelStarter = new Model() {
+            @Override
+            public void startModel(GameScreenFrame gameScreenFrame) {
+
+                gameLoop = new GameLoop(gameScreenFrame);
+                calculateScore = new CalculateScore(gameScreenFrame);
+                marioMover = new MarioMover(gameScreenFrame);
+                intersectMarioAndObjectsInSectionTwo = new IntersectMarioAndObjectsInSectionTwo(gameScreenFrame);
+                intersectMarioAndObjectsInSectionOne = new IntersectMarioAndObjectsInSectionOne(gameScreenFrame);
+
+            }
+        };
+
+        modelStarter.startModel(this);
 
         this.setSize(1700, 1300);
         this.setLayout(null);
@@ -41,8 +55,6 @@ public class GameScreenFrame extends JFrame {
 
         levelOneGameBackgroundPanel.setBounds(xLevelOneBackgroundPanel, 0, 14000, 1300);
         levelOneGameBackgroundPanel.setLayout(null);
-
-
 
         levelOneGameBackgroundPanel.add(levelOneSectionOneScreen);
         levelOneGameBackgroundPanel.add(levelOneSectionTwoScreen);

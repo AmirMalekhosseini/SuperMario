@@ -31,7 +31,7 @@ public class ShooterMario extends Mario {
     ShooterMario(int x, int y) {
 
         this.setSize(this.width, this.height);
-        MyProjectData projectData = new MyProjectData();
+        MyProjectData projectData = MyProjectData.getProjectData();
         run_1 = projectData.getShooterMario_Run_1();
         run_2 = projectData.getShooterMario_Run_2();
         run_3 = projectData.getShooterMario_Run_3();

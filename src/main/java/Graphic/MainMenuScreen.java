@@ -28,10 +28,10 @@ public class MainMenuScreen extends JFrame implements ActionListener {
         objectMapper = new ObjectMapper();
         objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
         objectMapper.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
-        ImageIcon backgroundImage = MyProject.projectData.getGameMenuImage();
-        ImageIcon gameIcon = MyProject.projectData.getGameIcon();
-        Font font20 = MyProject.projectData.getFont20();
-        Font font15 = MyProject.projectData.getFont15();
+        ImageIcon backgroundImage = MyProjectData.getProjectData().getGameMenuImage();
+        ImageIcon gameIcon = MyProjectData.getProjectData().getGameIcon();
+        Font font20 = MyProjectData.getProjectData().getFont20();
+        Font font15 = MyProjectData.getProjectData().getFont15();
 
         this.setSize(650, 700);
         this.setLayout(null);

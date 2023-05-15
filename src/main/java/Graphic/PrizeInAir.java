@@ -25,8 +25,8 @@ public class PrizeInAir extends ObjectsInGame {
 
         this.setSize(width, height);
 
-        background_Active = MyProject.projectData.getActivePrizeInAir();
-        background_InActive = MyProject.projectData.getInActivePrizeInAir();
+        background_Active = MyProjectData.getProjectData().getActivePrizeInAir();
+        background_InActive = MyProjectData.getProjectData().getInActivePrizeInAir();
 
         this.x = x;
         this.y = y;

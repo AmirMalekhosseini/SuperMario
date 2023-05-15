@@ -22,7 +22,7 @@ public class BlockInAir extends ObjectsInGame {
     BlockInAir(int x, int y) {
         this.setSize(width, height);
 
-        background = MyProject.projectData.getBlockInAir();
+        background = MyProjectData.getProjectData().getBlockInAir();
 
         this.x = x;
         this.y = y;

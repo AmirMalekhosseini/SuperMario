@@ -9,6 +9,8 @@ import java.io.IOException;
 
 public class MyProjectData {
 
+    private static MyProjectData projectData;
+
     protected ImageIcon gameIcon;
     protected ImageIcon gameMenuImage;
     protected ImageIcon normalMarioImage;
@@ -91,13 +93,20 @@ public class MyProjectData {
     protected Font font22;
     protected Font font35;
 
-    public MyProjectData() {
+    private MyProjectData() {
 
         importImages();
         importMarios();
         importFonts();
         importObjectsInGame();
 
+    }
+
+    public static MyProjectData getProjectData() {
+        if (projectData == null) {
+            projectData = new MyProjectData();
+        }
+        return projectData;
     }
 
     public void importObjectsInGame() {

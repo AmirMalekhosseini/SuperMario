@@ -1,5 +1,6 @@
 package Graphic;
 
+import Model.MyProjectData;
 import MyProject.MyProject;
 
 import javax.imageio.ImageIO;
@@ -26,7 +27,7 @@ public class Coin extends ObjectsInGame {
 
         this.setSize(width, height);
 
-        background = MyProject.projectData.getCoin();
+        background = MyProjectData.getProjectData().getCoin();
 
         this.x = x;
         this.y = y;

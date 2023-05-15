@@ -17,14 +17,16 @@ public class NewGameScreen extends JFrame implements ActionListener {
     JLabel backgroundImageLabel;
     GameData gameData;
 
-    public NewGameScreen(GameData gameData) {
+    NewGameScreen(GameData gameData) {
+        init(gameData);
+    }
 
-        MyProjectData projectData = new MyProjectData();
+    private void init(GameData gameData) {
 
-        ImageIcon backgroundImage = projectData.getGameMenuImage();
-        ImageIcon gameIcon = projectData.getGameIcon();
-        Font font35 = projectData.getFont35();
-        Font font20 = projectData.getFont20();
+        ImageIcon backgroundImage = MyProjectData.getProjectData().getGameMenuImage();
+        ImageIcon gameIcon = MyProjectData.getProjectData().getGameIcon();
+        Font font35 = MyProjectData.getProjectData().getFont35();
+        Font font20 = MyProjectData.getProjectData().getFont20();
 
         this.setSize(650, 700);
         this.setLayout(null);
@@ -87,8 +89,8 @@ public class NewGameScreen extends JFrame implements ActionListener {
 
 
         this.add(backgroundPanel);
-    }
 
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {

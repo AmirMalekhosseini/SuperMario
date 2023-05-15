@@ -25,9 +25,9 @@ public class LoginPageScreen extends JFrame implements ActionListener {
         objectMapper = new ObjectMapper();
         objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
         objectMapper.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
-        ImageIcon backgroundImage = MyProject.projectData.getGameMenuImage();
-        ImageIcon gameIcon = MyProject.projectData.getGameIcon();
-        Font font20 = MyProject.projectData.getFont20();
+        ImageIcon backgroundImage = MyProjectData.getProjectData().getGameMenuImage();
+        ImageIcon gameIcon = MyProjectData.getProjectData().getGameIcon();
+        Font font20 = MyProjectData.getProjectData().getFont20();
 
 
         this.setSize(650, 700);

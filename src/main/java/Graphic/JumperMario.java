@@ -33,7 +33,7 @@ public class JumperMario extends Mario {
 
         this.setSize(this.width, this.height);
 
-        MyProjectData projectData = new MyProjectData();
+        MyProjectData projectData = MyProjectData.getProjectData();
         run_1 = projectData.getJumperMario_Run_1();
         run_2 = projectData.getJumperMario_Run_2();
         run_3 = projectData.getJumperMario_Run_3();

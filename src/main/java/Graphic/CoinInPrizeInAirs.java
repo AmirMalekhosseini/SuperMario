@@ -1,5 +1,6 @@
 package Graphic;
 
+import Model.MyProjectData;
 import MyProject.MyProject;
 
 import javax.imageio.ImageIO;
@@ -27,7 +28,7 @@ public class CoinInPrizeInAirs extends Coin{
 
         this.setSize(width, height);
 
-        background = MyProject.projectData.getCoinInPrizeInAirs();
+        background = MyProjectData.getProjectData().getCoinInPrizeInAirs();
 
         this.x = xx;
         this.y = yy;
