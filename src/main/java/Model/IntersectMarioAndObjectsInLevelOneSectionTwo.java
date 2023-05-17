@@ -15,6 +15,10 @@ public class IntersectMarioAndObjectsInLevelOneSectionTwo {
         this.levelOneSectionTwoScreen = gameScreenFrame.getLevelOneSectionTwoScreen();
     }
 
+    public IntersectMarioAndObjectsInLevelOneSectionTwo() {
+
+    }
+
     public void intersect() {
 
 
@@ -222,5 +226,21 @@ public class IntersectMarioAndObjectsInLevelOneSectionTwo {
 
     public void setMarioHitsDownOfTheObject(boolean marioHitsDownOfTheObject) {
         this.marioHitsDownOfTheObject = marioHitsDownOfTheObject;
+    }
+
+    public GameScreenFrame getGameScreenFrame() {
+        return gameScreenFrame;
+    }
+
+    public void setGameScreenFrame(GameScreenFrame gameScreenFrame) {
+        this.gameScreenFrame = gameScreenFrame;
+    }
+
+    public LevelOneSectionTwoScreen getLevelOneSectionTwoScreen() {
+        return levelOneSectionTwoScreen;
+    }
+
+    public void setLevelOneSectionTwoScreen(LevelOneSectionTwoScreen levelOneSectionTwoScreen) {
+        this.levelOneSectionTwoScreen = levelOneSectionTwoScreen;
     }
 }

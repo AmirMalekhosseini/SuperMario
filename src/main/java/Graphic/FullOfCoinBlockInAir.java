@@ -1,41 +1,45 @@
 package Graphic;
 
 import Model.MyProjectData;
-import MyProject.MyProject;
 
-import javax.imageio.ImageIO;
-import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
-public class PipeHorizontal extends ObjectsInGame{
+public class FullOfCoinBlockInAir extends BlockInAir{
 
     private BufferedImage background;
+    private BufferedImage emptyBlockInAirBackground;
+
     private int x;
     private int y;
-    private int width = 270;
-    private int height = 140;
+    private int width = super.getWidth();
+    private int height = super.getHeight();
+    private int hitCounter = 0;
 
-    PipeHorizontal(int x, int y) {
+    FullOfCoinBlockInAir(int x, int y) {
 
         this.setSize(width, height);
 
-        background = MyProjectData.getProjectData().getPipeHorizontal();
+        background = MyProjectData.getProjectData().getBlockInAir();
+        emptyBlockInAirBackground = MyProjectData.getProjectData().getEmptyBlockInAir();
 
         this.x = x;
         this.y = y;
 
     }
 
-    public PipeHorizontal() {
+    public FullOfCoinBlockInAir() {
 
     }
 
+
     public void paint(Graphics graphics) {
         Graphics2D graphics2D = (Graphics2D) graphics;
-        graphics2D.drawImage(background, 0, -5, null);
+        if (hitCounter >= 5) {
+            graphics2D.drawImage(emptyBlockInAirBackground, 0, -5, null);
+        } else {
+            graphics2D.drawImage(background, 0, -5, null);
+        }
     }
 
     @Override
@@ -43,6 +47,7 @@ public class PipeHorizontal extends ObjectsInGame{
         return x;
     }
 
+    @Override
     public void setX(int x) {
         this.x = x;
     }
@@ -52,6 +57,7 @@ public class PipeHorizontal extends ObjectsInGame{
         return y;
     }
 
+    @Override
     public void setY(int y) {
         this.y = y;
     }
@@ -61,6 +67,7 @@ public class PipeHorizontal extends ObjectsInGame{
         return width;
     }
 
+    @Override
     public void setWidth(int width) {
         this.width = width;
     }
@@ -70,7 +77,16 @@ public class PipeHorizontal extends ObjectsInGame{
         return height;
     }
 
+    @Override
     public void setHeight(int height) {
         this.height = height;
+    }
+
+    public int getHitCounter() {
+        return hitCounter;
+    }
+
+    public void setHitCounter(int hitCounter) {
+        this.hitCounter = hitCounter;
     }
 }

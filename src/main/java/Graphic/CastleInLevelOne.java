@@ -27,6 +27,10 @@ public class CastleInLevelOne extends JLabel {
         this.y = y;
     }
 
+    public CastleInLevelOne() {
+
+    }
+
     public void paint(Graphics graphics) {
         Graphics2D graphics2D = (Graphics2D) graphics;
         graphics2D.drawImage(castleImage, 0, -5, null);

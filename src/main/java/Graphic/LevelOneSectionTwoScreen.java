@@ -78,13 +78,22 @@ public class LevelOneSectionTwoScreen extends JLayeredPane {
     public int XThisGameCoin = 1080;
     public int XThisGameCoinImage = 1110;
 
-    LevelOneSectionTwoScreen(GameData gameData, LevelOneSectionOneScreen levelOneSectionOneScreen) {
+    LevelOneSectionTwoScreen(GameData gameData) {
+        init(gameData);
+    }
+
+    public LevelOneSectionTwoScreen() {
+
+    }
+
+    public void init(GameData gameData) {
+
         this.gameData = gameData;
         ImageIcon backgroundImage = new ImageIcon("BackgroundSections.jpg");
         Font font1 = new Font("Comic Sans MS", Font.PLAIN, 22);
         activeMario = new ArrayList<>();
         activeMario.add(new NormalMario(0, 0));
-        this.thisSectionTime = new LevelOneSectionTwoTime(this, levelOneSectionOneScreen);
+        this.thisSectionTime = new LevelOneSectionTwoTime(this);
 
         this.setSize(6800, 1100);
         this.setLocation(6800,0);
@@ -157,125 +166,45 @@ public class LevelOneSectionTwoScreen extends JLayeredPane {
 
         // Scene One:
         firstCoinOnGroundSceneOne = new Coin(610, 890);
-        firstCoinOnGroundSceneOne.setLocation(firstCoinOnGroundSceneOne.getX(), firstCoinOnGroundSceneOne.getY());
-        firstCoinOnGroundSceneOne.setOpaque(true);
         secondCoinOnGroundSceneOne = new Coin(690, 890);
-        secondCoinOnGroundSceneOne.setLocation(secondCoinOnGroundSceneOne.getX(), secondCoinOnGroundSceneOne.getY());
-        secondCoinOnGroundSceneOne.setOpaque(true);
         thirdCoinOnGroundSceneOne = new Coin(770, 890);
-        thirdCoinOnGroundSceneOne.setLocation(thirdCoinOnGroundSceneOne.getX(), thirdCoinOnGroundSceneOne.getY());
-        thirdCoinOnGroundSceneOne.setOpaque(true);
-
-        firstBlockInAirSceneOne = new BlockInAir(800,700);
-        firstBlockInAirSceneOne.setLocation(firstBlockInAirSceneOne.getX(), firstBlockInAirSceneOne.getY());
-        firstBlockInAirSceneOne.setOpaque(true);
+        firstBlockInAirSceneOne = new SimpleBlockInAir(800,700);
         coinOnFirstBlockInAirSceneOne = new Coin(800, 650);
-        coinOnFirstBlockInAirSceneOne.setLocation(coinOnFirstBlockInAirSceneOne.getX(), coinOnFirstBlockInAirSceneOne.getY());
-        coinOnFirstBlockInAirSceneOne.setOpaque(true);
-
-        secondBlockInAirSceneOne = new BlockInAir(870,700);
-        secondBlockInAirSceneOne.setLocation(secondBlockInAirSceneOne.getX(), secondBlockInAirSceneOne.getY());
-        secondBlockInAirSceneOne.setOpaque(true);
-
+        secondBlockInAirSceneOne = new SimpleBlockInAir(870,700);
         firstPrizeInAirSceneOne = new PrizeInAir(905,450);
-        firstPrizeInAirSceneOne.setLocation(firstPrizeInAirSceneOne.getX(), firstPrizeInAirSceneOne.getY());
-        firstPrizeInAirSceneOne.setOpaque(true);
-
-        thirdBlockInAirSceneOne = new BlockInAir(940,700);
-        thirdBlockInAirSceneOne.setLocation(thirdBlockInAirSceneOne.getX(), thirdBlockInAirSceneOne.getY());
-        thirdBlockInAirSceneOne.setOpaque(true);
-
-        fourthBlockInAirSceneOne = new BlockInAir(1010,700);
-        fourthBlockInAirSceneOne.setLocation(fourthBlockInAirSceneOne.getX(), fourthBlockInAirSceneOne.getY());
-        fourthBlockInAirSceneOne.setOpaque(true);
+        thirdBlockInAirSceneOne = new EmptyBlockInAir(940,700);
+        fourthBlockInAirSceneOne = new FullOfCoinBlockInAir(1010,700);
         coinOnFourthBlockInAirSceneOne = new Coin(1010, 650);
-        coinOnFourthBlockInAirSceneOne.setLocation(coinOnFourthBlockInAirSceneOne.getX(), coinOnFourthBlockInAirSceneOne.getY());
-        coinOnFourthBlockInAirSceneOne.setOpaque(true);
 
-        // Scene Two:
+// Scene Two:
         firstCoinOnGroundSceneTwo = new Coin(1800, 890);
-        firstCoinOnGroundSceneTwo.setLocation(firstCoinOnGroundSceneTwo.getX(), firstCoinOnGroundSceneTwo.getY());
-        firstCoinOnGroundSceneTwo.setOpaque(true);
-
-        firstBlockInAirSceneTwo = new BlockInAir(2620,700);
-        firstBlockInAirSceneTwo.setLocation(firstBlockInAirSceneTwo.getX(), firstBlockInAirSceneTwo.getY());
-        firstBlockInAirSceneTwo.setOpaque(true);
+        firstBlockInAirSceneTwo = new OneCoinBlockInAir(2620,700);
         coinOnFirstBlockInAirSceneTwo = new Coin(2620, 650);
-        coinOnFirstBlockInAirSceneTwo.setLocation(coinOnFirstBlockInAirSceneTwo.getX(), coinOnFirstBlockInAirSceneTwo.getY());
-        coinOnFirstBlockInAirSceneTwo.setOpaque(true);
-
-        secondBlockInAirSceneTwo = new BlockInAir(2690,700);
-        secondBlockInAirSceneTwo.setLocation(secondBlockInAirSceneTwo.getX(), secondBlockInAirSceneTwo.getY());
-        secondBlockInAirSceneTwo.setOpaque(true);
+        secondBlockInAirSceneTwo = new EmptyBlockInAir(2690,700);
         coinOnSecondBlockInAirSceneTwo = new Coin(2690, 650);
-        coinOnSecondBlockInAirSceneTwo.setLocation(coinOnSecondBlockInAirSceneTwo.getX(), coinOnSecondBlockInAirSceneTwo.getY());
-        coinOnSecondBlockInAirSceneTwo.setOpaque(true);
-
-        thirdBlockInAirSceneTwo = new BlockInAir(2760,700);
-        thirdBlockInAirSceneTwo.setLocation(thirdBlockInAirSceneTwo.getX(), thirdBlockInAirSceneTwo.getY());
-        thirdBlockInAirSceneTwo.setOpaque(true);
+        thirdBlockInAirSceneTwo = new SimpleBlockInAir(2760,700);
         coinOnThirdBlockInAirSceneTwo = new Coin(2760, 650);
-        coinOnThirdBlockInAirSceneTwo.setLocation(coinOnThirdBlockInAirSceneTwo.getX(), coinOnThirdBlockInAirSceneTwo.getY());
-        coinOnThirdBlockInAirSceneTwo.setOpaque(true);
-
-        fourthBlockInAirSceneTwo = new BlockInAir(2830,700);
-        fourthBlockInAirSceneTwo.setLocation(fourthBlockInAirSceneTwo.getX(), fourthBlockInAirSceneTwo.getY());
-        fourthBlockInAirSceneTwo.setOpaque(true);
+        fourthBlockInAirSceneTwo = new SimpleBlockInAir(2830,700);
         coinOnFourthBlockInAirSceneTwo = new Coin(2830, 650);
-        coinOnFourthBlockInAirSceneTwo.setLocation(coinOnFourthBlockInAirSceneTwo.getX(), coinOnFourthBlockInAirSceneTwo.getY());
-        coinOnFourthBlockInAirSceneTwo.setOpaque(true);
-
         firstPrizeInAirSceneTwo = new PrizeInAir(3020,520);
-        firstPrizeInAirSceneTwo.setLocation(firstPrizeInAirSceneTwo.getX(), firstPrizeInAirSceneTwo.getY());
-        firstPrizeInAirSceneTwo.setOpaque(true);
-
         firstEmptySpaceInGroundSceneTwo = new EmptySpaceInGround(2310, 945);
-        firstEmptySpaceInGroundSceneTwo.setLocation(firstEmptySpaceInGroundSceneTwo.getX(), firstEmptySpaceInGroundSceneTwo.getY());
-        firstEmptySpaceInGroundSceneTwo.setOpaque(true);
-
-
         firstPrizeInAirSceneOne = new PrizeInAir(555,450);
-        firstPrizeInAirSceneOne.setLocation(firstPrizeInAirSceneOne.getX(), firstPrizeInAirSceneOne.getY());
-        firstPrizeInAirSceneOne.setOpaque(true);
 
-        // Scene Three:
+// Scene Three:
         firstCoinOnGroundSceneThree = new Coin(3640, 890);
-        firstCoinOnGroundSceneThree.setLocation(firstCoinOnGroundSceneThree.getX(), firstCoinOnGroundSceneThree.getY());
-        firstCoinOnGroundSceneThree.setOpaque(true);
         secondCoinOnGroundSceneThree = new Coin(3720, 890);
-        secondCoinOnGroundSceneThree.setLocation(secondCoinOnGroundSceneThree.getX(), secondCoinOnGroundSceneThree.getY());
-        secondCoinOnGroundSceneThree.setOpaque(true);
         thirdCoinOnGroundSceneThree = new Coin(3800, 890);
-        thirdCoinOnGroundSceneThree.setLocation(thirdCoinOnGroundSceneThree.getX(), thirdCoinOnGroundSceneThree.getY());
-        thirdCoinOnGroundSceneThree.setOpaque(true);
-
         firstPrizeInAirSceneThree = new PrizeInAir(4000,500);
-        firstPrizeInAirSceneThree.setLocation(firstPrizeInAirSceneThree.getX(), firstPrizeInAirSceneThree.getY());
-        firstPrizeInAirSceneThree.setOpaque(true);
-
         secondPrizeInAirSceneThree = new PrizeInAir(4400,500);
-        secondPrizeInAirSceneThree.setLocation(secondPrizeInAirSceneThree.getX(), secondPrizeInAirSceneThree.getY());
-        secondPrizeInAirSceneThree.setOpaque(true);
-
         firstPipeSceneThree = new Pipe(4100, 765);
-        firstPipeSceneThree.setLocation(firstPipeSceneThree.getX(), firstPipeSceneThree.getY());
-        firstPipeSceneThree.setOpaque(true);
-
         secondPipeSceneThree = new Pipe(4210, 765);
-        secondPipeSceneThree.setLocation(secondPipeSceneThree.getX(), secondPipeSceneThree.getY());
-        secondPipeSceneThree.setOpaque(false);
         plantInSecondPipeSceneThree = new Plant(4235, 750);
-        plantInSecondPipeSceneThree.setLocation(plantInSecondPipeSceneThree.getX(), plantInSecondPipeSceneThree.getY());
-        plantInSecondPipeSceneThree.setOpaque(true);
-
         fourthCoinOnGroundSceneThree = new Coin(4500, 890);
-        fourthCoinOnGroundSceneThree.setLocation(thirdCoinOnGroundSceneThree.getX(), thirdCoinOnGroundSceneThree.getY());
-        fourthCoinOnGroundSceneThree.setOpaque(true);
 
-        // Scene Four:
+// Scene Four:
         castle = new CastleInLevelOne(6000, 490);
-        castle.setLocation(castle.getX(), castle.getY());
-        castle.setOpaque(true);
+
+        firstEmptySpaceInGroundSceneTwo.setOpaque(true);
 
         this.add(backgroundLabelSceneOne, Integer.valueOf(0));
         this.add(backgroundLabelSceneTwo, Integer.valueOf(0));
@@ -359,14 +288,6 @@ public class LevelOneSectionTwoScreen extends JLayeredPane {
 
     }
 
-    public GameData getGameData() {
-        return gameData;
-    }
-
-    public void setGameData(GameData gameData) {
-        this.gameData = gameData;
-    }
-
     public ArrayList<ObjectsInGame> getObjectsInThisSection() {
         return objectsInThisSection;
     }
@@ -397,6 +318,478 @@ public class LevelOneSectionTwoScreen extends JLayeredPane {
 
     public void setEmptySpaceInGroundsInThisSection(ArrayList<EmptySpaceInGround> emptySpaceInGroundsInThisSection) {
         this.emptySpaceInGroundsInThisSection = emptySpaceInGroundsInThisSection;
+    }
+
+    public ArrayList<Mario> getActiveMario() {
+        return activeMario;
+    }
+
+    public void setActiveMario(ArrayList<Mario> activeMario) {
+        this.activeMario = activeMario;
+    }
+
+    public GameData getGameData() {
+        return gameData;
+    }
+
+    public void setGameData(GameData gameData) {
+        this.gameData = gameData;
+    }
+
+    public JLabel getBackgroundLabelSceneOne() {
+        return backgroundLabelSceneOne;
+    }
+
+    public void setBackgroundLabelSceneOne(JLabel backgroundLabelSceneOne) {
+        this.backgroundLabelSceneOne = backgroundLabelSceneOne;
+    }
+
+    public JLabel getBackgroundLabelSceneTwo() {
+        return backgroundLabelSceneTwo;
+    }
+
+    public void setBackgroundLabelSceneTwo(JLabel backgroundLabelSceneTwo) {
+        this.backgroundLabelSceneTwo = backgroundLabelSceneTwo;
+    }
+
+    public JLabel getBackgroundLabelSceneThree() {
+        return backgroundLabelSceneThree;
+    }
+
+    public void setBackgroundLabelSceneThree(JLabel backgroundLabelSceneThree) {
+        this.backgroundLabelSceneThree = backgroundLabelSceneThree;
+    }
+
+    public JLabel getBackgroundLabelSceneFour() {
+        return backgroundLabelSceneFour;
+    }
+
+    public void setBackgroundLabelSceneFour(JLabel backgroundLabelSceneFour) {
+        this.backgroundLabelSceneFour = backgroundLabelSceneFour;
+    }
+
+    public Coin getFirstCoinOnGroundSceneOne() {
+        return firstCoinOnGroundSceneOne;
+    }
+
+    public void setFirstCoinOnGroundSceneOne(Coin firstCoinOnGroundSceneOne) {
+        this.firstCoinOnGroundSceneOne = firstCoinOnGroundSceneOne;
+    }
+
+    public Coin getSecondCoinOnGroundSceneOne() {
+        return secondCoinOnGroundSceneOne;
+    }
+
+    public void setSecondCoinOnGroundSceneOne(Coin secondCoinOnGroundSceneOne) {
+        this.secondCoinOnGroundSceneOne = secondCoinOnGroundSceneOne;
+    }
+
+    public Coin getThirdCoinOnGroundSceneOne() {
+        return thirdCoinOnGroundSceneOne;
+    }
+
+    public void setThirdCoinOnGroundSceneOne(Coin thirdCoinOnGroundSceneOne) {
+        this.thirdCoinOnGroundSceneOne = thirdCoinOnGroundSceneOne;
+    }
+
+    public BlockInAir getFirstBlockInAirSceneOne() {
+        return firstBlockInAirSceneOne;
+    }
+
+    public void setFirstBlockInAirSceneOne(BlockInAir firstBlockInAirSceneOne) {
+        this.firstBlockInAirSceneOne = firstBlockInAirSceneOne;
+    }
+
+    public Coin getCoinOnFirstBlockInAirSceneOne() {
+        return coinOnFirstBlockInAirSceneOne;
+    }
+
+    public void setCoinOnFirstBlockInAirSceneOne(Coin coinOnFirstBlockInAirSceneOne) {
+        this.coinOnFirstBlockInAirSceneOne = coinOnFirstBlockInAirSceneOne;
+    }
+
+    public BlockInAir getSecondBlockInAirSceneOne() {
+        return secondBlockInAirSceneOne;
+    }
+
+    public void setSecondBlockInAirSceneOne(BlockInAir secondBlockInAirSceneOne) {
+        this.secondBlockInAirSceneOne = secondBlockInAirSceneOne;
+    }
+
+    public PrizeInAir getFirstPrizeInAirSceneOne() {
+        return firstPrizeInAirSceneOne;
+    }
+
+    public void setFirstPrizeInAirSceneOne(PrizeInAir firstPrizeInAirSceneOne) {
+        this.firstPrizeInAirSceneOne = firstPrizeInAirSceneOne;
+    }
+
+    public CoinInPrizeInAirs getCoinInFirstPrizeInAirSceneOne() {
+        return coinInFirstPrizeInAirSceneOne;
+    }
+
+    public void setCoinInFirstPrizeInAirSceneOne(CoinInPrizeInAirs coinInFirstPrizeInAirSceneOne) {
+        this.coinInFirstPrizeInAirSceneOne = coinInFirstPrizeInAirSceneOne;
+    }
+
+    public BlockInAir getThirdBlockInAirSceneOne() {
+        return thirdBlockInAirSceneOne;
+    }
+
+    public void setThirdBlockInAirSceneOne(BlockInAir thirdBlockInAirSceneOne) {
+        this.thirdBlockInAirSceneOne = thirdBlockInAirSceneOne;
+    }
+
+    public BlockInAir getFourthBlockInAirSceneOne() {
+        return fourthBlockInAirSceneOne;
+    }
+
+    public void setFourthBlockInAirSceneOne(BlockInAir fourthBlockInAirSceneOne) {
+        this.fourthBlockInAirSceneOne = fourthBlockInAirSceneOne;
+    }
+
+    public Coin getCoinOnFourthBlockInAirSceneOne() {
+        return coinOnFourthBlockInAirSceneOne;
+    }
+
+    public void setCoinOnFourthBlockInAirSceneOne(Coin coinOnFourthBlockInAirSceneOne) {
+        this.coinOnFourthBlockInAirSceneOne = coinOnFourthBlockInAirSceneOne;
+    }
+
+    public Coin getFirstCoinOnGroundSceneTwo() {
+        return firstCoinOnGroundSceneTwo;
+    }
+
+    public void setFirstCoinOnGroundSceneTwo(Coin firstCoinOnGroundSceneTwo) {
+        this.firstCoinOnGroundSceneTwo = firstCoinOnGroundSceneTwo;
+    }
+
+    public BlockInAir getFirstBlockInAirSceneTwo() {
+        return firstBlockInAirSceneTwo;
+    }
+
+    public void setFirstBlockInAirSceneTwo(BlockInAir firstBlockInAirSceneTwo) {
+        this.firstBlockInAirSceneTwo = firstBlockInAirSceneTwo;
+    }
+
+    public Coin getCoinOnFirstBlockInAirSceneTwo() {
+        return coinOnFirstBlockInAirSceneTwo;
+    }
+
+    public void setCoinOnFirstBlockInAirSceneTwo(Coin coinOnFirstBlockInAirSceneTwo) {
+        this.coinOnFirstBlockInAirSceneTwo = coinOnFirstBlockInAirSceneTwo;
+    }
+
+    public BlockInAir getSecondBlockInAirSceneTwo() {
+        return secondBlockInAirSceneTwo;
+    }
+
+    public void setSecondBlockInAirSceneTwo(BlockInAir secondBlockInAirSceneTwo) {
+        this.secondBlockInAirSceneTwo = secondBlockInAirSceneTwo;
+    }
+
+    public Coin getCoinOnSecondBlockInAirSceneTwo() {
+        return coinOnSecondBlockInAirSceneTwo;
+    }
+
+    public void setCoinOnSecondBlockInAirSceneTwo(Coin coinOnSecondBlockInAirSceneTwo) {
+        this.coinOnSecondBlockInAirSceneTwo = coinOnSecondBlockInAirSceneTwo;
+    }
+
+    public BlockInAir getThirdBlockInAirSceneTwo() {
+        return thirdBlockInAirSceneTwo;
+    }
+
+    public void setThirdBlockInAirSceneTwo(BlockInAir thirdBlockInAirSceneTwo) {
+        this.thirdBlockInAirSceneTwo = thirdBlockInAirSceneTwo;
+    }
+
+    public Coin getCoinOnThirdBlockInAirSceneTwo() {
+        return coinOnThirdBlockInAirSceneTwo;
+    }
+
+    public void setCoinOnThirdBlockInAirSceneTwo(Coin coinOnThirdBlockInAirSceneTwo) {
+        this.coinOnThirdBlockInAirSceneTwo = coinOnThirdBlockInAirSceneTwo;
+    }
+
+    public BlockInAir getFourthBlockInAirSceneTwo() {
+        return fourthBlockInAirSceneTwo;
+    }
+
+    public void setFourthBlockInAirSceneTwo(BlockInAir fourthBlockInAirSceneTwo) {
+        this.fourthBlockInAirSceneTwo = fourthBlockInAirSceneTwo;
+    }
+
+    public Coin getCoinOnFourthBlockInAirSceneTwo() {
+        return coinOnFourthBlockInAirSceneTwo;
+    }
+
+    public void setCoinOnFourthBlockInAirSceneTwo(Coin coinOnFourthBlockInAirSceneTwo) {
+        this.coinOnFourthBlockInAirSceneTwo = coinOnFourthBlockInAirSceneTwo;
+    }
+
+    public PrizeInAir getFirstPrizeInAirSceneTwo() {
+        return firstPrizeInAirSceneTwo;
+    }
+
+    public void setFirstPrizeInAirSceneTwo(PrizeInAir firstPrizeInAirSceneTwo) {
+        this.firstPrizeInAirSceneTwo = firstPrizeInAirSceneTwo;
+    }
+
+    public CoinInPrizeInAirs getCoinInFirstPrizeInAirSceneTwo() {
+        return coinInFirstPrizeInAirSceneTwo;
+    }
+
+    public void setCoinInFirstPrizeInAirSceneTwo(CoinInPrizeInAirs coinInFirstPrizeInAirSceneTwo) {
+        this.coinInFirstPrizeInAirSceneTwo = coinInFirstPrizeInAirSceneTwo;
+    }
+
+    public EmptySpaceInGround getFirstEmptySpaceInGroundSceneTwo() {
+        return firstEmptySpaceInGroundSceneTwo;
+    }
+
+    public void setFirstEmptySpaceInGroundSceneTwo(EmptySpaceInGround firstEmptySpaceInGroundSceneTwo) {
+        this.firstEmptySpaceInGroundSceneTwo = firstEmptySpaceInGroundSceneTwo;
+    }
+
+    public Coin getFirstCoinOnGroundSceneThree() {
+        return firstCoinOnGroundSceneThree;
+    }
+
+    public void setFirstCoinOnGroundSceneThree(Coin firstCoinOnGroundSceneThree) {
+        this.firstCoinOnGroundSceneThree = firstCoinOnGroundSceneThree;
+    }
+
+    public Coin getSecondCoinOnGroundSceneThree() {
+        return secondCoinOnGroundSceneThree;
+    }
+
+    public void setSecondCoinOnGroundSceneThree(Coin secondCoinOnGroundSceneThree) {
+        this.secondCoinOnGroundSceneThree = secondCoinOnGroundSceneThree;
+    }
+
+    public Coin getThirdCoinOnGroundSceneThree() {
+        return thirdCoinOnGroundSceneThree;
+    }
+
+    public void setThirdCoinOnGroundSceneThree(Coin thirdCoinOnGroundSceneThree) {
+        this.thirdCoinOnGroundSceneThree = thirdCoinOnGroundSceneThree;
+    }
+
+    public Coin getFourthCoinOnGroundSceneThree() {
+        return fourthCoinOnGroundSceneThree;
+    }
+
+    public void setFourthCoinOnGroundSceneThree(Coin fourthCoinOnGroundSceneThree) {
+        this.fourthCoinOnGroundSceneThree = fourthCoinOnGroundSceneThree;
+    }
+
+    public PrizeInAir getFirstPrizeInAirSceneThree() {
+        return firstPrizeInAirSceneThree;
+    }
+
+    public void setFirstPrizeInAirSceneThree(PrizeInAir firstPrizeInAirSceneThree) {
+        this.firstPrizeInAirSceneThree = firstPrizeInAirSceneThree;
+    }
+
+    public CoinInPrizeInAirs getCoinInFirstPrizeInAirSceneThree() {
+        return coinInFirstPrizeInAirSceneThree;
+    }
+
+    public void setCoinInFirstPrizeInAirSceneThree(CoinInPrizeInAirs coinInFirstPrizeInAirSceneThree) {
+        this.coinInFirstPrizeInAirSceneThree = coinInFirstPrizeInAirSceneThree;
+    }
+
+    public PrizeInAir getSecondPrizeInAirSceneThree() {
+        return secondPrizeInAirSceneThree;
+    }
+
+    public void setSecondPrizeInAirSceneThree(PrizeInAir secondPrizeInAirSceneThree) {
+        this.secondPrizeInAirSceneThree = secondPrizeInAirSceneThree;
+    }
+
+    public CoinInPrizeInAirs getCoinInSecondPrizeInAirSceneThree() {
+        return coinInSecondPrizeInAirSceneThree;
+    }
+
+    public void setCoinInSecondPrizeInAirSceneThree(CoinInPrizeInAirs coinInSecondPrizeInAirSceneThree) {
+        this.coinInSecondPrizeInAirSceneThree = coinInSecondPrizeInAirSceneThree;
+    }
+
+    public Pipe getFirstPipeSceneThree() {
+        return firstPipeSceneThree;
+    }
+
+    public void setFirstPipeSceneThree(Pipe firstPipeSceneThree) {
+        this.firstPipeSceneThree = firstPipeSceneThree;
+    }
+
+    public Pipe getSecondPipeSceneThree() {
+        return secondPipeSceneThree;
+    }
+
+    public void setSecondPipeSceneThree(Pipe secondPipeSceneThree) {
+        this.secondPipeSceneThree = secondPipeSceneThree;
+    }
+
+    public Plant getPlantInSecondPipeSceneThree() {
+        return plantInSecondPipeSceneThree;
+    }
+
+    public void setPlantInSecondPipeSceneThree(Plant plantInSecondPipeSceneThree) {
+        this.plantInSecondPipeSceneThree = plantInSecondPipeSceneThree;
+    }
+
+    public NormalMario getNormalMario() {
+        return normalMario;
+    }
+
+    public void setNormalMario(NormalMario normalMario) {
+        this.normalMario = normalMario;
+    }
+
+    public CoinMario getCoinMario() {
+        return coinMario;
+    }
+
+    public void setCoinMario(CoinMario coinMario) {
+        this.coinMario = coinMario;
+    }
+
+    public JumperMario getJumperMario() {
+        return jumperMario;
+    }
+
+    public void setJumperMario(JumperMario jumperMario) {
+        this.jumperMario = jumperMario;
+    }
+
+    public RunnerMario getRunnerMario() {
+        return runnerMario;
+    }
+
+    public void setRunnerMario(RunnerMario runnerMario) {
+        this.runnerMario = runnerMario;
+    }
+
+    public ShooterMario getShooterMario() {
+        return shooterMario;
+    }
+
+    public void setShooterMario(ShooterMario shooterMario) {
+        this.shooterMario = shooterMario;
+    }
+
+    public UserHeart getUserHeartImage() {
+        return userHeartImage;
+    }
+
+    public void setUserHeartImage(UserHeart userHeartImage) {
+        this.userHeartImage = userHeartImage;
+    }
+
+    public JLabel getUserHeartValueLabel() {
+        return userHeartValueLabel;
+    }
+
+    public void setUserHeartValueLabel(JLabel userHeartValueLabel) {
+        this.userHeartValueLabel = userHeartValueLabel;
+    }
+
+    public JLabel getUserScoreLabel() {
+        return userScoreLabel;
+    }
+
+    public void setUserScoreLabel(JLabel userScoreLabel) {
+        this.userScoreLabel = userScoreLabel;
+    }
+
+    public JLabel getThisSectionTimeLabel() {
+        return thisSectionTimeLabel;
+    }
+
+    public void setThisSectionTimeLabel(JLabel thisSectionTimeLabel) {
+        this.thisSectionTimeLabel = thisSectionTimeLabel;
+    }
+
+    public JLabel getThisGameCoin() {
+        return thisGameCoin;
+    }
+
+    public void setThisGameCoin(JLabel thisGameCoin) {
+        this.thisGameCoin = thisGameCoin;
+    }
+
+    public CoinForStore getThisGameCoinImage() {
+        return thisGameCoinImage;
+    }
+
+    public void setThisGameCoinImage(CoinForStore thisGameCoinImage) {
+        this.thisGameCoinImage = thisGameCoinImage;
+    }
+
+    public LevelOneSectionTwoTime getThisSectionTime() {
+        return thisSectionTime;
+    }
+
+    public void setThisSectionTime(LevelOneSectionTwoTime thisSectionTime) {
+        this.thisSectionTime = thisSectionTime;
+    }
+
+    public CastleInLevelOne getCastle() {
+        return castle;
+    }
+
+    public void setCastle(CastleInLevelOne castle) {
+        this.castle = castle;
+    }
+
+    public int getXUserHeartImage() {
+        return XUserHeartImage;
+    }
+
+    public void setXUserHeartImage(int XUserHeartImage) {
+        this.XUserHeartImage = XUserHeartImage;
+    }
+
+    public int getXUserHeartValueLabel() {
+        return XUserHeartValueLabel;
+    }
+
+    public void setXUserHeartValueLabel(int XUserHeartValueLabel) {
+        this.XUserHeartValueLabel = XUserHeartValueLabel;
+    }
+
+    public int getXUserScoreLabel() {
+        return XUserScoreLabel;
+    }
+
+    public void setXUserScoreLabel(int XUserScoreLabel) {
+        this.XUserScoreLabel = XUserScoreLabel;
+    }
+
+    public int getXThisSectionTimeLabel() {
+        return XThisSectionTimeLabel;
+    }
+
+    public void setXThisSectionTimeLabel(int XThisSectionTimeLabel) {
+        this.XThisSectionTimeLabel = XThisSectionTimeLabel;
+    }
+
+    public int getXThisGameCoin() {
+        return XThisGameCoin;
+    }
+
+    public void setXThisGameCoin(int XThisGameCoin) {
+        this.XThisGameCoin = XThisGameCoin;
+    }
+
+    public int getXThisGameCoinImage() {
+        return XThisGameCoinImage;
+    }
+
+    public void setXThisGameCoinImage(int XThisGameCoinImage) {
+        this.XThisGameCoinImage = XThisGameCoinImage;
     }
 }
 

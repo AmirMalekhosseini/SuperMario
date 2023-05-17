@@ -32,6 +32,10 @@ public class MarioMover implements KeyListener {
         objectMapper.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
     }
 
+    public MarioMover() {
+
+    }
+
     public void move() {
 
         if (gameScreenFrame.getXLevelOneBackgroundPanel() >= -6700) {// Game is in LevelOne SectionOne
@@ -117,9 +121,9 @@ public class MarioMover implements KeyListener {
                 gameScreenFrame.calculateScore.calculateScoreInSectionOneLevelOne();
             }
 
-            if (gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).getX() >= 6200) {// Level is Finish
-                gameScreenFrame.getGameData().setGameFinish(true);
-            }
+//            if (gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).getX() >= 6200) {// Level is Finish
+//                gameScreenFrame.getGameData().setGameFinish(true);
+//            }
 
             try {
 
@@ -262,20 +266,67 @@ public class MarioMover implements KeyListener {
         }
     }
 
+    public ObjectMapper getObjectMapper() {
+        return objectMapper;
+    }
+
+    public void setObjectMapper(ObjectMapper objectMapper) {
+        this.objectMapper = objectMapper;
+    }
+
     public boolean isRightMario() {
         return rightMario;
+    }
+
+    public void setRightMario(boolean rightMario) {
+        this.rightMario = rightMario;
     }
 
     public boolean isLeftMario() {
         return leftMario;
     }
 
+    public void setLeftMario(boolean leftMario) {
+        this.leftMario = leftMario;
+    }
+
     public boolean isUpMario() {
         return upMario;
+    }
+
+    public void setUpMario(boolean upMario) {
+        this.upMario = upMario;
     }
 
     public boolean isDownMario() {
         return downMario;
     }
 
+    public void setDownMario(boolean downMario) {
+        this.downMario = downMario;
+    }
+
+    public boolean isUserPressedUp() {
+        return isUserPressedUp;
+    }
+
+    public void setUserPressedUp(boolean userPressedUp) {
+        isUserPressedUp = userPressedUp;
+    }
+
+    public boolean isMarioEnterInSectionTwo() {
+        return marioEnterInSectionTwo;
+    }
+
+    public void setMarioEnterInSectionTwo(boolean marioEnterInSectionTwo) {
+        this.marioEnterInSectionTwo = marioEnterInSectionTwo;
+    }
+
+    public GameScreenFrame getGameScreenFrame() {
+        return gameScreenFrame;
+    }
+
+    public void setGameScreenFrame(GameScreenFrame gameScreenFrame) {
+        this.gameScreenFrame = gameScreenFrame;
+    }
 }

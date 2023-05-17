@@ -13,13 +13,17 @@ public abstract class Mario extends JLabel {
     private boolean isMarioLeft;
     private boolean isMarioRight;
 
+    public Mario() {
+
+    }
+
 
     public abstract void setX(int x);
 
     public abstract void setY(int y);
 
 
-    @Override
+
     public int getWidth() {
         return width;
     }
@@ -28,7 +32,7 @@ public abstract class Mario extends JLabel {
         this.width = width;
     }
 
-    @Override
+
     public int getHeight() {
         return height;
     }

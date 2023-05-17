@@ -49,6 +49,10 @@ public class RunnerMario extends Mario {
 
     }
 
+    public RunnerMario() {
+
+    }
+
     public void paint(Graphics graphics) {
         Graphics2D graphics2D = (Graphics2D) graphics;
         if (isMarioRight()) {

@@ -9,6 +9,12 @@ public class GameData {
     protected int thisGameCoin = 0;
     protected String gameMode;
     protected String marioLocation = "";
+    private int level;
+    private int section;
+
+    public GameData() {
+
+    }
 
     public boolean isGameFinish() {
         return isGameFinish;
@@ -65,4 +71,21 @@ public class GameData {
     public void setMarioLocation(String marioLocation) {
         this.marioLocation = marioLocation;
     }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public int getSection() {
+        return section;
+    }
+
+    public void setSection(int section) {
+        this.section = section;
+    }
+
 }

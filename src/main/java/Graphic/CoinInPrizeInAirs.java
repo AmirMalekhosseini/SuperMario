@@ -56,6 +56,10 @@ public class CoinInPrizeInAirs extends Coin{
         timerForMovingTheCoin.start();
     }
 
+    public CoinInPrizeInAirs() {
+
+    }
+
     public void paint(Graphics graphics) {
         Graphics2D graphics2D = (Graphics2D) graphics;
         graphics2D.drawImage(background, 0, -5, null);

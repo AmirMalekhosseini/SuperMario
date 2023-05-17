@@ -75,6 +75,7 @@ public class MyProjectData {
     protected BufferedImage coinMario_Stand_Flipped;
 
     protected BufferedImage blockInAir;
+    protected BufferedImage emptyBlockInAir;
     protected BufferedImage castleLevelOne;
     protected BufferedImage coin;
     protected BufferedImage coinForStore;
@@ -115,6 +116,15 @@ public class MyProjectData {
             String pathBackground = "BlockInAir.png";
             File fileBackground = new File(pathBackground);
             blockInAir = ImageIO.read(fileBackground);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            String pathBackground = "EmptyBlockInAir.png";
+            File fileBackground = new File(pathBackground);
+            emptyBlockInAir = ImageIO.read(fileBackground);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -963,6 +973,10 @@ public class MyProjectData {
         return blockInAir;
     }
 
+    public BufferedImage getEmptyBlockInAir() {
+        return emptyBlockInAir;
+    }
+
     public BufferedImage getCastleLevelOne() {
         return castleLevelOne;
     }
@@ -1002,5 +1016,6 @@ public class MyProjectData {
     public BufferedImage getUserHeart() {
         return userHeart;
     }
+
 
 }

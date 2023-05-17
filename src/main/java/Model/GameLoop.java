@@ -25,6 +25,10 @@ public class GameLoop {
         graphicThread.start();
     }
 
+    public GameLoop() {
+
+    }
+
     private class CalculatorThread extends Thread {
 
         public void run() {
@@ -232,6 +236,14 @@ public class GameLoop {
         gameScreenFrame.getLevelOneSectionTwoScreen().thisGameCoin.setLocation(gameScreenFrame.getLevelOneSectionTwoScreen().XThisGameCoin, 27);
         gameScreenFrame.getLevelOneSectionTwoScreen().thisGameCoinImage.setLocation(gameScreenFrame.getLevelOneSectionTwoScreen().XThisGameCoinImage, 30);
 
+    }
+
+    public GameScreenFrame getGameScreenFrame() {
+        return gameScreenFrame;
+    }
+
+    public void setGameScreenFrame(GameScreenFrame gameScreenFrame) {
+        this.gameScreenFrame = gameScreenFrame;
     }
 }
 

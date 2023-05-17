@@ -28,6 +28,10 @@ public class LevelOneSectionOneTime {
         timer.start();
     }
 
+    public LevelOneSectionOneTime() {
+
+    }
+
     public int getSectionTime() {
         return sectionTime;
     }

@@ -49,6 +49,10 @@ public class NormalMario extends Mario {
         this.y = y;
     }
 
+    public NormalMario() {
+
+    }
+
     public void paint(Graphics graphics) {
         Graphics2D graphics2D = (Graphics2D) graphics;
         if (isMarioRight()) {

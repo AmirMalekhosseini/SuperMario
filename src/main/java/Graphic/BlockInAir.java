@@ -10,28 +10,15 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class BlockInAir extends ObjectsInGame {
+public abstract class BlockInAir extends ObjectsInGame {
 
-
-    private BufferedImage background;
     private int x;
     private int y;
     private int width = 70;
     private int height = 70;
 
-    BlockInAir(int x, int y) {
-        this.setSize(width, height);
 
-        background = MyProjectData.getProjectData().getBlockInAir();
-
-        this.x = x;
-        this.y = y;
-
-    }
-
-    public void paint(Graphics graphics) {
-        Graphics2D graphics2D = (Graphics2D) graphics;
-        graphics2D.drawImage(background, 0, -5, null);
+    public BlockInAir() {
     }
 
     @Override

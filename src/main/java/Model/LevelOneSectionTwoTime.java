@@ -8,13 +8,9 @@ import java.awt.event.ActionListener;
 public class LevelOneSectionTwoTime {
 
     javax.swing.Timer timer;
-    LevelOneSectionOneScreen levelOneSectionOneScreen;
-    LevelOneSectionTwoScreen levelOneSectionTwoScreen;
     private int sectionTime = 1;
 
-    public LevelOneSectionTwoTime(LevelOneSectionTwoScreen levelOneSectionTwoScreen, LevelOneSectionOneScreen levelOneSectionOneScreen) {
-        this.levelOneSectionTwoScreen = levelOneSectionTwoScreen;
-        this.levelOneSectionOneScreen = levelOneSectionOneScreen;
+    public LevelOneSectionTwoTime(LevelOneSectionTwoScreen levelOneSectionTwoScreen) {
         timer=new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -26,6 +22,10 @@ public class LevelOneSectionTwoTime {
         });
         timer.setRepeats(true);
         timer.start();
+    }
+
+    public LevelOneSectionTwoTime() {
+
     }
 
     public int getSectionTime() {
