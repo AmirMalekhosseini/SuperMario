@@ -4,16 +4,15 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public abstract class Enemy extends JLabel {
+public abstract class ItemsInGame extends ObjectsInGame {
 
     private BufferedImage background;
-    Timer timerForMovingEnemy;
     private int x;
     private int y;
     private int height;
     private int width;
 
-    public Enemy() {
+    public ItemsInGame() {
 
     }
 
@@ -57,6 +56,5 @@ public abstract class Enemy extends JLabel {
     public void setWidth(int width) {
         this.width = width;
     }
-
 
 }

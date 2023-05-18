@@ -1,16 +1,12 @@
 package Graphic;
 
 import Model.*;
-import MyProject.MyProject;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
-public class CastleInLevelOne extends JLabel {
+public class Castle extends JLabel {
 
     private BufferedImage castleImage;
     private int x;
@@ -18,7 +14,7 @@ public class CastleInLevelOne extends JLabel {
     private int width = 500;
     private int height = 850;
 
-    public CastleInLevelOne(int x, int y) {
+    public Castle(int x, int y) {
         this.setSize(width, height);
 
         castleImage = MyProjectData.getProjectData().getCastleLevelOne();
@@ -27,7 +23,7 @@ public class CastleInLevelOne extends JLabel {
         this.y = y;
     }
 
-    public CastleInLevelOne() {
+    public Castle() {
 
     }
 

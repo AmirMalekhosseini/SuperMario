@@ -1,33 +1,32 @@
 package Model;
 
-import Graphic.*;
+import Graphic.LevelTwoSectionTwoScreen;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class LevelOneSectionOneTime {
+public class LevelTwoSectionTwoTime {
 
     javax.swing.Timer timer;
     private int sectionTime;
 
-    public LevelOneSectionOneTime(LevelOneSectionOneScreen levelOneSectionOneScreen) {
+    public LevelTwoSectionTwoTime() {
 
-        sectionTime = 50;
+    }
+
+    public LevelTwoSectionTwoTime(LevelTwoSectionTwoScreen levelTwoSectionTwoScreen) {
         timer=new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (!levelOneSectionOneScreen.getGameData().isGamePause && !levelOneSectionOneScreen.getGameData().isGameFinish) {
+                if (!levelTwoSectionTwoScreen.getGameData().isGamePause() && !levelTwoSectionTwoScreen.getGameData().isGameFinish()) {
                     sectionTime--;
-                    levelOneSectionOneScreen.thisSectionTimeLabel.setText("Time: "+ sectionTime);
+                    levelTwoSectionTwoScreen.thisSectionTimeLabel.setText("Time: "+ sectionTime);
                 }
             }
         });
         timer.setRepeats(true);
         timer.start();
-    }
-
-    public LevelOneSectionOneTime() {
-
     }
 
     public int getSectionTime() {
@@ -37,5 +36,4 @@ public class LevelOneSectionOneTime {
     public void setSectionTime(int sectionTime) {
         this.sectionTime = sectionTime;
     }
-
 }

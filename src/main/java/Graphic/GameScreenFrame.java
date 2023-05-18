@@ -21,7 +21,7 @@ public class GameScreenFrame extends JFrame {
     public CalculateScore calculateScore;
 
     private int xLevelOneBackgroundPanel = 0;
-    private int xLevelTwoBackgroundPanel = -3400;
+    private int xLevelTwoBackgroundPanel = 0;
 
     public GameScreenFrame(GameData gameData) {
         init(gameData);
@@ -67,13 +67,13 @@ public class GameScreenFrame extends JFrame {
 
         levelOneGameBackgroundPanel.setBounds(xLevelOneBackgroundPanel, 0, 14000, 1300);
         levelOneGameBackgroundPanel.setLayout(null);
-        levelOneGameBackgroundPanel.setVisible(false);
+        levelOneGameBackgroundPanel.setVisible(true);
         levelOneGameBackgroundPanel.add(levelOneSectionOneScreen);
         levelOneGameBackgroundPanel.add(levelOneSectionTwoScreen);
 
         levelTwoGameBackgroundPanel.setBounds(xLevelTwoBackgroundPanel, 0, 14000, 1300);
         levelTwoGameBackgroundPanel.setLayout(null);
-        levelTwoGameBackgroundPanel.setVisible(true);
+        levelTwoGameBackgroundPanel.setVisible(false);
         levelTwoGameBackgroundPanel.add(levelTwoSectionOneScreen);
         levelTwoGameBackgroundPanel.add(levelTwoSectionTwoScreen);
 
@@ -193,4 +193,5 @@ public class GameScreenFrame extends JFrame {
     public void setXLevelTwoBackgroundPanel(int xLevelTwoBackgroundPanel) {
         this.xLevelTwoBackgroundPanel = xLevelTwoBackgroundPanel;
     }
+
 }

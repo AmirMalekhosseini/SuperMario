@@ -1,17 +1,11 @@
 package Graphic;
 
-import Model.MyProjectData;
-import MyProject.MyProject;
-
-import javax.imageio.ImageIO;
-import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
 public abstract class BlockInAir extends ObjectsInGame {
 
+    private BufferedImage background;
     private int x;
     private int y;
     private int width = 70;
@@ -19,6 +13,11 @@ public abstract class BlockInAir extends ObjectsInGame {
 
 
     public BlockInAir() {
+    }
+
+    public void paint(Graphics graphics) {
+        Graphics2D graphics2D = (Graphics2D) graphics;
+        graphics2D.drawImage(background, 0, -5, null);
     }
 
     @Override
