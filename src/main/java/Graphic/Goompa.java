@@ -1,62 +1,58 @@
 package Graphic;
 
 import Model.MyProjectData;
-import MyProject.MyProject;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
-public class CoinInPrizeInAirs extends Coin{
+public class Goompa extends Enemy {
 
-
-    Timer timerForMovingTheCoin;
-    private int secondCounter = 0;
     private BufferedImage background;
+    Timer timerForMovingTheGoompa;
+    private int secondCounter = 0;
+
     private int x;
     private int y;
-    private int width = 40;
-    private int height = 40;
+    private int width = 60;
+    private int height = 70;
     private int velocity = -5;
 
-    CoinInPrizeInAirs(int xx, int yy) {
-
+    Goompa(int xx, int yy) {
         this.setSize(width, height);
 
-        background = MyProjectData.getProjectData().getCoinInPrizeInAirs();
+        background = MyProjectData.getProjectData().getGoompa();
 
         this.x = xx;
         this.y = yy;
 
-        timerForMovingTheCoin=new Timer(1, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+//        timerForMovingTheGoompa =new Timer(1, new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//
+//
+//                secondCounter++;
+//                if (secondCounter == 10) {
+//                    y = y - velocity;
+//                    if (y <= 695) {// Plant should go up
+//                        velocity = -velocity;
+//                    } else if (y >= 800) {
+//                        velocity = -velocity;
+//                    }
+//                    secondCounter = 0;
+//                }
+//
+//            }
+//        });
 
+//        timerForMovingTheGoompa.setRepeats(true);
+//        timerForMovingTheGoompa.start();
 
-                secondCounter++;
-                if (secondCounter == 10) {
-                    y = y - velocity;
-                    if (y <= 695) {// Coin should go up
-                        velocity = -velocity;
-                    } else if (y >= 800) {
-                        velocity = -velocity;
-                    }
-                    secondCounter = 0;
-                }
-
-            }
-        });
-
-        timerForMovingTheCoin.setRepeats(false);
-        timerForMovingTheCoin.start();
     }
 
-    public CoinInPrizeInAirs() {
+    public Goompa() {
 
     }
 

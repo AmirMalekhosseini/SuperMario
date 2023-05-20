@@ -17,6 +17,7 @@ public class Plant extends Enemy {
     private BufferedImage background;
     Timer timerForMovingThePlant;
     private int secondCounter = 0;
+    private int plantWaitTime = 0;
 
     private int x;
     private int y;
@@ -41,7 +42,12 @@ public class Plant extends Enemy {
                 if (secondCounter == 10) {
                     y = y - velocity;
                     if (y <= 695) {// Plant should go up
-                        velocity = -velocity;
+                        plantWaitTime++;
+                        velocity = 0;
+                        if (plantWaitTime == 9) {
+                            velocity = -5;
+                            plantWaitTime = 0;
+                        }
                     } else if (y >= 800) {
                         velocity = -velocity;
                     }
@@ -101,4 +107,11 @@ public class Plant extends Enemy {
         this.height = height;
     }
 
+    public int getPlantWaitTime() {
+        return plantWaitTime;
+    }
+
+    public void setPlantWaitTime(int plantWaitTime) {
+        this.plantWaitTime = plantWaitTime;
+    }
 }

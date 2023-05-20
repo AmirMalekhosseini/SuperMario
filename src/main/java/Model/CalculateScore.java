@@ -20,7 +20,7 @@ public class CalculateScore {
     }
 
     public void calculateScoreInSectionTwoLevelOne() {
-        gameScreenFrame.getGameData().thisGameScore += gameScreenFrame.getLevelOneSectionOneScreen().thisSectionTime.getSectionTime();
+        gameScreenFrame.getGameData().thisGameScore += gameScreenFrame.getLevelOneSectionTwoScreen().thisSectionTime.getSectionTime();
         gameScreenFrame.getGameData().thisGameScore += gameScreenFrame.getGameData().userHeartValue * 20;
     }
 

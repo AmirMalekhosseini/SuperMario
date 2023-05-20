@@ -1,6 +1,5 @@
 package Graphic;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
@@ -9,8 +8,10 @@ public abstract class ItemsInGame extends ObjectsInGame {
     private BufferedImage background;
     private int x;
     private int y;
-    private int height;
-    private int width;
+    private int height = 40;
+    private int width = 40;
+    private int scoreItemAdds;
+    private boolean itemCatch;
 
     public ItemsInGame() {
 
@@ -57,4 +58,19 @@ public abstract class ItemsInGame extends ObjectsInGame {
         this.width = width;
     }
 
+    public boolean isItemCatch() {
+        return itemCatch;
+    }
+
+    public void setItemCatch(boolean itemCatch) {
+        this.itemCatch = itemCatch;
+    }
+
+    public int getScoreItemAdds() {
+        return scoreItemAdds;
+    }
+
+    public void setScoreItemAdds(int scoreItemAdds) {
+        this.scoreItemAdds = scoreItemAdds;
+    }
 }

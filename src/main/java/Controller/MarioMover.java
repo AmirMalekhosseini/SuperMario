@@ -121,7 +121,7 @@ public class MarioMover implements KeyListener {
                 gameScreenFrame.calculateScore.calculateScoreInSectionOneLevelOne();
             }
 
-//            if (gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).getX() >= 6200) {// Level is Finish
+//            if (gameScreenFrame.getLevelTwoSectionTwoScreen().activeMario.get(0).getX() >= 6200) {// Level is Finish
 //                gameScreenFrame.getGameData().setGameFinish(true);
 //            }
 

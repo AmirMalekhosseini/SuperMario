@@ -52,8 +52,8 @@ public class GameLoop {
                     gameScreenFrame.marioMover.move();
                     if (gameScreenFrame.getGameData().getMarioLocation().equalsIgnoreCase("levelonesectionone")) {
                         gameScreenFrame.intersectMarioAndObjectsInLevelOneSectionOne.refreshIntersectsBooleans();
-                        gameScreenFrame.intersectMarioAndObjectsInLevelOneSectionOne.intersect();
-                        gameScreenFrame.intersectMarioAndObjectsInLevelOneSectionOne.intersectWithCoin();
+                        gameScreenFrame.intersectMarioAndObjectsInLevelOneSectionOne.intersectWithObjects();
+                        gameScreenFrame.intersectMarioAndObjectsInLevelOneSectionOne.intersectWithItems();
                         if (gameScreenFrame.intersectMarioAndObjectsInLevelOneSectionOne.intersectWithEnemies()) {
                             setLocationAfterLooseInSectionOneLevelOne();
                         }
@@ -69,8 +69,8 @@ public class GameLoop {
                     }
                     if (gameScreenFrame.getGameData().getMarioLocation().equalsIgnoreCase("levelonesectiontwo")) {
                         gameScreenFrame.intersectMarioAndObjectsInLevelOneSectionTwo.refreshIntersectsBooleans();
-                        gameScreenFrame.intersectMarioAndObjectsInLevelOneSectionTwo.intersect();
-                        gameScreenFrame.intersectMarioAndObjectsInLevelOneSectionTwo.intersectWithCoin();
+                        gameScreenFrame.intersectMarioAndObjectsInLevelOneSectionTwo.intersectWithObjects();
+                        gameScreenFrame.intersectMarioAndObjectsInLevelOneSectionTwo.intersectWithItems();
                         if (gameScreenFrame.intersectMarioAndObjectsInLevelOneSectionTwo.intersectWithEnemies()) {
                             setLocationAfterLooseInSectionTwoLevelOne();
                         }

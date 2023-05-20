@@ -78,11 +78,19 @@ public class MyProjectData {
     protected BufferedImage emptyBlockInAir;
     protected BufferedImage castleLevelOne;
     protected BufferedImage coin;
+    protected BufferedImage mushroom;
+    protected BufferedImage star;
+    protected BufferedImage flowerItem;
     protected BufferedImage coinForStore;
     protected BufferedImage coinInPrizeInAirs;
     protected BufferedImage pipe;
     protected BufferedImage pipeHorizontal;
     protected BufferedImage plant;
+    protected BufferedImage goompa;
+    protected BufferedImage nukeBird;
+    protected BufferedImage birdBomb;
+    protected BufferedImage turtle;
+    protected BufferedImage spiny;
     protected BufferedImage activePrizeInAir;
     protected BufferedImage inActivePrizeInAir;
     protected BufferedImage userHeart;
@@ -140,7 +148,7 @@ public class MyProjectData {
         }
 
         try {
-            String pathBackground = "Coin.png";
+            String pathBackground = "Item/Coin.png";
             File fileBackground = new File(pathBackground);
             coin = ImageIO.read(fileBackground);
 
@@ -158,9 +166,36 @@ public class MyProjectData {
         }
 
         try {
-            String pathBackground = "Coin.png";
+            String pathBackground = "Item/Coin.png";
             File fileBackground = new File(pathBackground);
             coinInPrizeInAirs = ImageIO.read(fileBackground);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            String pathBackground = "Item/FlowerItem.png";
+            File fileBackground = new File(pathBackground);
+            flowerItem = ImageIO.read(fileBackground);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            String pathBackground = "Item/Mushroom.png";
+            File fileBackground = new File(pathBackground);
+            mushroom = ImageIO.read(fileBackground);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            String pathBackground = "Item/Star.png";
+            File fileBackground = new File(pathBackground);
+            star = ImageIO.read(fileBackground);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -188,6 +223,51 @@ public class MyProjectData {
             String pathBackground = "Enemy/Plant.png";
             File fileBackground = new File(pathBackground);
             plant = ImageIO.read(fileBackground);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            String pathBackground = "Enemy/Goompa.png";
+            File fileBackground = new File(pathBackground);
+            goompa = ImageIO.read(fileBackground);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            String pathBackground = "Enemy/NukeBird.png";
+            File fileBackground = new File(pathBackground);
+            nukeBird = ImageIO.read(fileBackground);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            String pathBackground = "Enemy/Bomb.png";
+            File fileBackground = new File(pathBackground);
+            birdBomb = ImageIO.read(fileBackground);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            String pathBackground = "Enemy/Turtle.png";
+            File fileBackground = new File(pathBackground);
+            turtle = ImageIO.read(fileBackground);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            String pathBackground = "Enemy/Spiny.png";
+            File fileBackground = new File(pathBackground);
+            spiny = ImageIO.read(fileBackground);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -985,6 +1065,18 @@ public class MyProjectData {
         return coin;
     }
 
+    public BufferedImage getMushroom() {
+        return mushroom;
+    }
+
+    public BufferedImage getStar() {
+        return star;
+    }
+
+    public BufferedImage getFlowerItem() {
+        return flowerItem;
+    }
+
     public BufferedImage getCoinForStore() {
         return coinForStore;
     }
@@ -1003,6 +1095,26 @@ public class MyProjectData {
 
     public BufferedImage getPlant() {
         return plant;
+    }
+
+    public BufferedImage getGoompa() {
+        return goompa;
+    }
+
+    public BufferedImage getNukeBird() {
+        return nukeBird;
+    }
+
+    public BufferedImage getBirdBomb() {
+        return birdBomb;
+    }
+
+    public BufferedImage getTurtle() {
+        return turtle;
+    }
+
+    public BufferedImage getSpiny() {
+        return spiny;
     }
 
     public BufferedImage getActivePrizeInAir() {

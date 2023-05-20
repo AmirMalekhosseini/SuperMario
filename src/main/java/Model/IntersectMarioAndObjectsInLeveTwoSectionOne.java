@@ -4,38 +4,38 @@ import Graphic.*;
 
 import java.util.Random;
 
-public class IntersectMarioAndObjectsInLevelOneSectionOne {
+public class IntersectMarioAndObjectsInLeveTwoSectionOne {
 
     GameScreenFrame gameScreenFrame;
-    LevelOneSectionOneScreen levelOneSectionOneScreen;
+    LevelTwoSectionOneScreen levelTwoSectionOneScreen;
     protected boolean marioHitsLeftOfTheObject;
     protected boolean marioHitsRightOfTheObject;
     protected boolean marioHitsUpOfTheObject;
     protected boolean marioHitsDownOfTheObject;
 
-    public IntersectMarioAndObjectsInLevelOneSectionOne(GameScreenFrame gameScreenFrame) {
+    public IntersectMarioAndObjectsInLeveTwoSectionOne(GameScreenFrame gameScreenFrame) {
         this.gameScreenFrame = gameScreenFrame;
-        this.levelOneSectionOneScreen = gameScreenFrame.getLevelOneSectionOneScreen();
+        this.levelTwoSectionOneScreen = gameScreenFrame.getLevelTwoSectionOneScreen();
     }
 
-    public IntersectMarioAndObjectsInLevelOneSectionOne() {
+    public IntersectMarioAndObjectsInLeveTwoSectionOne() {
 
     }
 
     public void intersectWithObjects() {
 
-        for (int i = 0; i < levelOneSectionOneScreen.getObjectsInThisSection().size(); i++) {
-            int marioWidth = levelOneSectionOneScreen.activeMario.get(0).getWidth();
-            int marioHeight = levelOneSectionOneScreen.activeMario.get(0).getHeight();
-            int objectWidth = levelOneSectionOneScreen.getObjectsInThisSection().get(i).getWidth();
-            int objectHeight = levelOneSectionOneScreen.getObjectsInThisSection().get(i).getHeight();
+        for (int i = 0; i < levelTwoSectionOneScreen.getObjectsInThisSection().size(); i++) {
+            int marioWidth = levelTwoSectionOneScreen.activeMario.get(0).getWidth();
+            int marioHeight = levelTwoSectionOneScreen.activeMario.get(0).getHeight();
+            int objectWidth = levelTwoSectionOneScreen.getObjectsInThisSection().get(i).getWidth();
+            int objectHeight = levelTwoSectionOneScreen.getObjectsInThisSection().get(i).getHeight();
             if (objectWidth <= 0 || objectHeight <= 0 || marioWidth <= 0 || marioHeight <= 0) {
                 continue;
             }
-            int marioX = levelOneSectionOneScreen.activeMario.get(0).getX();
-            int marioY = levelOneSectionOneScreen.activeMario.get(0).getY();
-            int objectX = levelOneSectionOneScreen.getObjectsInThisSection().get(i).getX();
-            int objectY = levelOneSectionOneScreen.getObjectsInThisSection().get(i).getY();
+            int marioX = levelTwoSectionOneScreen.activeMario.get(0).getX();
+            int marioY = levelTwoSectionOneScreen.activeMario.get(0).getY();
+            int objectX = levelTwoSectionOneScreen.getObjectsInThisSection().get(i).getX();
+            int objectY = levelTwoSectionOneScreen.getObjectsInThisSection().get(i).getY();
             objectWidth += objectX;
             objectHeight += objectY;
             marioWidth += marioX;
@@ -80,10 +80,10 @@ public class IntersectMarioAndObjectsInLevelOneSectionOne {
 
                 }
 
-                if (levelOneSectionOneScreen.getObjectsInThisSection().get(i) instanceof PrizeInAir && marioHitsDownOfTheObject) {
-                    if (((PrizeInAir) levelOneSectionOneScreen.getObjectsInThisSection().get(i)).isItemCatch()) {
-                        ((PrizeInAir) levelOneSectionOneScreen.getObjectsInThisSection().get(i)).setItemCatch(true);
-                        generateRandomItem((PrizeInAir) levelOneSectionOneScreen.getObjectsInThisSection().get(i));
+                if (levelTwoSectionOneScreen.getObjectsInThisSection().get(i) instanceof PrizeInAir && marioHitsDownOfTheObject) {
+                    if (((PrizeInAir) levelTwoSectionOneScreen.getObjectsInThisSection().get(i)).isItemCatch()) {
+                        ((PrizeInAir) levelTwoSectionOneScreen.getObjectsInThisSection().get(i)).setItemCatch(true);
+                        generateRandomItem((PrizeInAir) levelTwoSectionOneScreen.getObjectsInThisSection().get(i));
                     }
                 }
 
@@ -96,18 +96,18 @@ public class IntersectMarioAndObjectsInLevelOneSectionOne {
     public void intersectWithItems() {
 
 
-        for (int i = 0; i < levelOneSectionOneScreen.getItemsInThisSection().size(); i++) {
-            int marioWidth = levelOneSectionOneScreen.activeMario.get(0).getWidth();
-            int marioHeight = levelOneSectionOneScreen.activeMario.get(0).getHeight();
-            int objectWidth = levelOneSectionOneScreen.getItemsInThisSection().get(i).getWidth();
-            int objectHeight = levelOneSectionOneScreen.getItemsInThisSection().get(i).getHeight();
+        for (int i = 0; i < levelTwoSectionOneScreen.getItemsInThisSection().size(); i++) {
+            int marioWidth = levelTwoSectionOneScreen.activeMario.get(0).getWidth();
+            int marioHeight = levelTwoSectionOneScreen.activeMario.get(0).getHeight();
+            int objectWidth = levelTwoSectionOneScreen.getItemsInThisSection().get(i).getWidth();
+            int objectHeight = levelTwoSectionOneScreen.getItemsInThisSection().get(i).getHeight();
             if (objectWidth <= 0 || objectHeight <= 0 || marioWidth <= 0 || marioHeight <= 0) {
                 continue;
             }
-            int marioX = levelOneSectionOneScreen.activeMario.get(0).getX();
-            int marioY = levelOneSectionOneScreen.activeMario.get(0).getY();
-            int objectX = levelOneSectionOneScreen.getItemsInThisSection().get(i).getX();
-            int objectY = levelOneSectionOneScreen.getItemsInThisSection().get(i).getY();
+            int marioX = levelTwoSectionOneScreen.activeMario.get(0).getX();
+            int marioY = levelTwoSectionOneScreen.activeMario.get(0).getY();
+            int objectX = levelTwoSectionOneScreen.getItemsInThisSection().get(i).getX();
+            int objectY = levelTwoSectionOneScreen.getItemsInThisSection().get(i).getY();
             objectWidth += objectX;
             objectHeight += objectY;
             marioWidth += marioX;
@@ -118,14 +118,14 @@ public class IntersectMarioAndObjectsInLevelOneSectionOne {
                     (objectHeight < objectY || objectHeight > marioY) &&
                     (marioWidth < marioX || marioWidth > objectX) &&
                     (marioHeight < marioY || marioHeight > objectY)) {
-                if (!levelOneSectionOneScreen.getItemsInThisSection().get(i).isItemCatch()) {
-                    if (levelOneSectionOneScreen.getItemsInThisSection().get(i) instanceof Coin) {
-                        levelOneSectionOneScreen.getGameData().thisGameCoin++;
+                if (!levelTwoSectionOneScreen.getItemsInThisSection().get(i).isItemCatch()) {
+                    if (levelTwoSectionOneScreen.getItemsInThisSection().get(i) instanceof Coin) {
+                        levelTwoSectionOneScreen.getGameData().thisGameCoin++;
                     }
-                    levelOneSectionOneScreen.getGameData().thisGameScore += levelOneSectionOneScreen.getItemsInThisSection().get(i).getScoreItemAdds();
+                    levelTwoSectionOneScreen.getGameData().thisGameScore += levelTwoSectionOneScreen.getItemsInThisSection().get(i).getScoreItemAdds();
 
                 }
-                levelOneSectionOneScreen.getItemsInThisSection().get(i).setItemCatch(true);
+                levelTwoSectionOneScreen.getItemsInThisSection().get(i).setItemCatch(true);
             }
 
         }
@@ -133,18 +133,18 @@ public class IntersectMarioAndObjectsInLevelOneSectionOne {
     }
 
     public boolean intersectWithEnemies() {
-        for (int i = 0; i < levelOneSectionOneScreen.getEnemiesInThisSection().size(); i++) {
-            int marioWidth = levelOneSectionOneScreen.activeMario.get(0).getWidth();
-            int marioHeight = levelOneSectionOneScreen.activeMario.get(0).getHeight();
-            int objectWidth = levelOneSectionOneScreen.getEnemiesInThisSection().get(i).getWidth();
-            int objectHeight = levelOneSectionOneScreen.getEnemiesInThisSection().get(i).getHeight();
+        for (int i = 0; i < levelTwoSectionOneScreen.getEnemiesInThisSection().size(); i++) {
+            int marioWidth = levelTwoSectionOneScreen.activeMario.get(0).getWidth();
+            int marioHeight = levelTwoSectionOneScreen.activeMario.get(0).getHeight();
+            int objectWidth = levelTwoSectionOneScreen.getEnemiesInThisSection().get(i).getWidth();
+            int objectHeight = levelTwoSectionOneScreen.getEnemiesInThisSection().get(i).getHeight();
             if (objectWidth <= 0 || objectHeight <= 0 || marioWidth <= 0 || marioHeight <= 0) {
                 continue;
             }
-            int marioX = levelOneSectionOneScreen.activeMario.get(0).getX();
-            int marioY = levelOneSectionOneScreen.activeMario.get(0).getY();
-            int objectX = levelOneSectionOneScreen.getEnemiesInThisSection().get(i).getX();
-            int objectY = levelOneSectionOneScreen.getEnemiesInThisSection().get(i).getY();
+            int marioX = levelTwoSectionOneScreen.activeMario.get(0).getX();
+            int marioY = levelTwoSectionOneScreen.activeMario.get(0).getY();
+            int objectX = levelTwoSectionOneScreen.getEnemiesInThisSection().get(i).getX();
+            int objectY = levelTwoSectionOneScreen.getEnemiesInThisSection().get(i).getY();
             objectWidth += objectX;
             objectHeight += objectY;
             marioWidth += marioX;
@@ -155,7 +155,7 @@ public class IntersectMarioAndObjectsInLevelOneSectionOne {
                     (objectHeight < objectY || objectHeight > marioY) &&
                     (marioWidth < marioX || marioWidth > objectX) &&
                     (marioHeight < marioY || marioHeight > objectY)) {
-                levelOneSectionOneScreen.getGameData().userHeartValue--;
+                levelTwoSectionOneScreen.getGameData().userHeartValue--;
                 return true;
             }
 
@@ -164,18 +164,18 @@ public class IntersectMarioAndObjectsInLevelOneSectionOne {
     }
 
     public boolean intersectWithEmptyGround() {
-        for (int i = 0; i < levelOneSectionOneScreen.getEmptySpaceInGroundsInThisSection().size(); i++) {
-            int marioWidth = levelOneSectionOneScreen.activeMario.get(0).getWidth();
-            int marioHeight = levelOneSectionOneScreen.activeMario.get(0).getHeight();
-            int objectWidth = levelOneSectionOneScreen.getEmptySpaceInGroundsInThisSection().get(i).getWidth();
-            int objectHeight = levelOneSectionOneScreen.getEmptySpaceInGroundsInThisSection().get(i).getHeight();
+        for (int i = 0; i < levelTwoSectionOneScreen.getEmptySpaceInGroundsInThisSection().size(); i++) {
+            int marioWidth = levelTwoSectionOneScreen.activeMario.get(0).getWidth();
+            int marioHeight = levelTwoSectionOneScreen.activeMario.get(0).getHeight();
+            int objectWidth = levelTwoSectionOneScreen.getEmptySpaceInGroundsInThisSection().get(i).getWidth();
+            int objectHeight = levelTwoSectionOneScreen.getEmptySpaceInGroundsInThisSection().get(i).getHeight();
             if (objectWidth <= 0 || objectHeight <= 0 || marioWidth <= 0 || marioHeight <= 0) {
                 continue;
             }
-            int marioX = levelOneSectionOneScreen.activeMario.get(0).getX();
-            int marioY = levelOneSectionOneScreen.activeMario.get(0).getY();
-            int objectX = levelOneSectionOneScreen.getEmptySpaceInGroundsInThisSection().get(i).getX();
-            int objectY = levelOneSectionOneScreen.getEmptySpaceInGroundsInThisSection().get(i).getY();
+            int marioX = levelTwoSectionOneScreen.activeMario.get(0).getX();
+            int marioY = levelTwoSectionOneScreen.activeMario.get(0).getY();
+            int objectX = levelTwoSectionOneScreen.getEmptySpaceInGroundsInThisSection().get(i).getX();
+            int objectY = levelTwoSectionOneScreen.getEmptySpaceInGroundsInThisSection().get(i).getY();
             objectWidth += objectX;
             objectHeight += objectY;
             marioWidth += marioX;
@@ -186,7 +186,7 @@ public class IntersectMarioAndObjectsInLevelOneSectionOne {
                     (objectHeight < objectY || objectHeight > marioY) &&
                     (marioWidth < marioX || marioWidth > objectX) &&
                     (marioHeight < marioY || marioHeight > objectY)) {
-                levelOneSectionOneScreen.getGameData().userHeartValue--;
+                levelTwoSectionOneScreen.getGameData().userHeartValue--;
                 return true;
             }
 
@@ -208,8 +208,8 @@ public class IntersectMarioAndObjectsInLevelOneSectionOne {
             prizeInAir.setItemInPrizeInAir(new Star(x, y));
         }
 
-        levelOneSectionOneScreen.itemsInThisSection.add(prizeInAir.getItemInPrizeInAir());
-        levelOneSectionOneScreen.add(prizeInAir.getItemInPrizeInAir(), Integer.valueOf(1));
+        levelTwoSectionOneScreen.itemsInThisSection.add(prizeInAir.getItemInPrizeInAir());
+        levelTwoSectionOneScreen.add(prizeInAir.getItemInPrizeInAir(), Integer.valueOf(1));
 
     }
 
@@ -261,37 +261,11 @@ public class IntersectMarioAndObjectsInLevelOneSectionOne {
         this.gameScreenFrame = gameScreenFrame;
     }
 
-    public LevelOneSectionOneScreen getLevelOneSectionOneScreen() {
-        return levelOneSectionOneScreen;
+    public LevelTwoSectionOneScreen getLevelTwoSectionOneScreen() {
+        return levelTwoSectionOneScreen;
     }
 
-    public void setLevelOneSectionOneScreen(LevelOneSectionOneScreen levelOneSectionOneScreen) {
-        this.levelOneSectionOneScreen = levelOneSectionOneScreen;
+    public void setLevelTwoSectionOneScreen(LevelTwoSectionOneScreen levelTwoSectionOneScreen) {
+        this.levelTwoSectionOneScreen = levelTwoSectionOneScreen;
     }
 }
-
-/*
-public boolean intersects(ObjectsInGame r) {
-        int tw = this.width;
-        int th = this.height;
-        int rw = r.width;
-        int rh = r.height;
-        if (rw <= 0 || rh <= 0 || tw <= 0 || th <= 0) {
-            return false;
-        }
-        int tx = this.x;
-        int ty = this.y;
-        int rx = r.x;
-        int ry = r.y;
-        rw += rx;
-        rh += ry;
-        tw += tx;
-        th += ty;
-        //      overflow || intersectWithObjects
-        return ((rw < rx || rw > tx) &&
-                (rh < ry || rh > ty) &&
-                (tw < tx || tw > rx) &&
-                (th < ty || th > ry));
-    }
- */
-

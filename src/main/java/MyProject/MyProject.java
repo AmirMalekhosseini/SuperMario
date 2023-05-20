@@ -23,7 +23,8 @@ public class MyProject {
         Graphic graphicStarter = new Graphic() {
             @Override
             public void startGraphic() {
-                new LoginPageScreen();
+//                new LoginPageScreen();
+                new GameScreenFrame(new GameData());
             }
         };
         objectMapper = new ObjectMapper();

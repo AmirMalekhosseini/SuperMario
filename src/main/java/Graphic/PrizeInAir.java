@@ -1,17 +1,13 @@
 package Graphic;
 
 import Model.*;
-import MyProject.MyProject;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
 public class PrizeInAir extends ObjectsInGame {
 
-    protected CoinInPrizeInAirs coinInPrizeInAirs;
+    protected ItemsInGame itemInPrizeInAir;
     private BufferedImage background_Active;
     private BufferedImage background_InActive;
     private int x;
@@ -19,7 +15,7 @@ public class PrizeInAir extends ObjectsInGame {
     private int width = 70;
     private int height = 70;
 
-    protected boolean coinCatch;
+    protected boolean itemCatch;
 
     PrizeInAir(int x, int y) {
 
@@ -39,7 +35,7 @@ public class PrizeInAir extends ObjectsInGame {
 
     public void paint(Graphics graphics) {
         Graphics2D graphics2D = (Graphics2D) graphics;
-        if (!coinCatch) {
+        if (!itemCatch) {
             graphics2D.drawImage(background_Active, 0, -5, null);
         } else {
             graphics2D.drawImage(background_InActive, 0, -5, null);
@@ -68,33 +64,29 @@ public class PrizeInAir extends ObjectsInGame {
     public int getWidth() {
         return width;
     }
-
     public void setWidth(int width) {
         this.width = width;
     }
-
     @Override
     public int getHeight() {
         return height;
     }
-
     public void setHeight(int height) {
         this.height = height;
     }
-
-    public CoinInPrizeInAirs getCoinInPrizeInAirs() {
-        return coinInPrizeInAirs;
+    public boolean isItemCatch() {
+        return !itemCatch;
     }
 
-    public void setCoinInPrizeInAirs(CoinInPrizeInAirs coinInPrizeInAirs) {
-        this.coinInPrizeInAirs = coinInPrizeInAirs;
+    public void setItemCatch(boolean itemCatch) {
+        this.itemCatch = itemCatch;
     }
 
-    public boolean isCoinCatch() {
-        return coinCatch;
+    public ItemsInGame getItemInPrizeInAir() {
+        return itemInPrizeInAir;
     }
 
-    public void setCoinCatch(boolean coinCatch) {
-        this.coinCatch = coinCatch;
+    public void setItemInPrizeInAir(ItemsInGame itemInPrizeInAir) {
+        this.itemInPrizeInAir = itemInPrizeInAir;
     }
 }
