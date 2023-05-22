@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class LevelOneSectionOneScreen extends JLayeredPane {
 
     protected ArrayList<ObjectsInGame> objectsInThisSection = new ArrayList<>();
-    public ArrayList<ItemsInGame> itemsInThisSection = new ArrayList<>();
+    protected ArrayList<ItemsInGame> itemsInThisSection = new ArrayList<>();
     protected ArrayList<Enemy> enemiesInThisSection = new ArrayList<>();
     protected ArrayList<EmptySpaceInGround> emptySpaceInGroundsInThisSection = new ArrayList<>();
     public ArrayList<Mario> activeMario;
