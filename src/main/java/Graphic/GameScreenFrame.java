@@ -8,14 +8,17 @@ import javax.swing.*;
 public class GameScreenFrame extends JFrame {
 
     protected GameData gameData;
+    protected Gravity gravity;
     protected JPanel levelOneGameBackgroundPanel;
     protected JPanel levelTwoGameBackgroundPanel;
     protected LevelOneSectionOneScreen levelOneSectionOneScreen;
     protected LevelOneSectionTwoScreen levelOneSectionTwoScreen;
     protected LevelTwoSectionOneScreen levelTwoSectionOneScreen;
     protected LevelTwoSectionTwoScreen levelTwoSectionTwoScreen;
-    public IntersectMarioAndObjectsInLevelOneSectionOne intersectMarioAndObjectsInLevelOneSectionOne;
-    public IntersectMarioAndObjectsInLevelOneSectionTwo intersectMarioAndObjectsInLevelOneSectionTwo;
+    public IntersectInLevelOneSectionOne intersectInLevelOneSectionOne;
+    public IntersectInLevelOneSectionTwo intersectInLevelOneSectionTwo;
+    public IntersectInLevelTwoSectionOne intersectInLevelTwoSectionOne;
+    public IntersectInLevelTwoSectionTwo intersectInLevelTwoSectionTwo;
     public MarioMover marioMover;
     public GameLoop gameLoop;
     public CalculateScore calculateScore;
@@ -47,9 +50,12 @@ public class GameScreenFrame extends JFrame {
 
                 calculateScore = new CalculateScore(gameScreenFrame);
                 marioMover = new MarioMover(gameScreenFrame);
-                intersectMarioAndObjectsInLevelOneSectionTwo = new IntersectMarioAndObjectsInLevelOneSectionTwo(gameScreenFrame);
-                intersectMarioAndObjectsInLevelOneSectionOne = new IntersectMarioAndObjectsInLevelOneSectionOne(gameScreenFrame);
-                gameLoop = new GameLoop(gameScreenFrame);
+                intersectInLevelOneSectionTwo = new IntersectInLevelOneSectionTwo(gameScreenFrame);
+                intersectInLevelOneSectionOne = new IntersectInLevelOneSectionOne(gameScreenFrame);
+                intersectInLevelTwoSectionOne = new IntersectInLevelTwoSectionOne(gameScreenFrame);
+                intersectInLevelTwoSectionTwo = new IntersectInLevelTwoSectionTwo(gameScreenFrame);
+                gravity = new Gravity(gameScreenFrame);
+                gameLoop = new GameLoop(gameScreenFrame, gravity);
 
             }
         };
@@ -138,20 +144,20 @@ public class GameScreenFrame extends JFrame {
         this.levelTwoSectionTwoScreen = levelTwoSectionTwoScreen;
     }
 
-    public IntersectMarioAndObjectsInLevelOneSectionOne getIntersectMarioAndObjectsInLevelOneSectionOne() {
-        return intersectMarioAndObjectsInLevelOneSectionOne;
+    public IntersectInLevelOneSectionOne getIntersectMarioAndObjectsInLevelOneSectionOne() {
+        return intersectInLevelOneSectionOne;
     }
 
-    public void setIntersectMarioAndObjectsInLevelOneSectionOne(IntersectMarioAndObjectsInLevelOneSectionOne intersectMarioAndObjectsInLevelOneSectionOne) {
-        this.intersectMarioAndObjectsInLevelOneSectionOne = intersectMarioAndObjectsInLevelOneSectionOne;
+    public void setIntersectMarioAndObjectsInLevelOneSectionOne(IntersectInLevelOneSectionOne intersectInLevelOneSectionOne) {
+        this.intersectInLevelOneSectionOne = intersectInLevelOneSectionOne;
     }
 
-    public IntersectMarioAndObjectsInLevelOneSectionTwo getIntersectMarioAndObjectsInLevelOneSectionTwo() {
-        return intersectMarioAndObjectsInLevelOneSectionTwo;
+    public IntersectInLevelOneSectionTwo getIntersectMarioAndObjectsInLevelOneSectionTwo() {
+        return intersectInLevelOneSectionTwo;
     }
 
-    public void setIntersectMarioAndObjectsInLevelOneSectionTwo(IntersectMarioAndObjectsInLevelOneSectionTwo intersectMarioAndObjectsInLevelOneSectionTwo) {
-        this.intersectMarioAndObjectsInLevelOneSectionTwo = intersectMarioAndObjectsInLevelOneSectionTwo;
+    public void setIntersectMarioAndObjectsInLevelOneSectionTwo(IntersectInLevelOneSectionTwo intersectInLevelOneSectionTwo) {
+        this.intersectInLevelOneSectionTwo = intersectInLevelOneSectionTwo;
     }
 
     public MarioMover getMarioMover() {
@@ -194,4 +200,11 @@ public class GameScreenFrame extends JFrame {
         this.xLevelTwoBackgroundPanel = xLevelTwoBackgroundPanel;
     }
 
+    public Gravity getGravity() {
+        return gravity;
+    }
+
+    public void setGravity(Gravity gravity) {
+        this.gravity = gravity;
+    }
 }

@@ -4,14 +4,15 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public abstract class Enemy extends JLabel {
+public abstract class Enemy extends ObjectsInGame {
 
     private BufferedImage background;
-    Timer timerForMovingEnemy;
     private int x;
     private int y;
     private int height;
     private int width;
+    public int secondCounter = 0;
+    private int velocity;
 
     public Enemy() {
 
@@ -59,4 +60,11 @@ public abstract class Enemy extends JLabel {
     }
 
 
+    public int getVelocity() {
+        return velocity;
+    }
+
+    public void setVelocity(int velocity) {
+        this.velocity = velocity;
+    }
 }

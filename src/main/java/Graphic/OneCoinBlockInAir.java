@@ -7,6 +7,7 @@ import java.awt.image.BufferedImage;
 
 public class OneCoinBlockInAir extends BlockInAir{
 
+    protected Coin coinInBlockInAir;
     private BufferedImage background;
     private int x;
     private int y;
@@ -83,4 +84,11 @@ public class OneCoinBlockInAir extends BlockInAir{
         this.hitCounter = hitCounter;
     }
 
+    public Coin getCoinInBlockInAir() {
+        return coinInBlockInAir;
+    }
+
+    public void setCoinInBlockInAir(Coin coinInBlockInAir) {
+        this.coinInBlockInAir = coinInBlockInAir;
+    }
 }

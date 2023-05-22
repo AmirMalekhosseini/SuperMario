@@ -11,13 +11,10 @@ import java.awt.image.BufferedImage;
 public class Goompa extends Enemy {
 
     private BufferedImage background;
-    Timer timerForMovingTheGoompa;
-    private int secondCounter = 0;
-
     private int x;
     private int y;
     private int width = 60;
-    private int height = 70;
+    private int height = 65;
     private int velocity = -5;
 
     Goompa(int xx, int yy) {
@@ -97,4 +94,11 @@ public class Goompa extends Enemy {
         this.height = height;
     }
 
+    public int getVelocity() {
+        return velocity;
+    }
+
+    public void setVelocity(int velocity) {
+        this.velocity = velocity;
+    }
 }

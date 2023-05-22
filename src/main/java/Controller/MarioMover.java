@@ -54,25 +54,32 @@ public class MarioMover implements KeyListener {
                     gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).setVelocityY(gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).getVelocityY() + (Gravity.gravity * Gravity.dt));
                     gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).setY((int) (gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).getY() + gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).getVelocityY()));
                     gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).setMarioJumping(true);// Mario is jumping
-                    if (gameScreenFrame.intersectMarioAndObjectsInLevelOneSectionOne.isMarioHitsDownOfTheObject()) {// Mario hits down of an object and comes back to ground
+                    if (gameScreenFrame.intersectInLevelOneSectionOne.isMarioHitsDownOfTheObject()) {// Mario hits down of an object and comes back to ground
                         gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).setVelocityY(0);
                         gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).setY((gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).getY() + 2));
-                    } else if (gameScreenFrame.intersectMarioAndObjectsInLevelOneSectionOne.isMarioHitsUpOfTheObject()) {// Mario hits up an object and stand on it
+                    } else if (gameScreenFrame.intersectInLevelOneSectionOne.isMarioHitsUpOfTheObject()) {// Mario hits up an object and stand on it
                         gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).setVelocityY(0);
                         gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).setY((gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).getY() - 2));
                         gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).setMarioJumping(false);// Mario stop jumping
+                        gameScreenFrame.intersectInLevelOneSectionOne.setMarioHitsAnObject(false);
+                        gameScreenFrame.intersectInLevelOneSectionOne.setMarioHitsFullOfCoinBlockInAir(false);
+                        gameScreenFrame.intersectInLevelOneSectionOne.setMarioHitsTurtle(false);
                         isUserPressedUp = false;
+
                     }
 
                     if (gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).getY() >= 840 && gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).getY() <= 860) {// Mario Hits Ground and Stop jumping
                         upMario = false;
                         isUserPressedUp = false;
                         gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).setMarioJumping(false);
+                        gameScreenFrame.intersectInLevelOneSectionOne.setMarioHitsAnObject(false);
+                        gameScreenFrame.intersectInLevelOneSectionOne.setMarioHitsFullOfCoinBlockInAir(false);
+                        gameScreenFrame.intersectInLevelOneSectionOne.setMarioHitsTurtle(false);
                     }
 
                 }
 
-                if (rightMario && !leftMario && !gameScreenFrame.intersectMarioAndObjectsInLevelOneSectionOne.isMarioHitsLeftOfTheObject()) {// Go Right
+                if (rightMario && !leftMario && !gameScreenFrame.intersectInLevelOneSectionOne.isMarioHitsLeftOfTheObject()) {// Go Right
                     if (gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).getX() < 830 || gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).getX() >= 5800) {// Move Mario
                         gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).setX(gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).getX() + 5);
                     } else {// Move Panel
@@ -89,7 +96,7 @@ public class MarioMover implements KeyListener {
                         gameScreenFrame.getLevelOneSectionOneScreen().XUserHeartValueLabel += 5;
                     }
                 }
-                if (leftMario && !rightMario && !gameScreenFrame.intersectMarioAndObjectsInLevelOneSectionOne.isMarioHitsRightOfTheObject()) {// Go Left
+                if (leftMario && !rightMario && !gameScreenFrame.intersectInLevelOneSectionOne.isMarioHitsRightOfTheObject()) {// Go Left
                     if (gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).getX() < 840 || gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).getX() >= 5800) {// Move Mario
                         gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).setX(gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).getX() - 5);
                     } else {// Move Panel
@@ -134,13 +141,15 @@ public class MarioMover implements KeyListener {
                     gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).setVelocityY(gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).getVelocityY() + (Gravity.gravity * Gravity.dt));
                     gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).setY((int) (gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).getY() + gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).getVelocityY()));
                     gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).setMarioJumping(true);// Mario is jumping
-                    if (gameScreenFrame.intersectMarioAndObjectsInLevelOneSectionTwo.isMarioHitsDownOfTheObject()) {// Mario hits down of an object and comes back to ground
+                    if (gameScreenFrame.intersectInLevelOneSectionTwo.isMarioHitsDownOfTheObject()) {// Mario hits down of an object and comes back to ground
                         gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).setVelocityY(0);
                         gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).setY((gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).getY() + 2));
-                    } else if (gameScreenFrame.intersectMarioAndObjectsInLevelOneSectionTwo.isMarioHitsUpOfTheObject()) {// Mario hits up an object and stand on it
+                    } else if (gameScreenFrame.intersectInLevelOneSectionTwo.isMarioHitsUpOfTheObject()) {// Mario hits up an object and stand on it
                         gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).setVelocityY(0);
                         gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).setY((gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).getY() - 2));
                         gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).setMarioJumping(false);// Mario stop jumping
+                        gameScreenFrame.intersectInLevelOneSectionTwo.setMarioHitsAnObject(false);
+                        gameScreenFrame.intersectInLevelOneSectionTwo.setMarioHitsFullOfCoinBlockInAir(false);
                         isUserPressedUp = false;
                     }
 
@@ -148,12 +157,14 @@ public class MarioMover implements KeyListener {
                         upMario = false;
                         isUserPressedUp = false;
                         gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).setMarioJumping(false);
+                        gameScreenFrame.intersectInLevelOneSectionTwo.setMarioHitsAnObject(false);
+                        gameScreenFrame.intersectInLevelOneSectionTwo.setMarioHitsFullOfCoinBlockInAir(false);
                     }
 
                 }
 
 
-                if (rightMario && !leftMario && !gameScreenFrame.intersectMarioAndObjectsInLevelOneSectionTwo.isMarioHitsLeftOfTheObject()) {
+                if (rightMario && !leftMario && !gameScreenFrame.intersectInLevelOneSectionTwo.isMarioHitsLeftOfTheObject()) {
                     if (gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).getX() < 830 || gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).getX() >= 5800) {// Move Mario
                         gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).setX(gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).getX() + 5);
                     } else {// Move Panel
@@ -170,7 +181,7 @@ public class MarioMover implements KeyListener {
                         gameScreenFrame.getLevelOneSectionTwoScreen().XUserHeartValueLabel += 5;
                     }
                 }
-                if (leftMario && !rightMario && !gameScreenFrame.intersectMarioAndObjectsInLevelOneSectionTwo.isMarioHitsRightOfTheObject()) {
+                if (leftMario && !rightMario && !gameScreenFrame.intersectInLevelOneSectionTwo.isMarioHitsRightOfTheObject()) {
                     if (gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).getX() < 840 || gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).getX() >= 5800) {// Move Mario
                         gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).setX(gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).getX() - 5);
 

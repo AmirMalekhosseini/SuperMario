@@ -4,7 +4,7 @@ import Graphic.*;
 
 import java.util.Random;
 
-public class IntersectMarioAndObjectsInLevelTwoSectionTwo {
+public class IntersectInLevelTwoSectionTwo {
 
     GameScreenFrame gameScreenFrame;
     LevelTwoSectionTwoScreen levelTwoSectionTwoScreen;
@@ -12,13 +12,15 @@ public class IntersectMarioAndObjectsInLevelTwoSectionTwo {
     protected boolean marioHitsRightOfTheObject;
     protected boolean marioHitsUpOfTheObject;
     protected boolean marioHitsDownOfTheObject;
+    protected boolean marioHitsAnObject;
+    protected boolean marioHitsFullOfCoinBlockInAir;
 
-    public IntersectMarioAndObjectsInLevelTwoSectionTwo(GameScreenFrame gameScreenFrame) {
+    public IntersectInLevelTwoSectionTwo(GameScreenFrame gameScreenFrame) {
         this.gameScreenFrame = gameScreenFrame;
         this.levelTwoSectionTwoScreen = gameScreenFrame.getLevelTwoSectionTwoScreen();
     }
 
-    public IntersectMarioAndObjectsInLevelTwoSectionTwo() {
+    public IntersectInLevelTwoSectionTwo() {
 
     }
 
@@ -54,8 +56,7 @@ public class IntersectMarioAndObjectsInLevelTwoSectionTwo {
                     }
 
 
-                }
-                else {
+                } else {
                     marioHitsUpOfTheObject = false;
                 }
 
@@ -66,8 +67,7 @@ public class IntersectMarioAndObjectsInLevelTwoSectionTwo {
                         marioHitsDownOfTheObject = true;
                     }
 
-                }
-                else{
+                } else {
                     marioHitsDownOfTheObject = false;
                 }
 
@@ -75,17 +75,58 @@ public class IntersectMarioAndObjectsInLevelTwoSectionTwo {
 
                     marioHitsLeftOfTheObject = true;
 
-                }  if ((objectHeight > marioY || marioHeight > objectY) && objectWidth <= marioX + 20 && !marioHitsDownOfTheObject && !marioHitsUpOfTheObject) {// Hit right of Object
+                }
+                if ((objectHeight > marioY || marioHeight > objectY) && objectWidth <= marioX + 20 && !marioHitsDownOfTheObject && !marioHitsUpOfTheObject) {// Hit right of Object
 
                     marioHitsRightOfTheObject = true;
 
                 }
 
-                if (levelTwoSectionTwoScreen.getObjectsInThisSection().get(i) instanceof PrizeInAir && marioHitsDownOfTheObject) {
+                if (levelTwoSectionTwoScreen.getObjectsInThisSection().get(i) instanceof PrizeInAir && marioHitsDownOfTheObject && !marioHitsAnObject) {
                     if (((PrizeInAir) levelTwoSectionTwoScreen.getObjectsInThisSection().get(i)).isItemCatch()) {
                         ((PrizeInAir) levelTwoSectionTwoScreen.getObjectsInThisSection().get(i)).setItemCatch(true);
                         generateRandomItem((PrizeInAir) levelTwoSectionTwoScreen.getObjectsInThisSection().get(i));
+                        marioHitsAnObject = true;
                     }
+                    continue;
+                } else if (levelTwoSectionTwoScreen.getObjectsInThisSection().get(i) instanceof SimpleBlockInAir && marioHitsDownOfTheObject && !marioHitsAnObject) {
+                    levelTwoSectionTwoScreen.remove(levelTwoSectionTwoScreen.getObjectsInThisSection().get(i));
+                    levelTwoSectionTwoScreen.getObjectsInThisSection().remove(levelTwoSectionTwoScreen.getObjectsInThisSection().get(i));
+                    gameScreenFrame.getGameData().thisGameScore++;
+                    marioHitsAnObject = true;
+                    i = 0;
+                    continue;
+                } else if (levelTwoSectionTwoScreen.getObjectsInThisSection().get(i) instanceof OneCoinBlockInAir && marioHitsDownOfTheObject && !marioHitsAnObject) {
+                    int x = levelTwoSectionTwoScreen.getObjectsInThisSection().get(i).getX();
+                    int y = levelTwoSectionTwoScreen.getObjectsInThisSection().get(i).getY() - 50;
+                    Coin newCoin = new Coin(x, y);
+                    ((OneCoinBlockInAir) levelTwoSectionTwoScreen.getObjectsInThisSection().get(i)).setCoinInBlockInAir(newCoin);
+                    levelTwoSectionTwoScreen.add(newCoin, Integer.valueOf(1));
+                    levelTwoSectionTwoScreen.getItemsInThisSection().add(newCoin);
+                    levelTwoSectionTwoScreen.remove(levelTwoSectionTwoScreen.getObjectsInThisSection().get(i));
+                    SimpleBlockInAir newSimpleBlockInAir = new SimpleBlockInAir(x, y + 50);
+                    levelTwoSectionTwoScreen.getObjectsInThisSection().set(i, newSimpleBlockInAir);
+                    levelTwoSectionTwoScreen.add(newSimpleBlockInAir, Integer.valueOf(1));
+                    gameScreenFrame.getGameData().thisGameScore++;
+                    marioHitsAnObject = true;
+                    i = 0;
+                    continue;
+                } else if (levelTwoSectionTwoScreen.getObjectsInThisSection().get(i) instanceof FullOfCoinBlockInAir && marioHitsDownOfTheObject
+                        && !marioHitsAnObject && !marioHitsFullOfCoinBlockInAir) {
+                    ((FullOfCoinBlockInAir) levelTwoSectionTwoScreen.getObjectsInThisSection().get(i)).hitCounter++;
+                    gameScreenFrame.getGameData().thisGameCoin++;
+                    marioHitsFullOfCoinBlockInAir = true;
+
+                    if (((FullOfCoinBlockInAir) levelTwoSectionTwoScreen.getObjectsInThisSection().get(i)).getHitCounter() == 5) {
+                        int x = levelTwoSectionTwoScreen.getObjectsInThisSection().get(i).getX();
+                        int y = levelTwoSectionTwoScreen.getObjectsInThisSection().get(i).getY();
+                        levelTwoSectionTwoScreen.remove(levelTwoSectionTwoScreen.getObjectsInThisSection().get(i));
+                        EmptyBlockInAir newEmptyBlockInAir = new EmptyBlockInAir(x, y);
+                        levelTwoSectionTwoScreen.getObjectsInThisSection().set(i, newEmptyBlockInAir);
+                        levelTwoSectionTwoScreen.add(newEmptyBlockInAir, Integer.valueOf(1));
+                    }
+                    i = 0;
+                    continue;
                 }
 
                 break;
@@ -93,24 +134,6 @@ public class IntersectMarioAndObjectsInLevelTwoSectionTwo {
         }
     }
 
-    public void generateRandomItem(PrizeInAir prizeInAir) {
-
-        Random random = new Random();
-        int itemChooseNumber = random.nextInt(11);
-        int x = prizeInAir.getX() + 10;
-        int y = prizeInAir.getY() - 50;
-        if (itemChooseNumber <= 5) {
-            prizeInAir.setItemInPrizeInAir(new FlowerItem(x, y));
-        } else if (itemChooseNumber <= 7) {
-            prizeInAir.setItemInPrizeInAir(new Mushroom(x, y));
-        } else{
-            prizeInAir.setItemInPrizeInAir(new Star(x, y));
-        }
-
-        levelTwoSectionTwoScreen.itemsInThisSection.add(prizeInAir.getItemInPrizeInAir());
-        levelTwoSectionTwoScreen.add(prizeInAir.getItemInPrizeInAir(), Integer.valueOf(1));
-
-    }
 
     public void intersectWithItems() {
 
@@ -151,7 +174,6 @@ public class IntersectMarioAndObjectsInLevelTwoSectionTwo {
     }
 
     public boolean intersectWithEnemies() {
-
         for (int i = 0; i < levelTwoSectionTwoScreen.getEnemiesInThisSection().size(); i++) {
             int marioWidth = levelTwoSectionTwoScreen.activeMario.get(0).getWidth();
             int marioHeight = levelTwoSectionTwoScreen.activeMario.get(0).getHeight();
@@ -173,7 +195,7 @@ public class IntersectMarioAndObjectsInLevelTwoSectionTwo {
             if ((objectWidth < objectX || objectWidth > marioX) &&
                     (objectHeight < objectY || objectHeight > marioY) &&
                     (marioWidth < marioX || marioWidth > objectX) &&
-                    (marioHeight < marioY || marioHeight > objectY)){
+                    (marioHeight < marioY || marioHeight > objectY)) {
                 levelTwoSectionTwoScreen.getGameData().userHeartValue--;
                 return true;
             }
@@ -183,7 +205,6 @@ public class IntersectMarioAndObjectsInLevelTwoSectionTwo {
     }
 
     public boolean intersectWithEmptyGround() {
-
         for (int i = 0; i < levelTwoSectionTwoScreen.getEmptySpaceInGroundsInThisSection().size(); i++) {
             int marioWidth = levelTwoSectionTwoScreen.activeMario.get(0).getWidth();
             int marioHeight = levelTwoSectionTwoScreen.activeMario.get(0).getHeight();
@@ -205,7 +226,7 @@ public class IntersectMarioAndObjectsInLevelTwoSectionTwo {
             if ((objectWidth < objectX || objectWidth > marioX) &&
                     (objectHeight < objectY || objectHeight > marioY) &&
                     (marioWidth < marioX || marioWidth > objectX) &&
-                    (marioHeight < marioY || marioHeight > objectY)){
+                    (marioHeight < marioY || marioHeight > objectY)) {
                 levelTwoSectionTwoScreen.getGameData().userHeartValue--;
                 return true;
             }
@@ -214,11 +235,80 @@ public class IntersectMarioAndObjectsInLevelTwoSectionTwo {
         return false;
     }
 
+    public void generateRandomItem(PrizeInAir prizeInAir) {
+
+        Random random = new Random();
+        int itemChooseNumber = random.nextInt(11);
+        int x = prizeInAir.getX() + 10;
+        int y = prizeInAir.getY() - 150;
+        if (itemChooseNumber <= 5) {
+            prizeInAir.setItemInPrizeInAir(new FlowerItem(x, y));
+        } else if (itemChooseNumber <= 7) {
+            prizeInAir.setItemInPrizeInAir(new Mushroom(x, y));
+        } else{
+            prizeInAir.setItemInPrizeInAir(new Star(x, y));
+        }
+
+        levelTwoSectionTwoScreen.getItemsInThisSection().add(prizeInAir.getItemInPrizeInAir());
+        levelTwoSectionTwoScreen.add(prizeInAir.getItemInPrizeInAir(), Integer.valueOf(1));
+
+    }
+
+    public boolean isItemOnTopOfAnObject(ObjectsInGame object) {
+
+        for (int i = 0; i < levelTwoSectionTwoScreen.getObjectsInThisSection().size(); i++) {
+            int firstObjectWidth = object.getWidth();
+            int firstObjectHeight = object.getHeight() + 15;
+            int secondObjectWidth = levelTwoSectionTwoScreen.getObjectsInThisSection().get(i).getWidth();
+            int secondObjectHeight = levelTwoSectionTwoScreen.getObjectsInThisSection().get(i).getHeight();
+            if (secondObjectWidth <= 0 || secondObjectHeight <= 0 || firstObjectWidth <= 0 || firstObjectHeight <= 0) {
+                continue;
+            }
+            int firstObjectX = object.getX();
+            int firstObjectY = object.getY();
+            int secondObjectX = levelTwoSectionTwoScreen.getObjectsInThisSection().get(i).getX();
+            int secondObjectY = levelTwoSectionTwoScreen.getObjectsInThisSection().get(i).getY();
+            secondObjectWidth += secondObjectX;
+            secondObjectHeight += secondObjectY;
+            firstObjectWidth += firstObjectX;
+            firstObjectHeight += firstObjectY;
+
+            //      overflow || intersectWithObjects
+            if ((secondObjectWidth < secondObjectX || secondObjectWidth > firstObjectX) &&
+                    (secondObjectHeight < secondObjectY || secondObjectHeight > firstObjectY) &&
+                    (firstObjectWidth < firstObjectX || firstObjectWidth > secondObjectX) &&
+                    (firstObjectHeight < firstObjectY || firstObjectHeight > secondObjectY)) {
+
+                if ((firstObjectWidth >= secondObjectX || secondObjectWidth >= firstObjectX) && firstObjectHeight <= secondObjectY + 10) {// Hit up of Object
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+
     public void refreshIntersectsBooleans() {
         marioHitsRightOfTheObject = false;
         marioHitsLeftOfTheObject = false;
         marioHitsDownOfTheObject = false;
         marioHitsUpOfTheObject = false;
+    }
+
+    public boolean isMarioHitsFullOfCoinBlockInAir() {
+        return marioHitsFullOfCoinBlockInAir;
+    }
+
+    public void setMarioHitsFullOfCoinBlockInAir(boolean marioHitsFullOfCoinBlockInAir) {
+        this.marioHitsFullOfCoinBlockInAir = marioHitsFullOfCoinBlockInAir;
+    }
+
+    public boolean isMarioHitsAnObject() {
+        return marioHitsAnObject;
+    }
+
+    public void setMarioHitsAnObject(boolean marioHitsAnObject) {
+        this.marioHitsAnObject = marioHitsAnObject;
     }
 
     public boolean isMarioHitsLeftOfTheObject() {

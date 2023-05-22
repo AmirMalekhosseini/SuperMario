@@ -15,9 +15,7 @@ import java.io.IOException;
 public class Plant extends Enemy {
 
     private BufferedImage background;
-    Timer timerForMovingThePlant;
-    private int secondCounter = 0;
-    private int plantWaitTime = 0;
+    public int plantWaitTime = 0;
 
     private int x;
     private int y;
@@ -32,33 +30,6 @@ public class Plant extends Enemy {
 
         this.x = xx;
         this.y = yy;
-
-        timerForMovingThePlant=new Timer(1, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-
-                secondCounter++;
-                if (secondCounter == 10) {
-                    y = y - velocity;
-                    if (y <= 695) {// Plant should go up
-                        plantWaitTime++;
-                        velocity = 0;
-                        if (plantWaitTime == 9) {
-                            velocity = -5;
-                            plantWaitTime = 0;
-                        }
-                    } else if (y >= 800) {
-                        velocity = -velocity;
-                    }
-                    secondCounter = 0;
-                }
-
-            }
-        });
-
-        timerForMovingThePlant.setRepeats(true);
-        timerForMovingThePlant.start();
 
     }
 
@@ -75,43 +46,34 @@ public class Plant extends Enemy {
     public int getX() {
         return x;
     }
-
     public void setX(int x) {
         this.x = x;
     }
-
     @Override
     public int getY() {
         return y;
     }
-
     public void setY(int y) {
         this.y = y;
     }
-
     @Override
     public int getWidth() {
         return width;
     }
-
     public void setWidth(int width) {
         this.width = width;
     }
-
     @Override
     public int getHeight() {
         return height;
     }
-
     public void setHeight(int height) {
         this.height = height;
     }
-
-    public int getPlantWaitTime() {
-        return plantWaitTime;
+    public int getVelocity() {
+        return velocity;
     }
-
-    public void setPlantWaitTime(int plantWaitTime) {
-        this.plantWaitTime = plantWaitTime;
+    public void setVelocity(int velocity) {
+        this.velocity = velocity;
     }
 }

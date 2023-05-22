@@ -8,20 +8,17 @@ import java.awt.image.BufferedImage;
 public class FullOfCoinBlockInAir extends BlockInAir{
 
     private BufferedImage background;
-    private BufferedImage emptyBlockInAirBackground;
-
     private int x;
     private int y;
     private int width = super.getWidth();
     private int height = super.getHeight();
-    private int hitCounter = 0;
+    public int hitCounter = 0;
 
     FullOfCoinBlockInAir(int x, int y) {
 
         this.setSize(width, height);
 
         background = MyProjectData.getProjectData().getBlockInAir();
-        emptyBlockInAirBackground = MyProjectData.getProjectData().getEmptyBlockInAir();
 
         this.x = x;
         this.y = y;
@@ -35,11 +32,7 @@ public class FullOfCoinBlockInAir extends BlockInAir{
 
     public void paint(Graphics graphics) {
         Graphics2D graphics2D = (Graphics2D) graphics;
-        if (hitCounter >= 5) {
-            graphics2D.drawImage(emptyBlockInAirBackground, 0, -5, null);
-        } else {
-            graphics2D.drawImage(background, 0, -5, null);
-        }
+        graphics2D.drawImage(background, 0, -5, null);
     }
 
     @Override

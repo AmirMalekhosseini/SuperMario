@@ -13,7 +13,7 @@ public class EmptyBlockInAir extends BlockInAir{
     private int width = super.getWidth();
     private int height = super.getHeight();
 
-    EmptyBlockInAir(int x, int y) {
+    public EmptyBlockInAir(int x, int y) {
 
         this.setSize(width, height);
 

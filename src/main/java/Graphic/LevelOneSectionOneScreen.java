@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class LevelOneSectionOneScreen extends JLayeredPane {
 
     protected ArrayList<ObjectsInGame> objectsInThisSection = new ArrayList<>();
-    public ArrayList<ItemsInGame> itemsInThisSection = new ArrayList<>();
+    protected ArrayList<ItemsInGame> itemsInThisSection = new ArrayList<>();
     protected ArrayList<Enemy> enemiesInThisSection = new ArrayList<>();
     protected ArrayList<EmptySpaceInGround> emptySpaceInGroundsInThisSection = new ArrayList<>();
     public ArrayList<Mario> activeMario;
@@ -163,6 +163,9 @@ public class LevelOneSectionOneScreen extends JLayeredPane {
         }
 
         // Scene One
+        Enemy testEnemy = new Turtle(500, 625);
+        this.add(testEnemy, Integer.valueOf(1));
+        enemiesInThisSection.add(testEnemy);
         firstBlockInAirSceneOne = new SimpleBlockInAir(450, 700);
         coinOnFirstBlockInAirSceneOne = new Coin(450, 650);
         secondBlockInAirSceneOne = new SimpleBlockInAir(520, 700);

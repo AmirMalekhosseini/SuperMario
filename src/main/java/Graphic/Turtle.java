@@ -9,13 +9,12 @@ import java.awt.image.BufferedImage;
 public class Turtle extends Enemy {
 
     private BufferedImage background;
-    Timer timerForMovingTheGoompa;
-    private int secondCounter = 0;
-
+    public int hitCounter = 0;
+    private boolean isTurtleHit;
     private int x;
     private int y;
     private int width = 60;
-    private int height = 70;
+    private int height = 65;
     private int velocity = -5;
 
     Turtle(int xx, int yy) {
@@ -95,4 +94,21 @@ public class Turtle extends Enemy {
         this.height = height;
     }
 
+    @Override
+    public int getVelocity() {
+        return velocity;
+    }
+
+    @Override
+    public void setVelocity(int velocity) {
+        this.velocity = velocity;
+    }
+
+    public boolean isTurtleHit() {
+        return isTurtleHit;
+    }
+
+    public void setTurtleHit(boolean turtleHit) {
+        isTurtleHit = turtleHit;
+    }
 }
