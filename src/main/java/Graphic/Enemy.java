@@ -22,7 +22,7 @@ public abstract class Enemy extends ObjectsInGame {
         Graphics2D graphics2D = (Graphics2D) graphics;
         graphics2D.drawImage(background, 0, -5, null);
     }
-
+    public abstract void move();
     @Override
     public int getX() {
         return x;

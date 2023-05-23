@@ -2,6 +2,7 @@ package Graphic;
 
 import MyProject.MyProject;
 import Model.*;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ public class LevelOneSectionOneScreen extends JLayeredPane {
     public ArrayList<Mario> activeMario;
 
     GameData gameData;
+    public Gravity gravity;
     public JLabel backgroundLabelSceneOne;
     public JLabel backgroundLabelSceneTwo;
     public JLabel backgroundLabelSceneThree;
@@ -83,9 +85,9 @@ public class LevelOneSectionOneScreen extends JLayeredPane {
     public int XThisGameCoinImage = 1110;
 
 
-
     LevelOneSectionOneScreen(GameData gameData) {
         init(gameData);
+        gravity();
     }
 
     public LevelOneSectionOneScreen() {
@@ -141,18 +143,15 @@ public class LevelOneSectionOneScreen extends JLayeredPane {
             normalMario = new NormalMario(100, 840);
             activeMario.set(0, normalMario);
             this.add(normalMario, Integer.valueOf(2));
-        }
-        else if (MyProject.activeUser.get(0).isUserChooseCoin_YellowMario()) {
+        } else if (MyProject.activeUser.get(0).isUserChooseCoin_YellowMario()) {
             coinMario = new CoinMario(100, 840);
-            activeMario.set(0,coinMario);
+            activeMario.set(0, coinMario);
             this.add(coinMario, Integer.valueOf(2));
-        }
-        else if (MyProject.activeUser.get(0).isUserChooseJumper_GreenMario()) {
+        } else if (MyProject.activeUser.get(0).isUserChooseJumper_GreenMario()) {
             jumperMario = new JumperMario(100, 840);
             activeMario.set(0, jumperMario);
             this.add(jumperMario, Integer.valueOf(2));
-        }
-        else if (MyProject.activeUser.get(0).isUserChooseRunner_BlueMario()) {
+        } else if (MyProject.activeUser.get(0).isUserChooseRunner_BlueMario()) {
             runnerMario = new RunnerMario(100, 840);
             activeMario.set(0, runnerMario);
             this.add(runnerMario, Integer.valueOf(2));
@@ -163,9 +162,9 @@ public class LevelOneSectionOneScreen extends JLayeredPane {
         }
 
         // Scene One
-        Enemy testEnemy = new Turtle(500, 625);
-        this.add(testEnemy, Integer.valueOf(1));
-        enemiesInThisSection.add(testEnemy);
+//        Enemy testEnemy = new Goompa(500, 625);
+//        this.add(testEnemy, Integer.valueOf(1));
+//        enemiesInThisSection.add(testEnemy);
         firstBlockInAirSceneOne = new SimpleBlockInAir(450, 700);
         coinOnFirstBlockInAirSceneOne = new Coin(450, 650);
         secondBlockInAirSceneOne = new SimpleBlockInAir(520, 700);
@@ -312,18 +311,99 @@ public class LevelOneSectionOneScreen extends JLayeredPane {
 
     }
 
+    public void gravity() {
+        gravity = new Gravity() {
+            @Override
+            public boolean isItemOnTopOfAnObject(ObjectsInGame object) {
+
+                for (ObjectsInGame objects : objectsInThisSection) {
+                    int firstObjectWidth = object.getWidth();
+                    int firstObjectHeight = object.getHeight() + 15;
+                    int secondObjectWidth = objects.getWidth();
+                    int secondObjectHeight = objects.getHeight();
+                    if (secondObjectWidth <= 0 || secondObjectHeight <= 0 || firstObjectWidth <= 0 || firstObjectHeight <= 0) {
+                        continue;
+                    }
+                    int firstObjectX = object.getX();
+                    int firstObjectY = object.getY();
+                    int secondObjectX = objects.getX();
+                    int secondObjectY = objects.getY();
+                    secondObjectWidth += secondObjectX;
+                    secondObjectHeight += secondObjectY;
+                    firstObjectWidth += firstObjectX;
+                    firstObjectHeight += firstObjectY;
+
+                    //      overflow || intersectWithObjects
+                    if ((secondObjectWidth < secondObjectX || secondObjectWidth > firstObjectX) &&
+                            (secondObjectHeight < secondObjectY || secondObjectHeight > firstObjectY) &&
+                            (firstObjectWidth < firstObjectX || firstObjectWidth > secondObjectX) &&
+                            (firstObjectHeight < firstObjectY || firstObjectHeight > secondObjectY)) {
+
+                        if ((firstObjectWidth >= secondObjectX || secondObjectWidth >= firstObjectX) && firstObjectHeight <= secondObjectY + 10) {// Hit up of Object
+                            return false;
+                        }
+                    }
+                }
+                return true;
+            }
+
+            @Override
+            public void allocateGravity() {
+
+                for (ItemsInGame itemsInGame : itemsInThisSection) {
+
+                    // Object is on the Ground or On an Object:
+                    if (gravity.isItemOnTopOfAnObject(itemsInGame) &&
+                            (itemsInGame.getY() <= 920 - itemsInGame.getHeight())) {
+                        int currentY = itemsInGame.getY();
+                        itemsInGame.setY(currentY + 10);
+                        try {
+                            Thread.sleep(5);
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+
+                }
+
+                for (Enemy enemy : enemiesInThisSection) {
+
+                    if (enemy instanceof Plant) {
+                        continue;
+                    }
+                    if (gravity.isItemOnTopOfAnObject(enemy) &&
+                            (enemy.getY() <= 940 - enemy.getHeight())) {
+                        // Object is not on the Ground or On an Object:
+                        int currentY = enemy.getY();
+                        enemy.setY(currentY + 10);
+                        try {
+                            Thread.sleep(5);
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                }
+
+            }
+        };
+    }
+
     public ArrayList<ObjectsInGame> getObjectsInThisSection() {
         return objectsInThisSection;
     }
+
     public ArrayList<ItemsInGame> getItemsInThisSection() {
         return itemsInThisSection;
     }
+
     public ArrayList<Enemy> getEnemiesInThisSection() {
         return enemiesInThisSection;
     }
+
     public ArrayList<EmptySpaceInGround> getEmptySpaceInGroundsInThisSection() {
         return emptySpaceInGroundsInThisSection;
     }
+
     public GameData getGameData() {
         return gameData;
     }

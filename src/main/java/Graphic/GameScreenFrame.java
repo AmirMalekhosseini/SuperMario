@@ -8,7 +8,7 @@ import javax.swing.*;
 public class GameScreenFrame extends JFrame {
 
     protected GameData gameData;
-    protected Gravity gravity;
+    protected GravityData gravityData;
     protected JPanel levelOneGameBackgroundPanel;
     protected JPanel levelTwoGameBackgroundPanel;
     protected LevelOneSectionOneScreen levelOneSectionOneScreen;
@@ -36,14 +36,6 @@ public class GameScreenFrame extends JFrame {
 
     private void init(GameData gameData) {
 
-        this.gameData = gameData;
-        ImageIcon gameIcon = new ImageIcon("GameIcon.jpeg");
-        levelOneSectionOneScreen = new LevelOneSectionOneScreen(gameData);
-        levelOneSectionTwoScreen = new LevelOneSectionTwoScreen(gameData);
-        levelTwoSectionOneScreen = new LevelTwoSectionOneScreen(gameData);
-        levelTwoSectionTwoScreen = new LevelTwoSectionTwoScreen(gameData);
-        levelOneGameBackgroundPanel = new JPanel();
-        levelTwoGameBackgroundPanel = new JPanel();
         Model modelStarter = new Model() {
             @Override
             public void startModel(GameScreenFrame gameScreenFrame) {
@@ -54,12 +46,20 @@ public class GameScreenFrame extends JFrame {
                 intersectInLevelOneSectionOne = new IntersectInLevelOneSectionOne(gameScreenFrame);
                 intersectInLevelTwoSectionOne = new IntersectInLevelTwoSectionOne(gameScreenFrame);
                 intersectInLevelTwoSectionTwo = new IntersectInLevelTwoSectionTwo(gameScreenFrame);
-                gravity = new Gravity(gameScreenFrame);
-                gameLoop = new GameLoop(gameScreenFrame, gravity);
+                gravityData = new GravityData(gameScreenFrame);
+                gameLoop = new GameLoop(gameScreenFrame, gravityData);
 
             }
         };
 
+        this.gameData = gameData;
+        ImageIcon gameIcon = new ImageIcon("GameIcon.jpeg");
+        levelOneSectionOneScreen = new LevelOneSectionOneScreen(gameData);
+        levelOneSectionTwoScreen = new LevelOneSectionTwoScreen(gameData);
+        levelTwoSectionOneScreen = new LevelTwoSectionOneScreen(gameData);
+        levelTwoSectionTwoScreen = new LevelTwoSectionTwoScreen(gameData);
+        levelOneGameBackgroundPanel = new JPanel();
+        levelTwoGameBackgroundPanel = new JPanel();
         modelStarter.startModel(this);
 
         this.setSize(1700, 1300);
@@ -200,11 +200,11 @@ public class GameScreenFrame extends JFrame {
         this.xLevelTwoBackgroundPanel = xLevelTwoBackgroundPanel;
     }
 
-    public Gravity getGravity() {
-        return gravity;
+    public GravityData getGravity() {
+        return gravityData;
     }
 
-    public void setGravity(Gravity gravity) {
-        this.gravity = gravity;
+    public void setGravity(GravityData gravityData) {
+        this.gravityData = gravityData;
     }
 }

@@ -47,11 +47,11 @@ public class MarioMover implements KeyListener {
 
                 }
 
-                // Gravity:
+                // GravityData:
 
                 if (upMario) {// Mario start jumping
 
-                    gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).setVelocityY(gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).getVelocityY() + (Gravity.gravity * Gravity.dt));
+                    gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).setVelocityY(gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).getVelocityY() + (GravityData.gravity * GravityData.dt));
                     gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).setY((int) (gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).getY() + gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).getVelocityY()));
                     gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).setMarioJumping(true);// Mario is jumping
                     if (gameScreenFrame.intersectInLevelOneSectionOne.isMarioHitsDownOfTheObject()) {// Mario hits down of an object and comes back to ground
@@ -134,11 +134,11 @@ public class MarioMover implements KeyListener {
 
             try {
 
-                // Gravity:
+                // GravityData:
 
                 if (upMario) {// Mario start jumping
 
-                    gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).setVelocityY(gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).getVelocityY() + (Gravity.gravity * Gravity.dt));
+                    gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).setVelocityY(gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).getVelocityY() + (GravityData.gravity * GravityData.dt));
                     gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).setY((int) (gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).getY() + gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).getVelocityY()));
                     gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).setMarioJumping(true);// Mario is jumping
                     if (gameScreenFrame.intersectInLevelOneSectionTwo.isMarioHitsDownOfTheObject()) {// Mario hits down of an object and comes back to ground

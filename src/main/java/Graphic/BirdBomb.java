@@ -55,6 +55,11 @@ public class BirdBomb extends Enemy {
 
     }
 
+    @Override
+    public void move() {
+
+    }
+
     public void paint(Graphics graphics) {
         Graphics2D graphics2D = (Graphics2D) graphics;
         graphics2D.drawImage(background, -15, -5, null);

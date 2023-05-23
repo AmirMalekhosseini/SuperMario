@@ -12,15 +12,16 @@ public class GameLoop {
 
     ObjectMapper objectMapper;
     GameScreenFrame gameScreenFrame;
-    Gravity gravity;
+    GravityData gravityData;
 
-    public GameLoop(GameScreenFrame gameScreenFrame, Gravity gravity) {
+    public GameLoop(GameScreenFrame gameScreenFrame, GravityData gravityData) {
+
         objectMapper = new ObjectMapper();
         objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
         objectMapper.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
 
         this.gameScreenFrame = gameScreenFrame;
-        this.gravity = gravity;
+        this.gravityData = gravityData;
         CalculatorThread calculatorThread = new CalculatorThread();
         GraphicThread graphicThread = new GraphicThread();
         EnemyThread enemyThread = new EnemyThread();
@@ -54,7 +55,7 @@ public class GameLoop {
                                     gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).getY());
                     gameScreenFrame.marioMover.move();
                     if (gameScreenFrame.getGameData().getMarioLocation().equalsIgnoreCase("levelonesectionone")) {
-                        gravity.objectsGravityInLevelOneSectionOne();
+                        gameScreenFrame.getLevelOneSectionOneScreen().gravity.allocateGravity();
                         gameScreenFrame.intersectInLevelOneSectionOne.refreshIntersectsBooleans();
                         gameScreenFrame.intersectInLevelOneSectionOne.intersectWithObjects();
                         gameScreenFrame.intersectInLevelOneSectionOne.intersectWithItems();
@@ -72,7 +73,7 @@ public class GameLoop {
                         }
                     }
                     if (gameScreenFrame.getGameData().getMarioLocation().equalsIgnoreCase("levelonesectiontwo")) {
-                        gravity.objectsGravityInLevelOneSectionTwo();
+                        gameScreenFrame.getLevelOneSectionTwoScreen().gravity.allocateGravity();
                         gameScreenFrame.intersectInLevelOneSectionTwo.refreshIntersectsBooleans();
                         gameScreenFrame.intersectInLevelOneSectionTwo.intersectWithObjects();
                         gameScreenFrame.intersectInLevelOneSectionTwo.intersectWithItems();
@@ -175,74 +176,14 @@ public class GameLoop {
 
             for (int i = 0; i < gameScreenFrame.getLevelOneSectionOneScreen().getEnemiesInThisSection().size(); i++) {
 
-                if (gameScreenFrame.getLevelOneSectionOneScreen().getEnemiesInThisSection().get(i) instanceof Plant) {
-                    gameScreenFrame.getLevelOneSectionOneScreen().getEnemiesInThisSection().get(i).secondCounter++;
-                    if (gameScreenFrame.getLevelOneSectionOneScreen().getEnemiesInThisSection().get(i).secondCounter == 10) {
-                        gameScreenFrame.getLevelOneSectionOneScreen().getEnemiesInThisSection().get(i).setY(
-                                gameScreenFrame.getLevelOneSectionOneScreen().getEnemiesInThisSection().get(i).getY() -
-                                        gameScreenFrame.getLevelOneSectionOneScreen().getEnemiesInThisSection().get(i).getVelocity());
-                        if (gameScreenFrame.getLevelOneSectionOneScreen().getEnemiesInThisSection().get(i).getY() <= 695) {// Plant should go up
-                            ((Plant) gameScreenFrame.getLevelOneSectionOneScreen().getEnemiesInThisSection().get(i)).plantWaitTime++;
-                            gameScreenFrame.getLevelOneSectionOneScreen().getEnemiesInThisSection().get(i).setVelocity(0);
-                            if (((Plant) gameScreenFrame.getLevelOneSectionOneScreen().getEnemiesInThisSection().get(i)).plantWaitTime == 9) {
-                                gameScreenFrame.getLevelOneSectionOneScreen().getEnemiesInThisSection().get(i).setVelocity(-5);
-                                ((Plant) gameScreenFrame.getLevelOneSectionOneScreen().getEnemiesInThisSection().get(i)).plantWaitTime = 0;
-                            }
-                        } else if (gameScreenFrame.getLevelOneSectionOneScreen().getEnemiesInThisSection().get(i).getY() >= 850) {
-                            int velocity = gameScreenFrame.getLevelOneSectionOneScreen().getEnemiesInThisSection().get(i).getVelocity();
-                            gameScreenFrame.getLevelOneSectionOneScreen().getEnemiesInThisSection().get(i).setVelocity(-velocity);
-                        }
-                        gameScreenFrame.getLevelOneSectionOneScreen().getEnemiesInThisSection().get(i).secondCounter = 0;
-                    }
-
-                } else if (gameScreenFrame.getLevelOneSectionOneScreen().getEnemiesInThisSection().get(i) instanceof Goompa) {
-
-                    gameScreenFrame.getLevelOneSectionOneScreen().getEnemiesInThisSection().get(i).secondCounter++;
-                    if (gameScreenFrame.getLevelOneSectionOneScreen().getEnemiesInThisSection().get(i).secondCounter == 10) {
-                        gameScreenFrame.getLevelOneSectionOneScreen().getEnemiesInThisSection().get(i).setX(
-                                gameScreenFrame.getLevelOneSectionOneScreen().getEnemiesInThisSection().get(i).getX() +
-                                        gameScreenFrame.getLevelOneSectionOneScreen().getEnemiesInThisSection().get(i).getVelocity());
-                        // Goompa Change its Direction:
-                        if (gameScreenFrame.intersectInLevelOneSectionOne.isEnemyHitAnObject
-                                (gameScreenFrame.getLevelOneSectionOneScreen().getEnemiesInThisSection().get(i))) {
-                            int velocity = gameScreenFrame.getLevelOneSectionOneScreen().getEnemiesInThisSection().get(i).getVelocity();
-                            gameScreenFrame.getLevelOneSectionOneScreen().getEnemiesInThisSection().get(i).setVelocity(-velocity);
-                        }
-                        gameScreenFrame.getLevelOneSectionOneScreen().getEnemiesInThisSection().get(i).secondCounter = 0;
-                    }
-
-                }else if (gameScreenFrame.getLevelOneSectionOneScreen().getEnemiesInThisSection().get(i) instanceof Turtle) {
-
-                    gameScreenFrame.getLevelOneSectionOneScreen().getEnemiesInThisSection().get(i).secondCounter++;
-                    if (gameScreenFrame.getLevelOneSectionOneScreen().getEnemiesInThisSection().get(i).secondCounter == 10) {
-                        if (((Turtle) gameScreenFrame.getLevelOneSectionOneScreen().getEnemiesInThisSection().get(i)).isTurtleHit()) {
-                            try {
-                                Thread.sleep(3000);
-                            } catch (InterruptedException e) {
-                                throw new RuntimeException(e);
-                            }
-                            ((Turtle) gameScreenFrame.getLevelOneSectionOneScreen().getEnemiesInThisSection().get(i)).setTurtleHit(false);
-
-                        }
-                        gameScreenFrame.getLevelOneSectionOneScreen().getEnemiesInThisSection().get(i).setX(
-                                gameScreenFrame.getLevelOneSectionOneScreen().getEnemiesInThisSection().get(i).getX() +
-                                        gameScreenFrame.getLevelOneSectionOneScreen().getEnemiesInThisSection().get(i).getVelocity());
-                        // Goompa Change its Direction:
-                        if (gameScreenFrame.intersectInLevelOneSectionOne.isEnemyHitAnObject
-                                (gameScreenFrame.getLevelOneSectionOneScreen().getEnemiesInThisSection().get(i))) {
-                            int velocity = gameScreenFrame.getLevelOneSectionOneScreen().getEnemiesInThisSection().get(i).getVelocity();
-                            gameScreenFrame.getLevelOneSectionOneScreen().getEnemiesInThisSection().get(i).setVelocity(-velocity);
-                        }
-                        gameScreenFrame.getLevelOneSectionOneScreen().getEnemiesInThisSection().get(i).secondCounter = 0;
-                    }
-
-                }else if (gameScreenFrame.getLevelOneSectionOneScreen().getEnemiesInThisSection().get(i) instanceof Spiny) {
-
-
-                }else if (gameScreenFrame.getLevelOneSectionOneScreen().getEnemiesInThisSection().get(i) instanceof Bird) {
+                gameScreenFrame.getLevelOneSectionOneScreen().getEnemiesInThisSection().get(i).move();
+                // Enemy Changes its Direction:
+                if (gameScreenFrame.intersectInLevelOneSectionOne.isEnemyHitAnObject
+                        (gameScreenFrame.getLevelOneSectionOneScreen().getEnemiesInThisSection().get(i))) {
+                    int velocity = gameScreenFrame.getLevelOneSectionOneScreen().getEnemiesInThisSection().get(i).getVelocity();
+                    gameScreenFrame.getLevelOneSectionOneScreen().getEnemiesInThisSection().get(i).setVelocity(-velocity);
 
                 }
-
             }
 
         }
@@ -251,27 +192,14 @@ public class GameLoop {
 
             for (int i = 0; i < gameScreenFrame.getLevelOneSectionTwoScreen().getEnemiesInThisSection().size(); i++) {
 
-                if (gameScreenFrame.getLevelOneSectionTwoScreen().getEnemiesInThisSection().get(i) instanceof Plant) {
-                    gameScreenFrame.getLevelOneSectionTwoScreen().getEnemiesInThisSection().get(i).secondCounter++;
-                    if (gameScreenFrame.getLevelOneSectionTwoScreen().getEnemiesInThisSection().get(i).secondCounter == 10) {
-                        gameScreenFrame.getLevelOneSectionTwoScreen().getEnemiesInThisSection().get(i).setY(
-                                gameScreenFrame.getLevelOneSectionTwoScreen().getEnemiesInThisSection().get(i).getY() -
-                                        gameScreenFrame.getLevelOneSectionTwoScreen().getEnemiesInThisSection().get(i).getVelocity());
-                        if (gameScreenFrame.getLevelOneSectionTwoScreen().getEnemiesInThisSection().get(i).getY() <= 695) {// Plant should go up
-                            ((Plant) gameScreenFrame.getLevelOneSectionTwoScreen().getEnemiesInThisSection().get(i)).plantWaitTime++;
-                            gameScreenFrame.getLevelOneSectionTwoScreen().getEnemiesInThisSection().get(i).setVelocity(0);
-                            if (((Plant) gameScreenFrame.getLevelOneSectionTwoScreen().getEnemiesInThisSection().get(i)).plantWaitTime == 9) {
-                                gameScreenFrame.getLevelOneSectionTwoScreen().getEnemiesInThisSection().get(i).setVelocity(-5);
-                                ((Plant) gameScreenFrame.getLevelOneSectionTwoScreen().getEnemiesInThisSection().get(i)).plantWaitTime = 0;
-                            }
-                        } else if (gameScreenFrame.getLevelOneSectionTwoScreen().getEnemiesInThisSection().get(i).getY() >= 850) {
-                            int velocity = gameScreenFrame.getLevelOneSectionTwoScreen().getEnemiesInThisSection().get(i).getVelocity();
-                            gameScreenFrame.getLevelOneSectionTwoScreen().getEnemiesInThisSection().get(i).setVelocity(-velocity);
-                        }
-                        gameScreenFrame.getLevelOneSectionTwoScreen().getEnemiesInThisSection().get(i).secondCounter = 0;
-                    }
-                }
+                gameScreenFrame.getLevelOneSectionTwoScreen().getEnemiesInThisSection().get(i).move();
+                // Enemy Changes its Direction:
+                if (gameScreenFrame.intersectInLevelOneSectionTwo.isEnemyHitAnObject
+                        (gameScreenFrame.getLevelOneSectionTwoScreen().getEnemiesInThisSection().get(i))) {
+                    int velocity = gameScreenFrame.getLevelOneSectionTwoScreen().getEnemiesInThisSection().get(i).getVelocity();
+                    gameScreenFrame.getLevelOneSectionTwoScreen().getEnemiesInThisSection().get(i).setVelocity(-velocity);
 
+                }
             }
 
         }
@@ -280,54 +208,32 @@ public class GameLoop {
 
             for (int i = 0; i < gameScreenFrame.getLevelTwoSectionOneScreen().getEnemiesInThisSection().size(); i++) {
 
-                if (gameScreenFrame.getLevelTwoSectionOneScreen().getEnemiesInThisSection().get(i) instanceof Plant) {
-                    gameScreenFrame.getLevelTwoSectionOneScreen().getEnemiesInThisSection().get(i).secondCounter++;
-                    if (gameScreenFrame.getLevelTwoSectionOneScreen().getEnemiesInThisSection().get(i).secondCounter == 10) {
-                        gameScreenFrame.getLevelTwoSectionOneScreen().getEnemiesInThisSection().get(i).setY(
-                                gameScreenFrame.getLevelTwoSectionOneScreen().getEnemiesInThisSection().get(i).getY() -
-                                        gameScreenFrame.getLevelTwoSectionOneScreen().getEnemiesInThisSection().get(i).getVelocity());
-                        if (gameScreenFrame.getLevelTwoSectionOneScreen().getEnemiesInThisSection().get(i).getY() <= 695) {// Plant should go up
-                            ((Plant) gameScreenFrame.getLevelTwoSectionOneScreen().getEnemiesInThisSection().get(i)).plantWaitTime++;
-                            gameScreenFrame.getLevelTwoSectionOneScreen().getEnemiesInThisSection().get(i).setVelocity(0);
-                            if (((Plant) gameScreenFrame.getLevelTwoSectionOneScreen().getEnemiesInThisSection().get(i)).plantWaitTime == 9) {
-                                gameScreenFrame.getLevelTwoSectionOneScreen().getEnemiesInThisSection().get(i).setVelocity(-5);
-                                ((Plant) gameScreenFrame.getLevelTwoSectionOneScreen().getEnemiesInThisSection().get(i)).plantWaitTime = 0;
-                            }
-                        } else if (gameScreenFrame.getLevelTwoSectionOneScreen().getEnemiesInThisSection().get(i).getY() >= 850) {
-                            int velocity = gameScreenFrame.getLevelTwoSectionOneScreen().getEnemiesInThisSection().get(i).getVelocity();
-                            gameScreenFrame.getLevelTwoSectionOneScreen().getEnemiesInThisSection().get(i).setVelocity(-velocity);
-                        }
-                        gameScreenFrame.getLevelTwoSectionOneScreen().getEnemiesInThisSection().get(i).secondCounter = 0;
-                    }
+                gameScreenFrame.getLevelTwoSectionOneScreen().getEnemiesInThisSection().get(i).move();
+                // Enemy Changes its Direction:
+                if (gameScreenFrame.intersectInLevelTwoSectionOne.isEnemyHitAnObject
+                        (gameScreenFrame.getLevelTwoSectionOneScreen().getEnemiesInThisSection().get(i))) {
+                    int velocity = gameScreenFrame.getLevelTwoSectionOneScreen().getEnemiesInThisSection().get(i).getVelocity();
+                    gameScreenFrame.getLevelTwoSectionOneScreen().getEnemiesInThisSection().get(i).setVelocity(-velocity);
+
                 }
             }
+
         }
 
         public void enemyInLevelTwoSectionTwo() {
 
-            for (int i = 0; i < gameScreenFrame.getLevelTwoSectionOneScreen().getEnemiesInThisSection().size(); i++) {
+            for (int i = 0; i < gameScreenFrame.getLevelTwoSectionTwoScreen().getEnemiesInThisSection().size(); i++) {
 
-                if (gameScreenFrame.getLevelTwoSectionTwoScreen().getEnemiesInThisSection().get(i) instanceof Plant) {
-                    gameScreenFrame.getLevelTwoSectionTwoScreen().getEnemiesInThisSection().get(i).secondCounter++;
-                    if (gameScreenFrame.getLevelTwoSectionTwoScreen().getEnemiesInThisSection().get(i).secondCounter == 10) {
-                        gameScreenFrame.getLevelTwoSectionTwoScreen().getEnemiesInThisSection().get(i).setY(
-                                gameScreenFrame.getLevelTwoSectionTwoScreen().getEnemiesInThisSection().get(i).getY() -
-                                        gameScreenFrame.getLevelTwoSectionTwoScreen().getEnemiesInThisSection().get(i).getVelocity());
-                        if (gameScreenFrame.getLevelTwoSectionTwoScreen().getEnemiesInThisSection().get(i).getY() <= 695) {// Plant should go up
-                            ((Plant) gameScreenFrame.getLevelTwoSectionTwoScreen().getEnemiesInThisSection().get(i)).plantWaitTime++;
-                            gameScreenFrame.getLevelTwoSectionTwoScreen().getEnemiesInThisSection().get(i).setVelocity(0);
-                            if (((Plant) gameScreenFrame.getLevelTwoSectionTwoScreen().getEnemiesInThisSection().get(i)).plantWaitTime == 9) {
-                                gameScreenFrame.getLevelTwoSectionTwoScreen().getEnemiesInThisSection().get(i).setVelocity(-5);
-                                ((Plant) gameScreenFrame.getLevelTwoSectionTwoScreen().getEnemiesInThisSection().get(i)).plantWaitTime = 0;
-                            }
-                        } else if (gameScreenFrame.getLevelTwoSectionTwoScreen().getEnemiesInThisSection().get(i).getY() >= 850) {
-                            int velocity = gameScreenFrame.getLevelTwoSectionTwoScreen().getEnemiesInThisSection().get(i).getVelocity();
-                            gameScreenFrame.getLevelTwoSectionTwoScreen().getEnemiesInThisSection().get(i).setVelocity(-velocity);
-                        }
-                        gameScreenFrame.getLevelTwoSectionTwoScreen().getEnemiesInThisSection().get(i).secondCounter = 0;
-                    }
+                gameScreenFrame.getLevelTwoSectionTwoScreen().getEnemiesInThisSection().get(i).move();
+                // Enemy Changes its Direction:
+                if (gameScreenFrame.intersectInLevelTwoSectionTwo.isEnemyHitAnObject
+                        (gameScreenFrame.getLevelTwoSectionTwoScreen().getEnemiesInThisSection().get(i))) {
+                    int velocity = gameScreenFrame.getLevelTwoSectionTwoScreen().getEnemiesInThisSection().get(i).getVelocity();
+                    gameScreenFrame.getLevelTwoSectionTwoScreen().getEnemiesInThisSection().get(i).setVelocity(-velocity);
+
                 }
             }
+
         }
 
         public void run() {

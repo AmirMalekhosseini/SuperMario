@@ -264,6 +264,10 @@ public class IntersectInLevelOneSectionOne {
 
     public boolean isEnemyHitAnObject(Enemy enemy) {
 
+        if (enemy instanceof Plant) {
+            return false;
+        }
+
         for (int i = 0; i < levelOneSectionOneScreen.getEnemiesInThisSection().size(); i++) {
             int enemyWidth = enemy.getWidth();
             int enemyHeight = enemy.getHeight();
@@ -300,39 +304,6 @@ public class IntersectInLevelOneSectionOne {
 
         }
         return false;
-    }
-
-    public boolean isItemOnTopOfAnObject(ObjectsInGame object) {
-
-        for (int i = 0; i < levelOneSectionOneScreen.getObjectsInThisSection().size(); i++) {
-            int firstObjectWidth = object.getWidth();
-            int firstObjectHeight = object.getHeight() + 15;
-            int secondObjectWidth = levelOneSectionOneScreen.getObjectsInThisSection().get(i).getWidth();
-            int secondObjectHeight = levelOneSectionOneScreen.getObjectsInThisSection().get(i).getHeight();
-            if (secondObjectWidth <= 0 || secondObjectHeight <= 0 || firstObjectWidth <= 0 || firstObjectHeight <= 0) {
-                continue;
-            }
-            int firstObjectX = object.getX();
-            int firstObjectY = object.getY();
-            int secondObjectX = levelOneSectionOneScreen.getObjectsInThisSection().get(i).getX();
-            int secondObjectY = levelOneSectionOneScreen.getObjectsInThisSection().get(i).getY();
-            secondObjectWidth += secondObjectX;
-            secondObjectHeight += secondObjectY;
-            firstObjectWidth += firstObjectX;
-            firstObjectHeight += firstObjectY;
-
-            //      overflow || intersectWithObjects
-            if ((secondObjectWidth < secondObjectX || secondObjectWidth > firstObjectX) &&
-                    (secondObjectHeight < secondObjectY || secondObjectHeight > firstObjectY) &&
-                    (firstObjectWidth < firstObjectX || firstObjectWidth > secondObjectX) &&
-                    (firstObjectHeight < firstObjectY || firstObjectHeight > secondObjectY)) {
-
-                if ((firstObjectWidth >= secondObjectX || secondObjectWidth >= firstObjectX) && firstObjectHeight <= secondObjectY + 10) {// Hit up of Object
-                    return false;
-                }
-            }
-        }
-        return true;
     }
 
         public void generateRandomItem (PrizeInAir prizeInAir){

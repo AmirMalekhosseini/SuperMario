@@ -235,6 +235,50 @@ public class IntersectInLevelOneSectionTwo {
         return false;
     }
 
+    public boolean isEnemyHitAnObject(Enemy enemy) {
+
+        if (enemy instanceof Plant) {
+            return false;
+        }
+
+        for (int i = 0; i < levelOneSectionTwoScreen.getEnemiesInThisSection().size(); i++) {
+            int enemyWidth = enemy.getWidth();
+            int enemyHeight = enemy.getHeight();
+            int objectWidth = levelOneSectionTwoScreen.getObjectsInThisSection().get(i).getWidth();
+            int objectHeight = levelOneSectionTwoScreen.getObjectsInThisSection().get(i).getHeight();
+            if (objectWidth <= 0 || objectHeight <= 0 || enemyWidth <= 0 || enemyHeight <= 0) {
+                continue;
+            }
+            int enemyX = enemy.getX();
+            int enemyY = enemy.getY();
+            int objectX = levelOneSectionTwoScreen.getObjectsInThisSection().get(i).getX();
+            int objectY = levelOneSectionTwoScreen.getObjectsInThisSection().get(i).getY();
+            objectWidth += objectX;
+            objectHeight += objectY;
+            enemyWidth += enemyX;
+            enemyHeight += enemyY;
+
+            if ((objectWidth < objectX || objectWidth > enemyX) &&
+                    (objectHeight < objectY || objectHeight > enemyY) &&
+                    (enemyWidth < enemyX || enemyWidth > objectX) &&
+                    (enemyHeight < enemyY || enemyHeight > objectY)) {
+                if ((objectHeight > enemyY || enemyHeight > objectY) && enemyWidth <= objectX + 30 ) {// Hit left of Object
+
+                    return true;
+
+                }
+                if ((objectHeight > enemyY || enemyHeight > objectY) && objectWidth <= enemyX + 30) {// Hit right of Object
+
+                    return true;
+
+                }
+            }
+
+
+        }
+        return false;
+    }
+
     public void generateRandomItem(PrizeInAir prizeInAir) {
 
         Random random = new Random();
@@ -253,41 +297,6 @@ public class IntersectInLevelOneSectionTwo {
         levelOneSectionTwoScreen.add(prizeInAir.getItemInPrizeInAir(), Integer.valueOf(1));
 
     }
-
-    public boolean isItemOnTopOfAnObject(ObjectsInGame object) {
-
-        for (int i = 0; i < levelOneSectionTwoScreen.getObjectsInThisSection().size(); i++) {
-            int firstObjectWidth = object.getWidth();
-            int firstObjectHeight = object.getHeight() + 15;
-            int secondObjectWidth = levelOneSectionTwoScreen.getObjectsInThisSection().get(i).getWidth();
-            int secondObjectHeight = levelOneSectionTwoScreen.getObjectsInThisSection().get(i).getHeight();
-            if (secondObjectWidth <= 0 || secondObjectHeight <= 0 || firstObjectWidth <= 0 || firstObjectHeight <= 0) {
-                continue;
-            }
-            int firstObjectX = object.getX();
-            int firstObjectY = object.getY();
-            int secondObjectX = levelOneSectionTwoScreen.getObjectsInThisSection().get(i).getX();
-            int secondObjectY = levelOneSectionTwoScreen.getObjectsInThisSection().get(i).getY();
-            secondObjectWidth += secondObjectX;
-            secondObjectHeight += secondObjectY;
-            firstObjectWidth += firstObjectX;
-            firstObjectHeight += firstObjectY;
-
-            //      overflow || intersectWithObjects
-            if ((secondObjectWidth < secondObjectX || secondObjectWidth > firstObjectX) &&
-                    (secondObjectHeight < secondObjectY || secondObjectHeight > firstObjectY) &&
-                    (firstObjectWidth < firstObjectX || firstObjectWidth > secondObjectX) &&
-                    (firstObjectHeight < firstObjectY || firstObjectHeight > secondObjectY)) {
-
-                if ((firstObjectWidth >= secondObjectX || secondObjectWidth >= firstObjectX) && firstObjectHeight <= secondObjectY + 10) {// Hit up of Object
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-
     public void refreshIntersectsBooleans() {
         marioHitsRightOfTheObject = false;
         marioHitsLeftOfTheObject = false;

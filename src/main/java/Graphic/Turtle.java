@@ -11,6 +11,7 @@ public class Turtle extends Enemy {
     private BufferedImage background;
     public int hitCounter = 0;
     private boolean isTurtleHit;
+    public int turtleWaitTime = 0;
     private int x;
     private int y;
     private int width = 60;
@@ -52,6 +53,27 @@ public class Turtle extends Enemy {
     public Turtle() {
 
     }
+
+    @Override
+    public void move() {
+
+        secondCounter++;
+        if (secondCounter == 10) {
+            if (isTurtleHit) {
+                turtleWaitTime++;
+                if (turtleWaitTime == 24) {
+                    x += velocity;
+                    isTurtleHit = false;
+                    turtleWaitTime = 0;
+                }
+            } else {
+                x += velocity;
+            }
+            secondCounter = 0;
+        }
+
+    }
+
 
     public void paint(Graphics graphics) {
         Graphics2D graphics2D = (Graphics2D) graphics;
