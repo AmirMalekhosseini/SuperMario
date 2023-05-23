@@ -19,7 +19,7 @@ public class LevelTwoSectionOneTime {
         timer=new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (!levelTwoSectionOneScreen.getGameData().isGamePause() && !levelTwoSectionOneScreen.getGameData().isGameFinish()) {
+                if (!levelTwoSectionOneScreen.getGameData().isGamePause() && levelTwoSectionOneScreen.getGameData().isGameFinish()) {
                     sectionTime--;
                     levelTwoSectionOneScreen.thisSectionTimeLabel.setText("Time: "+ sectionTime);
                 }

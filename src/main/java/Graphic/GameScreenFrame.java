@@ -9,12 +9,19 @@ public class GameScreenFrame extends JFrame {
 
     protected GameData gameData;
     protected GravityData gravityData;
+    protected JPanel hiddenCoinBackgroundPanel;
     protected JPanel levelOneGameBackgroundPanel;
     protected JPanel levelTwoGameBackgroundPanel;
+    protected HiddenCoinSectionScreen hiddenCoinSectionScreen;
+    protected HiddenCoinSectionModel hiddenCoinSectionModel;
     protected LevelOneSectionOneScreen levelOneSectionOneScreen;
     protected LevelOneSectionTwoScreen levelOneSectionTwoScreen;
     protected LevelTwoSectionOneScreen levelTwoSectionOneScreen;
     protected LevelTwoSectionTwoScreen levelTwoSectionTwoScreen;
+    protected LevelOneSectionOneModel levelOneSectionOneModel;
+    protected LevelOneSectionTwoModel levelOneSectionTwoModel;
+    protected LevelTwoSectionOneModel levelTwoSectionOneModel;
+    protected LevelTwoSectionTwoModel levelTwoSectionTwoModel;
     public IntersectInLevelOneSectionOne intersectInLevelOneSectionOne;
     public IntersectInLevelOneSectionTwo intersectInLevelOneSectionTwo;
     public IntersectInLevelTwoSectionOne intersectInLevelTwoSectionOne;
@@ -36,6 +43,16 @@ public class GameScreenFrame extends JFrame {
 
     private void init(GameData gameData) {
 
+        this.gameData = gameData;
+        ImageIcon gameIcon = new ImageIcon("GameIcon.jpeg");
+        hiddenCoinSectionScreen = new HiddenCoinSectionScreen(gameData);
+        levelOneSectionOneScreen = new LevelOneSectionOneScreen(gameData);
+        levelOneSectionTwoScreen = new LevelOneSectionTwoScreen(gameData);
+        levelTwoSectionOneScreen = new LevelTwoSectionOneScreen(gameData);
+        levelTwoSectionTwoScreen = new LevelTwoSectionTwoScreen(gameData);
+        hiddenCoinBackgroundPanel = new JPanel();
+        levelOneGameBackgroundPanel = new JPanel();
+        levelTwoGameBackgroundPanel = new JPanel();
         Model modelStarter = new Model() {
             @Override
             public void startModel(GameScreenFrame gameScreenFrame) {
@@ -47,19 +64,15 @@ public class GameScreenFrame extends JFrame {
                 intersectInLevelTwoSectionOne = new IntersectInLevelTwoSectionOne(gameScreenFrame);
                 intersectInLevelTwoSectionTwo = new IntersectInLevelTwoSectionTwo(gameScreenFrame);
                 gravityData = new GravityData(gameScreenFrame);
-                gameLoop = new GameLoop(gameScreenFrame, gravityData);
+                hiddenCoinSectionModel = new HiddenCoinSectionModel(hiddenCoinSectionScreen);
+                levelOneSectionOneModel = new LevelOneSectionOneModel(levelOneSectionOneScreen);
+                levelOneSectionTwoModel = new LevelOneSectionTwoModel(levelOneSectionTwoScreen);
+                levelTwoSectionOneModel = new LevelTwoSectionOneModel(levelTwoSectionOneScreen);
+                levelTwoSectionTwoModel = new LevelTwoSectionTwoModel(levelTwoSectionTwoScreen);
+                gameLoop = new GameLoop(gameScreenFrame);
 
             }
         };
-
-        this.gameData = gameData;
-        ImageIcon gameIcon = new ImageIcon("GameIcon.jpeg");
-        levelOneSectionOneScreen = new LevelOneSectionOneScreen(gameData);
-        levelOneSectionTwoScreen = new LevelOneSectionTwoScreen(gameData);
-        levelTwoSectionOneScreen = new LevelTwoSectionOneScreen(gameData);
-        levelTwoSectionTwoScreen = new LevelTwoSectionTwoScreen(gameData);
-        levelOneGameBackgroundPanel = new JPanel();
-        levelTwoGameBackgroundPanel = new JPanel();
         modelStarter.startModel(this);
 
         this.setSize(1700, 1300);
@@ -71,9 +84,14 @@ public class GameScreenFrame extends JFrame {
         this.setIconImage(gameIcon.getImage());
         this.addKeyListener(marioMover);
 
+        hiddenCoinBackgroundPanel.setBounds(0, 0, 1700, 1300);
+        hiddenCoinBackgroundPanel.setLayout(null);
+        hiddenCoinBackgroundPanel.setVisible(true);
+        hiddenCoinBackgroundPanel.add(hiddenCoinSectionScreen);
+
         levelOneGameBackgroundPanel.setBounds(xLevelOneBackgroundPanel, 0, 14000, 1300);
         levelOneGameBackgroundPanel.setLayout(null);
-        levelOneGameBackgroundPanel.setVisible(true);
+        levelOneGameBackgroundPanel.setVisible(false);
         levelOneGameBackgroundPanel.add(levelOneSectionOneScreen);
         levelOneGameBackgroundPanel.add(levelOneSectionTwoScreen);
 
@@ -83,6 +101,7 @@ public class GameScreenFrame extends JFrame {
         levelTwoGameBackgroundPanel.add(levelTwoSectionOneScreen);
         levelTwoGameBackgroundPanel.add(levelTwoSectionTwoScreen);
 
+        this.add(hiddenCoinBackgroundPanel);
         this.add(levelOneGameBackgroundPanel);
         this.add(levelTwoGameBackgroundPanel);
 
@@ -110,6 +129,22 @@ public class GameScreenFrame extends JFrame {
 
     public void setLevelTwoGameBackgroundPanel(JPanel levelTwoGameBackgroundPanel) {
         this.levelTwoGameBackgroundPanel = levelTwoGameBackgroundPanel;
+    }
+
+    public HiddenCoinSectionModel getHiddenCoinSectionModel() {
+        return hiddenCoinSectionModel;
+    }
+
+    public void setHiddenCoinSectionModel(HiddenCoinSectionModel hiddenCoinSectionModel) {
+        this.hiddenCoinSectionModel = hiddenCoinSectionModel;
+    }
+
+    public HiddenCoinSectionScreen getHiddenCoinSectionScreen() {
+        return hiddenCoinSectionScreen;
+    }
+
+    public void setHiddenCoinSectionScreen(HiddenCoinSectionScreen hiddenCoinSectionScreen) {
+        this.hiddenCoinSectionScreen = hiddenCoinSectionScreen;
     }
 
     public LevelOneSectionOneScreen getLevelOneSectionOneScreen() {
@@ -160,6 +195,38 @@ public class GameScreenFrame extends JFrame {
         this.intersectInLevelOneSectionTwo = intersectInLevelOneSectionTwo;
     }
 
+    public LevelOneSectionOneModel getLevelOneSectionOneModel() {
+        return levelOneSectionOneModel;
+    }
+
+    public void setLevelOneSectionOneModel(LevelOneSectionOneModel levelOneSectionOneModel) {
+        this.levelOneSectionOneModel = levelOneSectionOneModel;
+    }
+
+    public LevelOneSectionTwoModel getLevelOneSectionTwoModel() {
+        return levelOneSectionTwoModel;
+    }
+
+    public void setLevelOneSectionTwoModel(LevelOneSectionTwoModel levelOneSectionTwoModel) {
+        this.levelOneSectionTwoModel = levelOneSectionTwoModel;
+    }
+
+    public LevelTwoSectionOneModel getLevelTwoSectionOneModel() {
+        return levelTwoSectionOneModel;
+    }
+
+    public void setLevelTwoSectionOneModel(LevelTwoSectionOneModel levelTwoSectionOneModel) {
+        this.levelTwoSectionOneModel = levelTwoSectionOneModel;
+    }
+
+    public LevelTwoSectionTwoModel getLevelTwoSectionTwoModel() {
+        return levelTwoSectionTwoModel;
+    }
+
+    public void setLevelTwoSectionTwoModel(LevelTwoSectionTwoModel levelTwoSectionTwoModel) {
+        this.levelTwoSectionTwoModel = levelTwoSectionTwoModel;
+    }
+
     public MarioMover getMarioMover() {
         return marioMover;
     }
@@ -207,4 +274,5 @@ public class GameScreenFrame extends JFrame {
     public void setGravity(GravityData gravityData) {
         this.gravityData = gravityData;
     }
+
 }

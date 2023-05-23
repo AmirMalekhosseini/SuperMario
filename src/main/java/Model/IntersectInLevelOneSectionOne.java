@@ -199,10 +199,10 @@ public class IntersectInLevelOneSectionOne {
                     (marioHeight < marioY || marioHeight > objectY)) {
                 if ((marioWidth >= objectX || objectWidth >= marioX) && marioHeight <= objectY + 30) {// Hit up of Object and kill Enemy
                     if (levelOneSectionOneScreen.getEnemiesInThisSection().get(i) instanceof Goompa) {
-                        gameScreenFrame.getGameData().thisGameScore++;
                         levelOneSectionOneScreen.remove(levelOneSectionOneScreen.getEnemiesInThisSection().get(i));
                         levelOneSectionOneScreen.getEnemiesInThisSection().remove(i);
                         gameScreenFrame.getGameData().thisGameCoin += 3;
+                        gameScreenFrame.getGameData().thisGameScore++;
                         return false;
                     }
 
@@ -210,10 +210,10 @@ public class IntersectInLevelOneSectionOne {
                         ((Turtle) levelOneSectionOneScreen.getEnemiesInThisSection().get(i)).hitCounter++;
                         ((Turtle) levelOneSectionOneScreen.getEnemiesInThisSection().get(i)).setTurtleHit(true);
                         if (((Turtle) levelOneSectionOneScreen.getEnemiesInThisSection().get(i)).hitCounter >= 2) {
-                            gameScreenFrame.getGameData().thisGameScore += 2;
                             levelOneSectionOneScreen.remove(levelOneSectionOneScreen.getEnemiesInThisSection().get(i));
                             levelOneSectionOneScreen.getEnemiesInThisSection().remove(i);
                             gameScreenFrame.getGameData().thisGameCoin += 3;
+                            gameScreenFrame.getGameData().thisGameScore += 2;
                         }
 
                         int x = levelOneSectionOneScreen.getEnemiesInThisSection().get(i).getX() + 500;

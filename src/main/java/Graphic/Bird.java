@@ -10,9 +10,7 @@ public class Bird extends Enemy{
 
     protected BirdBomb birdBomb;
     private BufferedImage background;
-    Timer timerForMovingTheGoompa;
     private int secondCounter = 0;
-
     private int x;
     private int y;
     private int width = 60;
@@ -28,28 +26,6 @@ public class Bird extends Enemy{
 
         this.x = xx;
         this.y = yy;
-
-//        timerForMovingTheGoompa =new Timer(1, new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//
-//
-//                secondCounter++;
-//                if (secondCounter == 10) {
-//                    y = y - velocity;
-//                    if (y <= 695) {// Plant should go up
-//                        velocity = -velocity;
-//                    } else if (y >= 800) {
-//                        velocity = -velocity;
-//                    }
-//                    secondCounter = 0;
-//                }
-//
-//            }
-//        });
-
-//        timerForMovingTheGoompa.setRepeats(true);
-//        timerForMovingTheGoompa.start();
 
     }
 
@@ -103,4 +79,21 @@ public class Bird extends Enemy{
         this.height = height;
     }
 
+    @Override
+    public int getVelocity() {
+        return velocity;
+    }
+
+    @Override
+    public void setVelocity(int velocity) {
+        this.velocity = velocity;
+    }
+
+    public int getSecondCounter() {
+        return secondCounter;
+    }
+
+    public void setSecondCounter(int secondCounter) {
+        this.secondCounter = secondCounter;
+    }
 }

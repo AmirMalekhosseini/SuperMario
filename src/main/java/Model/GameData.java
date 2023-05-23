@@ -17,7 +17,7 @@ public class GameData {
     }
 
     public boolean isGameFinish() {
-        return isGameFinish;
+        return !isGameFinish;
     }
 
     public void setGameFinish(boolean gameFinish) {

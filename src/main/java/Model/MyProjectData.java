@@ -94,6 +94,7 @@ public class MyProjectData {
     protected BufferedImage activePrizeInAir;
     protected BufferedImage inActivePrizeInAir;
     protected BufferedImage userHeart;
+    protected BufferedImage cannon;
 
     protected Font font10;
     protected Font font12;
@@ -295,6 +296,15 @@ public class MyProjectData {
             String pathBackground = "Heart.png";
             File fileBackground = new File(pathBackground);
             userHeart = ImageIO.read(fileBackground);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            String pathBackground = "Cannon.png";
+            File fileBackground = new File(pathBackground);
+            cannon = ImageIO.read(fileBackground);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -1060,74 +1070,58 @@ public class MyProjectData {
     public BufferedImage getCastleLevelOne() {
         return castleLevelOne;
     }
-
     public BufferedImage getCoin() {
         return coin;
     }
-
     public BufferedImage getMushroom() {
         return mushroom;
     }
-
     public BufferedImage getStar() {
         return star;
     }
-
     public BufferedImage getFlowerItem() {
         return flowerItem;
     }
-
     public BufferedImage getCoinForStore() {
         return coinForStore;
     }
-
     public BufferedImage getCoinInPrizeInAirs() {
         return coinInPrizeInAirs;
     }
-
     public BufferedImage getPipe() {
         return pipe;
     }
-
     public BufferedImage getPipeHorizontal() {
         return pipeHorizontal;
     }
-
     public BufferedImage getPlant() {
         return plant;
     }
-
     public BufferedImage getGoompa() {
         return goompa;
     }
-
     public BufferedImage getNukeBird() {
         return nukeBird;
     }
-
     public BufferedImage getBirdBomb() {
         return birdBomb;
     }
-
     public BufferedImage getTurtle() {
         return turtle;
     }
-
     public BufferedImage getSpiny() {
         return spiny;
     }
-
     public BufferedImage getActivePrizeInAir() {
         return activePrizeInAir;
     }
-
     public BufferedImage getInActivePrizeInAir() {
         return inActivePrizeInAir;
     }
-
     public BufferedImage getUserHeart() {
         return userHeart;
     }
-
-
+    public BufferedImage getCannon() {
+        return cannon;
+    }
 }

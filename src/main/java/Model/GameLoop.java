@@ -5,6 +5,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import MyProject.MyProject;
 
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 
@@ -12,23 +15,20 @@ public class GameLoop {
 
     ObjectMapper objectMapper;
     GameScreenFrame gameScreenFrame;
-    GravityData gravityData;
 
-    public GameLoop(GameScreenFrame gameScreenFrame, GravityData gravityData) {
+    public GameLoop(GameScreenFrame gameScreenFrame) {
 
         objectMapper = new ObjectMapper();
         objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
         objectMapper.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
 
         this.gameScreenFrame = gameScreenFrame;
-        this.gravityData = gravityData;
         CalculatorThread calculatorThread = new CalculatorThread();
         GraphicThread graphicThread = new GraphicThread();
         EnemyThread enemyThread = new EnemyThread();
         calculatorThread.start();
         graphicThread.start();
         enemyThread.start();
-
     }
 
     public GameLoop() {
@@ -55,7 +55,7 @@ public class GameLoop {
                                     gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).getY());
                     gameScreenFrame.marioMover.move();
                     if (gameScreenFrame.getGameData().getMarioLocation().equalsIgnoreCase("levelonesectionone")) {
-                        gameScreenFrame.getLevelOneSectionOneScreen().gravity.allocateGravity();
+                        gameScreenFrame.getLevelOneSectionOneModel().gravity.allocateGravity();
                         gameScreenFrame.intersectInLevelOneSectionOne.refreshIntersectsBooleans();
                         gameScreenFrame.intersectInLevelOneSectionOne.intersectWithObjects();
                         gameScreenFrame.intersectInLevelOneSectionOne.intersectWithItems();
@@ -73,7 +73,7 @@ public class GameLoop {
                         }
                     }
                     if (gameScreenFrame.getGameData().getMarioLocation().equalsIgnoreCase("levelonesectiontwo")) {
-                        gameScreenFrame.getLevelOneSectionTwoScreen().gravity.allocateGravity();
+                        gameScreenFrame.getLevelOneSectionTwoModel().gravity.allocateGravity();
                         gameScreenFrame.intersectInLevelOneSectionTwo.refreshIntersectsBooleans();
                         gameScreenFrame.intersectInLevelOneSectionTwo.intersectWithObjects();
                         gameScreenFrame.intersectInLevelOneSectionTwo.intersectWithItems();
@@ -169,9 +169,36 @@ public class GameLoop {
             }
         }
     }
-
     private class EnemyThread extends Thread {
 
+        public void run() {
+
+            while (!gameScreenFrame.getGameData().isGameFinish) {
+
+                int fps = 120;
+                long targetTime = 1000 / fps;
+                if (!gameScreenFrame.getGameData().isGameFinish) {
+                    long startTime = System.currentTimeMillis();
+                    enemyInLevelOneSectionOne();
+                    enemyInLevelOneSectionTwo();
+                    enemyInLevelTwoSectionOne();
+                    enemyInLevelTwoSectionTwo();
+                    setLocationOfEnemiesInSectionOneLevelOne();
+                    setLocationOfEnemiesInSectionTwoLevelOne();
+                    long elapsedTime = System.currentTimeMillis() - startTime;
+                    long sleepTime = targetTime - elapsedTime;
+                    if (sleepTime > 0) {
+                        try {
+                            Thread.sleep(sleepTime);
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+
+                }
+
+            }
+        }
         public void enemyInLevelOneSectionOne() {
 
             for (int i = 0; i < gameScreenFrame.getLevelOneSectionOneScreen().getEnemiesInThisSection().size(); i++) {
@@ -234,35 +261,6 @@ public class GameLoop {
                 }
             }
 
-        }
-
-        public void run() {
-
-            while (!gameScreenFrame.getGameData().isGameFinish) {
-
-                int fps = 120;
-                long targetTime = 1000 / fps;
-                if (!gameScreenFrame.getGameData().isGameFinish) {
-                    long startTime = System.currentTimeMillis();
-                    enemyInLevelOneSectionOne();
-                    enemyInLevelOneSectionTwo();
-                    enemyInLevelTwoSectionOne();
-                    enemyInLevelTwoSectionTwo();
-                    setLocationOfEnemiesInSectionOneLevelOne();
-                    setLocationOfEnemiesInSectionTwoLevelOne();
-                    long elapsedTime = System.currentTimeMillis() - startTime;
-                    long sleepTime = targetTime - elapsedTime;
-                    if (sleepTime > 0) {
-                        try {
-                            Thread.sleep(sleepTime);
-                        } catch (InterruptedException e) {
-                            throw new RuntimeException(e);
-                        }
-                    }
-
-                }
-
-            }
         }
     }
 
