@@ -36,18 +36,22 @@ public class ChooseCharacterForStartNewGame extends JFrame implements ActionList
     GameData gameData;
 
     ChooseCharacterForStartNewGame() {
+        init();
+    }
 
-        ImageIcon backgroundImage = MyProject.projectData.getGameMenuImage();
-        ImageIcon gameIcon = MyProject.projectData.getGameIcon();
-        ImageIcon normalMarioImage = MyProject.projectData.getNormalMarioImage();
-        ImageIcon coinMarioImage = MyProject.projectData.getCoinMarioImage();
-        ImageIcon runnerMarioImage = MyProject.projectData.getRunnerMarioImage();
-        ImageIcon shooterMarioImage = MyProject.projectData.getShooterMarioImage();
-        ImageIcon jumperMarioImage = MyProject.projectData.getJumperMarioImage();
+    private void init() {
 
-        Font font12 = MyProject.projectData.getFont12();
-        Font font22 = MyProject.projectData.getFont22();
-        Font font10 = MyProject.projectData.getFont10();
+        ImageIcon backgroundImage = MyProjectData.getProjectData().getGameMenuImage();
+        ImageIcon gameIcon = MyProjectData.getProjectData().getGameIcon();
+        ImageIcon normalMarioImage = MyProjectData.getProjectData().getNormalMarioImage();
+        ImageIcon coinMarioImage = MyProjectData.getProjectData().getCoinMarioImage();
+        ImageIcon runnerMarioImage = MyProjectData.getProjectData().getRunnerMarioImage();
+        ImageIcon shooterMarioImage = MyProjectData.getProjectData().getShooterMarioImage();
+        ImageIcon jumperMarioImage = MyProjectData.getProjectData().getJumperMarioImage();
+
+        Font font12 = MyProjectData.getProjectData().getFont12();
+        Font font22 = MyProjectData.getProjectData().getFont22();
+        Font font10 = MyProjectData.getProjectData().getFont10();
 
 
         this.setSize(650, 700);
@@ -230,8 +234,8 @@ public class ChooseCharacterForStartNewGame extends JFrame implements ActionList
         backgroundPanel.add(hardModeButton, Integer.valueOf(1));
 
         this.add(backgroundPanel);
-    }
 
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -256,7 +260,7 @@ public class ChooseCharacterForStartNewGame extends JFrame implements ActionList
 
         if (e.getSource() == normalMarioChooseButton) {// User choose normal mario
 
-            if(!normalMarioChooseButton.isButtonChoose()) {
+            if(normalMarioChooseButton.isButtonChoose()) {
                 if (MyProject.activeUser.get(0).isUserBoughtNormalMario()) {
                     normalMarioChooseButton.setBackground(Color.GRAY);
                     normalMarioChooseButton.setText("Chosen");
@@ -294,7 +298,7 @@ public class ChooseCharacterForStartNewGame extends JFrame implements ActionList
 
         if (e.getSource() == runnerMarioChooseButton) {// User choose runner mario
 
-            if(!runnerMarioChooseButton.isButtonChoose()) {
+            if(runnerMarioChooseButton.isButtonChoose()) {
                 if (MyProject.activeUser.get(0).isUserBoughtRunnerMario()) {
                     runnerMarioChooseButton.setBackground(Color.GRAY);
                     runnerMarioChooseButton.setText("Chosen");
@@ -334,7 +338,7 @@ public class ChooseCharacterForStartNewGame extends JFrame implements ActionList
 
         if (e.getSource() == jumperMarioChooseButton) {
 
-            if(!jumperMarioChooseButton.isButtonChoose()) {// User choose jumper mario
+            if(jumperMarioChooseButton.isButtonChoose()) {// User choose jumper mario
                 if (MyProject.activeUser.get(0).isUserBoughtJumperMario()) {
                     jumperMarioChooseButton.setBackground(Color.GRAY);
                     jumperMarioChooseButton.setText("Chosen");
@@ -373,7 +377,7 @@ public class ChooseCharacterForStartNewGame extends JFrame implements ActionList
 
         if (e.getSource() == shooterMarioChooseButton) {
 
-            if(!shooterMarioChooseButton.isButtonChoose()) {// User choose shooter mario
+            if(shooterMarioChooseButton.isButtonChoose()) {// User choose shooter mario
                 if (MyProject.activeUser.get(0).isUserBoughtShooterMario()) {
                     shooterMarioChooseButton.setBackground(Color.GRAY);
                     shooterMarioChooseButton.setText("Chosen");
@@ -412,7 +416,7 @@ public class ChooseCharacterForStartNewGame extends JFrame implements ActionList
 
         if (e.getSource() == coinMarioChooseButton) {
 
-            if (!coinMarioChooseButton.isButtonChoose()) {// User choose coin mario
+            if (coinMarioChooseButton.isButtonChoose()) {// User choose coin mario
                 if (MyProject.activeUser.get(0).isUserBoughtCoinMario()) {
                     coinMarioChooseButton.setBackground(Color.GRAY);
                     coinMarioChooseButton.setText("Chosen");

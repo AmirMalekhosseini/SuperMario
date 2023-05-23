@@ -29,11 +29,10 @@ public class RunnerMario extends Mario {
     private double velocityX;
 
     RunnerMario(int x, int y) {
-        MyProjectData myProjectData = new MyProjectData();
 
         this.setSize(this.width, this.height);
 
-        MyProjectData projectData = new MyProjectData();
+        MyProjectData projectData = MyProjectData.getProjectData();
         run_1 = projectData.getRunnerMario_Run_1();
         run_2 = projectData.getRunnerMario_Run_2();
         run_3 = projectData.getRunnerMario_Run_3();
@@ -47,6 +46,10 @@ public class RunnerMario extends Mario {
 
         this.x = x;
         this.y = y;
+
+    }
+
+    public RunnerMario() {
 
     }
 

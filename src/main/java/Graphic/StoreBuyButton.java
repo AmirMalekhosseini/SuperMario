@@ -7,7 +7,7 @@ public class StoreBuyButton extends JButton {
     private boolean isButtonChoose;
 
     public boolean isButtonChoose() {
-        return isButtonChoose;
+        return !isButtonChoose;
     }
 
     public void setButtonChoose(boolean buttonChoose) {

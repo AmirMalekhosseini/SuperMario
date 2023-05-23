@@ -3,6 +3,10 @@ package Model;
 public class Score {
 
     private int userScore = 0;
+
+    public Score() {
+
+    }
     public int getUserScore() {
         return userScore;
     }

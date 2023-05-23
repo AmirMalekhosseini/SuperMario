@@ -18,6 +18,10 @@ public class EmptySpaceInGround extends ObjectsInGame {
         this.y = y;
     }
 
+    public EmptySpaceInGround() {
+
+    }
+
     @Override
     public int getX() {
         return x;

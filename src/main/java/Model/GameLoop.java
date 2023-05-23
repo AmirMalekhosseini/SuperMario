@@ -4,9 +4,7 @@ import Graphic.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import MyProject.MyProject;
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -14,20 +12,41 @@ public class GameLoop {
 
     ObjectMapper objectMapper;
     GameScreenFrame gameScreenFrame;
-    public GameLoop(GameScreenFrame gameScreenFrame) {
+    GravityData gravityData;
+
+    public GameLoop(GameScreenFrame gameScreenFrame, GravityData gravityData) {
+
         objectMapper = new ObjectMapper();
         objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
         objectMapper.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
 
         this.gameScreenFrame = gameScreenFrame;
-        final Timer timer = new Timer(5, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        this.gravityData = gravityData;
+        CalculatorThread calculatorThread = new CalculatorThread();
+        GraphicThread graphicThread = new GraphicThread();
+        EnemyThread enemyThread = new EnemyThread();
+        calculatorThread.start();
+        graphicThread.start();
+        enemyThread.start();
+
+    }
+
+    public GameLoop() {
+
+    }
+
+    private class CalculatorThread extends Thread {
+
+        public void run() {
+
+            while (!gameScreenFrame.getGameData().isGameFinish) {
+
+                int fps = 120;
+                long targetTime = 1000 / fps;
                 if (!gameScreenFrame.getGameData().isGameFinish) {
+                    long startTime = System.currentTimeMillis();
                     int xLevelOneBackgroundPanel = gameScreenFrame.getXLevelOneBackgroundPanel();
                     gameScreenFrame.getLevelOneGameBackgroundPanel().setLocation(xLevelOneBackgroundPanel, 0);
-                    setLocationOfEnemiesInSectionOneLevelOne();
-                    setLocationOfEnemiesInSectionTwoLevelOne();
                     gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).setLocation
                             (gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).getX(),
                                     gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).getY());
@@ -35,34 +54,62 @@ public class GameLoop {
                             (gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).getX(),
                                     gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).getY());
                     gameScreenFrame.marioMover.move();
-                    gameScreenFrame.intersectMarioAndObjectsInSectionOne.refreshIntersectsBooleans();
-                    gameScreenFrame.intersectMarioAndObjectsInSectionOne.intersect();
-                    gameScreenFrame.intersectMarioAndObjectsInSectionOne.intersectWithCoin();
-                    if (gameScreenFrame.intersectMarioAndObjectsInSectionOne.intersectWithEnemies()) {
-                        setLocationAfterLooseInSectionOneLevelOne();
+                    if (gameScreenFrame.getGameData().getMarioLocation().equalsIgnoreCase("levelonesectionone")) {
+                        gameScreenFrame.getLevelOneSectionOneScreen().gravity.allocateGravity();
+                        gameScreenFrame.intersectInLevelOneSectionOne.refreshIntersectsBooleans();
+                        gameScreenFrame.intersectInLevelOneSectionOne.intersectWithObjects();
+                        gameScreenFrame.intersectInLevelOneSectionOne.intersectWithItems();
+                        if (gameScreenFrame.intersectInLevelOneSectionOne.intersectWithEnemies()) {
+                            setLocationAfterLooseInSectionOneLevelOne();
+                        }
+                        if (gameScreenFrame.intersectInLevelOneSectionOne.intersectWithEmptyGround()) {
+                            setLocationAfterLooseInSectionOneLevelOne();
+                            gameScreenFrame.getLevelOneSectionOneScreen().thisSectionTime.setSectionTime(50);
+                        }
+                        if (gameScreenFrame.getLevelOneSectionOneScreen().thisSectionTime.getSectionTime() == 0) {
+                            gameScreenFrame.getGameData().setUserHeartValue(gameScreenFrame.getGameData().getUserHeartValue() - 1);
+                            setLocationAfterLooseInSectionOneLevelOne();
+                            gameScreenFrame.getLevelOneSectionOneScreen().thisSectionTime.setSectionTime(50);
+                        }
                     }
-                    if (gameScreenFrame.intersectMarioAndObjectsInSectionOne.intersectWithEmptyGround()) {
-                        setLocationAfterLooseInSectionOneLevelOne();
+                    if (gameScreenFrame.getGameData().getMarioLocation().equalsIgnoreCase("levelonesectiontwo")) {
+                        gameScreenFrame.getLevelOneSectionTwoScreen().gravity.allocateGravity();
+                        gameScreenFrame.intersectInLevelOneSectionTwo.refreshIntersectsBooleans();
+                        gameScreenFrame.intersectInLevelOneSectionTwo.intersectWithObjects();
+                        gameScreenFrame.intersectInLevelOneSectionTwo.intersectWithItems();
+                        if (gameScreenFrame.intersectInLevelOneSectionTwo.intersectWithEnemies()) {
+                            setLocationAfterLooseInSectionTwoLevelOne();
+                        }
+                        if (gameScreenFrame.intersectInLevelOneSectionTwo.intersectWithEmptyGround()) {
+                            setLocationAfterLooseInSectionTwoLevelOne();
+                            gameScreenFrame.getLevelOneSectionTwoScreen().thisSectionTime.setSectionTime(50);
+                        }
+                        if (gameScreenFrame.getLevelOneSectionTwoScreen().thisSectionTime.getSectionTime() == 0 &&
+                                gameScreenFrame.getGameData().getMarioLocation().equalsIgnoreCase("levelonesectiontwo")) {
+                            gameScreenFrame.getGameData().setUserHeartValue(gameScreenFrame.getGameData().getUserHeartValue() - 1);
+                            setLocationAfterLooseInSectionTwoLevelOne();
+                            gameScreenFrame.getLevelOneSectionTwoScreen().thisSectionTime.setSectionTime(50);
+                        }
                     }
-                    gameScreenFrame.intersectMarioAndObjectsInSectionTwo.refreshIntersectsBooleans();
-                    gameScreenFrame.intersectMarioAndObjectsInSectionTwo.intersect();
-                    gameScreenFrame.intersectMarioAndObjectsInSectionTwo.intersectWithCoin();
-                    if (gameScreenFrame.intersectMarioAndObjectsInSectionTwo.intersectWithEnemies()) {
-                        setLocationAfterLooseInSectionTwoLevelOne();
-                    }
-                    if (gameScreenFrame.intersectMarioAndObjectsInSectionTwo.intersectWithEmptyGround()) {
-                        setLocationAfterLooseInSectionTwoLevelOne();
-                    }
+
                     setGameDataInLevelOne();
-                    gameScreenFrame.setFocusable(true);
-                    gameScreenFrame.requestFocusInWindow();
-                    gameScreenFrame.requestFocus();
+
                     if (gameScreenFrame.getGameData().userHeartValue == 0) {
                         gameScreenFrame.getGameData().isGameFinish = true;
                     }
-                }
 
-                else {// Finish the Game
+                    long elapsedTime = System.currentTimeMillis() - startTime;
+                    long sleepTime = targetTime - elapsedTime;
+                    if (sleepTime > 0) {
+                        try {
+                            Thread.sleep(sleepTime);
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+
+                }
+                if (gameScreenFrame.getGameData().isGameFinish) {// Finish the Game
                     gameScreenFrame.calculateScore.calculateScoreInSectionTwoLevelOne();
                     Score thisGameScore = new Score();
                     thisGameScore.setUserScore(gameScreenFrame.getGameData().thisGameScore);
@@ -74,26 +121,151 @@ public class GameLoop {
 
                     gameScreenFrame.dispose();
                     new MainMenuScreen();
-                    ((Timer)e.getSource()).stop();
 
                     try {
                         objectMapper.writeValue(new File("User.jason"), MyProject.allUsers);
                     } catch (IOException ex) {
                         throw new RuntimeException(ex);
                     }
-
                 }
+            }
+        }
+    }
 
-                if (gameScreenFrame.getGameData().isGamePause) {
+    private class GraphicThread extends Thread {
+
+        public void run() {
+
+            while (!gameScreenFrame.getGameData().isGameFinish) {
+
+                int fps = 120;
+                long targetTime = 1000 / fps;
+                if (!gameScreenFrame.getGameData().isGameFinish) {
+                    long startTime = System.currentTimeMillis();
+                    gameScreenFrame.getLevelOneSectionOneScreen().backgroundLabelSceneOne.repaint();
+                    gameScreenFrame.getLevelOneSectionOneScreen().backgroundLabelSceneTwo.repaint();
+                    gameScreenFrame.getLevelOneSectionOneScreen().backgroundLabelSceneThree.repaint();
+                    gameScreenFrame.getLevelOneSectionOneScreen().backgroundLabelSceneFour.repaint();
+                    gameScreenFrame.getLevelOneSectionTwoScreen().backgroundLabelSceneOne.repaint();
+                    gameScreenFrame.getLevelOneSectionTwoScreen().backgroundLabelSceneTwo.repaint();
+                    gameScreenFrame.getLevelOneSectionTwoScreen().backgroundLabelSceneThree.repaint();
+                    gameScreenFrame.getLevelOneSectionTwoScreen().backgroundLabelSceneFour.repaint();
+                    gameScreenFrame.repaint();
+                    gameScreenFrame.setFocusable(true);
+                    gameScreenFrame.requestFocusInWindow();
+                    gameScreenFrame.requestFocus();
+                    long elapsedTime = System.currentTimeMillis() - startTime;
+                    long sleepTime = targetTime - elapsedTime;
+                    if (sleepTime > 0) {
+                        try {
+                            Thread.sleep(sleepTime);
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
 
                 }
 
             }
-        });
-        timer.setRepeats(true);
-        timer.start();
-
+        }
     }
+
+    private class EnemyThread extends Thread {
+
+        public void enemyInLevelOneSectionOne() {
+
+            for (int i = 0; i < gameScreenFrame.getLevelOneSectionOneScreen().getEnemiesInThisSection().size(); i++) {
+
+                gameScreenFrame.getLevelOneSectionOneScreen().getEnemiesInThisSection().get(i).move();
+                // Enemy Changes its Direction:
+                if (gameScreenFrame.intersectInLevelOneSectionOne.isEnemyHitAnObject
+                        (gameScreenFrame.getLevelOneSectionOneScreen().getEnemiesInThisSection().get(i))) {
+                    int velocity = gameScreenFrame.getLevelOneSectionOneScreen().getEnemiesInThisSection().get(i).getVelocity();
+                    gameScreenFrame.getLevelOneSectionOneScreen().getEnemiesInThisSection().get(i).setVelocity(-velocity);
+
+                }
+            }
+
+        }
+
+        public void enemyInLevelOneSectionTwo() {
+
+            for (int i = 0; i < gameScreenFrame.getLevelOneSectionTwoScreen().getEnemiesInThisSection().size(); i++) {
+
+                gameScreenFrame.getLevelOneSectionTwoScreen().getEnemiesInThisSection().get(i).move();
+                // Enemy Changes its Direction:
+                if (gameScreenFrame.intersectInLevelOneSectionTwo.isEnemyHitAnObject
+                        (gameScreenFrame.getLevelOneSectionTwoScreen().getEnemiesInThisSection().get(i))) {
+                    int velocity = gameScreenFrame.getLevelOneSectionTwoScreen().getEnemiesInThisSection().get(i).getVelocity();
+                    gameScreenFrame.getLevelOneSectionTwoScreen().getEnemiesInThisSection().get(i).setVelocity(-velocity);
+
+                }
+            }
+
+        }
+
+        public void enemyInLevelTwoSectionOne() {
+
+            for (int i = 0; i < gameScreenFrame.getLevelTwoSectionOneScreen().getEnemiesInThisSection().size(); i++) {
+
+                gameScreenFrame.getLevelTwoSectionOneScreen().getEnemiesInThisSection().get(i).move();
+                // Enemy Changes its Direction:
+                if (gameScreenFrame.intersectInLevelTwoSectionOne.isEnemyHitAnObject
+                        (gameScreenFrame.getLevelTwoSectionOneScreen().getEnemiesInThisSection().get(i))) {
+                    int velocity = gameScreenFrame.getLevelTwoSectionOneScreen().getEnemiesInThisSection().get(i).getVelocity();
+                    gameScreenFrame.getLevelTwoSectionOneScreen().getEnemiesInThisSection().get(i).setVelocity(-velocity);
+
+                }
+            }
+
+        }
+
+        public void enemyInLevelTwoSectionTwo() {
+
+            for (int i = 0; i < gameScreenFrame.getLevelTwoSectionTwoScreen().getEnemiesInThisSection().size(); i++) {
+
+                gameScreenFrame.getLevelTwoSectionTwoScreen().getEnemiesInThisSection().get(i).move();
+                // Enemy Changes its Direction:
+                if (gameScreenFrame.intersectInLevelTwoSectionTwo.isEnemyHitAnObject
+                        (gameScreenFrame.getLevelTwoSectionTwoScreen().getEnemiesInThisSection().get(i))) {
+                    int velocity = gameScreenFrame.getLevelTwoSectionTwoScreen().getEnemiesInThisSection().get(i).getVelocity();
+                    gameScreenFrame.getLevelTwoSectionTwoScreen().getEnemiesInThisSection().get(i).setVelocity(-velocity);
+
+                }
+            }
+
+        }
+
+        public void run() {
+
+            while (!gameScreenFrame.getGameData().isGameFinish) {
+
+                int fps = 120;
+                long targetTime = 1000 / fps;
+                if (!gameScreenFrame.getGameData().isGameFinish) {
+                    long startTime = System.currentTimeMillis();
+                    enemyInLevelOneSectionOne();
+                    enemyInLevelOneSectionTwo();
+                    enemyInLevelTwoSectionOne();
+                    enemyInLevelTwoSectionTwo();
+                    setLocationOfEnemiesInSectionOneLevelOne();
+                    setLocationOfEnemiesInSectionTwoLevelOne();
+                    long elapsedTime = System.currentTimeMillis() - startTime;
+                    long sleepTime = targetTime - elapsedTime;
+                    if (sleepTime > 0) {
+                        try {
+                            Thread.sleep(sleepTime);
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+
+                }
+
+            }
+        }
+    }
+
 
     public void setLocationOfEnemiesInSectionOneLevelOne() {
 
@@ -149,10 +321,10 @@ public class GameLoop {
 
         gameScreenFrame.getLevelOneSectionOneScreen().userHeartValueLabel.setText(String.valueOf(gameScreenFrame.getGameData().userHeartValue));
         gameScreenFrame.getLevelOneSectionOneScreen().thisGameCoin.setText(String.valueOf(gameScreenFrame.getGameData().thisGameCoin));
-        gameScreenFrame.getLevelOneSectionOneScreen().userScoreLabel.setText("Score: " + String.valueOf(gameScreenFrame.getGameData().thisGameScore));
+        gameScreenFrame.getLevelOneSectionOneScreen().userScoreLabel.setText("Score: " + gameScreenFrame.getGameData().thisGameScore);
         gameScreenFrame.getLevelOneSectionTwoScreen().userHeartValueLabel.setText(String.valueOf(gameScreenFrame.getGameData().userHeartValue));
         gameScreenFrame.getLevelOneSectionTwoScreen().thisGameCoin.setText(String.valueOf(gameScreenFrame.getGameData().thisGameCoin));
-        gameScreenFrame.getLevelOneSectionTwoScreen().userScoreLabel.setText("Score: " + String.valueOf(gameScreenFrame.getGameData().thisGameScore));
+        gameScreenFrame.getLevelOneSectionTwoScreen().userScoreLabel.setText("Score: " + gameScreenFrame.getGameData().thisGameScore);
         gameScreenFrame.getLevelOneSectionOneScreen().userHeartValueLabel.setLocation(gameScreenFrame.getLevelOneSectionOneScreen().XUserHeartValueLabel, 30);
         gameScreenFrame.getLevelOneSectionOneScreen().userHeartImage.setLocation(gameScreenFrame.getLevelOneSectionOneScreen().XUserHeartImage, 30);
         gameScreenFrame.getLevelOneSectionOneScreen().userScoreLabel.setLocation(gameScreenFrame.getLevelOneSectionOneScreen().XUserScoreLabel, 30);
@@ -168,4 +340,13 @@ public class GameLoop {
 
     }
 
+    public GameScreenFrame getGameScreenFrame() {
+        return gameScreenFrame;
+    }
+
+    public void setGameScreenFrame(GameScreenFrame gameScreenFrame) {
+        this.gameScreenFrame = gameScreenFrame;
+    }
 }
+
+

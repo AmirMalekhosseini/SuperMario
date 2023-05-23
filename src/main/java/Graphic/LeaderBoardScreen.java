@@ -27,11 +27,15 @@ public class LeaderBoardScreen extends JFrame implements ActionListener {
     JButton backButton;
 
     public LeaderBoardScreen() {
+        init();
+    }
 
-        ImageIcon backgroundImage = MyProject.projectData.getGameMenuImage();
-        ImageIcon gameIcon = MyProject.projectData.getGameIcon();
-        Font font20 = MyProject.projectData.getFont20();
-        Font font35 = MyProject.projectData.getFont35();
+    private void init() {
+
+        ImageIcon backgroundImage = MyProjectData.getProjectData().getGameMenuImage();
+        ImageIcon gameIcon = MyProjectData.getProjectData().getGameIcon();
+        Font font20 = MyProjectData.getProjectData().getFont20();
+        Font font35 = MyProjectData.getProjectData().getFont35();
 
         scores.add(-1);
         scores.add(-1);

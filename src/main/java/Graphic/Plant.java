@@ -1,5 +1,6 @@
 package Graphic;
 
+import Model.MyProjectData;
 import MyProject.MyProject;
 
 import javax.imageio.ImageIO;
@@ -14,50 +15,53 @@ import java.io.IOException;
 public class Plant extends Enemy {
 
     private BufferedImage background;
-    Timer timerForMovingThePlant;
-    private int secondCounter = 0;
+    public int plantWaitTime = 0;
 
     private int x;
     private int y;
     private int width = 65;
     private int height = 75;
-    private int velocity = -5;
+    private int velocity = +5;
 
     Plant(int xx, int yy) {
         this.setSize(width, height);
 
-        background = MyProject.projectData.getPlant();
+        background = MyProjectData.getProjectData().getPlant();
 
         this.x = xx;
         this.y = yy;
 
-        timerForMovingThePlant=new Timer(1, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+    }
 
+    public Plant() {
 
-                secondCounter++;
-                if (secondCounter == 10) {
-                    y = y - velocity;
-                    if (y <= 695) {// Plant should go up
-                        velocity = -velocity;
-                    } else if (y >= 800) {
-                        velocity = -velocity;
-                    }
-                    secondCounter = 0;
+    }
+
+    @Override
+    public void move() {
+
+        secondCounter++;
+        if (secondCounter == 10) {
+            y -= velocity;
+            if (y <= 695) {// Plant should go up
+                velocity = -velocity;
+                plantWaitTime++;
+                velocity = 0;
+                if (plantWaitTime == 12) {
+                    velocity = -5;
+                    plantWaitTime = 0;
                 }
-
+            } else if (y >= 850) {
+                velocity = -velocity;
             }
-        });
-
-        timerForMovingThePlant.setRepeats(true);
-        timerForMovingThePlant.start();
+            secondCounter = 0;
+        }
 
     }
 
     public void paint(Graphics graphics) {
-            Graphics2D graphics2D = (Graphics2D) graphics;
-            graphics2D.drawImage(background, 0, -5, null);
+        Graphics2D graphics2D = (Graphics2D) graphics;
+        graphics2D.drawImage(background, 0, -5, null);
     }
 
     @Override
@@ -96,4 +100,11 @@ public class Plant extends Enemy {
         this.height = height;
     }
 
+    public int getVelocity() {
+        return velocity;
+    }
+
+    public void setVelocity(int velocity) {
+        this.velocity = velocity;
+    }
 }

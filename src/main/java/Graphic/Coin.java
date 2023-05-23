@@ -1,32 +1,24 @@
 package Graphic;
 
-import MyProject.MyProject;
+import Model.MyProjectData;
 
-import javax.imageio.ImageIO;
-import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
-public class Coin extends ObjectsInGame {
+public class Coin extends ItemsInGame {
 
 
     private BufferedImage background;
 
     private int x;
     private int y;
-    private int width = 40;
-    private int height = 40;
+    private int scoreItemAdds = 10;
 
-    private boolean isCoinCatch;
+    public Coin(int x, int y) {
 
+        this.setSize(super.getWidth(), super.getHeight());
 
-    Coin(int x, int y) {
-
-        this.setSize(width, height);
-
-        background = MyProject.projectData.getCoin();
+        background = MyProjectData.getProjectData().getCoin();
 
         this.x = x;
         this.y = y;
@@ -36,7 +28,7 @@ public class Coin extends ObjectsInGame {
     }
 
     public void paint(Graphics graphics) {
-        if (!isCoinCatch) {
+        if (!isItemCatch()) {
             Graphics2D graphics2D = (Graphics2D) graphics;
             graphics2D.drawImage(background, 0, -5, null);
         }
@@ -62,28 +54,12 @@ public class Coin extends ObjectsInGame {
     }
 
     @Override
-    public int getWidth() {
-        return width;
-    }
-
-    public void setWidth(int width) {
-        this.width = width;
+    public int getScoreItemAdds() {
+        return scoreItemAdds;
     }
 
     @Override
-    public int getHeight() {
-        return height;
-    }
-
-    public void setHeight(int height) {
-        this.height = height;
-    }
-
-    public boolean isCoinCatch() {
-        return isCoinCatch;
-    }
-
-    public void setCoinCatch(boolean coinCatch) {
-        isCoinCatch = coinCatch;
+    public void setScoreItemAdds(int scoreItemAdds) {
+        this.scoreItemAdds = scoreItemAdds;
     }
 }

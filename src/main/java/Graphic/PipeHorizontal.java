@@ -1,5 +1,6 @@
 package Graphic;
 
+import Model.MyProjectData;
 import MyProject.MyProject;
 
 import javax.imageio.ImageIO;
@@ -21,10 +22,14 @@ public class PipeHorizontal extends ObjectsInGame{
 
         this.setSize(width, height);
 
-        background = MyProject.projectData.getPipeHorizontal();
+        background = MyProjectData.getProjectData().getPipeHorizontal();
 
         this.x = x;
         this.y = y;
+
+    }
+
+    public PipeHorizontal() {
 
     }
 

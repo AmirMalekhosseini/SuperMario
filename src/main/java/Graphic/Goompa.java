@@ -1,35 +1,50 @@
 package Graphic;
 
-import Model.*;
-import MyProject.MyProject;
+import Model.MyProjectData;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
-public class CastleInLevelOne extends JLabel {
+public class Goompa extends Enemy {
 
-    private BufferedImage castleImage;
+    private BufferedImage background;
     private int x;
     private int y;
-    private int width = 500;
-    private int height = 850;
+    private int width = 60;
+    private int height = 65;
+    private int velocity = -5;
 
-    public CastleInLevelOne(int x, int y) {
+    Goompa(int xx, int yy) {
         this.setSize(width, height);
 
-        castleImage = MyProject.projectData.getCastleLevelOne();
+        background = MyProjectData.getProjectData().getGoompa();
 
-        this.x = x;
-        this.y = y;
+        this.x = xx;
+        this.y = yy;
+
+    }
+
+    public Goompa() {
+
+    }
+
+    @Override
+    public void move() {
+
+        secondCounter++;
+        if (secondCounter == 10) {
+            x += velocity;
+            secondCounter = 0;
+        }
+
     }
 
     public void paint(Graphics graphics) {
         Graphics2D graphics2D = (Graphics2D) graphics;
-        graphics2D.drawImage(castleImage, 0, -5, null);
+        graphics2D.drawImage(background, 0, -5, null);
     }
 
     @Override
@@ -68,4 +83,11 @@ public class CastleInLevelOne extends JLabel {
         this.height = height;
     }
 
+    public int getVelocity() {
+        return velocity;
+    }
+
+    public void setVelocity(int velocity) {
+        this.velocity = velocity;
+    }
 }

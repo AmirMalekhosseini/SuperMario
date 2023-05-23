@@ -12,21 +12,19 @@ import java.util.ArrayList;
 public class MyProject {
 
     ObjectMapper objectMapper;
-    public static MyProjectData projectData;
     public static ArrayList<User> allUsers = new ArrayList<>();
     public static ArrayList<User> activeUser = new ArrayList<>();
 
     public MyProject() {
-
         init();
-
     }
 
-    public void init() {
-        Graphic graphic = new Graphic() {
+    private void init() {
+        Graphic graphicStarter = new Graphic() {
             @Override
             public void startGraphic() {
-                new LoginPageScreen();
+//                new LoginPageScreen();
+                new GameScreenFrame(new GameData());
             }
         };
         objectMapper = new ObjectMapper();
@@ -40,8 +38,9 @@ public class MyProject {
             throw new RuntimeException(e);
         }
         activeUser.add(new User());
-        projectData = new MyProjectData();
-        graphic.startGraphic();
+        MyProjectData.getProjectData();
+        graphicStarter.startGraphic();
+
     }
 
 

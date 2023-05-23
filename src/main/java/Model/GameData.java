@@ -2,12 +2,19 @@ package Model;
 
 public class GameData {
 
-    protected boolean isGameFinish;
-    protected boolean isGamePause;
+    protected volatile boolean isGameFinish;
+    protected volatile boolean isGamePause;
     protected int userHeartValue = 3;
     protected int thisGameScore = 0;
     protected int thisGameCoin = 0;
     protected String gameMode;
+    protected String marioLocation = "";
+    private int level;
+    private int section;
+
+    public GameData() {
+
+    }
 
     public boolean isGameFinish() {
         return isGameFinish;
@@ -56,4 +63,29 @@ public class GameData {
     public void setGameMode(String gameMode) {
         this.gameMode = gameMode;
     }
+
+    public String getMarioLocation() {
+        return marioLocation;
+    }
+
+    public void setMarioLocation(String marioLocation) {
+        this.marioLocation = marioLocation;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public int getSection() {
+        return section;
+    }
+
+    public void setSection(int section) {
+        this.section = section;
+    }
+
 }

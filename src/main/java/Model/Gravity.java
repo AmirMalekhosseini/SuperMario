@@ -1,8 +1,10 @@
 package Model;
 
-public class Gravity {
+import Graphic.ObjectsInGame;
 
-    public static final int gravity = 10;
-    public static final double dt = 0.018;
+public interface Gravity {
+
+    public boolean isItemOnTopOfAnObject(ObjectsInGame object);
+    public void allocateGravity();
 
 }
