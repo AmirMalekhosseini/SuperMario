@@ -7,6 +7,7 @@ import java.awt.image.BufferedImage;
 public abstract class Enemy extends ObjectsInGame {
 
     private BufferedImage background;
+    private BufferedImage background_Filliped;
     private int x;
     private int y;
     private int height;

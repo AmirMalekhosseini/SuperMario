@@ -4,10 +4,6 @@ import Graphic.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import MyProject.MyProject;
-
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 
@@ -26,9 +22,13 @@ public class GameLoop {
         CalculatorThread calculatorThread = new CalculatorThread();
         GraphicThread graphicThread = new GraphicThread();
         EnemyThread enemyThread = new EnemyThread();
+        HiddenCoinSectionThread hiddenCoinSectionThread = new HiddenCoinSectionThread();
+        HiddenEnemySectionThread hiddenEnemySectionThread = new HiddenEnemySectionThread();
         calculatorThread.start();
         graphicThread.start();
         enemyThread.start();
+        hiddenCoinSectionThread.start();
+//        hiddenEnemySectionThread.start();
     }
 
     public GameLoop() {
@@ -169,6 +169,133 @@ public class GameLoop {
             }
         }
     }
+
+    private class HiddenEnemySectionThread extends Thread {
+
+        public void run() {
+
+            try {
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+
+            while (true) {
+
+                synchronized (this) {
+
+                    if (gameScreenFrame.getHiddenEnemySectionModel().enemyCounter <= 25) {
+
+                        if (gameScreenFrame.getHiddenEnemySectionModel().isCannonOneWorking()) {
+                            Enemy newEnemy = new Goompa(1250, 275);
+                            gameScreenFrame.getHiddenEnemySectionScreen().getEnemiesInThisSection().add(newEnemy);
+                            gameScreenFrame.getHiddenEnemySectionScreen().add(newEnemy, Integer.valueOf(1));
+                            gameScreenFrame.getHiddenEnemySectionModel().setCannonOneWorking(false);
+                            gameScreenFrame.getHiddenEnemySectionModel().setCannonTwoWorking(true);
+                            gameScreenFrame.getHiddenEnemySectionModel().setCannonThreeWorking(false);
+                            gameScreenFrame.getHiddenEnemySectionModel().enemyCounter++;
+                        } else if (gameScreenFrame.getHiddenEnemySectionModel().isCannonTwoWorking()) {
+                            Enemy newEnemy = new Goompa(1200, 475);
+                            gameScreenFrame.getHiddenEnemySectionScreen().getEnemiesInThisSection().add(newEnemy);
+                            gameScreenFrame.getHiddenEnemySectionScreen().add(newEnemy, Integer.valueOf(1));
+                            gameScreenFrame.getHiddenEnemySectionModel().setCannonOneWorking(false);
+                            gameScreenFrame.getHiddenEnemySectionModel().setCannonTwoWorking(false);
+                            gameScreenFrame.getHiddenEnemySectionModel().setCannonThreeWorking(true);
+                            gameScreenFrame.getHiddenEnemySectionModel().enemyCounter++;
+                        } else if (gameScreenFrame.getHiddenEnemySectionModel().isCannonThreeWorking()) {
+                            Enemy newEnemy = new Goompa(1150, 675);
+                            gameScreenFrame.getHiddenEnemySectionScreen().getEnemiesInThisSection().add(newEnemy);
+                            gameScreenFrame.getHiddenEnemySectionScreen().add(newEnemy, Integer.valueOf(1));
+                            gameScreenFrame.getHiddenEnemySectionModel().setCannonOneWorking(true);
+                            gameScreenFrame.getHiddenEnemySectionModel().setCannonTwoWorking(false);
+                            gameScreenFrame.getHiddenEnemySectionModel().setCannonThreeWorking(false);
+                            gameScreenFrame.getHiddenEnemySectionModel().enemyCounter++;
+                        }
+                    }
+                }
+
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+
+                synchronized (this) {
+
+                    gameScreenFrame.getHiddenEnemySectionModel().gravity.allocateGravity();
+
+                }
+
+            }
+
+        }
+
+    }
+
+
+    private class HiddenCoinSectionThread extends Thread {
+
+        public void run() {
+
+            try {
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+
+            while (true) {
+
+                synchronized (this) {
+
+                    if (gameScreenFrame.getHiddenCoinSectionModel().coinCounter <= 25) {
+
+                        if (gameScreenFrame.getHiddenCoinSectionModel().isCannonOneWorking()) {
+                            Coin newCoin = new Coin(1250, 300);
+                            gameScreenFrame.getHiddenCoinSectionScreen().getItemsInThisSection().add(newCoin);
+                            gameScreenFrame.getHiddenCoinSectionScreen().add(newCoin, Integer.valueOf(1));
+                            gameScreenFrame.getHiddenCoinSectionModel().setCannonOneWorking(false);
+                            gameScreenFrame.getHiddenCoinSectionModel().setCannonTwoWorking(true);
+                            gameScreenFrame.getHiddenCoinSectionModel().setCannonThreeWorking(false);
+                            gameScreenFrame.getHiddenCoinSectionModel().coinCounter++;
+                        } else if (gameScreenFrame.getHiddenCoinSectionModel().isCannonTwoWorking()) {
+                            Coin newCoin = new Coin(1200, 500);
+                            gameScreenFrame.getHiddenCoinSectionScreen().getItemsInThisSection().add(newCoin);
+                            gameScreenFrame.getHiddenCoinSectionScreen().add(newCoin, Integer.valueOf(1));
+                            gameScreenFrame.getHiddenCoinSectionModel().setCannonOneWorking(false);
+                            gameScreenFrame.getHiddenCoinSectionModel().setCannonTwoWorking(false);
+                            gameScreenFrame.getHiddenCoinSectionModel().setCannonThreeWorking(true);
+                            gameScreenFrame.getHiddenCoinSectionModel().coinCounter++;
+                        } else if (gameScreenFrame.getHiddenCoinSectionModel().isCannonThreeWorking()) {
+                            Coin newCoin = new Coin(1150, 700);
+                            gameScreenFrame.getHiddenCoinSectionScreen().getItemsInThisSection().add(newCoin);
+                            gameScreenFrame.getHiddenCoinSectionScreen().add(newCoin, Integer.valueOf(1));
+                            gameScreenFrame.getHiddenCoinSectionModel().setCannonOneWorking(true);
+                            gameScreenFrame.getHiddenCoinSectionModel().setCannonTwoWorking(false);
+                            gameScreenFrame.getHiddenCoinSectionModel().setCannonThreeWorking(false);
+                            gameScreenFrame.getHiddenCoinSectionModel().coinCounter++;
+                        }
+                    }
+                }
+
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+
+                synchronized (this) {
+
+                gameScreenFrame.getHiddenCoinSectionModel().gravity.allocateGravity();
+
+                }
+
+            }
+
+        }
+
+    }
+
+
     private class EnemyThread extends Thread {
 
         public void run() {
@@ -203,6 +330,10 @@ public class GameLoop {
 
             for (int i = 0; i < gameScreenFrame.getLevelOneSectionOneScreen().getEnemiesInThisSection().size(); i++) {
 
+                /*
+                To Do:
+                send mario x,y,height to spiny
+                 */
                 gameScreenFrame.getLevelOneSectionOneScreen().getEnemiesInThisSection().get(i).move();
                 // Enemy Changes its Direction:
                 if (gameScreenFrame.intersectInLevelOneSectionOne.isEnemyHitAnObject

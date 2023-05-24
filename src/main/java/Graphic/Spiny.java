@@ -9,44 +9,26 @@ import java.awt.image.BufferedImage;
 public class Spiny extends Enemy {
 
     private BufferedImage background;
-    Timer timerForMovingTheGoompa;
-    private int secondCounter = 0;
-
+    private BufferedImage background_Filliped;
     private int x;
     private int y;
+    private int marioX;
+    private int marioY;
+    private int marioHeight;
     private int width = 60;
     private int height = 70;
-    private int velocity = -5;
+    private int velocity = 0;
+    private final int acceleration = 3;
 
-    Spiny(int xx, int yy) {
+    public Spiny(int xx, int yy) {
+
         this.setSize(width, height);
 
         background = MyProjectData.getProjectData().getSpiny();
+        background_Filliped = MyProjectData.getProjectData().getSpiny_Filliped();
 
         this.x = xx;
         this.y = yy;
-
-//        timerForMovingTheGoompa =new Timer(1, new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//
-//
-//                secondCounter++;
-//                if (secondCounter == 10) {
-//                    y = y - velocity;
-//                    if (y <= 695) {// Plant should go up
-//                        velocity = -velocity;
-//                    } else if (y >= 800) {
-//                        velocity = -velocity;
-//                    }
-//                    secondCounter = 0;
-//                }
-//
-//            }
-//        });
-
-//        timerForMovingTheGoompa.setRepeats(true);
-//        timerForMovingTheGoompa.start();
 
     }
 
@@ -57,11 +39,29 @@ public class Spiny extends Enemy {
     @Override
     public void move() {
 
+        // When Spiny Move Toward Mario:
+        if ((x >= marioX + 200 || x <= marioX - 200) &&
+                (marioY + marioHeight >= y + height - 30 || marioY + marioHeight <= y + height + 30)) {
+            // Spiny Chasing Mario:
+            if (x > marioX && velocity > 0) {
+                velocity = -1;
+            } else if (x < marioX && velocity < 0) {
+                velocity = 1;
+            }
+            velocity += acceleration;
+            x += velocity;
+        }else
+            velocity = 0;
+
     }
 
     public void paint(Graphics graphics) {
         Graphics2D graphics2D = (Graphics2D) graphics;
-        graphics2D.drawImage(background, 0, -5, null);
+        if (velocity <= 0) {
+            graphics2D.drawImage(background, -5, 0, null);
+        } else {
+            graphics2D.drawImage(background_Filliped, -5, 0, null);
+        }
     }
 
     @Override
@@ -82,6 +82,30 @@ public class Spiny extends Enemy {
         this.y = y;
     }
 
+    public int getMarioX() {
+        return marioX;
+    }
+
+    public void setMarioX(int marioX) {
+        this.marioX = marioX;
+    }
+
+    public int getMarioY() {
+        return marioY;
+    }
+
+    public void setMarioY(int marioY) {
+        this.marioY = marioY;
+    }
+
+    public int getMarioHeight() {
+        return marioHeight;
+    }
+
+    public void setMarioHeight(int marioHeight) {
+        this.marioHeight = marioHeight;
+    }
+
     @Override
     public int getWidth() {
         return width;
@@ -100,4 +124,13 @@ public class Spiny extends Enemy {
         this.height = height;
     }
 
+    @Override
+    public int getVelocity() {
+        return velocity;
+    }
+
+    @Override
+    public void setVelocity(int velocity) {
+        this.velocity = velocity;
+    }
 }

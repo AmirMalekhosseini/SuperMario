@@ -82,15 +82,18 @@ public class MyProjectData {
     protected BufferedImage star;
     protected BufferedImage flowerItem;
     protected BufferedImage coinForStore;
-    protected BufferedImage coinInPrizeInAirs;
     protected BufferedImage pipe;
     protected BufferedImage pipeHorizontal;
     protected BufferedImage plant;
     protected BufferedImage goompa;
+    protected BufferedImage goompa_Filliped;
     protected BufferedImage nukeBird;
+    protected BufferedImage nukeBird_Filliped;
     protected BufferedImage birdBomb;
     protected BufferedImage turtle;
+    protected BufferedImage turtle_Filliped;
     protected BufferedImage spiny;
+    protected BufferedImage spiny_Filliped;
     protected BufferedImage activePrizeInAir;
     protected BufferedImage inActivePrizeInAir;
     protected BufferedImage userHeart;
@@ -167,15 +170,6 @@ public class MyProjectData {
         }
 
         try {
-            String pathBackground = "Item/Coin.png";
-            File fileBackground = new File(pathBackground);
-            coinInPrizeInAirs = ImageIO.read(fileBackground);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        try {
             String pathBackground = "Item/FlowerItem.png";
             File fileBackground = new File(pathBackground);
             flowerItem = ImageIO.read(fileBackground);
@@ -239,9 +233,27 @@ public class MyProjectData {
         }
 
         try {
+            String pathBackground = "Enemy/GoompaFilliped.png";
+            File fileBackground = new File(pathBackground);
+            goompa_Filliped = ImageIO.read(fileBackground);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
             String pathBackground = "Enemy/NukeBird.png";
             File fileBackground = new File(pathBackground);
             nukeBird = ImageIO.read(fileBackground);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            String pathBackground = "Enemy/NukeBirdFilliped.png";
+            File fileBackground = new File(pathBackground);
+            nukeBird_Filliped = ImageIO.read(fileBackground);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -266,9 +278,27 @@ public class MyProjectData {
         }
 
         try {
+            String pathBackground = "Enemy/TurtleFilliped.png";
+            File fileBackground = new File(pathBackground);
+            turtle_Filliped = ImageIO.read(fileBackground);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
             String pathBackground = "Enemy/Spiny.png";
             File fileBackground = new File(pathBackground);
             spiny = ImageIO.read(fileBackground);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            String pathBackground = "Enemy/SpinyFilliped.png";
+            File fileBackground = new File(pathBackground);
+            spiny_Filliped = ImageIO.read(fileBackground);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -1085,9 +1115,6 @@ public class MyProjectData {
     public BufferedImage getCoinForStore() {
         return coinForStore;
     }
-    public BufferedImage getCoinInPrizeInAirs() {
-        return coinInPrizeInAirs;
-    }
     public BufferedImage getPipe() {
         return pipe;
     }
@@ -1112,6 +1139,23 @@ public class MyProjectData {
     public BufferedImage getSpiny() {
         return spiny;
     }
+
+    public BufferedImage getGoompa_Filliped() {
+        return goompa_Filliped;
+    }
+
+    public BufferedImage getNukeBird_Filliped() {
+        return nukeBird_Filliped;
+    }
+
+    public BufferedImage getTurtle_Filliped() {
+        return turtle_Filliped;
+    }
+
+    public BufferedImage getSpiny_Filliped() {
+        return spiny_Filliped;
+    }
+
     public BufferedImage getActivePrizeInAir() {
         return activePrizeInAir;
     }

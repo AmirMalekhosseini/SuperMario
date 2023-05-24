@@ -8,9 +8,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class HiddenCoinSectionScreen extends JLayeredPane {
+public class HiddenEnemySectionScreen extends JLayeredPane {
 
     protected ArrayList<ObjectsInGame> objectsInThisSection = new ArrayList<>();
+    protected volatile ArrayList<Enemy> enemiesInThisSection = new ArrayList<>();
     protected volatile ArrayList<ItemsInGame> itemsInThisSection = new ArrayList<>();
     public ArrayList<Mario> activeMario;
     GameData gameData;
@@ -70,7 +71,7 @@ public class HiddenCoinSectionScreen extends JLayeredPane {
     BlockInAir blockInAir3_8;
     PipeHorizontal pipeHorizontal;
 
-    public HiddenCoinSectionScreen(GameData gameData) {
+    public HiddenEnemySectionScreen(GameData gameData) {
         init(gameData);
     }
 
@@ -256,8 +257,6 @@ public class HiddenCoinSectionScreen extends JLayeredPane {
         objectsInThisSection.add(blockInAir3_8);
         objectsInThisSection.add(pipeHorizontal);
 
-
-
     }
 
     public ArrayList<ObjectsInGame> getObjectsInThisSection() {
@@ -274,6 +273,14 @@ public class HiddenCoinSectionScreen extends JLayeredPane {
 
     public void setItemsInThisSection(ArrayList<ItemsInGame> itemsInThisSection) {
         this.itemsInThisSection = itemsInThisSection;
+    }
+
+    public ArrayList<Enemy> getEnemiesInThisSection() {
+        return enemiesInThisSection;
+    }
+
+    public void setEnemiesInThisSection(ArrayList<Enemy> enemiesInThisSection) {
+        this.enemiesInThisSection = enemiesInThisSection;
     }
 
     public GameData getGameData() {

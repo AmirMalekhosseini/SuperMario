@@ -11,16 +11,18 @@ import java.awt.image.BufferedImage;
 public class Goompa extends Enemy {
 
     private BufferedImage background;
+    private BufferedImage background_Filliped;
     private int x;
     private int y;
     private int width = 60;
     private int height = 65;
     private int velocity = -5;
 
-    Goompa(int xx, int yy) {
+    public Goompa(int xx, int yy) {
         this.setSize(width, height);
 
         background = MyProjectData.getProjectData().getGoompa();
+        background_Filliped = MyProjectData.getProjectData().getGoompa_Filliped();
 
         this.x = xx;
         this.y = yy;
@@ -44,7 +46,11 @@ public class Goompa extends Enemy {
 
     public void paint(Graphics graphics) {
         Graphics2D graphics2D = (Graphics2D) graphics;
-        graphics2D.drawImage(background, 0, -5, null);
+        if (velocity <= 0) {
+            graphics2D.drawImage(background, -5, 0, null);
+        } else {
+            graphics2D.drawImage(background_Filliped, -5, 0, null);
+        }
     }
 
     @Override

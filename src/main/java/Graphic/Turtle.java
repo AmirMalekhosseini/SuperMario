@@ -9,6 +9,7 @@ import java.awt.image.BufferedImage;
 public class Turtle extends Enemy {
 
     private BufferedImage background;
+    private BufferedImage background_Filliped;
     public int hitCounter = 0;
     private boolean isTurtleHit;
     public int turtleWaitTime = 0;
@@ -22,6 +23,7 @@ public class Turtle extends Enemy {
         this.setSize(width, height);
 
         background = MyProjectData.getProjectData().getTurtle();
+        background_Filliped = MyProjectData.getProjectData().getTurtle_Filliped();
 
         this.x = xx;
         this.y = yy;
@@ -54,7 +56,11 @@ public class Turtle extends Enemy {
 
     public void paint(Graphics graphics) {
         Graphics2D graphics2D = (Graphics2D) graphics;
-        graphics2D.drawImage(background, 0, -5, null);
+        if (velocity <= 0) {
+            graphics2D.drawImage(background, -5, 0, null);
+        } else {
+            graphics2D.drawImage(background_Filliped, -5, 0, null);
+        }
     }
 
     @Override

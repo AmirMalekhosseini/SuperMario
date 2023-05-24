@@ -24,7 +24,7 @@ public class Cannon extends ObjectsInGame {
 
     public void paint(Graphics graphics) {
         Graphics2D graphics2D = (Graphics2D) graphics;
-        graphics2D.drawImage(background, 0, -15, null);
+        graphics2D.drawImage(background, 0, -10, null);
     }
 
 

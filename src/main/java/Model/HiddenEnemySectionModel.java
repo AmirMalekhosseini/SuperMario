@@ -1,20 +1,20 @@
 package Model;
 
-import Graphic.HiddenCoinSectionScreen;
-import Graphic.ItemsInGame;
+import Graphic.Enemy;
+import Graphic.HiddenEnemySectionScreen;
 import Graphic.ObjectsInGame;
 
-public class HiddenCoinSectionModel {
+public class HiddenEnemySectionModel {
 
-    HiddenCoinSectionScreen hiddenCoinSectionScreen;
+    HiddenEnemySectionScreen hiddenEnemySectionScreen;
     private volatile boolean cannonOneWorking = true;
     private volatile boolean cannonTwoWorking;
     private volatile boolean cannonThreeWorking;
-    public volatile int coinCounter = 0;
+    public volatile int enemyCounter = 0;
     public Gravity gravity;
 
-    public HiddenCoinSectionModel(HiddenCoinSectionScreen hiddenCoinSectionScreen) {
-        this.hiddenCoinSectionScreen = hiddenCoinSectionScreen;
+    public HiddenEnemySectionModel(HiddenEnemySectionScreen hiddenEnemySectionScreen) {
+        this.hiddenEnemySectionScreen = hiddenEnemySectionScreen;
         gravityStarter();
     }
 
@@ -23,7 +23,7 @@ public class HiddenCoinSectionModel {
             @Override
             public boolean isItemOnTopOfAnObject(ObjectsInGame object) {
 
-                for (ObjectsInGame objects : hiddenCoinSectionScreen.getObjectsInThisSection()) {
+                for (ObjectsInGame objects : hiddenEnemySectionScreen.getObjectsInThisSection()) {
                     int firstObjectWidth = object.getWidth();
                     int firstObjectHeight = object.getHeight() + 15;
                     int secondObjectWidth = objects.getWidth();
@@ -57,21 +57,21 @@ public class HiddenCoinSectionModel {
             @Override
             public void allocateGravity() {
 
-                for (ItemsInGame itemsInGame : hiddenCoinSectionScreen.getItemsInThisSection()) {
+                for (Enemy enemiesInGame : hiddenEnemySectionScreen.getEnemiesInThisSection()) {
 
                     // Object is on the Ground or On an Object:
-                    if (gravity.isItemOnTopOfAnObject(itemsInGame) &&
-                            (itemsInGame.getY() <= 920 - itemsInGame.getHeight())) {
-                        int currentY = itemsInGame.getY();
-                        itemsInGame.setY(currentY + 50);
+                    if (gravity.isItemOnTopOfAnObject(enemiesInGame) &&
+                            (enemiesInGame.getY() <= 920 - enemiesInGame.getHeight())) {
+                        int currentY = enemiesInGame.getY();
+                        enemiesInGame.setY(currentY + 50);
                         try {
                             Thread.sleep(5);
                         } catch (InterruptedException e) {
                             throw new RuntimeException(e);
                         }
                     } else {
-                        int currentX = itemsInGame.getX();
-                        itemsInGame.setX(currentX - 50);
+                        int currentX = enemiesInGame.getX();
+                        enemiesInGame.setX(currentX - 50);
                     }
 
                 }
@@ -104,5 +104,4 @@ public class HiddenCoinSectionModel {
     public void setCannonThreeWorking(boolean cannonThreeWorking) {
         this.cannonThreeWorking = cannonThreeWorking;
     }
-
 }
