@@ -21,7 +21,7 @@ public class Plant extends Enemy {
     private int y;
     private int width = 65;
     private int height = 75;
-    private int velocity = +5;
+    private double velocity = +5;
 
     Plant(int xx, int yy) {
         this.setSize(width, height);
@@ -100,11 +100,11 @@ public class Plant extends Enemy {
         this.height = height;
     }
 
-    public int getVelocity() {
+    public double getVelocity() {
         return velocity;
     }
 
-    public void setVelocity(int velocity) {
+    public void setVelocity(double velocity) {
         this.velocity = velocity;
     }
 }

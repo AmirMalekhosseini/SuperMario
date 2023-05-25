@@ -27,28 +27,6 @@ public class BirdBomb extends Enemy {
         this.x = xx;
         this.y = yy;
 
-//        timerForMovingTheGoompa =new Timer(1, new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//
-//
-//                secondCounter++;
-//                if (secondCounter == 10) {
-//                    y = y - velocity;
-//                    if (y <= 695) {// Plant should go up
-//                        velocity = -velocity;
-//                    } else if (y >= 800) {
-//                        velocity = -velocity;
-//                    }
-//                    secondCounter = 0;
-//                }
-//
-//            }
-//        });
-
-//        timerForMovingTheGoompa.setRepeats(true);
-//        timerForMovingTheGoompa.start();
-
     }
 
     public BirdBomb() {

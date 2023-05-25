@@ -18,7 +18,7 @@ public class Bird extends Enemy{
     private int endPosition;
     private int width = 60;
     private int height = 120;
-    private int velocity = 5;
+    private double velocity = 5;
 
     public Bird(int xx, int yy, int startPosition, int endPosition) {
 
@@ -112,12 +112,12 @@ public class Bird extends Enemy{
     }
 
     @Override
-    public int getVelocity() {
+    public double getVelocity() {
         return velocity;
     }
 
     @Override
-    public void setVelocity(int velocity) {
+    public void setVelocity(double velocity) {
         this.velocity = velocity;
     }
 

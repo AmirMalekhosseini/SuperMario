@@ -15,7 +15,12 @@ public class Mushroom extends ItemsInGame{
     private int height = 50;
     private int width = 50;
     private int scoreItemAdds = 30;
+    private int xVelocity = 5;
+    private int secondCounter = 0;
+    private int waitTime;
+    private boolean isItemConstant = true;
     private boolean isItemAvailable;
+    private boolean isItemHitsAnObject;
 
     public Mushroom(int x, int y) {
 
@@ -28,6 +33,26 @@ public class Mushroom extends ItemsInGame{
     }
 
     public Mushroom() {
+    }
+
+    @Override
+    public void move() {
+
+        secondCounter++;
+        if (secondCounter == 10) {
+            if (isItemConstant) {
+                waitTime++;
+                if (waitTime == 24) {
+                    x += xVelocity;
+                    isItemConstant = false;
+                    waitTime = 0;
+                }
+            } else {
+                x += xVelocity;
+            }
+            secondCounter = 0;
+        }
+
     }
 
     public void paint(Graphics graphics) {
@@ -92,5 +117,45 @@ public class Mushroom extends ItemsInGame{
     @Override
     public void setHeight(int height) {
         this.height = height;
+    }
+
+    public int getXVelocity() {
+        return xVelocity;
+    }
+
+    public void setXVelocity(int xVelocity) {
+        this.xVelocity = xVelocity;
+    }
+
+    public int getSecondCounter() {
+        return secondCounter;
+    }
+
+    public void setSecondCounter(int secondCounter) {
+        this.secondCounter = secondCounter;
+    }
+
+    public int getWaitTime() {
+        return waitTime;
+    }
+
+    public void setWaitTime(int waitTime) {
+        this.waitTime = waitTime;
+    }
+
+    public boolean isItemConstant() {
+        return isItemConstant;
+    }
+
+    public void setItemConstant(boolean itemConstant) {
+        isItemConstant = itemConstant;
+    }
+
+    public boolean isItemHitsAnObject() {
+        return isItemHitsAnObject;
+    }
+
+    public void setItemHitsAnObject(boolean itemHitsAnObject) {
+        isItemHitsAnObject = itemHitsAnObject;
     }
 }

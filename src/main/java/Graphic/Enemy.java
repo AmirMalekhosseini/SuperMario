@@ -13,7 +13,7 @@ public abstract class Enemy extends ObjectsInGame {
     private int height;
     private int width;
     public int secondCounter = 0;
-    private int velocity;
+    private double velocity;
 
     public Enemy() {
 
@@ -61,11 +61,11 @@ public abstract class Enemy extends ObjectsInGame {
     }
 
 
-    public int getVelocity() {
+    public double getVelocity() {
         return velocity;
     }
 
-    public void setVelocity(int velocity) {
+    public void setVelocity(double velocity) {
         this.velocity = velocity;
     }
 }

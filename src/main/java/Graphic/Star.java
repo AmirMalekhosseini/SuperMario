@@ -15,7 +15,14 @@ public class Star extends ItemsInGame{
     private int height = 50;
     private int width = 50;
     private int scoreItemAdds = 40;
-    private boolean isItemAvailable;
+    private int xVelocity = 5;
+    private int yVelocity = 30;
+    private int secondCounter = 0;
+    private int waitTime;
+    private int jumpTime;
+    private boolean isItemConstant = true;
+    private boolean isJumping;
+    private boolean isItemHitsAnObject;
 
     public Star(int x, int y) {
 
@@ -28,6 +35,37 @@ public class Star extends ItemsInGame{
     }
 
     public Star() {
+    }
+
+    @Override
+    public void move() {
+
+        secondCounter++;
+        if (secondCounter == 10) {
+            if (isItemConstant) {
+                waitTime++;
+                if (waitTime == 24) {
+                    x += xVelocity;
+                    isItemConstant = false;
+                    waitTime = 0;
+                }
+            } else {
+                jumpTime++;
+                if (jumpTime >= 16 && jumpTime <= 20) {// Star Is Jumping:
+                    isJumping = true;
+                    yVelocity = 30;
+                    y -= yVelocity;
+                    if (jumpTime == 20) {// Star Stop Jumping:
+                        isJumping = false;
+                        jumpTime = 0;
+                    }
+                } else {
+                    x += xVelocity;
+                }
+            }
+            secondCounter = 0;
+        }
+
     }
 
     public void paint(Graphics graphics) {
@@ -66,12 +104,12 @@ public class Star extends ItemsInGame{
         this.scoreItemAdds = scoreItemAdds;
     }
 
-    public boolean isItemAvailable() {
-        return isItemAvailable;
+    public boolean isItemConstant() {
+        return isItemConstant;
     }
 
-    public void setItemAvailable(boolean itemAvailable) {
-        isItemAvailable = itemAvailable;
+    public void setItemConstant(boolean itemConstant) {
+        isItemConstant = itemConstant;
     }
 
     @Override
@@ -92,5 +130,53 @@ public class Star extends ItemsInGame{
     @Override
     public void setHeight(int height) {
         this.height = height;
+    }
+
+    public int getXVelocity() {
+        return xVelocity;
+    }
+
+    public void setXVelocity(int xVelocity) {
+        this.xVelocity = xVelocity;
+    }
+
+    public int getYVelocity() {
+        return yVelocity;
+    }
+
+    public void setYVelocity(int yVelocity) {
+        this.yVelocity = yVelocity;
+    }
+
+    public int getSecondCounter() {
+        return secondCounter;
+    }
+
+    public void setSecondCounter(int secondCounter) {
+        this.secondCounter = secondCounter;
+    }
+
+    public int getWaitTime() {
+        return waitTime;
+    }
+
+    public void setWaitTime(int waitTime) {
+        this.waitTime = waitTime;
+    }
+
+    public boolean isJumping() {
+        return isJumping;
+    }
+
+    public void setJumping(boolean jumping) {
+        isJumping = jumping;
+    }
+
+    public boolean isItemHitsAnObject() {
+        return isItemHitsAnObject;
+    }
+
+    public void setItemHitsAnObject(boolean itemHitsAnObject) {
+        isItemHitsAnObject = itemHitsAnObject;
     }
 }

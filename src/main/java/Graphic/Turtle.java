@@ -2,7 +2,6 @@ package Graphic;
 
 import Model.MyProjectData;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
@@ -12,12 +11,12 @@ public class Turtle extends Enemy {
     private BufferedImage background_Filliped;
     public int hitCounter = 0;
     private boolean isTurtleHit;
-    public int turtleWaitTime = 0;
+    private int waitTime = 0;
     private int x;
     private int y;
     private int width = 60;
     private int height = 65;
-    private int velocity = -5;
+    private double velocity = -5;
 
     Turtle(int xx, int yy) {
         this.setSize(width, height);
@@ -40,11 +39,11 @@ public class Turtle extends Enemy {
         secondCounter++;
         if (secondCounter == 10) {
             if (isTurtleHit) {
-                turtleWaitTime++;
-                if (turtleWaitTime == 24) {
+                waitTime++;
+                if (waitTime == 24) {
                     x += velocity;
                     isTurtleHit = false;
-                    turtleWaitTime = 0;
+                    waitTime = 0;
                 }
             } else {
                 x += velocity;
@@ -100,12 +99,12 @@ public class Turtle extends Enemy {
     }
 
     @Override
-    public int getVelocity() {
+    public double getVelocity() {
         return velocity;
     }
 
     @Override
-    public void setVelocity(int velocity) {
+    public void setVelocity(double velocity) {
         this.velocity = velocity;
     }
 

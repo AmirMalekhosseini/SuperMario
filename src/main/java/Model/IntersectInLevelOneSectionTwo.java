@@ -235,6 +235,47 @@ public class IntersectInLevelOneSectionTwo {
         return false;
     }
 
+    public boolean isItemHitAnObject(ItemsInGame item) {
+
+
+        for (int i = 0; i < levelOneSectionTwoScreen.getEnemiesInThisSection().size(); i++) {
+            int enemyWidth = item.getWidth();
+            int enemyHeight = item.getHeight();
+            int objectWidth = levelOneSectionTwoScreen.getObjectsInThisSection().get(i).getWidth();
+            int objectHeight = levelOneSectionTwoScreen.getObjectsInThisSection().get(i).getHeight();
+            if (objectWidth <= 0 || objectHeight <= 0 || enemyWidth <= 0 || enemyHeight <= 0) {
+                continue;
+            }
+            int enemyX = item.getX();
+            int enemyY = item.getY();
+            int objectX = levelOneSectionTwoScreen.getObjectsInThisSection().get(i).getX();
+            int objectY = levelOneSectionTwoScreen.getObjectsInThisSection().get(i).getY();
+            objectWidth += objectX;
+            objectHeight += objectY;
+            enemyWidth += enemyX;
+            enemyHeight += enemyY;
+
+            if ((objectWidth < objectX || objectWidth > enemyX) &&
+                    (objectHeight < objectY || objectHeight > enemyY) &&
+                    (enemyWidth < enemyX || enemyWidth > objectX) &&
+                    (enemyHeight < enemyY || enemyHeight > objectY)) {
+                if ((objectHeight > enemyY || enemyHeight > objectY) && enemyWidth <= objectX + 30 ) {// Hit left of Object
+
+                    return true;
+
+                }
+                if ((objectHeight > enemyY || enemyHeight > objectY) && objectWidth <= enemyX + 30) {// Hit right of Object
+
+                    return true;
+
+                }
+            }
+
+
+        }
+        return false;
+    }
+
     public boolean isEnemyHitAnObject(Enemy enemy) {
 
         if (enemy instanceof Plant) {

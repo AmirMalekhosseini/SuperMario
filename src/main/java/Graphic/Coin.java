@@ -27,6 +27,11 @@ public class Coin extends ItemsInGame {
     public Coin() {
     }
 
+    @Override
+    public void move() {
+
+    }
+
     public void paint(Graphics graphics) {
         if (!isItemCatch()) {
             Graphics2D graphics2D = (Graphics2D) graphics;

@@ -10,11 +10,11 @@
   "userChooseJumper_GreenMario" : false,
   "userChooseRunner_BlueMario" : false,
   "userChooseShooter_BlackMario" : false,
-  "userBoughtShooterMario" : true,
-  "userBoughtRunnerMario" : false,
+  "userBoughtNormalMario" : true,
   "userBoughtJumperMario" : true,
   "userBoughtCoinMario" : false,
-  "userBoughtNormalMario" : true
+  "userBoughtRunnerMario" : false,
+  "userBoughtShooterMario" : true
 }, {
   "userHighScore" : {
     "userScore" : 0
@@ -27,11 +27,11 @@
   "userChooseJumper_GreenMario" : false,
   "userChooseRunner_BlueMario" : false,
   "userChooseShooter_BlackMario" : false,
-  "userBoughtShooterMario" : false,
-  "userBoughtRunnerMario" : false,
+  "userBoughtNormalMario" : true,
   "userBoughtJumperMario" : false,
   "userBoughtCoinMario" : false,
-  "userBoughtNormalMario" : true
+  "userBoughtRunnerMario" : false,
+  "userBoughtShooterMario" : false
 }, {
   "userHighScore" : {
     "userScore" : 0
@@ -44,11 +44,11 @@
   "userChooseJumper_GreenMario" : false,
   "userChooseRunner_BlueMario" : false,
   "userChooseShooter_BlackMario" : false,
-  "userBoughtShooterMario" : false,
-  "userBoughtRunnerMario" : false,
+  "userBoughtNormalMario" : true,
   "userBoughtJumperMario" : false,
   "userBoughtCoinMario" : false,
-  "userBoughtNormalMario" : true
+  "userBoughtRunnerMario" : false,
+  "userBoughtShooterMario" : false
 }, {
   "userHighScore" : {
     "userScore" : 0
@@ -61,11 +61,11 @@
   "userChooseJumper_GreenMario" : false,
   "userChooseRunner_BlueMario" : false,
   "userChooseShooter_BlackMario" : false,
-  "userBoughtShooterMario" : false,
-  "userBoughtRunnerMario" : false,
+  "userBoughtNormalMario" : true,
   "userBoughtJumperMario" : false,
   "userBoughtCoinMario" : false,
-  "userBoughtNormalMario" : true
+  "userBoughtRunnerMario" : false,
+  "userBoughtShooterMario" : false
 }, {
   "userHighScore" : {
     "userScore" : 497
@@ -78,9 +78,9 @@
   "userChooseJumper_GreenMario" : false,
   "userChooseRunner_BlueMario" : false,
   "userChooseShooter_BlackMario" : false,
-  "userBoughtShooterMario" : false,
-  "userBoughtRunnerMario" : false,
+  "userBoughtNormalMario" : true,
   "userBoughtJumperMario" : false,
   "userBoughtCoinMario" : false,
-  "userBoughtNormalMario" : true
+  "userBoughtRunnerMario" : false,
+  "userBoughtShooterMario" : false
 } ]

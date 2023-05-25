@@ -27,7 +27,7 @@ public class GameLoop {
         calculatorThread.start();
         graphicThread.start();
         enemyThread.start();
-        hiddenCoinSectionThread.start();
+//        hiddenCoinSectionThread.start();
 //        hiddenEnemySectionThread.start();
     }
 
@@ -47,12 +47,6 @@ public class GameLoop {
                     long startTime = System.currentTimeMillis();
                     int xLevelOneBackgroundPanel = gameScreenFrame.getXLevelOneBackgroundPanel();
                     gameScreenFrame.getLevelOneGameBackgroundPanel().setLocation(xLevelOneBackgroundPanel, 0);
-                    gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).setLocation
-                            (gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).getX(),
-                                    gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).getY());
-                    gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).setLocation
-                            (gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).getX(),
-                                    gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).getY());
                     gameScreenFrame.marioMover.move();
                     if (gameScreenFrame.getGameData().getMarioLocation().equalsIgnoreCase("levelonesectionone")) {
                         gameScreenFrame.getLevelOneSectionOneModel().gravity.allocateGravity();
@@ -142,6 +136,12 @@ public class GameLoop {
                 long targetTime = 1000 / fps;
                 if (!gameScreenFrame.getGameData().isGameFinish) {
                     long startTime = System.currentTimeMillis();
+                    gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).setLocation
+                            (gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).getX(),
+                                    gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).getY());
+                    gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).setLocation
+                            (gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).getX(),
+                                    gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).getY());
                     gameScreenFrame.getLevelOneSectionOneScreen().backgroundLabelSceneOne.repaint();
                     gameScreenFrame.getLevelOneSectionOneScreen().backgroundLabelSceneTwo.repaint();
                     gameScreenFrame.getLevelOneSectionOneScreen().backgroundLabelSceneThree.repaint();
@@ -306,12 +306,15 @@ public class GameLoop {
                 long targetTime = 1000 / fps;
                 if (!gameScreenFrame.getGameData().isGameFinish) {
                     long startTime = System.currentTimeMillis();
-                    enemyInLevelOneSectionOne();
-                    enemyInLevelOneSectionTwo();
-                    enemyInLevelTwoSectionOne();
-                    enemyInLevelTwoSectionTwo();
-                    setLocationOfEnemiesInSectionOneLevelOne();
-                    setLocationOfEnemiesInSectionTwoLevelOne();
+                    gameScreenFrame.getLevelOneSectionOneModel().moveEnemy();
+                    gameScreenFrame.getLevelOneSectionOneModel().moveItem();
+                    gameScreenFrame.getLevelOneSectionTwoModel().moveEnemy();
+                    gameScreenFrame.getLevelTwoSectionOneModel().moveEnemy();
+                    gameScreenFrame.getLevelTwoSectionTwoModel().moveEnemy();
+                    gameScreenFrame.getLevelOneSectionOneModel().setLocationOfEnemies();
+                    gameScreenFrame.getLevelOneSectionTwoModel().setLocationOfEnemies();
+                    gameScreenFrame.getLevelTwoSectionOneModel().setLocationOfEnemies();
+                    gameScreenFrame.getLevelTwoSectionTwoModel().setLocationOfEnemies();
                     long elapsedTime = System.currentTimeMillis() - startTime;
                     long sleepTime = targetTime - elapsedTime;
                     if (sleepTime > 0) {
@@ -326,94 +329,7 @@ public class GameLoop {
 
             }
         }
-        public void enemyInLevelOneSectionOne() {
 
-            for (int i = 0; i < gameScreenFrame.getLevelOneSectionOneScreen().getEnemiesInThisSection().size(); i++) {
-
-                /*
-                To Do:
-                send mario x,y,height to spiny
-                 */
-                gameScreenFrame.getLevelOneSectionOneScreen().getEnemiesInThisSection().get(i).move();
-                // Enemy Changes its Direction:
-                if (gameScreenFrame.intersectInLevelOneSectionOne.isEnemyHitAnObject
-                        (gameScreenFrame.getLevelOneSectionOneScreen().getEnemiesInThisSection().get(i))) {
-                    int velocity = gameScreenFrame.getLevelOneSectionOneScreen().getEnemiesInThisSection().get(i).getVelocity();
-                    gameScreenFrame.getLevelOneSectionOneScreen().getEnemiesInThisSection().get(i).setVelocity(-velocity);
-
-                }
-            }
-
-        }
-
-        public void enemyInLevelOneSectionTwo() {
-
-            for (int i = 0; i < gameScreenFrame.getLevelOneSectionTwoScreen().getEnemiesInThisSection().size(); i++) {
-
-                gameScreenFrame.getLevelOneSectionTwoScreen().getEnemiesInThisSection().get(i).move();
-                // Enemy Changes its Direction:
-                if (gameScreenFrame.intersectInLevelOneSectionTwo.isEnemyHitAnObject
-                        (gameScreenFrame.getLevelOneSectionTwoScreen().getEnemiesInThisSection().get(i))) {
-                    int velocity = gameScreenFrame.getLevelOneSectionTwoScreen().getEnemiesInThisSection().get(i).getVelocity();
-                    gameScreenFrame.getLevelOneSectionTwoScreen().getEnemiesInThisSection().get(i).setVelocity(-velocity);
-
-                }
-            }
-
-        }
-
-        public void enemyInLevelTwoSectionOne() {
-
-            for (int i = 0; i < gameScreenFrame.getLevelTwoSectionOneScreen().getEnemiesInThisSection().size(); i++) {
-
-                gameScreenFrame.getLevelTwoSectionOneScreen().getEnemiesInThisSection().get(i).move();
-                // Enemy Changes its Direction:
-                if (gameScreenFrame.intersectInLevelTwoSectionOne.isEnemyHitAnObject
-                        (gameScreenFrame.getLevelTwoSectionOneScreen().getEnemiesInThisSection().get(i))) {
-                    int velocity = gameScreenFrame.getLevelTwoSectionOneScreen().getEnemiesInThisSection().get(i).getVelocity();
-                    gameScreenFrame.getLevelTwoSectionOneScreen().getEnemiesInThisSection().get(i).setVelocity(-velocity);
-
-                }
-            }
-
-        }
-
-        public void enemyInLevelTwoSectionTwo() {
-
-            for (int i = 0; i < gameScreenFrame.getLevelTwoSectionTwoScreen().getEnemiesInThisSection().size(); i++) {
-
-                gameScreenFrame.getLevelTwoSectionTwoScreen().getEnemiesInThisSection().get(i).move();
-                // Enemy Changes its Direction:
-                if (gameScreenFrame.intersectInLevelTwoSectionTwo.isEnemyHitAnObject
-                        (gameScreenFrame.getLevelTwoSectionTwoScreen().getEnemiesInThisSection().get(i))) {
-                    int velocity = gameScreenFrame.getLevelTwoSectionTwoScreen().getEnemiesInThisSection().get(i).getVelocity();
-                    gameScreenFrame.getLevelTwoSectionTwoScreen().getEnemiesInThisSection().get(i).setVelocity(-velocity);
-
-                }
-            }
-
-        }
-    }
-
-
-    public void setLocationOfEnemiesInSectionOneLevelOne() {
-
-        for (int i = 0; i < gameScreenFrame.getLevelOneSectionOneScreen().getEnemiesInThisSection().size(); i++) {
-            int x = gameScreenFrame.getLevelOneSectionOneScreen().getEnemiesInThisSection().get(i).getX();
-            int y = gameScreenFrame.getLevelOneSectionOneScreen().getEnemiesInThisSection().get(i).getY();
-            gameScreenFrame.getLevelOneSectionOneScreen().getEnemiesInThisSection().get(i).setLocation(x, y);
-
-        }
-    }
-
-    public void setLocationOfEnemiesInSectionTwoLevelOne() {
-
-        for (int i = 0; i < gameScreenFrame.getLevelOneSectionTwoScreen().getEnemiesInThisSection().size(); i++) {
-            int x = gameScreenFrame.getLevelOneSectionTwoScreen().getEnemiesInThisSection().get(i).getX();
-            int y = gameScreenFrame.getLevelOneSectionTwoScreen().getEnemiesInThisSection().get(i).getY();
-            gameScreenFrame.getLevelOneSectionTwoScreen().getEnemiesInThisSection().get(i).setLocation(x, y);
-
-        }
     }
 
     public void setLocationAfterLooseInSectionOneLevelOne() {

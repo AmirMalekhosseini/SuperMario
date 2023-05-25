@@ -17,8 +17,8 @@ public class Spiny extends Enemy {
     private int marioHeight;
     private int width = 60;
     private int height = 70;
-    private int velocity = 0;
-    private final int acceleration = 3;
+    private double velocity = 0;
+    private final double acceleration = 0.5;
 
     public Spiny(int xx, int yy) {
 
@@ -49,7 +49,7 @@ public class Spiny extends Enemy {
                 velocity = 1;
             }
             velocity += acceleration;
-            x += velocity;
+            x +=(int) velocity;
         }else
             velocity = 0;
 
@@ -78,6 +78,7 @@ public class Spiny extends Enemy {
         return y;
     }
 
+    @Override
     public void setY(int y) {
         this.y = y;
     }
@@ -125,12 +126,12 @@ public class Spiny extends Enemy {
     }
 
     @Override
-    public int getVelocity() {
+    public double getVelocity() {
         return velocity;
     }
 
     @Override
-    public void setVelocity(int velocity) {
+    public void setVelocity(double velocity) {
         this.velocity = velocity;
     }
 }

@@ -30,6 +30,11 @@ public class FlowerItem extends ItemsInGame{
     public FlowerItem() {
     }
 
+    @Override
+    public void move() {
+
+    }
+
     public void paint(Graphics graphics) {
         if (!isItemCatch()) {
             Graphics2D graphics2D = (Graphics2D) graphics;

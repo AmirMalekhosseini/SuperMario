@@ -5,9 +5,11 @@ import Graphic.*;
 public class LevelTwoSectionOneModel {
 
     LevelTwoSectionOneScreen levelTwoSectionOneScreen;
+    IntersectInLevelTwoSectionOne intersect;
     public Gravity gravity;
 
-    public LevelTwoSectionOneModel(LevelTwoSectionOneScreen levelTwoSectionOneScreen) {
+    public LevelTwoSectionOneModel(LevelTwoSectionOneScreen levelTwoSectionOneScreen, IntersectInLevelTwoSectionOne intersect) {
+        this.intersect = intersect;
         this.levelTwoSectionOneScreen = levelTwoSectionOneScreen;
         gravityStarter();
     }
@@ -88,6 +90,36 @@ public class LevelTwoSectionOneModel {
 
             }
         };
+    }
+
+    public void moveEnemy() {
+
+        for (int i = 0; i < levelTwoSectionOneScreen.getEnemiesInThisSection().size(); i++) {
+
+                /*
+                To Do:
+                send mario x,y,height to spiny
+                 */
+            levelTwoSectionOneScreen.getEnemiesInThisSection().get(i).move();
+            // Enemy Changes its Direction:
+            if (intersect.isEnemyHitAnObject
+                    (levelTwoSectionOneScreen.getEnemiesInThisSection().get(i))) {
+                double velocity = levelTwoSectionOneScreen.getEnemiesInThisSection().get(i).getVelocity();
+                levelTwoSectionOneScreen.getEnemiesInThisSection().get(i).setVelocity(-velocity);
+
+            }
+        }
+
+    }
+
+    public void setLocationOfEnemies() {
+
+        for (int i = 0; i < levelTwoSectionOneScreen.getEnemiesInThisSection().size(); i++) {
+            int x = levelTwoSectionOneScreen.getEnemiesInThisSection().get(i).getX();
+            int y = levelTwoSectionOneScreen.getEnemiesInThisSection().get(i).getY();
+            levelTwoSectionOneScreen.getEnemiesInThisSection().get(i).setLocation(x, y);
+
+        }
     }
 
 }

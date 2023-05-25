@@ -75,10 +75,10 @@ public class GameScreenFrame extends JFrame {
                 gravityData = new GravityData(gameScreenFrame);
                 hiddenEnemySectionModel = new HiddenEnemySectionModel(hiddenEnemySectionScreen);
                 hiddenCoinSectionModel = new HiddenCoinSectionModel(hiddenCoinSectionScreen);
-                levelOneSectionOneModel = new LevelOneSectionOneModel(levelOneSectionOneScreen);
-                levelOneSectionTwoModel = new LevelOneSectionTwoModel(levelOneSectionTwoScreen);
-                levelTwoSectionOneModel = new LevelTwoSectionOneModel(levelTwoSectionOneScreen);
-                levelTwoSectionTwoModel = new LevelTwoSectionTwoModel(levelTwoSectionTwoScreen);
+                levelOneSectionOneModel = new LevelOneSectionOneModel(levelOneSectionOneScreen, intersectInLevelOneSectionOne);
+                levelOneSectionTwoModel = new LevelOneSectionTwoModel(levelOneSectionTwoScreen, intersectInLevelOneSectionTwo);
+                levelTwoSectionOneModel = new LevelTwoSectionOneModel(levelTwoSectionOneScreen, intersectInLevelTwoSectionOne);
+                levelTwoSectionTwoModel = new LevelTwoSectionTwoModel(levelTwoSectionTwoScreen, intersectInLevelTwoSectionTwo);
                 gameLoop = new GameLoop(gameScreenFrame);
 
             }
@@ -101,12 +101,12 @@ public class GameScreenFrame extends JFrame {
 
         hiddenCoinBackgroundPanel.setBounds(0, 0, 1700, 1300);
         hiddenCoinBackgroundPanel.setLayout(null);
-        hiddenCoinBackgroundPanel.setVisible(true);
+        hiddenCoinBackgroundPanel.setVisible(false);
         hiddenCoinBackgroundPanel.add(hiddenCoinSectionScreen);
 
         levelOneGameBackgroundPanel.setBounds(xLevelOneBackgroundPanel, 0, 14000, 1300);
         levelOneGameBackgroundPanel.setLayout(null);
-        levelOneGameBackgroundPanel.setVisible(false);
+        levelOneGameBackgroundPanel.setVisible(true);
         levelOneGameBackgroundPanel.add(levelOneSectionOneScreen);
         levelOneGameBackgroundPanel.add(levelOneSectionTwoScreen);
 

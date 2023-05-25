@@ -160,9 +160,12 @@ public class LevelOneSectionOneScreen extends JLayeredPane {
         }
 
         // Scene One
-//        Enemy testEnemy = new Goompa(500, 625);
+//        Enemy testEnemy = new Goompa(4900, 625);
 //        this.add(testEnemy, Integer.valueOf(1));
 //        enemiesInThisSection.add(testEnemy);
+//        Enemy testEnemy1 = new Goompa(4800, 625);
+//        this.add(testEnemy1, Integer.valueOf(1));
+//        enemiesInThisSection.add(testEnemy1);
         firstBlockInAirSceneOne = new SimpleBlockInAir(450, 700);
         coinOnFirstBlockInAirSceneOne = new Coin(450, 650);
         secondBlockInAirSceneOne = new SimpleBlockInAir(520, 700);

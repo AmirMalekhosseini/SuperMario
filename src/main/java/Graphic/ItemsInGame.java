@@ -12,11 +12,13 @@ public abstract class ItemsInGame extends ObjectsInGame {
     private int width = 40;
     private int scoreItemAdds;
     private boolean itemCatch;
+    private int xVelocity;
+    private int yVelocity;
 
     public ItemsInGame() {
 
     }
-
+    public abstract void move();
     public void paint(Graphics graphics) {
         Graphics2D graphics2D = (Graphics2D) graphics;
         graphics2D.drawImage(background, 0, -5, null);
@@ -72,5 +74,21 @@ public abstract class ItemsInGame extends ObjectsInGame {
 
     public void setScoreItemAdds(int scoreItemAdds) {
         this.scoreItemAdds = scoreItemAdds;
+    }
+
+    public int getXVelocity() {
+        return xVelocity;
+    }
+
+    public void setXVelocity(int xVelocity) {
+        this.xVelocity = xVelocity;
+    }
+
+    public int getYVelocity() {
+        return yVelocity;
+    }
+
+    public void setYVelocity(int yVelocity) {
+        this.yVelocity = yVelocity;
     }
 }

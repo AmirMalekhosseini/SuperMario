@@ -5,9 +5,11 @@ import Graphic.*;
 public class LevelOneSectionTwoModel {
 
     LevelOneSectionTwoScreen levelOneSectionTwoScreen;
+    IntersectInLevelOneSectionTwo intersect;
     public Gravity gravity;
 
-    public LevelOneSectionTwoModel(LevelOneSectionTwoScreen levelOneSectionTwoScreen) {
+    public LevelOneSectionTwoModel(LevelOneSectionTwoScreen levelOneSectionTwoScreen, IntersectInLevelOneSectionTwo intersect) {
+        this.intersect = intersect;
         this.levelOneSectionTwoScreen = levelOneSectionTwoScreen;
         gravityStarter();
     }
@@ -88,6 +90,52 @@ public class LevelOneSectionTwoModel {
 
             }
         };
+    }
+
+    public void moveItem() {
+
+        for (int i = 0; i < levelOneSectionTwoScreen.getItemsInThisSection().size(); i++) {
+
+            levelOneSectionTwoScreen.getItemsInThisSection().get(i).move();
+            // Item Changes its Direction:
+            if (intersect.isItemHitAnObject
+                    (levelOneSectionTwoScreen.getItemsInThisSection().get(i))) {
+                int velocity = levelOneSectionTwoScreen.getItemsInThisSection().get(i).getXVelocity();
+                levelOneSectionTwoScreen.getItemsInThisSection().get(i).setXVelocity(-velocity);
+
+            }
+        }
+
+    }
+
+    public void moveEnemy() {
+
+        for (int i = 0; i < levelOneSectionTwoScreen.getEnemiesInThisSection().size(); i++) {
+
+                /*
+                To Do:
+                send mario x,y,height to spiny
+                 */
+            levelOneSectionTwoScreen.getEnemiesInThisSection().get(i).move();
+            // Enemy Changes its Direction:
+            if (intersect.isEnemyHitAnObject
+                    (levelOneSectionTwoScreen.getEnemiesInThisSection().get(i))) {
+                double velocity = levelOneSectionTwoScreen.getEnemiesInThisSection().get(i).getVelocity();
+                levelOneSectionTwoScreen.getEnemiesInThisSection().get(i).setVelocity(-velocity);
+
+            }
+        }
+
+    }
+
+    public void setLocationOfEnemies() {
+
+        for (int i = 0; i < levelOneSectionTwoScreen.getEnemiesInThisSection().size(); i++) {
+            int x = levelOneSectionTwoScreen.getEnemiesInThisSection().get(i).getX();
+            int y = levelOneSectionTwoScreen.getEnemiesInThisSection().get(i).getY();
+            levelOneSectionTwoScreen.getEnemiesInThisSection().get(i).setLocation(x, y);
+
+        }
     }
 
 }

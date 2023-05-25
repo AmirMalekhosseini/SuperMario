@@ -5,9 +5,11 @@ import Graphic.*;
 public class LevelOneSectionOneModel {
 
     LevelOneSectionOneScreen levelOneSectionOneScreen;
+    IntersectInLevelOneSectionOne intersect;
     public Gravity gravity;
 
-    public LevelOneSectionOneModel(LevelOneSectionOneScreen levelOneSectionOneScreen) {
+    public LevelOneSectionOneModel(LevelOneSectionOneScreen levelOneSectionOneScreen, IntersectInLevelOneSectionOne intersect) {
+        this.intersect = intersect;
         this.levelOneSectionOneScreen = levelOneSectionOneScreen;
         gravityStarter();
     }
@@ -52,13 +54,17 @@ public class LevelOneSectionOneModel {
             @Override
             public void allocateGravity() {
 
-                for (ItemsInGame itemsInGame : levelOneSectionOneScreen.getItemsInThisSection()) {
+                for (ItemsInGame item : levelOneSectionOneScreen.getItemsInThisSection()) {
+
+                    if (item instanceof Star && ((Star) item).isJumping()) {
+                        continue;
+                    }
 
                     // Object is on the Ground or On an Object:
-                    if (gravity.isItemOnTopOfAnObject(itemsInGame) &&
-                            (itemsInGame.getY() <= 920 - itemsInGame.getHeight())) {
-                        int currentY = itemsInGame.getY();
-                        itemsInGame.setY(currentY + 10);
+                    if (gravity.isItemOnTopOfAnObject(item) &&
+                            (item.getY() <= 920 - item.getHeight())) {
+                        int currentY = item.getY();
+                        item.setY(currentY + 10);
                         try {
                             Thread.sleep(5);
                         } catch (InterruptedException e) {
@@ -88,6 +94,52 @@ public class LevelOneSectionOneModel {
 
             }
         };
+    }
+
+    public void moveItem() {
+
+        for (int i = 0; i < levelOneSectionOneScreen.getItemsInThisSection().size(); i++) {
+
+            levelOneSectionOneScreen.getItemsInThisSection().get(i).move();
+            // Item Changes its Direction:
+            if (intersect.isItemHitAnObject
+                    (levelOneSectionOneScreen.getItemsInThisSection().get(i))) {
+                int velocity = levelOneSectionOneScreen.getItemsInThisSection().get(i).getXVelocity();
+                levelOneSectionOneScreen.getItemsInThisSection().get(i).setXVelocity(-velocity);
+
+            }
+        }
+
+    }
+
+    public void moveEnemy() {
+
+        for (int i = 0; i < levelOneSectionOneScreen.getEnemiesInThisSection().size(); i++) {
+
+                /*
+                To Do:
+                send mario x,y,height to spiny
+                 */
+            levelOneSectionOneScreen.getEnemiesInThisSection().get(i).move();
+            // Enemy Changes its Direction:
+            if (intersect.isEnemyHitAnObject
+                    (levelOneSectionOneScreen.getEnemiesInThisSection().get(i))) {
+                double velocity = levelOneSectionOneScreen.getEnemiesInThisSection().get(i).getVelocity();
+                levelOneSectionOneScreen.getEnemiesInThisSection().get(i).setVelocity(-velocity);
+
+            }
+        }
+
+    }
+
+    public void setLocationOfEnemies() {
+
+        for (int i = 0; i < levelOneSectionOneScreen.getEnemiesInThisSection().size(); i++) {
+            int x = levelOneSectionOneScreen.getEnemiesInThisSection().get(i).getX();
+            int y = levelOneSectionOneScreen.getEnemiesInThisSection().get(i).getY();
+            levelOneSectionOneScreen.getEnemiesInThisSection().get(i).setLocation(x, y);
+
+        }
     }
 
 }
