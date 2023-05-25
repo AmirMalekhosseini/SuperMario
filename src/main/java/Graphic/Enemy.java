@@ -14,6 +14,7 @@ public abstract class Enemy extends ObjectsInGame {
     private int width;
     public int secondCounter = 0;
     private double velocity;
+    private boolean isEnemyHitsAnObject;
 
     public Enemy() {
 
@@ -67,5 +68,13 @@ public abstract class Enemy extends ObjectsInGame {
 
     public void setVelocity(double velocity) {
         this.velocity = velocity;
+    }
+
+    public boolean isEnemyHitsAnObject() {
+        return isEnemyHitsAnObject;
+    }
+
+    public void setEnemyHitsAnObject(boolean enemyHitsAnObject) {
+        isEnemyHitsAnObject = enemyHitsAnObject;
     }
 }

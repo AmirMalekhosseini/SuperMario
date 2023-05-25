@@ -27,7 +27,7 @@ public class GameLoop {
         calculatorThread.start();
         graphicThread.start();
         enemyThread.start();
-//        hiddenCoinSectionThread.start();
+        hiddenCoinSectionThread.start();
 //        hiddenEnemySectionThread.start();
     }
 
@@ -54,15 +54,18 @@ public class GameLoop {
                         gameScreenFrame.intersectInLevelOneSectionOne.intersectWithObjects();
                         gameScreenFrame.intersectInLevelOneSectionOne.intersectWithItems();
                         if (gameScreenFrame.intersectInLevelOneSectionOne.intersectWithEnemies()) {
-                            setLocationAfterLooseInSectionOneLevelOne();
+                            gameScreenFrame.setXLevelOneBackgroundPanel(0);
+                            gameScreenFrame.getLevelOneSectionOneModel().setLocationAfterLoose();
                         }
                         if (gameScreenFrame.intersectInLevelOneSectionOne.intersectWithEmptyGround()) {
-                            setLocationAfterLooseInSectionOneLevelOne();
+                            gameScreenFrame.setXLevelOneBackgroundPanel(0);
+                            gameScreenFrame.getLevelOneSectionOneModel().setLocationAfterLoose();
                             gameScreenFrame.getLevelOneSectionOneScreen().thisSectionTime.setSectionTime(50);
                         }
                         if (gameScreenFrame.getLevelOneSectionOneScreen().thisSectionTime.getSectionTime() == 0) {
                             gameScreenFrame.getGameData().setUserHeartValue(gameScreenFrame.getGameData().getUserHeartValue() - 1);
-                            setLocationAfterLooseInSectionOneLevelOne();
+                            gameScreenFrame.setXLevelOneBackgroundPanel(0);
+                            gameScreenFrame.getLevelOneSectionOneModel().setLocationAfterLoose();
                             gameScreenFrame.getLevelOneSectionOneScreen().thisSectionTime.setSectionTime(50);
                         }
                     }
@@ -72,16 +75,19 @@ public class GameLoop {
                         gameScreenFrame.intersectInLevelOneSectionTwo.intersectWithObjects();
                         gameScreenFrame.intersectInLevelOneSectionTwo.intersectWithItems();
                         if (gameScreenFrame.intersectInLevelOneSectionTwo.intersectWithEnemies()) {
-                            setLocationAfterLooseInSectionTwoLevelOne();
+                            gameScreenFrame.setXLevelOneBackgroundPanel(-6800);
+                            gameScreenFrame.getLevelOneSectionTwoModel().setLocationAfterLoose();
                         }
                         if (gameScreenFrame.intersectInLevelOneSectionTwo.intersectWithEmptyGround()) {
-                            setLocationAfterLooseInSectionTwoLevelOne();
+                            gameScreenFrame.setXLevelOneBackgroundPanel(-6800);
+                            gameScreenFrame.getLevelOneSectionTwoModel().setLocationAfterLoose();
                             gameScreenFrame.getLevelOneSectionTwoScreen().thisSectionTime.setSectionTime(50);
                         }
                         if (gameScreenFrame.getLevelOneSectionTwoScreen().thisSectionTime.getSectionTime() == 0 &&
                                 gameScreenFrame.getGameData().getMarioLocation().equalsIgnoreCase("levelonesectiontwo")) {
                             gameScreenFrame.getGameData().setUserHeartValue(gameScreenFrame.getGameData().getUserHeartValue() - 1);
-                            setLocationAfterLooseInSectionTwoLevelOne();
+                            gameScreenFrame.setXLevelOneBackgroundPanel(-6800);
+                            gameScreenFrame.getLevelOneSectionTwoModel().setLocationAfterLoose();
                             gameScreenFrame.getLevelOneSectionTwoScreen().thisSectionTime.setSectionTime(50);
                         }
                     }
@@ -309,8 +315,11 @@ public class GameLoop {
                     gameScreenFrame.getLevelOneSectionOneModel().moveEnemy();
                     gameScreenFrame.getLevelOneSectionOneModel().moveItem();
                     gameScreenFrame.getLevelOneSectionTwoModel().moveEnemy();
+                    gameScreenFrame.getLevelOneSectionTwoModel().moveItem();
                     gameScreenFrame.getLevelTwoSectionOneModel().moveEnemy();
+                    gameScreenFrame.getLevelTwoSectionOneModel().moveItem();
                     gameScreenFrame.getLevelTwoSectionTwoModel().moveEnemy();
+                    gameScreenFrame.getLevelTwoSectionTwoModel().moveItem();
                     gameScreenFrame.getLevelOneSectionOneModel().setLocationOfEnemies();
                     gameScreenFrame.getLevelOneSectionTwoModel().setLocationOfEnemies();
                     gameScreenFrame.getLevelTwoSectionOneModel().setLocationOfEnemies();
@@ -329,36 +338,6 @@ public class GameLoop {
 
             }
         }
-
-    }
-
-    public void setLocationAfterLooseInSectionOneLevelOne() {
-
-        gameScreenFrame.setXLevelOneBackgroundPanel(0);
-        gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).setX(100);
-        gameScreenFrame.getLevelOneSectionOneScreen().XUserHeartImage = 1520;
-        gameScreenFrame.getLevelOneSectionOneScreen().userHeartImage.setX(gameScreenFrame.getLevelOneSectionOneScreen().XUserHeartImage);
-        gameScreenFrame.getLevelOneSectionOneScreen().XThisGameCoinImage = 1110;
-        gameScreenFrame.getLevelOneSectionOneScreen().thisGameCoinImage.setX(gameScreenFrame.getLevelOneSectionOneScreen().XThisGameCoinImage);
-        gameScreenFrame.getLevelOneSectionOneScreen().XThisGameCoin = 1080;
-        gameScreenFrame.getLevelOneSectionOneScreen().XUserHeartValueLabel = 1510;
-        gameScreenFrame.getLevelOneSectionOneScreen().XThisSectionTimeLabel = 1180;
-        gameScreenFrame.getLevelOneSectionOneScreen().XUserScoreLabel = 1345;
-
-    }
-
-    public void setLocationAfterLooseInSectionTwoLevelOne() {
-
-        gameScreenFrame.setXLevelOneBackgroundPanel(-6800);
-        gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).setX(100);
-        gameScreenFrame.getLevelOneSectionTwoScreen().XUserHeartImage = 1520;
-        gameScreenFrame.getLevelOneSectionTwoScreen().userHeartImage.setX(gameScreenFrame.getLevelOneSectionTwoScreen().XUserHeartImage);
-        gameScreenFrame.getLevelOneSectionTwoScreen().XThisGameCoinImage = 1110;
-        gameScreenFrame.getLevelOneSectionTwoScreen().thisGameCoinImage.setX(gameScreenFrame.getLevelOneSectionTwoScreen().XThisGameCoinImage);
-        gameScreenFrame.getLevelOneSectionTwoScreen().XThisGameCoin = 1080;
-        gameScreenFrame.getLevelOneSectionTwoScreen().XUserHeartValueLabel = 1510;
-        gameScreenFrame.getLevelOneSectionTwoScreen().XThisSectionTimeLabel = 1180;
-        gameScreenFrame.getLevelOneSectionTwoScreen().XUserScoreLabel = 1345;
 
     }
 

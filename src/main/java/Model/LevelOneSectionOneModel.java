@@ -142,4 +142,18 @@ public class LevelOneSectionOneModel {
         }
     }
 
+    public void setLocationAfterLoose() {
+
+        levelOneSectionOneScreen.activeMario.get(0).setX(100);
+        levelOneSectionOneScreen.XUserHeartImage = 1520;
+        levelOneSectionOneScreen.userHeartImage.setX(levelOneSectionOneScreen.XUserHeartImage);
+        levelOneSectionOneScreen.XThisGameCoinImage = 1110;
+        levelOneSectionOneScreen.thisGameCoinImage.setX(levelOneSectionOneScreen.XThisGameCoinImage);
+        levelOneSectionOneScreen.XThisGameCoin = 1080;
+        levelOneSectionOneScreen.XUserHeartValueLabel = 1510;
+        levelOneSectionOneScreen.XThisSectionTimeLabel = 1180;
+        levelOneSectionOneScreen.XUserScoreLabel = 1345;
+
+    }
+
 }

@@ -14,6 +14,7 @@ public abstract class ItemsInGame extends ObjectsInGame {
     private boolean itemCatch;
     private int xVelocity;
     private int yVelocity;
+    private boolean isItemHitsAnObject;
 
     public ItemsInGame() {
 
@@ -90,5 +91,13 @@ public abstract class ItemsInGame extends ObjectsInGame {
 
     public void setYVelocity(int yVelocity) {
         this.yVelocity = yVelocity;
+    }
+
+    public boolean isItemHitsAnObject() {
+        return isItemHitsAnObject;
+    }
+
+    public void setItemHitsAnObject(boolean itemHitsAnObject) {
+        isItemHitsAnObject = itemHitsAnObject;
     }
 }

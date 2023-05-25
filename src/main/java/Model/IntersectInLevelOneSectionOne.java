@@ -12,8 +12,6 @@ public class IntersectInLevelOneSectionOne {
     protected boolean marioHitsRightOfTheObject;
     protected boolean marioHitsUpOfTheObject;
     protected boolean marioHitsDownOfTheObject;
-    protected boolean enemyHitsAnObject;
-    protected boolean itemHitsAnObject;
     protected boolean marioHitsAnObject;
     protected boolean marioHitsFullOfCoinBlockInAir;
     protected boolean marioHitsTurtle;
@@ -226,6 +224,7 @@ public class IntersectInLevelOneSectionOne {
                     return false;
                 }
                 levelOneSectionOneScreen.getGameData().userHeartValue--;
+                levelOneSectionOneScreen.thisSectionTime.setSectionTime(50);
                 return true;
             }
 
@@ -257,6 +256,7 @@ public class IntersectInLevelOneSectionOne {
                     (marioWidth < marioX || marioWidth > objectX) &&
                     (marioHeight < marioY || marioHeight > objectY)) {
                 levelOneSectionOneScreen.getGameData().userHeartValue--;
+                levelOneSectionOneScreen.thisSectionTime.setSectionTime(50);
                 return true;
             }
 
@@ -291,15 +291,15 @@ public class IntersectInLevelOneSectionOne {
                     (objectHeight < objectY || objectHeight > enemyY) &&
                     (enemyWidth < enemyX || enemyWidth > objectX) &&
                     (enemyHeight < enemyY || enemyHeight > objectY)) {
-                if ((objectHeight > enemyY || enemyHeight > objectY) && enemyWidth <= objectX + 30 && !enemyHitsAnObject) {// Hit left of Object
+                if ((objectHeight > enemyY || enemyHeight > objectY) && enemyWidth <= objectX + 30 && !enemy.isEnemyHitsAnObject()) {// Hit left of Object
 
-                    enemyHitsAnObject = true;
+                    enemy.setEnemyHitsAnObject(true);
                     return true;
 
                 }
-                if ((objectHeight > enemyY || enemyHeight > objectY) && objectWidth <= enemyX + 30 && !enemyHitsAnObject) {// Hit right of Object
+                if ((objectHeight > enemyY || enemyHeight > objectY) && objectWidth <= enemyX + 30 && !enemy.isEnemyHitsAnObject()) {// Hit right of Object
 
-                    enemyHitsAnObject = true;
+                    enemy.setEnemyHitsAnObject(true);
                     return true;
 
                 }
@@ -307,7 +307,7 @@ public class IntersectInLevelOneSectionOne {
 
 
         }
-        enemyHitsAnObject = false;
+        enemy.setEnemyHitsAnObject(false);
         return false;
     }
 
@@ -319,6 +319,9 @@ public class IntersectInLevelOneSectionOne {
             int objectWidth = levelOneSectionOneScreen.getObjectsInThisSection().get(i).getWidth();
             int objectHeight = levelOneSectionOneScreen.getObjectsInThisSection().get(i).getHeight();
             if (objectWidth <= 0 || objectHeight <= 0 || itemWidth <= 0 || itemHeight <= 0) {
+                continue;
+            }
+            if (item instanceof Coin || item instanceof FlowerItem) {
                 continue;
             }
             int itemX = item.getX();
@@ -335,23 +338,22 @@ public class IntersectInLevelOneSectionOne {
                     (itemWidth < itemX || itemWidth > objectX) &&
                     (itemHeight < itemY || itemHeight > objectY)) {
 
-                if ((objectHeight > itemY || itemHeight > objectY) && itemWidth <= objectX+5 && !itemHitsAnObject) {// Hit left of Object
+                if ((objectHeight > itemY || itemHeight > objectY) && itemWidth <= objectX + 5 && !item.isItemHitsAnObject()) {// Hit left of Object
 
-                    itemHitsAnObject = true;
+                    item.setItemHitsAnObject(true);
                     return true;
 
                 }
-                if ((objectHeight > itemY || itemHeight > objectY) && objectWidth <= itemX+5 && !itemHitsAnObject) {// Hit right of Object
+                if ((objectHeight > itemY || itemHeight > objectY) && objectWidth <= itemX+5 && !item.isItemHitsAnObject()) {// Hit right of Object
 
-                    itemHitsAnObject = true;
+                    item.setItemHitsAnObject(true);
                     return true;
 
                 }
             }
 
         }
-
-        itemHitsAnObject = false;
+        item.setItemHitsAnObject(false);
         return false;
     }
 

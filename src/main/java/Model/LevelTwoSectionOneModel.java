@@ -92,6 +92,22 @@ public class LevelTwoSectionOneModel {
         };
     }
 
+    public void moveItem() {
+
+        for (int i = 0; i < levelTwoSectionOneScreen.getItemsInThisSection().size(); i++) {
+
+            levelTwoSectionOneScreen.getItemsInThisSection().get(i).move();
+            // Item Changes its Direction:
+            if (intersect.isItemHitAnObject
+                    (levelTwoSectionOneScreen.getItemsInThisSection().get(i))) {
+                int velocity = levelTwoSectionOneScreen.getItemsInThisSection().get(i).getXVelocity();
+                levelTwoSectionOneScreen.getItemsInThisSection().get(i).setXVelocity(-velocity);
+
+            }
+        }
+
+    }
+
     public void moveEnemy() {
 
         for (int i = 0; i < levelTwoSectionOneScreen.getEnemiesInThisSection().size(); i++) {
@@ -120,6 +136,20 @@ public class LevelTwoSectionOneModel {
             levelTwoSectionOneScreen.getEnemiesInThisSection().get(i).setLocation(x, y);
 
         }
+    }
+
+    public void setLocationAfterLoose() {
+
+        levelTwoSectionOneScreen.activeMario.get(0).setX(100);
+        levelTwoSectionOneScreen.XUserHeartImage = 1520;
+        levelTwoSectionOneScreen.userHeartImage.setX(levelTwoSectionOneScreen.XUserHeartImage);
+        levelTwoSectionOneScreen.XThisGameCoinImage = 1110;
+        levelTwoSectionOneScreen.thisGameCoinImage.setX(levelTwoSectionOneScreen.XThisGameCoinImage);
+        levelTwoSectionOneScreen.XThisGameCoin = 1080;
+        levelTwoSectionOneScreen.XUserHeartValueLabel = 1510;
+        levelTwoSectionOneScreen.XThisSectionTimeLabel = 1180;
+        levelTwoSectionOneScreen.XUserScoreLabel = 1345;
+
     }
 
 }
