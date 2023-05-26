@@ -9,16 +9,12 @@ import java.awt.image.BufferedImage;
 public class BirdBomb extends Enemy {
 
     private BufferedImage background;
-    Timer timerForMovingTheGoompa;
-    private int secondCounter = 0;
-
     private int x;
     private int y;
-    private int width = 35;
+    private int width = 30;
     private int height = 65;
-    private int velocity = -5;
 
-    BirdBomb(int xx, int yy) {
+    public BirdBomb(int xx, int yy) {
 
         this.setSize(width, height);
 

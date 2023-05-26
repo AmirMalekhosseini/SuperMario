@@ -40,7 +40,7 @@ public class HiddenCoinSectionModel {
                     firstObjectWidth += firstObjectX;
                     firstObjectHeight += firstObjectY;
 
-                    //      overflow || intersectWithObjects
+                    //      overflow || marioIntersectWithObjects
                     if ((secondObjectWidth < secondObjectX || secondObjectWidth > firstObjectX) &&
                             (secondObjectHeight < secondObjectY || secondObjectHeight > firstObjectY) &&
                             (firstObjectWidth < firstObjectX || firstObjectWidth > secondObjectX) &&

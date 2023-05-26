@@ -27,7 +27,7 @@ public class GameLoop {
         calculatorThread.start();
         graphicThread.start();
         enemyThread.start();
-        hiddenCoinSectionThread.start();
+//        hiddenCoinSectionThread.start();
 //        hiddenEnemySectionThread.start();
     }
 
@@ -51,13 +51,13 @@ public class GameLoop {
                     if (gameScreenFrame.getGameData().getMarioLocation().equalsIgnoreCase("levelonesectionone")) {
                         gameScreenFrame.getLevelOneSectionOneModel().gravity.allocateGravity();
                         gameScreenFrame.intersectInLevelOneSectionOne.refreshIntersectsBooleans();
-                        gameScreenFrame.intersectInLevelOneSectionOne.intersectWithObjects();
-                        gameScreenFrame.intersectInLevelOneSectionOne.intersectWithItems();
-                        if (gameScreenFrame.intersectInLevelOneSectionOne.intersectWithEnemies()) {
+                        gameScreenFrame.intersectInLevelOneSectionOne.marioIntersectWithObjects();
+                        gameScreenFrame.intersectInLevelOneSectionOne.marioIntersectWithItems();
+                        if (gameScreenFrame.intersectInLevelOneSectionOne.marioIntersectWithEnemies()) {
                             gameScreenFrame.setXLevelOneBackgroundPanel(0);
                             gameScreenFrame.getLevelOneSectionOneModel().setLocationAfterLoose();
                         }
-                        if (gameScreenFrame.intersectInLevelOneSectionOne.intersectWithEmptyGround()) {
+                        if (gameScreenFrame.intersectInLevelOneSectionOne.marioIntersectWithEmptyGround()) {
                             gameScreenFrame.setXLevelOneBackgroundPanel(0);
                             gameScreenFrame.getLevelOneSectionOneModel().setLocationAfterLoose();
                             gameScreenFrame.getLevelOneSectionOneScreen().thisSectionTime.setSectionTime(50);

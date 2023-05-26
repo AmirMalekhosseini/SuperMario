@@ -44,7 +44,7 @@ public class IntersectInHiddenEnemySection {
             marioWidth += marioX;
             marioHeight += marioY;
 
-            //      overflow || intersectWithObjects
+            //      overflow || marioIntersectWithObjects
             if ((objectWidth < objectX || objectWidth > marioX) &&
                     (objectHeight < objectY || objectHeight > marioY) &&
                     (marioWidth < marioX || marioWidth > objectX) &&
@@ -154,7 +154,7 @@ public class IntersectInHiddenEnemySection {
             marioWidth += marioX;
             marioHeight += marioY;
 
-            //      overflow || intersectWithObjects
+            //      overflow || marioIntersectWithObjects
             if ((objectWidth < objectX || objectWidth > marioX) &&
                     (objectHeight < objectY || objectHeight > marioY) &&
                     (marioWidth < marioX || marioWidth > objectX) &&
@@ -192,7 +192,7 @@ public class IntersectInHiddenEnemySection {
             marioWidth += marioX;
             marioHeight += marioY;
 
-            //      overflow || intersectWithObjects
+            //      overflow || marioIntersectWithObjects
             if ((objectWidth < objectX || objectWidth > marioX) &&
                     (objectHeight < objectY || objectHeight > marioY) &&
                     (marioWidth < marioX || marioWidth > objectX) &&

@@ -22,7 +22,7 @@ public class LevelTwoSectionOneModel {
 
                 for (ObjectsInGame objects : levelTwoSectionOneScreen.getObjectsInThisSection()) {
                     int firstObjectWidth = object.getWidth();
-                    int firstObjectHeight = object.getHeight() + 15;
+                    int firstObjectHeight = object.getHeight() + 5;
                     int secondObjectWidth = objects.getWidth();
                     int secondObjectHeight = objects.getHeight();
                     if (secondObjectWidth <= 0 || secondObjectHeight <= 0 || firstObjectWidth <= 0 || firstObjectHeight <= 0) {
@@ -37,7 +37,7 @@ public class LevelTwoSectionOneModel {
                     firstObjectWidth += firstObjectX;
                     firstObjectHeight += firstObjectY;
 
-                    //      overflow || intersectWithObjects
+                    //      overflow || marioIntersectWithObjects
                     if ((secondObjectWidth < secondObjectX || secondObjectWidth > firstObjectX) &&
                             (secondObjectHeight < secondObjectY || secondObjectHeight > firstObjectY) &&
                             (firstObjectWidth < firstObjectX || firstObjectWidth > secondObjectX) &&
@@ -112,10 +112,16 @@ public class LevelTwoSectionOneModel {
 
         for (int i = 0; i < levelTwoSectionOneScreen.getEnemiesInThisSection().size(); i++) {
 
-                /*
-                To Do:
-                send mario x,y,height to spiny
-                 */
+            // send mario x,y,height to spiny
+            if (levelTwoSectionOneScreen.getEnemiesInThisSection().get(i) instanceof Spiny) {
+                int marioX = levelTwoSectionOneScreen.activeMario.get(0).getX();
+                int marioY = levelTwoSectionOneScreen.activeMario.get(0).getY();
+                int marioHeight = levelTwoSectionOneScreen.activeMario.get(0).getHeight();
+                ((Spiny) levelTwoSectionOneScreen.getEnemiesInThisSection().get(i)).setMarioX(marioX);
+                ((Spiny) levelTwoSectionOneScreen.getEnemiesInThisSection().get(i)).setMarioY(marioY);
+                ((Spiny) levelTwoSectionOneScreen.getEnemiesInThisSection().get(i)).setMarioHeight(marioHeight);
+            }
+
             levelTwoSectionOneScreen.getEnemiesInThisSection().get(i).move();
             // Enemy Changes its Direction:
             if (intersect.isEnemyHitAnObject

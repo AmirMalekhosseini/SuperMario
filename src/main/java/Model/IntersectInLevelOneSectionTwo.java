@@ -43,7 +43,7 @@ public class IntersectInLevelOneSectionTwo {
             marioWidth += marioX;
             marioHeight += marioY;
 
-            //      overflow || intersectWithObjects
+            //      overflow || marioIntersectWithObjects
             if ((objectWidth < objectX || objectWidth > marioX) &&
                     (objectHeight < objectY || objectHeight > marioY) &&
                     (marioWidth < marioX || marioWidth > objectX) &&
@@ -154,7 +154,7 @@ public class IntersectInLevelOneSectionTwo {
             marioWidth += marioX;
             marioHeight += marioY;
 
-            //      overflow || intersectWithObjects
+            //      overflow || marioIntersectWithObjects
             if ((objectWidth < objectX || objectWidth > marioX) &&
                     (objectHeight < objectY || objectHeight > marioY) &&
                     (marioWidth < marioX || marioWidth > objectX) &&
@@ -191,7 +191,7 @@ public class IntersectInLevelOneSectionTwo {
             marioWidth += marioX;
             marioHeight += marioY;
 
-            //      overflow || intersectWithObjects
+            //      overflow || marioIntersectWithObjects
             if ((objectWidth < objectX || objectWidth > marioX) &&
                     (objectHeight < objectY || objectHeight > marioY) &&
                     (marioWidth < marioX || marioWidth > objectX) &&
@@ -222,7 +222,7 @@ public class IntersectInLevelOneSectionTwo {
             marioWidth += marioX;
             marioHeight += marioY;
 
-            //      overflow || intersectWithObjects
+            //      overflow || marioIntersectWithObjects
             if ((objectWidth < objectX || objectWidth > marioX) &&
                     (objectHeight < objectY || objectHeight > marioY) &&
                     (marioWidth < marioX || marioWidth > objectX) &&
@@ -264,20 +264,71 @@ public class IntersectInLevelOneSectionTwo {
                     (enemyHeight < enemyY || enemyHeight > objectY)) {
                 if ((objectHeight > enemyY || enemyHeight > objectY) && enemyWidth <= objectX + 30 && !enemy.isEnemyHitsAnObject()) {// Hit left of Object
 
+                    if (enemy instanceof Spiny) {
+                        enemy.setVelocity(0);
+                        enemy.setX(enemy.getX() - 20);
+                    }
                     enemy.setEnemyHitsAnObject(true);
                     return true;
 
                 }
                 if ((objectHeight > enemyY || enemyHeight > objectY) && objectWidth <= enemyX + 30 && !enemy.isEnemyHitsAnObject()) {// Hit right of Object
 
+                    if (enemy instanceof Spiny) {
+                        enemy.setVelocity(0);
+                        enemy.setX(enemy.getX() + 20);
+                    }
                     enemy.setEnemyHitsAnObject(true);
                     return true;
 
                 }
             }
-
-
         }
+
+        for (int i = 0; i < levelOneSectionTwoScreen.getEmptySpaceInGroundsInThisSection().size(); i++) {
+            int enemyWidth = enemy.getWidth();
+            int enemyHeight = enemy.getHeight();
+            int objectWidth = levelOneSectionTwoScreen.getEmptySpaceInGroundsInThisSection().get(i).getWidth();
+            int objectHeight = levelOneSectionTwoScreen.getEmptySpaceInGroundsInThisSection().get(i).getHeight();
+            if (objectWidth <= 0 || objectHeight <= 0 || enemyWidth <= 0 || enemyHeight <= 0) {
+                continue;
+            }
+            int enemyX = enemy.getX();
+            int enemyY = enemy.getY();
+            int objectX = levelOneSectionTwoScreen.getEmptySpaceInGroundsInThisSection().get(i).getX();
+            int objectY = levelOneSectionTwoScreen.getEmptySpaceInGroundsInThisSection().get(i).getY();
+            objectWidth += objectX;
+            objectHeight += objectY;
+            enemyWidth += enemyX;
+            enemyHeight += enemyY;
+
+            if ((objectWidth < objectX || objectWidth > enemyX) &&
+                    (objectHeight < objectY || objectHeight > enemyY) &&
+                    (enemyWidth < enemyX || enemyWidth > objectX) &&
+                    (enemyHeight < enemyY || enemyHeight > objectY)) {
+                if ((objectHeight > enemyY || enemyHeight > objectY) && enemyWidth <= objectX + 30 && !enemy.isEnemyHitsAnObject()) {// Hit left of Object
+
+                    if (enemy instanceof Spiny) {
+                        enemy.setVelocity(0);
+                        enemy.setX(enemy.getX() - 20);
+                    }
+                    enemy.setEnemyHitsAnObject(true);
+                    return true;
+
+                }
+                if ((objectHeight > enemyY || enemyHeight > objectY) && objectWidth <= enemyX + 30 && !enemy.isEnemyHitsAnObject()) {// Hit right of Object
+
+                    if (enemy instanceof Spiny) {
+                        enemy.setVelocity(0);
+                        enemy.setX(enemy.getX() + 20);
+                    }
+                    enemy.setEnemyHitsAnObject(true);
+                    return true;
+
+                }
+            }
+        }
+
         enemy.setEnemyHitsAnObject(false);
         return false;
     }
@@ -324,6 +375,48 @@ public class IntersectInLevelOneSectionTwo {
             }
 
         }
+
+        for (int i = 0; i < levelOneSectionTwoScreen.getEmptySpaceInGroundsInThisSection().size(); i++) {
+            int itemWidth = item.getWidth();
+            int itemHeight = item.getHeight();
+            int objectWidth = levelOneSectionTwoScreen.getEmptySpaceInGroundsInThisSection().get(i).getWidth();
+            int objectHeight = levelOneSectionTwoScreen.getEmptySpaceInGroundsInThisSection().get(i).getHeight();
+            if (objectWidth <= 0 || objectHeight <= 0 || itemWidth <= 0 || itemHeight <= 0) {
+                continue;
+            }
+            if (item instanceof Coin || item instanceof FlowerItem) {
+                continue;
+            }
+            int itemX = item.getX();
+            int itemY = item.getY();
+            int objectX = levelOneSectionTwoScreen.getEmptySpaceInGroundsInThisSection().get(i).getX();
+            int objectY = levelOneSectionTwoScreen.getEmptySpaceInGroundsInThisSection().get(i).getY();
+            objectWidth += objectX;
+            objectHeight += objectY;
+            itemWidth += itemX;
+            itemHeight += itemY;
+
+            if ((objectWidth < objectX || objectWidth > itemX) &&
+                    (objectHeight < objectY || objectHeight > itemY) &&
+                    (itemWidth < itemX || itemWidth > objectX) &&
+                    (itemHeight < itemY || itemHeight > objectY)) {
+
+                if ((objectHeight > itemY || itemHeight > objectY) && itemWidth <= objectX + 5 && !item.isItemHitsAnObject()) {// Hit left of Object
+
+                    item.setItemHitsAnObject(true);
+                    return true;
+
+                }
+                if ((objectHeight > itemY || itemHeight > objectY) && objectWidth <= itemX+5 && !item.isItemHitsAnObject()) {// Hit right of Object
+
+                    item.setItemHitsAnObject(true);
+                    return true;
+
+                }
+            }
+
+        }
+
         item.setItemHitsAnObject(false);
         return false;
     }

@@ -18,7 +18,7 @@ public class Spiny extends Enemy {
     private int width = 60;
     private int height = 70;
     private double velocity = 0;
-    private final double acceleration = 0.5;
+    private double acceleration = -0.01;
 
     public Spiny(int xx, int yy) {
 
@@ -40,18 +40,29 @@ public class Spiny extends Enemy {
     public void move() {
 
         // When Spiny Move Toward Mario:
-        if ((x >= marioX + 200 || x <= marioX - 200) &&
-                (marioY + marioHeight >= y + height - 30 || marioY + marioHeight <= y + height + 30)) {
-            // Spiny Chasing Mario:
-            if (x > marioX && velocity > 0) {
-                velocity = -1;
-            } else if (x < marioX && velocity < 0) {
-                velocity = 1;
-            }
-            velocity += acceleration;
-            x +=(int) velocity;
-        }else
-            velocity = 0;
+
+        if (x >= marioX) {
+            if (x - 600 <= marioX && marioY + marioHeight >= y + height - 30) {
+                // Spiny Chasing Mario:
+                if (velocity > 0) {
+                    velocity = 0;
+                }
+                acceleration = -0.01;
+                velocity += acceleration;
+                x += (int) velocity;
+            }else
+                velocity = 0;
+        } else {
+            if (x + 600 >= marioX && marioY + marioHeight >= y + height - 30) {
+                if (velocity < 0) {
+                    velocity = 0;
+                }
+                acceleration = 0.01;
+                velocity += acceleration;
+                x += (int) velocity;
+            }else
+                velocity = 0;
+        }
 
     }
 

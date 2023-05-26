@@ -2,16 +2,15 @@ package Graphic;
 
 import Model.MyProjectData;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Bird extends Enemy{
-
-    protected BirdBomb birdBomb;
     private BufferedImage background;
     private BufferedImage background_Filliped;
+    private int secondCounterForBomb = 0;
     private int secondCounter = 0;
+    private boolean throwBomb;
     private int x;
     private int y;
     private int startPosition;
@@ -22,7 +21,6 @@ public class Bird extends Enemy{
 
     public Bird(int xx, int yy, int startPosition, int endPosition) {
 
-        birdBomb = new BirdBomb(xx, yy);
         this.setSize(width, height);
 
         background = MyProjectData.getProjectData().getNukeBird();
@@ -42,10 +40,19 @@ public class Bird extends Enemy{
     @Override
     public void move() {
 
+        secondCounter++;
+        if (secondCounter == 10) {
+        secondCounterForBomb++;
         x += velocity;
         if (x >= endPosition || x <= startPosition) {
             velocity = -velocity;
         }
+        if (secondCounterForBomb == 20 && !throwBomb) {
+            throwBomb = true;
+            secondCounterForBomb = 0;
+        }
+            secondCounter = 0;
+    }
 
     }
 
@@ -119,6 +126,22 @@ public class Bird extends Enemy{
     @Override
     public void setVelocity(double velocity) {
         this.velocity = velocity;
+    }
+
+    public int getSecondCounterForBomb() {
+        return secondCounterForBomb;
+    }
+
+    public void setSecondCounterForBomb(int secondCounterForBomb) {
+        this.secondCounterForBomb = secondCounterForBomb;
+    }
+
+    public boolean isThrowBomb() {
+        return throwBomb;
+    }
+
+    public void setThrowBomb(boolean throwBomb) {
+        this.throwBomb = throwBomb;
     }
 
     public int getSecondCounter() {

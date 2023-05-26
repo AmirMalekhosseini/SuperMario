@@ -12,6 +12,7 @@ public class LevelOneSectionOneScreen extends JLayeredPane {
     protected ArrayList<ObjectsInGame> objectsInThisSection = new ArrayList<>();
     protected ArrayList<ItemsInGame> itemsInThisSection = new ArrayList<>();
     protected ArrayList<Enemy> enemiesInThisSection = new ArrayList<>();
+    protected ArrayList<BirdBomb> bombsInThisSection = new ArrayList<>();
     protected ArrayList<EmptySpaceInGround> emptySpaceInGroundsInThisSection = new ArrayList<>();
     public ArrayList<Mario> activeMario;
 
@@ -160,10 +161,10 @@ public class LevelOneSectionOneScreen extends JLayeredPane {
         }
 
         // Scene One
-        Enemy testEnemy = new Goompa(4900, 625);
+        Enemy testEnemy = new Bird(400, 300,100,700);
         this.add(testEnemy, Integer.valueOf(1));
         enemiesInThisSection.add(testEnemy);
-        Enemy testEnemy1 = new Goompa(4800, 625);
+        Enemy testEnemy1 = new Spiny(400, 890);
         this.add(testEnemy1, Integer.valueOf(1));
         enemiesInThisSection.add(testEnemy1);
         firstBlockInAirSceneOne = new SimpleBlockInAir(450, 700);
@@ -326,6 +327,14 @@ public class LevelOneSectionOneScreen extends JLayeredPane {
 
     public ArrayList<EmptySpaceInGround> getEmptySpaceInGroundsInThisSection() {
         return emptySpaceInGroundsInThisSection;
+    }
+
+    public ArrayList<BirdBomb> getBombsInThisSection() {
+        return bombsInThisSection;
+    }
+
+    public void setBombsInThisSection(ArrayList<BirdBomb> bombsInThisSection) {
+        this.bombsInThisSection = bombsInThisSection;
     }
 
     public GameData getGameData() {
