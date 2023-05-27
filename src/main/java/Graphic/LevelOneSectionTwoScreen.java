@@ -11,6 +11,7 @@ public class LevelOneSectionTwoScreen extends JLayeredPane {
     protected ArrayList<ObjectsInGame> objectsInThisSection = new ArrayList<>();
     protected ArrayList<ItemsInGame> itemsInThisSection = new ArrayList<>();
     protected ArrayList<Enemy> enemiesInThisSection = new ArrayList<>();
+    protected ArrayList<BirdBomb> bombsInThisSection = new ArrayList<>();
     protected ArrayList<EmptySpaceInGround> emptySpaceInGroundsInThisSection = new ArrayList<>();
     public ArrayList<Mario> activeMario;
 
@@ -287,6 +288,13 @@ public class LevelOneSectionTwoScreen extends JLayeredPane {
     }
     public ArrayList<EmptySpaceInGround> getEmptySpaceInGroundsInThisSection() {
         return emptySpaceInGroundsInThisSection;
+    }
+    public ArrayList<BirdBomb> getBombsInThisSection() {
+        return bombsInThisSection;
+    }
+
+    public void setBombsInThisSection(ArrayList<BirdBomb> bombsInThisSection) {
+        this.bombsInThisSection = bombsInThisSection;
     }
     public GameData getGameData() {
         return gameData;

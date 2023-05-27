@@ -20,8 +20,8 @@ public class JumperMario extends Mario {
     private BufferedImage jump_Flipped;
     private BufferedImage stand_Flipped;
 
-    private int x;
-    private int y;
+    private volatile int x;
+    private volatile int y;
     private int width = 70;
     private int height = 120;
 

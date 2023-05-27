@@ -38,6 +38,11 @@ public class LevelOneSectionOneScreen extends JLayeredPane {
     BlockInAir seventhBlockInAirSceneOne;
     Coin fourthCoinOnGroundSceneOne;
     Coin fifthCoinOnGroundSceneOne;
+    Enemy firstEnemyInSceneOne;
+    Enemy secondEnemyInSceneOne;
+    Enemy thirdEnemyInSceneOne;
+    Enemy fourthEnemyInSceneOne;
+    Enemy fifthEnemyInSceneOne;
 
     BlockInAir firstBlockInAirSceneTwo;
     BlockInAir secondBlockInAirSceneTwo;
@@ -51,6 +56,10 @@ public class LevelOneSectionOneScreen extends JLayeredPane {
     Coin coinOnSixthBlockInAirSceneTwo;
     BlockInAir seventhBlockInAirSceneTwo;
     Coin coinOnSeventhBlockInAirSceneTwo;
+    Enemy firstEnemyInSceneTwo;
+    Enemy secondEnemyInSceneTwo;
+    Enemy thirdEnemyInSceneTwo;
+
 
     PrizeInAir firstPrizeInAirSceneThree;
     PrizeInAir secondPrizeInAirSceneThree;
@@ -60,6 +69,11 @@ public class LevelOneSectionOneScreen extends JLayeredPane {
     Pipe firstPipeSceneThree;
     Plant plantInFirstPipeSceneThree;
     Pipe secondPipeSceneThree;
+    Enemy firstEnemyInSceneThree;
+    Enemy secondEnemyInSceneThree;
+    Enemy thirdEnemyInSceneThree;
+    Enemy fourthEnemyInSceneThree;
+    Enemy fifthEnemyInSceneThree;
 
     PipeHorizontal pipeHorizontalSceneFour;
     Castle castle;
@@ -161,12 +175,6 @@ public class LevelOneSectionOneScreen extends JLayeredPane {
         }
 
         // Scene One
-        Enemy testEnemy = new Bird(400, 300,100,700);
-        this.add(testEnemy, Integer.valueOf(1));
-        enemiesInThisSection.add(testEnemy);
-        Enemy testEnemy1 = new Spiny(400, 890);
-        this.add(testEnemy1, Integer.valueOf(1));
-        enemiesInThisSection.add(testEnemy1);
         firstBlockInAirSceneOne = new SimpleBlockInAir(450, 700);
         coinOnFirstBlockInAirSceneOne = new Coin(450, 650);
         secondBlockInAirSceneOne = new SimpleBlockInAir(520, 700);
@@ -184,6 +192,11 @@ public class LevelOneSectionOneScreen extends JLayeredPane {
         seventhBlockInAirSceneOne = new FullOfCoinBlockInAir(1210, 700);
         fourthCoinOnGroundSceneOne = new Coin(1220, 890);
         fifthCoinOnGroundSceneOne = new Coin(1300, 890);
+        firstEnemyInSceneOne = new Bird(400, 300, 400, 1400);
+        secondEnemyInSceneOne = new Spiny(500, 890);
+        thirdEnemyInSceneOne = new Goompa(1300, 890);
+        fourthEnemyInSceneOne = new Goompa(1400, 890);
+        fifthEnemyInSceneOne = new Goompa(1500, 890);
 
         // Scene Two
         firstBlockInAirSceneTwo = new SimpleBlockInAir(2100, 700);
@@ -198,6 +211,9 @@ public class LevelOneSectionOneScreen extends JLayeredPane {
         coinOnSixthBlockInAirSceneTwo = new Coin(2570, 550);
         seventhBlockInAirSceneTwo = new FullOfCoinBlockInAir(2640, 600);
         coinOnSeventhBlockInAirSceneTwo = new Coin(2640, 550);
+        firstEnemyInSceneTwo = new Goompa(2300, 890);
+        secondEnemyInSceneTwo = new Goompa(2200, 890);
+        thirdEnemyInSceneTwo = new Turtle(2450, 890);
 
         // Scene Three
         firstPrizeInAirSceneThree = new PrizeInAir(4300, 500);
@@ -208,6 +224,11 @@ public class LevelOneSectionOneScreen extends JLayeredPane {
         firstPipeSceneThree = new Pipe(4100, 765);
         plantInFirstPipeSceneThree = new Plant(4125, 750);
         secondPipeSceneThree = new Pipe(4800, 765);
+        firstEnemyInSceneThree = new Bird(3400, 300, 3300, 4300);
+        secondEnemyInSceneThree = new Spiny(3600, 890);
+        thirdEnemyInSceneThree = new Goompa(4300, 890);
+        fourthEnemyInSceneThree = new Goompa(4400, 890);
+        fifthEnemyInSceneThree = new Goompa(4500, 890);
 
         // Scene Four
         castle = new Castle(6220, 490);
@@ -261,6 +282,16 @@ public class LevelOneSectionOneScreen extends JLayeredPane {
         itemsInThisSection.add(fourthCoinOnGroundSceneOne);
         this.add(fifthCoinOnGroundSceneOne, Integer.valueOf(1));
         itemsInThisSection.add(fifthCoinOnGroundSceneOne);
+        this.add(firstEnemyInSceneOne, Integer.valueOf(1));
+        enemiesInThisSection.add(firstEnemyInSceneOne);
+        this.add(secondEnemyInSceneOne, Integer.valueOf(1));
+        enemiesInThisSection.add(secondEnemyInSceneOne);
+        this.add(thirdEnemyInSceneOne, Integer.valueOf(1));
+        enemiesInThisSection.add(thirdEnemyInSceneOne);
+        this.add(fourthEnemyInSceneOne, Integer.valueOf(1));
+        enemiesInThisSection.add(fourthEnemyInSceneOne);
+        this.add(fifthEnemyInSceneOne, Integer.valueOf(1));
+        enemiesInThisSection.add(fifthEnemyInSceneOne);
 
         // Scene Two:
         this.add(firstBlockInAirSceneTwo, Integer.valueOf(1));
@@ -287,6 +318,12 @@ public class LevelOneSectionOneScreen extends JLayeredPane {
         objectsInThisSection.add(seventhBlockInAirSceneTwo);
         this.add(coinOnSeventhBlockInAirSceneTwo, Integer.valueOf(1));
         itemsInThisSection.add(coinOnSeventhBlockInAirSceneTwo);
+        this.add(firstEnemyInSceneTwo, Integer.valueOf(1));
+        enemiesInThisSection.add(firstEnemyInSceneTwo);
+        this.add(secondEnemyInSceneTwo, Integer.valueOf(1));
+        enemiesInThisSection.add(secondEnemyInSceneTwo);
+        this.add(thirdEnemyInSceneTwo, Integer.valueOf(1));
+        enemiesInThisSection.add(thirdEnemyInSceneTwo);
 
         // Scene Three:
         this.add(firstPrizeInAirSceneThree, Integer.valueOf(1));
@@ -305,6 +342,16 @@ public class LevelOneSectionOneScreen extends JLayeredPane {
         itemsInThisSection.add(thirdCoinOnGroundSceneThree);
         this.add(secondPipeSceneThree, Integer.valueOf(1));
         objectsInThisSection.add(secondPipeSceneThree);
+        this.add(firstEnemyInSceneThree, Integer.valueOf(1));
+        enemiesInThisSection.add(firstEnemyInSceneThree);
+        this.add(secondEnemyInSceneThree, Integer.valueOf(1));
+        enemiesInThisSection.add(secondEnemyInSceneThree);
+        this.add(thirdEnemyInSceneThree, Integer.valueOf(1));
+        enemiesInThisSection.add(thirdEnemyInSceneThree);
+        this.add(fourthEnemyInSceneThree, Integer.valueOf(1));
+        enemiesInThisSection.add(fourthEnemyInSceneThree);
+        this.add(fifthEnemyInSceneThree, Integer.valueOf(1));
+        enemiesInThisSection.add(fifthEnemyInSceneThree);
 
         // Scene Four:
         this.add(castle, Integer.valueOf(1));

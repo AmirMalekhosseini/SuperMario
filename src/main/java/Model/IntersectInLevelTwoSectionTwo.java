@@ -174,6 +174,7 @@ public class IntersectInLevelTwoSectionTwo {
     }
 
     public boolean intersectWithEnemies() {
+
         for (int i = 0; i < levelTwoSectionTwoScreen.getEnemiesInThisSection().size(); i++) {
             int marioWidth = levelTwoSectionTwoScreen.activeMario.get(0).getWidth();
             int marioHeight = levelTwoSectionTwoScreen.activeMario.get(0).getHeight();
@@ -201,10 +202,43 @@ public class IntersectInLevelTwoSectionTwo {
             }
 
         }
+
+        // Bomb Hits mario:
+        for (int i = 0; i < levelTwoSectionTwoScreen.getBombsInThisSection().size(); i++) {
+            int marioWidth = levelTwoSectionTwoScreen.activeMario.get(0).getWidth();
+            int marioHeight = levelTwoSectionTwoScreen.activeMario.get(0).getHeight();
+            int objectWidth = levelTwoSectionTwoScreen.getBombsInThisSection().get(i).getWidth();
+            int objectHeight = levelTwoSectionTwoScreen.getBombsInThisSection().get(i).getHeight();
+            if (objectWidth <= 0 || objectHeight <= 0 || marioWidth <= 0 || marioHeight <= 0) {
+                continue;
+            }
+            int marioX = levelTwoSectionTwoScreen.activeMario.get(0).getX();
+            int marioY = levelTwoSectionTwoScreen.activeMario.get(0).getY();
+            int objectX = levelTwoSectionTwoScreen.getBombsInThisSection().get(i).getX();
+            int objectY = levelTwoSectionTwoScreen.getBombsInThisSection().get(i).getY();
+            objectWidth += objectX;
+            objectHeight += objectY;
+            marioWidth += marioX;
+            marioHeight += marioY;
+
+            //      overflow || marioIntersectWithObjects
+            if ((objectWidth < objectX || objectWidth > marioX) &&
+                    (objectHeight < objectY || objectHeight > marioY) &&
+                    (marioWidth < marioX || marioWidth > objectX) &&
+                    (marioHeight < marioY || marioHeight > objectY)) {
+                levelTwoSectionTwoScreen.remove(levelTwoSectionTwoScreen.getBombsInThisSection().get(i));
+                levelTwoSectionTwoScreen.getBombsInThisSection().remove(i);
+                levelTwoSectionTwoScreen.getGameData().userHeartValue--;
+                levelTwoSectionTwoScreen.thisSectionTime.setSectionTime(50);
+                return true;
+            }
+        }
+
         return false;
     }
 
     public boolean intersectWithEmptyGround() {
+
         for (int i = 0; i < levelTwoSectionTwoScreen.getEmptySpaceInGroundsInThisSection().size(); i++) {
             int marioWidth = levelTwoSectionTwoScreen.activeMario.get(0).getWidth();
             int marioHeight = levelTwoSectionTwoScreen.activeMario.get(0).getHeight();
@@ -268,6 +302,11 @@ public class IntersectInLevelTwoSectionTwo {
                         enemy.setVelocity(0);
                         enemy.setX(enemy.getX() - 20);
                     }
+
+                    if (enemy instanceof Turtle) {
+                        continue;
+                    }
+
                     enemy.setEnemyHitsAnObject(true);
                     return true;
 
@@ -278,6 +317,11 @@ public class IntersectInLevelTwoSectionTwo {
                         enemy.setVelocity(0);
                         enemy.setX(enemy.getX() + 20);
                     }
+
+                    if (enemy instanceof Turtle) {
+                        continue;
+                    }
+
                     enemy.setEnemyHitsAnObject(true);
                     return true;
 
@@ -312,6 +356,11 @@ public class IntersectInLevelTwoSectionTwo {
                         enemy.setVelocity(0);
                         enemy.setX(enemy.getX() - 20);
                     }
+
+                    if (enemy instanceof Turtle) {
+                        continue;
+                    }
+
                     enemy.setEnemyHitsAnObject(true);
                     return true;
 
@@ -322,6 +371,11 @@ public class IntersectInLevelTwoSectionTwo {
                         enemy.setVelocity(0);
                         enemy.setX(enemy.getX() + 20);
                     }
+
+                    if (enemy instanceof Turtle) {
+                        continue;
+                    }
+
                     enemy.setEnemyHitsAnObject(true);
                     return true;
 
@@ -419,6 +473,79 @@ public class IntersectInLevelTwoSectionTwo {
 
         item.setItemHitsAnObject(false);
         return false;
+    }
+
+    public void bombIntersection(BirdBomb bomb) {
+
+        // Bomb Hits Ground:
+        if (bomb.getY() + bomb.getHeight() >= 940) {
+            levelTwoSectionTwoScreen.remove(bomb);
+            levelTwoSectionTwoScreen.getBombsInThisSection().remove(bomb);
+            return;
+        }
+        // Bomb Hits An Enemy:
+        for (int i = 0; i < levelTwoSectionTwoScreen.getEnemiesInThisSection().size(); i++) {
+            int bombWidth = bomb.getWidth();
+            int bombHeight = bomb.getHeight();
+            int objectWidth = levelTwoSectionTwoScreen.getEnemiesInThisSection().get(i).getWidth();
+            int objectHeight = levelTwoSectionTwoScreen.getEnemiesInThisSection().get(i).getHeight();
+            if (objectWidth <= 0 || objectHeight <= 0 || bombWidth <= 0 || bombHeight <= 0) {
+                continue;
+            }
+            int bombX = bomb.getX();
+            int bombY = bomb.getY();
+            int objectX = levelTwoSectionTwoScreen.getEnemiesInThisSection().get(i).getX();
+            int objectY = levelTwoSectionTwoScreen.getEnemiesInThisSection().get(i).getY();
+            objectWidth += objectX;
+            objectHeight += objectY;
+            bombWidth += bombX;
+            bombHeight += bombY;
+
+            //      overflow || bombIntersectWithObjects
+            if ((objectWidth < objectX || objectWidth > bombX) &&
+                    (objectHeight < objectY || objectHeight > bombY) &&
+                    (bombWidth < bombX || bombWidth > objectX) &&
+                    (bombHeight < bombY || bombHeight > objectY)) {
+
+                levelTwoSectionTwoScreen.remove(bomb);
+                levelTwoSectionTwoScreen.remove(levelTwoSectionTwoScreen.getEnemiesInThisSection().get(i));
+                levelTwoSectionTwoScreen.getEnemiesInThisSection().remove(i);
+                levelTwoSectionTwoScreen.getBombsInThisSection().remove(bomb);
+                return;
+            }
+        }
+
+        // Bomb Hits An Object:
+        for (int i = 0; i < levelTwoSectionTwoScreen.getObjectsInThisSection().size(); i++) {
+            int bombWidth = bomb.getWidth();
+            int bombHeight = bomb.getHeight();
+            int objectWidth = levelTwoSectionTwoScreen.getObjectsInThisSection().get(i).getWidth();
+            int objectHeight = levelTwoSectionTwoScreen.getObjectsInThisSection().get(i).getHeight();
+            if (objectWidth <= 0 || objectHeight <= 0 || bombWidth <= 0 || bombHeight <= 0) {
+                continue;
+            }
+            int bombX = bomb.getX();
+            int bombY = bomb.getY();
+            int objectX = levelTwoSectionTwoScreen.getObjectsInThisSection().get(i).getX();
+            int objectY = levelTwoSectionTwoScreen.getObjectsInThisSection().get(i).getY();
+            objectWidth += objectX;
+            objectHeight += objectY;
+            bombWidth += bombX;
+            bombHeight += bombY;
+
+            //      overflow || bombIntersectWithObjects
+            if ((objectWidth < objectX || objectWidth > bombX) &&
+                    (objectHeight < objectY || objectHeight > bombY) &&
+                    (bombWidth < bombX || bombWidth > objectX) &&
+                    (bombHeight < bombY || bombHeight > objectY)) {
+
+                levelTwoSectionTwoScreen.remove(bomb);
+                levelTwoSectionTwoScreen.getBombsInThisSection().remove(bomb);
+                return;
+
+            }
+        }
+
     }
 
     public void generateRandomItem(PrizeInAir prizeInAir) {

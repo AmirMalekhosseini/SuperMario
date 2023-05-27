@@ -4,6 +4,7 @@ import Graphic.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import MyProject.MyProject;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -19,11 +20,13 @@ public class GameLoop {
         objectMapper.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
 
         this.gameScreenFrame = gameScreenFrame;
+        MarioMoverThread marioMoverThread = new MarioMoverThread();
         CalculatorThread calculatorThread = new CalculatorThread();
         GraphicThread graphicThread = new GraphicThread();
         EnemyThread enemyThread = new EnemyThread();
         HiddenCoinSectionThread hiddenCoinSectionThread = new HiddenCoinSectionThread();
         HiddenEnemySectionThread hiddenEnemySectionThread = new HiddenEnemySectionThread();
+        marioMoverThread.start();
         calculatorThread.start();
         graphicThread.start();
         enemyThread.start();
@@ -47,7 +50,6 @@ public class GameLoop {
                     long startTime = System.currentTimeMillis();
                     int xLevelOneBackgroundPanel = gameScreenFrame.getXLevelOneBackgroundPanel();
                     gameScreenFrame.getLevelOneGameBackgroundPanel().setLocation(xLevelOneBackgroundPanel, 0);
-                    gameScreenFrame.marioMover.move();
                     if (gameScreenFrame.getGameData().getMarioLocation().equalsIgnoreCase("levelonesectionone")) {
                         gameScreenFrame.getLevelOneSectionOneModel().gravity.allocateGravity();
                         gameScreenFrame.intersectInLevelOneSectionOne.refreshIntersectsBooleans();
@@ -142,12 +144,6 @@ public class GameLoop {
                 long targetTime = 1000 / fps;
                 if (!gameScreenFrame.getGameData().isGameFinish) {
                     long startTime = System.currentTimeMillis();
-                    gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).setLocation
-                            (gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).getX(),
-                                    gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).getY());
-                    gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).setLocation
-                            (gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).getX(),
-                                    gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).getY());
                     gameScreenFrame.getLevelOneSectionOneScreen().backgroundLabelSceneOne.repaint();
                     gameScreenFrame.getLevelOneSectionOneScreen().backgroundLabelSceneTwo.repaint();
                     gameScreenFrame.getLevelOneSectionOneScreen().backgroundLabelSceneThree.repaint();
@@ -175,6 +171,42 @@ public class GameLoop {
             }
         }
     }
+
+    private class MarioMoverThread extends Thread {
+
+        public void run() {
+
+            while (!gameScreenFrame.getGameData().isGameFinish) {
+
+                int fps = 120;
+                long targetTime = 1000 / fps;
+                if (!gameScreenFrame.getGameData().isGameFinish) {
+                    long startTime = System.currentTimeMillis();
+                    gameScreenFrame.marioMover.move();
+                    gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).setLocation
+                            (gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).getX(),
+                                    gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).getY());
+                    gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).setLocation
+                            (gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).getX(),
+                                    gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).getY());
+
+                    long elapsedTime = System.currentTimeMillis() - startTime;
+                    long sleepTime = targetTime - elapsedTime;
+                    if (sleepTime > 0) {
+                        try {
+                            Thread.sleep(sleepTime);
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+
+                }
+
+            }
+        }
+
+    }
+
 
     private class HiddenEnemySectionThread extends Thread {
 
@@ -291,7 +323,7 @@ public class GameLoop {
 
                 synchronized (this) {
 
-                gameScreenFrame.getHiddenCoinSectionModel().gravity.allocateGravity();
+                    gameScreenFrame.getHiddenCoinSectionModel().gravity.allocateGravity();
 
                 }
 

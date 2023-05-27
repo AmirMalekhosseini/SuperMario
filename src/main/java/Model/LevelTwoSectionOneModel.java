@@ -2,6 +2,8 @@ package Model;
 
 import Graphic.*;
 
+import java.util.ArrayList;
+
 public class LevelTwoSectionOneModel {
 
     LevelTwoSectionOneScreen levelTwoSectionOneScreen;
@@ -56,6 +58,10 @@ public class LevelTwoSectionOneModel {
 
                 for (ItemsInGame itemsInGame : levelTwoSectionOneScreen.getItemsInThisSection()) {
 
+                    if (itemsInGame instanceof Star && ((Star) itemsInGame).isJumping()) {
+                        continue;
+                    }
+
                     // Object is on the Ground or On an Object:
                     if (gravity.isItemOnTopOfAnObject(itemsInGame) &&
                             (itemsInGame.getY() <= 920 - itemsInGame.getHeight())) {
@@ -72,7 +78,7 @@ public class LevelTwoSectionOneModel {
 
                 for (Enemy enemy : levelTwoSectionOneScreen.getEnemiesInThisSection()) {
 
-                    if (enemy instanceof Plant) {
+                    if (enemy instanceof Plant || enemy instanceof Bird) {
                         continue;
                     }
                     if (gravity.isItemOnTopOfAnObject(enemy) &&
@@ -80,6 +86,23 @@ public class LevelTwoSectionOneModel {
                         // Object is not on the Ground or On an Object:
                         int currentY = enemy.getY();
                         enemy.setY(currentY + 10);
+                        try {
+                            Thread.sleep(5);
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                }
+
+                ArrayList<BirdBomb> bombInThisSection = levelTwoSectionOneScreen.getBombsInThisSection();
+                for (int i = 0; i < bombInThisSection.size(); i++) {
+                    BirdBomb bomb = bombInThisSection.get(i);
+
+                    if (!gravity.isItemOnTopOfAnObject(bomb) &&
+                            (bomb.getY() <= 940 - bomb.getHeight())) {
+                        // Object is not on the Ground or On an Object:
+                        int currentY = bomb.getY();
+                        bomb.setY(currentY + 10);
                         try {
                             Thread.sleep(5);
                         } catch (InterruptedException e) {
@@ -122,6 +145,17 @@ public class LevelTwoSectionOneModel {
                 ((Spiny) levelTwoSectionOneScreen.getEnemiesInThisSection().get(i)).setMarioHeight(marioHeight);
             }
 
+            if (levelTwoSectionOneScreen.getEnemiesInThisSection().get(i) instanceof Bird &&
+                    ((Bird) levelTwoSectionOneScreen.getEnemiesInThisSection().get(i)).isThrowBomb()) {
+                ((Bird) levelTwoSectionOneScreen.getEnemiesInThisSection().get(i)).setThrowBomb(false);
+                int xBomb = levelTwoSectionOneScreen.getEnemiesInThisSection().get(i).getX();
+                int yBomb = levelTwoSectionOneScreen.getEnemiesInThisSection().get(i).getY() + 200;
+                BirdBomb bomb = new BirdBomb(xBomb, yBomb);
+                levelTwoSectionOneScreen.add(bomb, Integer.valueOf(1));
+                levelTwoSectionOneScreen.getBombsInThisSection().add(bomb);
+            }
+
+
             levelTwoSectionOneScreen.getEnemiesInThisSection().get(i).move();
             // Enemy Changes its Direction:
             if (intersect.isEnemyHitAnObject
@@ -130,6 +164,10 @@ public class LevelTwoSectionOneModel {
                 levelTwoSectionOneScreen.getEnemiesInThisSection().get(i).setVelocity(-velocity);
 
             }
+        }
+
+        for (int i = 0; i < levelTwoSectionOneScreen.getBombsInThisSection().size(); i++) {
+            intersect.bombIntersection(levelTwoSectionOneScreen.getBombsInThisSection().get(i));
         }
 
     }

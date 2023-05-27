@@ -260,6 +260,7 @@ public class IntersectInLevelOneSectionOne {
                 return true;
             }
         }
+
         return false;
     }
 
@@ -329,6 +330,10 @@ public class IntersectInLevelOneSectionOne {
                         enemy.setX(enemy.getX() - 20);
                     }
 
+                    if (enemy instanceof Turtle) {
+                        continue;
+                    }
+
                     enemy.setEnemyHitsAnObject(true);
                     return true;
 
@@ -338,6 +343,10 @@ public class IntersectInLevelOneSectionOne {
                     if (enemy instanceof Spiny) {
                         enemy.setVelocity(0);
                         enemy.setX(enemy.getX() + 20);
+                    }
+
+                    if (enemy instanceof Turtle) {
+                        continue;
                     }
 
                     enemy.setEnemyHitsAnObject(true);
@@ -374,6 +383,11 @@ public class IntersectInLevelOneSectionOne {
                         enemy.setVelocity(0);
                         enemy.setX(enemy.getX() - 20);
                     }
+
+                    if (enemy instanceof Turtle) {
+                        continue;
+                    }
+
                     enemy.setEnemyHitsAnObject(true);
                     return true;
 
@@ -384,6 +398,11 @@ public class IntersectInLevelOneSectionOne {
                         enemy.setVelocity(0);
                         enemy.setX(enemy.getX() + 20);
                     }
+
+                    if (enemy instanceof Turtle) {
+                        continue;
+                    }
+
                     enemy.setEnemyHitsAnObject(true);
                     return true;
 
@@ -514,7 +533,6 @@ public class IntersectInLevelOneSectionOne {
                     (objectHeight < objectY || objectHeight > bombY) &&
                     (bombWidth < bombX || bombWidth > objectX) &&
                     (bombHeight < bombY || bombHeight > objectY)) {
-                System.out.println("hi");
 
                 levelOneSectionOneScreen.remove(bomb);
                 levelOneSectionOneScreen.remove(levelOneSectionOneScreen.getEnemiesInThisSection().get(i));
