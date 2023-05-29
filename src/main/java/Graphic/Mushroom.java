@@ -152,7 +152,7 @@ public class Mushroom extends ItemsInGame{
     }
 
     public boolean isItemHitsAnObject() {
-        return isItemHitsAnObject;
+        return !isItemHitsAnObject;
     }
 
     public void setItemHitsAnObject(boolean itemHitsAnObject) {

@@ -24,7 +24,7 @@ public class LevelOneSectionOneModel {
 
                 for (ObjectsInGame objects : levelOneSectionOneScreen.getObjectsInThisSection()) {
                     int firstObjectWidth = object.getWidth();
-                    int firstObjectHeight = object.getHeight() + 5;
+                    int firstObjectHeight = object.getHeight() + 15;
                     int secondObjectWidth = objects.getWidth();
                     int secondObjectHeight = objects.getHeight();
                     if (secondObjectWidth <= 0 || secondObjectHeight <= 0 || firstObjectWidth <= 0 || firstObjectHeight <= 0) {

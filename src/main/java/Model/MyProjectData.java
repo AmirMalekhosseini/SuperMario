@@ -19,60 +19,86 @@ public class MyProjectData {
     protected ImageIcon shooterMarioImage;
     protected ImageIcon coinMarioImage;
 
+    protected BufferedImage sword;
+    protected BufferedImage fireBall;
+    protected BufferedImage fireMario;
+    protected BufferedImage fireMario_Mini;
+    protected BufferedImage fireMario_Filliped;
+    protected BufferedImage fireMario_Filliped_Mini;
     protected BufferedImage normalMario_Run_1;
     protected BufferedImage normalMario_Run_1_Flipped;
     protected BufferedImage normalMario_Run_2;
     protected BufferedImage normalMario_Run_2_Flipped;
     protected BufferedImage normalMario_Run_3;
+    protected BufferedImage normalMario_Run_3_Mini;
     protected BufferedImage normalMario_Run_3_Flipped;
+    protected BufferedImage normalMario_Run_3_Flipped_Mini;
     protected BufferedImage normalMario_jump;
     protected BufferedImage normalMario_jump_Flipped;
     protected BufferedImage normalMario_Stand;
+    protected BufferedImage normalMario_Stand_Mini;
     protected BufferedImage normalMario_Stand_Flipped;
+    protected BufferedImage normalMario_Stand_Flipped_Mini;
 
     protected BufferedImage runnerMario_Run_1;
     protected BufferedImage runnerMario_Run_1_Flipped;
     protected BufferedImage runnerMario_Run_2;
     protected BufferedImage runnerMario_Run_2_Flipped;
     protected BufferedImage runnerMario_Run_3;
+    protected BufferedImage runnerMario_Run_3_Mini;
     protected BufferedImage runnerMario_Run_3_Flipped;
+    protected BufferedImage runnerMario_Run_3_Flipped_Mini;
     protected BufferedImage runnerMario_jump;
     protected BufferedImage runnerMario_jump_Flipped;
     protected BufferedImage runnerMario_Stand;
+    protected BufferedImage runnerMario_Stand_Mini;
     protected BufferedImage runnerMario_Stand_Flipped;
+    protected BufferedImage runnerMario_Stand_Flipped_Mini;
 
     protected BufferedImage jumperMario_Run_1;
     protected BufferedImage jumperMario_Run_1_Flipped;
     protected BufferedImage jumperMario_Run_2;
     protected BufferedImage jumperMario_Run_2_Flipped;
     protected BufferedImage jumperMario_Run_3;
+    protected BufferedImage jumperMario_Run_3_Mini;
     protected BufferedImage jumperMario_Run_3_Flipped;
+    protected BufferedImage jumperMario_Run_3_Flipped_Mini;
     protected BufferedImage jumperMario_jump;
     protected BufferedImage jumperMario_jump_Flipped;
     protected BufferedImage jumperMario_Stand;
+    protected BufferedImage jumperMario_Stand_Mini;
     protected BufferedImage jumperMario_Stand_Flipped;
+    protected BufferedImage jumperMario_Stand_Flipped_Mini;
 
     protected BufferedImage shooterMario_Run_1;
     protected BufferedImage shooterMario_Run_1_Flipped;
     protected BufferedImage shooterMario_Run_2;
     protected BufferedImage shooterMario_Run_2_Flipped;
     protected BufferedImage shooterMario_Run_3;
+    protected BufferedImage shooterMario_Run_3_Mini;
     protected BufferedImage shooterMario_Run_3_Flipped;
+    protected BufferedImage shooterMario_Run_3_Flipped_Mini;
     protected BufferedImage shooterMario_jump;
     protected BufferedImage shooterMario_jump_Flipped;
     protected BufferedImage shooterMario_Stand;
+    protected BufferedImage shooterMario_Stand_Mini;
     protected BufferedImage shooterMario_Stand_Flipped;
+    protected BufferedImage shooterMario_Stand_Flipped_Mini;
 
     protected BufferedImage coinMario_Run_1;
     protected BufferedImage coinMario_Run_1_Flipped;
     protected BufferedImage coinMario_Run_2;
     protected BufferedImage coinMario_Run_2_Flipped;
     protected BufferedImage coinMario_Run_3;
+    protected BufferedImage coinMario_Run_3_Mini;
     protected BufferedImage coinMario_Run_3_Flipped;
+    protected BufferedImage coinMario_Run_3_Flipped_Mini;
     protected BufferedImage coinMario_jump;
     protected BufferedImage coinMario_jump_Flipped;
     protected BufferedImage coinMario_Stand;
+    protected BufferedImage coinMario_Stand_Mini;
     protected BufferedImage coinMario_Stand_Flipped;
+    protected BufferedImage coinMario_Stand_Flipped_Mini;
 
     protected BufferedImage blockInAir;
     protected BufferedImage emptyBlockInAir;
@@ -110,6 +136,7 @@ public class MyProjectData {
 
         importImages();
         importMarios();
+        importWeapons();
         importFonts();
         importObjectsInGame();
 
@@ -372,6 +399,75 @@ public class MyProjectData {
         importJumperMario();
         importShooterMario();
         importCoinMario();
+        importFireMario();
+
+    }
+
+    public void importWeapons() {
+
+        try {
+            String pathBackground = "MarioWeapon/Fireball.png";
+            File fileBackground = new File(pathBackground);
+            fireBall = ImageIO.read(fileBackground);
+
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            String pathBackground = "MarioWeapon/Sword.png";
+            File fileBackground = new File(pathBackground);
+            sword = ImageIO.read(fileBackground);
+
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void importFireMario() {
+
+        try {
+            String pathBackground = "mario/FireMario/FireMario.png";
+            File fileBackground = new File(pathBackground);
+            fireMario = ImageIO.read(fileBackground);
+
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            String pathBackground = "mario/FireMario/FireMario_Mini.png";
+            File fileBackground = new File(pathBackground);
+            fireMario_Mini = ImageIO.read(fileBackground);
+
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            String pathBackground = "MarioFilliped/FireMario/FireMario.png";
+            File fileBackground = new File(pathBackground);
+            fireMario_Filliped = ImageIO.read(fileBackground);
+
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            String pathBackground = "MarioFilliped/FireMario/FireMario_Mini.png";
+            File fileBackground = new File(pathBackground);
+            fireMario_Filliped_Mini = ImageIO.read(fileBackground);
+
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -405,9 +501,29 @@ public class MyProjectData {
         }
 
         try {
+            String pathBackground = "mario/Normal Mario/run_3_Red_Normal_Mini.png";
+            File fileBackground = new File(pathBackground);
+            normalMario_Run_3_Mini = ImageIO.read(fileBackground);
+
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
             String pathBackground = "mario/Normal Mario/stand_Red_Normal.png";
             File fileBackground = new File(pathBackground);
             normalMario_Stand = ImageIO.read(fileBackground);
+
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            String pathBackground = "mario/Normal Mario/stand_Red_Normal_Mini.png";
+            File fileBackground = new File(pathBackground);
+            normalMario_Stand_Mini = ImageIO.read(fileBackground);
 
         }
         catch (IOException e) {
@@ -454,9 +570,29 @@ public class MyProjectData {
         }
 
         try {
+            String pathBackground = "MarioFilliped/Normal Mario/run_3_Red_Normal_Mini.png";
+            File fileBackground = new File(pathBackground);
+            normalMario_Run_3_Flipped_Mini = ImageIO.read(fileBackground);
+
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
             String pathBackground = "MarioFilliped/Normal Mario/stand_Red_Normal.png";
             File fileBackground = new File(pathBackground);
             normalMario_Stand_Flipped = ImageIO.read(fileBackground);
+
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            String pathBackground = "MarioFilliped/Normal Mario/stand_Red_Normal_Mini.png";
+            File fileBackground = new File(pathBackground);
+            normalMario_Stand_Flipped_Mini = ImageIO.read(fileBackground);
 
         }
         catch (IOException e) {
@@ -502,9 +638,27 @@ public class MyProjectData {
         }
 
         try {
+            String pathBackground = "mario/BlueMario_Runner/run_3_Blue_Runner_Mini.png";
+            File fileBackground = new File(pathBackground);
+            runnerMario_Run_3_Mini = ImageIO.read(fileBackground);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
             String pathBackground = "mario/BlueMario_Runner/stand_Blue_Runner.png";
             File fileBackground = new File(pathBackground);
             runnerMario_Stand = ImageIO.read(fileBackground);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            String pathBackground = "mario/BlueMario_Runner/stand_Blue_Runner_Mini.png";
+            File fileBackground = new File(pathBackground);
+            runnerMario_Stand_Mini = ImageIO.read(fileBackground);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -545,9 +699,27 @@ public class MyProjectData {
         }
 
         try {
+            String pathBackground = "MarioFilliped/BlueMario_Runner/run_3_Blue_Runner_Mini.png";
+            File fileBackground = new File(pathBackground);
+            runnerMario_Run_3_Flipped_Mini = ImageIO.read(fileBackground);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
             String pathBackground = "MarioFilliped/BlueMario_Runner/stand_Blue_Runner.png";
             File fileBackground = new File(pathBackground);
             runnerMario_Stand_Flipped = ImageIO.read(fileBackground);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            String pathBackground = "MarioFilliped/BlueMario_Runner/stand_Blue_Runner_Mini.png";
+            File fileBackground = new File(pathBackground);
+            runnerMario_Stand_Flipped_Mini = ImageIO.read(fileBackground);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -592,9 +764,27 @@ public class MyProjectData {
         }
 
         try {
+            String pathBackground = "mario/GreenMario_Jumper/run_3_Green_Jumper_Mini.png";
+            File fileBackground = new File(pathBackground);
+            jumperMario_Run_3_Mini = ImageIO.read(fileBackground);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
             String pathBackground = "mario/GreenMario_Jumper/stand_Green_Jumper.png";
             File fileBackground = new File(pathBackground);
             jumperMario_Stand = ImageIO.read(fileBackground);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            String pathBackground = "mario/GreenMario_Jumper/stand_Green_Jumper_Mini.png";
+            File fileBackground = new File(pathBackground);
+            jumperMario_Stand_Mini = ImageIO.read(fileBackground);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -636,9 +826,27 @@ public class MyProjectData {
         }
 
         try {
+            String pathBackground = "MarioFilliped/GreenMario_Jumper/run_3_Green_Jumper_Mini.png";
+            File fileBackground = new File(pathBackground);
+            jumperMario_Run_3_Flipped_Mini = ImageIO.read(fileBackground);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
             String pathBackground = "MarioFilliped/GreenMario_Jumper/stand_Green_Jumper.png";
             File fileBackground = new File(pathBackground);
             jumperMario_Stand_Flipped = ImageIO.read(fileBackground);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            String pathBackground = "MarioFilliped/GreenMario_Jumper/stand_Green_Jumper_Mini.png";
+            File fileBackground = new File(pathBackground);
+            jumperMario_Stand_Flipped_Mini = ImageIO.read(fileBackground);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -683,9 +891,27 @@ public class MyProjectData {
         }
 
         try {
+            String pathBackground = "mario/BlackMario_Shooter/run_3_Black_Shooter_Mini.png";
+            File fileBackground = new File(pathBackground);
+            shooterMario_Run_3_Mini = ImageIO.read(fileBackground);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
             String pathBackground = "mario/BlackMario_Shooter/stand_Black_Shooter.png";
             File fileBackground = new File(pathBackground);
             shooterMario_Stand = ImageIO.read(fileBackground);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            String pathBackground = "mario/BlackMario_Shooter/stand_Black_Shooter_Mini.png";
+            File fileBackground = new File(pathBackground);
+            shooterMario_Stand_Mini = ImageIO.read(fileBackground);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -727,9 +953,27 @@ public class MyProjectData {
         }
 
         try {
+            String pathBackground = "MarioFilliped/BlackMario_Shooter/run_3_Black_Shooter_Mini.png";
+            File fileBackground = new File(pathBackground);
+            shooterMario_Run_3_Flipped_Mini = ImageIO.read(fileBackground);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
             String pathBackground = "MarioFilliped/BlackMario_Shooter/stand_Black_Shooter.png";
             File fileBackground = new File(pathBackground);
             shooterMario_Stand_Flipped = ImageIO.read(fileBackground);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            String pathBackground = "MarioFilliped/BlackMario_Shooter/stand_Black_Shooter_Mini.png";
+            File fileBackground = new File(pathBackground);
+            shooterMario_Stand_Flipped_Mini = ImageIO.read(fileBackground);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -774,9 +1018,27 @@ public class MyProjectData {
         }
 
         try {
+            String pathBackground = "mario/YellowMario_Coin/run_3_Yellow_Coin_Mini.png";
+            File fileBackground = new File(pathBackground);
+            coinMario_Run_3_Mini = ImageIO.read(fileBackground);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
             String pathBackground = "mario/YellowMario_Coin/stand_Yellow_Coin.png";
             File fileBackground = new File(pathBackground);
             coinMario_Stand = ImageIO.read(fileBackground);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            String pathBackground = "mario/YellowMario_Coin/stand_Yellow_Coin_Mini.png";
+            File fileBackground = new File(pathBackground);
+            coinMario_Stand_Mini = ImageIO.read(fileBackground);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -818,9 +1080,27 @@ public class MyProjectData {
         }
 
         try {
+            String pathBackground = "MarioFilliped/YellowMario_Coin/run_3_Yellow_Coin_Mini.png";
+            File fileBackground = new File(pathBackground);
+            coinMario_Run_3_Flipped_Mini = ImageIO.read(fileBackground);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
             String pathBackground = "MarioFilliped/YellowMario_Coin/stand_Yellow_Coin.png";
             File fileBackground = new File(pathBackground);
             coinMario_Stand_Flipped = ImageIO.read(fileBackground);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            String pathBackground = "MarioFilliped/YellowMario_Coin/stand_Yellow_Coin_Mini.png";
+            File fileBackground = new File(pathBackground);
+            coinMario_Stand_Flipped_Mini = ImageIO.read(fileBackground);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -1167,5 +1447,109 @@ public class MyProjectData {
     }
     public BufferedImage getCannon() {
         return cannon;
+    }
+
+    public BufferedImage getNormalMario_Run_3_Mini() {
+        return normalMario_Run_3_Mini;
+    }
+
+    public BufferedImage getNormalMario_Run_3_Flipped_Mini() {
+        return normalMario_Run_3_Flipped_Mini;
+    }
+
+    public BufferedImage getNormalMario_Stand_Mini() {
+        return normalMario_Stand_Mini;
+    }
+
+    public BufferedImage getNormalMario_Stand_Flipped_Mini() {
+        return normalMario_Stand_Flipped_Mini;
+    }
+
+    public BufferedImage getRunnerMario_Run_3_Mini() {
+        return runnerMario_Run_3_Mini;
+    }
+
+    public BufferedImage getRunnerMario_Run_3_Flipped_Mini() {
+        return runnerMario_Run_3_Flipped_Mini;
+    }
+
+    public BufferedImage getRunnerMario_Stand_Mini() {
+        return runnerMario_Stand_Mini;
+    }
+
+    public BufferedImage getRunnerMario_Stand_Flipped_Mini() {
+        return runnerMario_Stand_Flipped_Mini;
+    }
+
+    public BufferedImage getJumperMario_Run_3_Mini() {
+        return jumperMario_Run_3_Mini;
+    }
+
+    public BufferedImage getJumperMario_Run_3_Flipped_Mini() {
+        return jumperMario_Run_3_Flipped_Mini;
+    }
+
+    public BufferedImage getJumperMario_Stand_Mini() {
+        return jumperMario_Stand_Mini;
+    }
+
+    public BufferedImage getJumperMario_Stand_Flipped_Mini() {
+        return jumperMario_Stand_Flipped_Mini;
+    }
+
+    public BufferedImage getShooterMario_Run_3_Mini() {
+        return shooterMario_Run_3_Mini;
+    }
+
+    public BufferedImage getShooterMario_Run_3_Flipped_Mini() {
+        return shooterMario_Run_3_Flipped_Mini;
+    }
+
+    public BufferedImage getShooterMario_Stand_Mini() {
+        return shooterMario_Stand_Mini;
+    }
+
+    public BufferedImage getShooterMario_Stand_Flipped_Mini() {
+        return shooterMario_Stand_Flipped_Mini;
+    }
+
+    public BufferedImage getCoinMario_Run_3_Mini() {
+        return coinMario_Run_3_Mini;
+    }
+
+    public BufferedImage getCoinMario_Run_3_Flipped_Mini() {
+        return coinMario_Run_3_Flipped_Mini;
+    }
+
+    public BufferedImage getCoinMario_Stand_Mini() {
+        return coinMario_Stand_Mini;
+    }
+
+    public BufferedImage getCoinMario_Stand_Flipped_Mini() {
+        return coinMario_Stand_Flipped_Mini;
+    }
+
+    public BufferedImage getFireMario() {
+        return fireMario;
+    }
+
+    public BufferedImage getFireMario_Mini() {
+        return fireMario_Mini;
+    }
+
+    public BufferedImage getFireMario_Filliped() {
+        return fireMario_Filliped;
+    }
+
+    public BufferedImage getFireMario_Filliped_Mini() {
+        return fireMario_Filliped_Mini;
+    }
+
+    public BufferedImage getFireBall() {
+        return fireBall;
+    }
+
+    public BufferedImage getSword() {
+        return sword;
     }
 }

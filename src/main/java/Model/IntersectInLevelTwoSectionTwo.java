@@ -414,13 +414,13 @@ public class IntersectInLevelTwoSectionTwo {
                     (itemWidth < itemX || itemWidth > objectX) &&
                     (itemHeight < itemY || itemHeight > objectY)) {
 
-                if ((objectHeight > itemY || itemHeight > objectY) && itemWidth <= objectX + 5 && !item.isItemHitsAnObject()) {// Hit left of Object
+                if ((objectHeight > itemY || itemHeight > objectY) && itemWidth <= objectX + 5 && item.isItemHitsAnObject()) {// Hit left of Object
 
                     item.setItemHitsAnObject(true);
                     return true;
 
                 }
-                if ((objectHeight > itemY || itemHeight > objectY) && objectWidth <= itemX+5 && !item.isItemHitsAnObject()) {// Hit right of Object
+                if ((objectHeight > itemY || itemHeight > objectY) && objectWidth <= itemX+5 && item.isItemHitsAnObject()) {// Hit right of Object
 
                     item.setItemHitsAnObject(true);
                     return true;
@@ -455,13 +455,13 @@ public class IntersectInLevelTwoSectionTwo {
                     (itemWidth < itemX || itemWidth > objectX) &&
                     (itemHeight < itemY || itemHeight > objectY)) {
 
-                if ((objectHeight > itemY || itemHeight > objectY) && itemWidth <= objectX + 5 && !item.isItemHitsAnObject()) {// Hit left of Object
+                if ((objectHeight > itemY || itemHeight > objectY) && itemWidth <= objectX + 5 && item.isItemHitsAnObject()) {// Hit left of Object
 
                     item.setItemHitsAnObject(true);
                     return true;
 
                 }
-                if ((objectHeight > itemY || itemHeight > objectY) && objectWidth <= itemX+5 && !item.isItemHitsAnObject()) {// Hit right of Object
+                if ((objectHeight > itemY || itemHeight > objectY) && objectWidth <= itemX+5 && item.isItemHitsAnObject()) {// Hit right of Object
 
                     item.setItemHitsAnObject(true);
                     return true;
@@ -518,7 +518,7 @@ public class IntersectInLevelTwoSectionTwo {
         // Bomb Hits An Object:
         for (int i = 0; i < levelTwoSectionTwoScreen.getObjectsInThisSection().size(); i++) {
             int bombWidth = bomb.getWidth();
-            int bombHeight = bomb.getHeight();
+            int bombHeight = bomb.getHeight() + 10;
             int objectWidth = levelTwoSectionTwoScreen.getObjectsInThisSection().get(i).getWidth();
             int objectHeight = levelTwoSectionTwoScreen.getObjectsInThisSection().get(i).getHeight();
             if (objectWidth <= 0 || objectHeight <= 0 || bombWidth <= 0 || bombHeight <= 0) {

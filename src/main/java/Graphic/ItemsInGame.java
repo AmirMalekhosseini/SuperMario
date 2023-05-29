@@ -94,7 +94,7 @@ public abstract class ItemsInGame extends ObjectsInGame {
     }
 
     public boolean isItemHitsAnObject() {
-        return isItemHitsAnObject;
+        return !isItemHitsAnObject;
     }
 
     public void setItemHitsAnObject(boolean itemHitsAnObject) {

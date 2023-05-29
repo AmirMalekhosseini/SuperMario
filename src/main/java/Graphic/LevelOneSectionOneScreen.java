@@ -224,7 +224,7 @@ public class LevelOneSectionOneScreen extends JLayeredPane {
         firstPipeSceneThree = new Pipe(4100, 765);
         plantInFirstPipeSceneThree = new Plant(4125, 750);
         secondPipeSceneThree = new Pipe(4800, 765);
-        firstEnemyInSceneThree = new Bird(3400, 300, 3300, 4300);
+        firstEnemyInSceneThree = new Bird(3200, 300, 3200, 4000);
         secondEnemyInSceneThree = new Spiny(3600, 890);
         thirdEnemyInSceneThree = new Goompa(4300, 890);
         fourthEnemyInSceneThree = new Goompa(4400, 890);
