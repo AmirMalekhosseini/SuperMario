@@ -8,9 +8,12 @@ public class LevelTwoSectionTwoModel {
 
     LevelTwoSectionTwoScreen levelTwoSectionTwoScreen;
     IntersectInLevelTwoSectionTwo intersect;
+    MarioMoverModel marioMoverModel;
+    private int swordCoolDownCounter = 10;
     public Gravity gravity;
 
-    public LevelTwoSectionTwoModel(LevelTwoSectionTwoScreen levelTwoSectionTwoScreen, IntersectInLevelTwoSectionTwo intersect) {
+    public LevelTwoSectionTwoModel(LevelTwoSectionTwoScreen levelTwoSectionTwoScreen, IntersectInLevelTwoSectionTwo intersect, MarioMoverModel marioMoverModel) {
+        this.marioMoverModel = marioMoverModel;
         this.intersect = intersect;
         this.levelTwoSectionTwoScreen = levelTwoSectionTwoScreen;
         gravityStarter();
@@ -170,6 +173,36 @@ public class LevelTwoSectionTwoModel {
         }
 
     }
+
+    public void moveShot() {
+
+        ArrayList<MarioWeapon> weaponsInThisSection = levelTwoSectionTwoScreen.getWeaponsInThisSection();
+        for (MarioWeapon marioWeapon : weaponsInThisSection) {
+            marioWeapon.move();
+        }
+
+    }
+
+    public void startThrowSword() {
+        swordCoolDownCounter++;
+        if (marioMoverModel.isUserPressedUp() && marioMoverModel.isUserPressedDown() && swordCoolDownCounter >= 200) {
+            marioMoverModel.setMarioThrowSword(true);
+            marioMoverModel.marioStartsThrowsSword();
+            marioMoverModel.setUserPressedDown(false);
+            swordCoolDownCounter = 0;
+        }
+    }
+
+    public void intersectShot() {
+        for (int i = 0; i < levelTwoSectionTwoScreen.getWeaponsInThisSection().size(); i++) {
+            if (levelTwoSectionTwoScreen.getWeaponsInThisSection().get(i) instanceof Arrow) {
+                intersect.arrowIntersection(levelTwoSectionTwoScreen.getWeaponsInThisSection().get(i));
+            } else if (levelTwoSectionTwoScreen.getWeaponsInThisSection().get(i) instanceof Sword) {
+                intersect.swordIntersection(levelTwoSectionTwoScreen.getWeaponsInThisSection().get(i));
+            }
+        }
+    }
+
 
     public void setLocationOfEnemies() {
 

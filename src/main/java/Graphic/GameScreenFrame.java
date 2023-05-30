@@ -32,6 +32,7 @@ public class GameScreenFrame extends JFrame {
     public IntersectInHiddenCoinSection intersectInHiddenCoinSection;
     public IntersectInHiddenEnemySection intersectInHiddenEnemySection;
     public MarioMover marioMover;
+    public MarioMoverModel marioMoverModel;
     public GameLoop gameLoop;
     public CalculateScore calculateScore;
 
@@ -65,7 +66,8 @@ public class GameScreenFrame extends JFrame {
             public void startModel(GameScreenFrame gameScreenFrame) {
 
                 calculateScore = new CalculateScore(gameScreenFrame);
-                marioMover = new MarioMover(gameScreenFrame);
+                marioMoverModel = new MarioMoverModel(gameScreenFrame);
+                marioMover = new MarioMover(gameScreenFrame, marioMoverModel);
                 intersectInLevelOneSectionTwo = new IntersectInLevelOneSectionTwo(gameScreenFrame);
                 intersectInLevelOneSectionOne = new IntersectInLevelOneSectionOne(gameScreenFrame);
                 intersectInLevelTwoSectionOne = new IntersectInLevelTwoSectionOne(gameScreenFrame);
@@ -73,12 +75,12 @@ public class GameScreenFrame extends JFrame {
                 intersectInHiddenCoinSection = new IntersectInHiddenCoinSection(gameScreenFrame);
                 intersectInHiddenEnemySection = new IntersectInHiddenEnemySection(gameScreenFrame);
                 gravityData = new GravityData(gameScreenFrame);
-                hiddenEnemySectionModel = new HiddenEnemySectionModel(hiddenEnemySectionScreen);
-                hiddenCoinSectionModel = new HiddenCoinSectionModel(hiddenCoinSectionScreen);
-                levelOneSectionOneModel = new LevelOneSectionOneModel(levelOneSectionOneScreen, intersectInLevelOneSectionOne);
-                levelOneSectionTwoModel = new LevelOneSectionTwoModel(levelOneSectionTwoScreen, intersectInLevelOneSectionTwo);
-                levelTwoSectionOneModel = new LevelTwoSectionOneModel(levelTwoSectionOneScreen, intersectInLevelTwoSectionOne);
-                levelTwoSectionTwoModel = new LevelTwoSectionTwoModel(levelTwoSectionTwoScreen, intersectInLevelTwoSectionTwo);
+                hiddenEnemySectionModel = new HiddenEnemySectionModel(hiddenEnemySectionScreen, intersectInHiddenEnemySection, marioMoverModel);
+                hiddenCoinSectionModel = new HiddenCoinSectionModel(hiddenCoinSectionScreen, intersectInHiddenCoinSection, marioMoverModel);
+                levelOneSectionOneModel = new LevelOneSectionOneModel(levelOneSectionOneScreen, intersectInLevelOneSectionOne, marioMoverModel);
+                levelOneSectionTwoModel = new LevelOneSectionTwoModel(levelOneSectionTwoScreen, intersectInLevelOneSectionTwo, marioMoverModel);
+                levelTwoSectionOneModel = new LevelTwoSectionOneModel(levelTwoSectionOneScreen, intersectInLevelTwoSectionOne, marioMoverModel);
+                levelTwoSectionTwoModel = new LevelTwoSectionTwoModel(levelTwoSectionTwoScreen, intersectInLevelTwoSectionTwo, marioMoverModel);
                 gameLoop = new GameLoop(gameScreenFrame);
 
             }

@@ -6,6 +6,9 @@ public abstract class MarioWeapon extends JLabel {
 
     private int x;
     private int y;
+    private int XEndPosition;
+    private int XStartPosition;
+    private int marioVelocity;
     private int height;
     private int width;
 
@@ -45,5 +48,29 @@ public abstract class MarioWeapon extends JLabel {
 
     public void setWidth(int width) {
         this.width = width;
+    }
+
+    public int getXEndPosition() {
+        return XEndPosition;
+    }
+
+    public void setXEndPosition(int XEndPosition) {
+        this.XEndPosition = XEndPosition;
+    }
+
+    public int getXStartPosition() {
+        return XStartPosition;
+    }
+
+    public void setXStartPosition(int XStartPosition) {
+        this.XStartPosition = XStartPosition;
+    }
+
+    public int getMarioVelocity() {
+        return marioVelocity;
+    }
+
+    public void setMarioVelocity(int marioVelocity) {
+        this.marioVelocity = marioVelocity;
     }
 }

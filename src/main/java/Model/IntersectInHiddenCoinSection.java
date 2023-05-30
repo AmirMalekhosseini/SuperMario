@@ -172,6 +172,96 @@ public class IntersectInHiddenCoinSection {
 
     }
 
+    public void arrowIntersection(MarioWeapon arrow) {
+
+        if (arrow.getX() >= arrow.getXEndPosition()) {
+            hiddenCoinSectionScreen.remove(arrow);
+            hiddenCoinSectionScreen.getWeaponsInThisSection().remove(arrow);
+            return;
+        }
+
+        // Arrow Hits An Object:
+        for (int i = 0; i < hiddenCoinSectionScreen.getObjectsInThisSection().size(); i++) {
+            int arrowWidth = arrow.getWidth();
+            int arrowHeight = arrow.getHeight()+10;
+            int objectWidth = hiddenCoinSectionScreen.getObjectsInThisSection().get(i).getWidth();
+            int objectHeight = hiddenCoinSectionScreen.getObjectsInThisSection().get(i).getHeight();
+            if (objectWidth <= 0 || objectHeight <= 0 || arrowWidth <= 0 || arrowHeight <= 0) {
+                continue;
+            }
+            int arrowX = arrow.getX();
+            int arrowY = arrow.getY();
+            int objectX = hiddenCoinSectionScreen.getObjectsInThisSection().get(i).getX();
+            int objectY = hiddenCoinSectionScreen.getObjectsInThisSection().get(i).getY();
+            objectWidth += objectX;
+            objectHeight += objectY;
+            arrowWidth += arrowX;
+            arrowHeight += arrowY;
+
+            //      overflow || bombIntersectWithObjects
+            if ((objectWidth < objectX || objectWidth > arrowX) &&
+                    (objectHeight < objectY || objectHeight > arrowY) &&
+                    (arrowWidth < arrowX || arrowWidth > objectX) &&
+                    (arrowHeight < arrowY || arrowHeight > objectY)) {
+
+                hiddenCoinSectionScreen.remove(arrow);
+                hiddenCoinSectionScreen.getWeaponsInThisSection().remove(arrow);
+                return;
+
+            }
+        }
+
+    }
+
+    public void swordIntersection(MarioWeapon sword) {
+
+        if (sword.getMarioVelocity() >= 0) {// Sword Throwed in positive direction:
+            if (sword.getX() <= sword.getXStartPosition()) {// sword come back to mario
+                hiddenCoinSectionScreen.remove(sword);
+                hiddenCoinSectionScreen.getWeaponsInThisSection().remove(sword);
+                return;
+            }
+        } else {
+            if (sword.getX() >= sword.getXStartPosition() && sword.getXStartPosition() != 0) {// sword come back to mario
+                hiddenCoinSectionScreen.remove(sword);
+                hiddenCoinSectionScreen.getWeaponsInThisSection().remove(sword);
+                return;
+            }
+        }
+
+        // Sword Hits An Object:
+        for (int i = 0; i < hiddenCoinSectionScreen.getObjectsInThisSection().size(); i++) {
+            int arrowWidth = sword.getWidth();
+            int arrowHeight = sword.getHeight() + 10;
+            int objectWidth = hiddenCoinSectionScreen.getObjectsInThisSection().get(i).getWidth();
+            int objectHeight = hiddenCoinSectionScreen.getObjectsInThisSection().get(i).getHeight();
+            if (objectWidth <= 0 || objectHeight <= 0 || arrowWidth <= 0 || arrowHeight <= 0) {
+                continue;
+            }
+            int arrowX = sword.getX();
+            int arrowY = sword.getY();
+            int objectX = hiddenCoinSectionScreen.getObjectsInThisSection().get(i).getX();
+            int objectY = hiddenCoinSectionScreen.getObjectsInThisSection().get(i).getY();
+            objectWidth += objectX;
+            objectHeight += objectY;
+            arrowWidth += arrowX;
+            arrowHeight += arrowY;
+
+            //      overflow || bombIntersectWithObjects
+            if ((objectWidth < objectX || objectWidth > arrowX) &&
+                    (objectHeight < objectY || objectHeight > arrowY) &&
+                    (arrowWidth < arrowX || arrowWidth > objectX) &&
+                    (arrowHeight < arrowY || arrowHeight > objectY)) {
+
+                hiddenCoinSectionScreen.remove(sword);
+                hiddenCoinSectionScreen.getWeaponsInThisSection().remove(sword);
+                return;
+
+            }
+        }
+
+    }
+
     public void generateRandomItem (PrizeInAir prizeInAir){
 
         Random random = new Random();

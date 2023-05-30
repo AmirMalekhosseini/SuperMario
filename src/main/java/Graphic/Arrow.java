@@ -13,7 +13,8 @@ public class Arrow extends MarioWeapon {
     private int XEndPosition;
     private int height = 50;
     private int width = 50;
-    private int velocity = 10;
+    private int velocity = 30;
+    private int secondCounter = 0;
 
     public Arrow(int x, int y) {
 
@@ -21,12 +22,26 @@ public class Arrow extends MarioWeapon {
         this.setSize(width, height);
         this.x = x;
         this.y = y;
+        XEndPosition = x + 600;
 
     }
 
     @Override
 
     public void move() {
+
+        secondCounter++;
+        if (secondCounter == 5) {
+            if (getMarioVelocity() >= 0) {
+                velocity = 30;
+            } else {
+                velocity = -30;
+            }
+            if (x <= XEndPosition) {
+                x += velocity;
+            }
+            secondCounter = 0;
+        }
 
     }
 
@@ -85,5 +100,13 @@ public class Arrow extends MarioWeapon {
 
     public void setXEndPosition(int XEndPosition) {
         this.XEndPosition = XEndPosition;
+    }
+
+    public int getSecondCounter() {
+        return secondCounter;
+    }
+
+    public void setSecondCounter(int secondCounter) {
+        this.secondCounter = secondCounter;
     }
 }

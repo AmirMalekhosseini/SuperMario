@@ -231,6 +231,162 @@ public class IntersectInHiddenEnemySection {
         return false;
     }
 
+    public void arrowIntersection(MarioWeapon arrow) {
+
+        if (arrow.getX() >= arrow.getXEndPosition()) {
+            hiddenEnemySectionScreen.remove(arrow);
+            hiddenEnemySectionScreen.getWeaponsInThisSection().remove(arrow);
+            return;
+        }
+
+        // Arrow Hits An Enemy:
+        for (int i = 0; i < hiddenEnemySectionScreen.getEnemiesInThisSection().size(); i++) {
+            int arrowWidth = arrow.getWidth();
+            int arrowHeight = arrow.getHeight();
+            int objectWidth = hiddenEnemySectionScreen.getEnemiesInThisSection().get(i).getWidth();
+            int objectHeight = hiddenEnemySectionScreen.getEnemiesInThisSection().get(i).getHeight();
+            if (objectWidth <= 0 || objectHeight <= 0 || arrowWidth <= 0 || arrowHeight <= 0) {
+                continue;
+            }
+            int arrowX = arrow.getX();
+            int arrowY = arrow.getY();
+            int objectX = hiddenEnemySectionScreen.getEnemiesInThisSection().get(i).getX();
+            int objectY = hiddenEnemySectionScreen.getEnemiesInThisSection().get(i).getY();
+            objectWidth += objectX;
+            objectHeight += objectY;
+            arrowWidth += arrowX;
+            arrowHeight += arrowY;
+
+            //      overflow || bombIntersectWithObjects
+            if ((objectWidth < objectX || objectWidth > arrowX) &&
+                    (objectHeight < objectY || objectHeight > arrowY) &&
+                    (arrowWidth < arrowX || arrowWidth > objectX) &&
+                    (arrowHeight < arrowY || arrowHeight > objectY)) {
+
+                hiddenEnemySectionScreen.remove(arrow);
+                hiddenEnemySectionScreen.remove(hiddenEnemySectionScreen.getEnemiesInThisSection().get(i));
+                hiddenEnemySectionScreen.getEnemiesInThisSection().remove(i);
+                hiddenEnemySectionScreen.getWeaponsInThisSection().remove(arrow);
+                return;
+            }
+        }
+
+        // Arrow Hits An Object:
+        for (int i = 0; i < hiddenEnemySectionScreen.getObjectsInThisSection().size(); i++) {
+            int arrowWidth = arrow.getWidth();
+            int arrowHeight = arrow.getHeight()+10;
+            int objectWidth = hiddenEnemySectionScreen.getObjectsInThisSection().get(i).getWidth();
+            int objectHeight = hiddenEnemySectionScreen.getObjectsInThisSection().get(i).getHeight();
+            if (objectWidth <= 0 || objectHeight <= 0 || arrowWidth <= 0 || arrowHeight <= 0) {
+                continue;
+            }
+            int arrowX = arrow.getX();
+            int arrowY = arrow.getY();
+            int objectX = hiddenEnemySectionScreen.getObjectsInThisSection().get(i).getX();
+            int objectY = hiddenEnemySectionScreen.getObjectsInThisSection().get(i).getY();
+            objectWidth += objectX;
+            objectHeight += objectY;
+            arrowWidth += arrowX;
+            arrowHeight += arrowY;
+
+            //      overflow || bombIntersectWithObjects
+            if ((objectWidth < objectX || objectWidth > arrowX) &&
+                    (objectHeight < objectY || objectHeight > arrowY) &&
+                    (arrowWidth < arrowX || arrowWidth > objectX) &&
+                    (arrowHeight < arrowY || arrowHeight > objectY)) {
+
+                hiddenEnemySectionScreen.remove(arrow);
+                hiddenEnemySectionScreen.getWeaponsInThisSection().remove(arrow);
+                return;
+
+            }
+        }
+
+    }
+
+    public void swordIntersection(MarioWeapon sword) {
+
+        if (sword.getMarioVelocity() >= 0) {// Sword Throwed in positive direction:
+            if (sword.getX() <= sword.getXStartPosition()) {// sword come back to mario
+                hiddenEnemySectionScreen.remove(sword);
+                hiddenEnemySectionScreen.getWeaponsInThisSection().remove(sword);
+                return;
+            }
+        } else {
+            if (sword.getX() >= sword.getXStartPosition() && sword.getXStartPosition() != 0) {// sword come back to mario
+                hiddenEnemySectionScreen.remove(sword);
+                hiddenEnemySectionScreen.getWeaponsInThisSection().remove(sword);
+                return;
+            }
+        }
+
+
+
+        // Sword Hits An Enemy:
+        for (int i = 0; i < hiddenEnemySectionScreen.getEnemiesInThisSection().size(); i++) {
+            int arrowWidth = sword.getWidth();
+            int arrowHeight = sword.getHeight();
+            int objectWidth = hiddenEnemySectionScreen.getEnemiesInThisSection().get(i).getWidth();
+            int objectHeight = hiddenEnemySectionScreen.getEnemiesInThisSection().get(i).getHeight();
+            if (objectWidth <= 0 || objectHeight <= 0 || arrowWidth <= 0 || arrowHeight <= 0) {
+                continue;
+            }
+            int arrowX = sword.getX();
+            int arrowY = sword.getY();
+            int objectX = hiddenEnemySectionScreen.getEnemiesInThisSection().get(i).getX();
+            int objectY = hiddenEnemySectionScreen.getEnemiesInThisSection().get(i).getY();
+            objectWidth += objectX;
+            objectHeight += objectY;
+            arrowWidth += arrowX;
+            arrowHeight += arrowY;
+
+            //      overflow || bombIntersectWithObjects
+            if ((objectWidth < objectX || objectWidth > arrowX) &&
+                    (objectHeight < objectY || objectHeight > arrowY) &&
+                    (arrowWidth < arrowX || arrowWidth > objectX) &&
+                    (arrowHeight < arrowY || arrowHeight > objectY)) {
+
+                hiddenEnemySectionScreen.remove(sword);
+                hiddenEnemySectionScreen.remove(hiddenEnemySectionScreen.getEnemiesInThisSection().get(i));
+                hiddenEnemySectionScreen.getEnemiesInThisSection().remove(i);
+                hiddenEnemySectionScreen.getWeaponsInThisSection().remove(sword);
+                return;
+            }
+        }
+
+        // Sword Hits An Object:
+        for (int i = 0; i < hiddenEnemySectionScreen.getObjectsInThisSection().size(); i++) {
+            int arrowWidth = sword.getWidth();
+            int arrowHeight = sword.getHeight() + 10;
+            int objectWidth = hiddenEnemySectionScreen.getObjectsInThisSection().get(i).getWidth();
+            int objectHeight = hiddenEnemySectionScreen.getObjectsInThisSection().get(i).getHeight();
+            if (objectWidth <= 0 || objectHeight <= 0 || arrowWidth <= 0 || arrowHeight <= 0) {
+                continue;
+            }
+            int arrowX = sword.getX();
+            int arrowY = sword.getY();
+            int objectX = hiddenEnemySectionScreen.getObjectsInThisSection().get(i).getX();
+            int objectY = hiddenEnemySectionScreen.getObjectsInThisSection().get(i).getY();
+            objectWidth += objectX;
+            objectHeight += objectY;
+            arrowWidth += arrowX;
+            arrowHeight += arrowY;
+
+            //      overflow || bombIntersectWithObjects
+            if ((objectWidth < objectX || objectWidth > arrowX) &&
+                    (objectHeight < objectY || objectHeight > arrowY) &&
+                    (arrowWidth < arrowX || arrowWidth > objectX) &&
+                    (arrowHeight < arrowY || arrowHeight > objectY)) {
+
+                hiddenEnemySectionScreen.remove(sword);
+                hiddenEnemySectionScreen.getWeaponsInThisSection().remove(sword);
+                return;
+
+            }
+        }
+
+    }
+
     public void generateRandomItem (PrizeInAir prizeInAir){
 
         Random random = new Random();

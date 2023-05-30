@@ -12,6 +12,7 @@ public class HiddenCoinSectionScreen extends JLayeredPane {
 
     protected ArrayList<ObjectsInGame> objectsInThisSection = new ArrayList<>();
     protected volatile ArrayList<ItemsInGame> itemsInThisSection = new ArrayList<>();
+    protected ArrayList<MarioWeapon> weaponsInThisSection = new ArrayList<>();
     public ArrayList<Mario> activeMario;
     GameData gameData;
     NormalMario normalMario;
@@ -274,6 +275,14 @@ public class HiddenCoinSectionScreen extends JLayeredPane {
 
     public void setItemsInThisSection(ArrayList<ItemsInGame> itemsInThisSection) {
         this.itemsInThisSection = itemsInThisSection;
+    }
+
+    public ArrayList<MarioWeapon> getWeaponsInThisSection() {
+        return weaponsInThisSection;
+    }
+
+    public void setWeaponsInThisSection(ArrayList<MarioWeapon> weaponsInThisSection) {
+        this.weaponsInThisSection = weaponsInThisSection;
     }
 
     public GameData getGameData() {

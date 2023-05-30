@@ -1,19 +1,24 @@
 package Model;
 
-import Graphic.Enemy;
-import Graphic.HiddenEnemySectionScreen;
-import Graphic.ObjectsInGame;
+import Graphic.*;
+
+import java.util.ArrayList;
 
 public class HiddenEnemySectionModel {
 
     HiddenEnemySectionScreen hiddenEnemySectionScreen;
+    IntersectInHiddenEnemySection intersect;
+    MarioMoverModel marioMoverModel;
     private volatile boolean cannonOneWorking = true;
     private volatile boolean cannonTwoWorking;
     private volatile boolean cannonThreeWorking;
     public volatile int enemyCounter = 0;
+    private int swordCoolDownCounter = 10;
     public Gravity gravity;
 
-    public HiddenEnemySectionModel(HiddenEnemySectionScreen hiddenEnemySectionScreen) {
+    public HiddenEnemySectionModel(HiddenEnemySectionScreen hiddenEnemySectionScreen,IntersectInHiddenEnemySection intersect,MarioMoverModel marioMoverModel) {
+        this.marioMoverModel = marioMoverModel;
+        this.intersect = intersect;
         this.hiddenEnemySectionScreen = hiddenEnemySectionScreen;
         gravityStarter();
     }
@@ -80,6 +85,36 @@ public class HiddenEnemySectionModel {
             }
         };
     }
+
+    public void moveShot() {
+
+        ArrayList<MarioWeapon> weaponsInThisSection = hiddenEnemySectionScreen.getWeaponsInThisSection();
+        for (MarioWeapon marioWeapon : weaponsInThisSection) {
+            marioWeapon.move();
+        }
+
+    }
+
+    public void startThrowSword() {
+        swordCoolDownCounter++;
+        if (marioMoverModel.isUserPressedUp() && marioMoverModel.isUserPressedDown() && swordCoolDownCounter >= 200) {
+            marioMoverModel.setMarioThrowSword(true);
+            marioMoverModel.marioStartsThrowsSword();
+            marioMoverModel.setUserPressedDown(false);
+            swordCoolDownCounter = 0;
+        }
+    }
+
+    public void intersectShot() {
+        for (int i = 0; i < hiddenEnemySectionScreen.getWeaponsInThisSection().size(); i++) {
+            if (hiddenEnemySectionScreen.getWeaponsInThisSection().get(i) instanceof Arrow) {
+                intersect.arrowIntersection(hiddenEnemySectionScreen.getWeaponsInThisSection().get(i));
+            } else if (hiddenEnemySectionScreen.getWeaponsInThisSection().get(i) instanceof Sword) {
+                intersect.swordIntersection(hiddenEnemySectionScreen.getWeaponsInThisSection().get(i));
+            }
+        }
+    }
+
 
     public boolean isCannonOneWorking() {
         return cannonOneWorking;

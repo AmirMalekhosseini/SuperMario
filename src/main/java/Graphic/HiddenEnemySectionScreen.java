@@ -13,6 +13,7 @@ public class HiddenEnemySectionScreen extends JLayeredPane {
     protected ArrayList<ObjectsInGame> objectsInThisSection = new ArrayList<>();
     protected volatile ArrayList<Enemy> enemiesInThisSection = new ArrayList<>();
     protected volatile ArrayList<ItemsInGame> itemsInThisSection = new ArrayList<>();
+    protected ArrayList<MarioWeapon> weaponsInThisSection = new ArrayList<>();
     public ArrayList<Mario> activeMario;
     GameData gameData;
     NormalMario normalMario;
@@ -281,6 +282,14 @@ public class HiddenEnemySectionScreen extends JLayeredPane {
 
     public void setEnemiesInThisSection(ArrayList<Enemy> enemiesInThisSection) {
         this.enemiesInThisSection = enemiesInThisSection;
+    }
+
+    public ArrayList<MarioWeapon> getWeaponsInThisSection() {
+        return weaponsInThisSection;
+    }
+
+    public void setWeaponsInThisSection(ArrayList<MarioWeapon> weaponsInThisSection) {
+        this.weaponsInThisSection = weaponsInThisSection;
     }
 
     public GameData getGameData() {

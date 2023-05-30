@@ -48,8 +48,6 @@ public class GameLoop {
                 long targetTime = 1000 / fps;
                 if (!gameScreenFrame.getGameData().isGameFinish) {
                     long startTime = System.currentTimeMillis();
-                    int xLevelOneBackgroundPanel = gameScreenFrame.getXLevelOneBackgroundPanel();
-                    gameScreenFrame.getLevelOneGameBackgroundPanel().setLocation(xLevelOneBackgroundPanel, 0);
                     if (gameScreenFrame.getGameData().getMarioLocation().equalsIgnoreCase("levelonesectionone")) {
                         gameScreenFrame.getLevelOneSectionOneModel().gravity.allocateGravity();
                         gameScreenFrame.intersectInLevelOneSectionOne.refreshIntersectsBooleans();
@@ -182,7 +180,10 @@ public class GameLoop {
                 long targetTime = 1000 / fps;
                 if (!gameScreenFrame.getGameData().isGameFinish) {
                     long startTime = System.currentTimeMillis();
-                    gameScreenFrame.marioMover.move();
+                    int xLevelOneBackgroundPanel = gameScreenFrame.getXLevelOneBackgroundPanel();
+                    gameScreenFrame.getLevelOneGameBackgroundPanel().setLocation(xLevelOneBackgroundPanel, 0);
+                    gameScreenFrame.marioMover.getMarioMoverModel().move();
+                    gameScreenFrame.getLevelOneSectionOneModel().moveShot();
                     gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).setLocation
                             (gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).getX(),
                                     gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).getY());
@@ -346,6 +347,8 @@ public class GameLoop {
                     long startTime = System.currentTimeMillis();
                     gameScreenFrame.getLevelOneSectionOneModel().moveEnemy();
                     gameScreenFrame.getLevelOneSectionOneModel().moveItem();
+                    gameScreenFrame.getLevelOneSectionOneModel().intersectShot();
+                    gameScreenFrame.getLevelOneSectionOneModel().startThrowSword();
                     gameScreenFrame.getLevelOneSectionTwoModel().moveEnemy();
                     gameScreenFrame.getLevelOneSectionTwoModel().moveItem();
                     gameScreenFrame.getLevelTwoSectionOneModel().moveEnemy();

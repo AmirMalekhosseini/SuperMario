@@ -20,6 +20,7 @@ public class MyProjectData {
     protected ImageIcon coinMarioImage;
 
     protected BufferedImage sword;
+    protected BufferedImage swordFilliped;
     protected BufferedImage fireBall;
     protected BufferedImage fireMario;
     protected BufferedImage fireMario_Mini;
@@ -419,6 +420,16 @@ public class MyProjectData {
             String pathBackground = "MarioWeapon/Sword.png";
             File fileBackground = new File(pathBackground);
             sword = ImageIO.read(fileBackground);
+
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            String pathBackground = "MarioWeapon/SwordFilliped.png";
+            File fileBackground = new File(pathBackground);
+            swordFilliped = ImageIO.read(fileBackground);
 
         }
         catch (IOException e) {
@@ -1551,5 +1562,9 @@ public class MyProjectData {
 
     public BufferedImage getSword() {
         return sword;
+    }
+
+    public BufferedImage getSwordFilliped() {
+        return swordFilliped;
     }
 }

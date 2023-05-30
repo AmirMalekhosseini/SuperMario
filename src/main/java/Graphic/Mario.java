@@ -17,9 +17,9 @@ public abstract class Mario extends JLabel {
     private boolean isMarioLeft;
     private boolean isMarioRight;
     private boolean isMarioSit;
-    private boolean isMarioMini = true;
+    private boolean isMarioMini = false;
     private boolean isMarioMega;
-    private boolean isMarioShooter;
+    private boolean isMarioShooter = true;
 
     public Mario() {
 

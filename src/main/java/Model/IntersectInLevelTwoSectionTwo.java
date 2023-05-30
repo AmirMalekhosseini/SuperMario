@@ -548,6 +548,162 @@ public class IntersectInLevelTwoSectionTwo {
 
     }
 
+    public void arrowIntersection(MarioWeapon arrow) {
+
+        if (arrow.getX() >= arrow.getXEndPosition()) {
+            levelTwoSectionTwoScreen.remove(arrow);
+            levelTwoSectionTwoScreen.getWeaponsInThisSection().remove(arrow);
+            return;
+        }
+
+        // Arrow Hits An Enemy:
+        for (int i = 0; i < levelTwoSectionTwoScreen.getEnemiesInThisSection().size(); i++) {
+            int arrowWidth = arrow.getWidth();
+            int arrowHeight = arrow.getHeight();
+            int objectWidth = levelTwoSectionTwoScreen.getEnemiesInThisSection().get(i).getWidth();
+            int objectHeight = levelTwoSectionTwoScreen.getEnemiesInThisSection().get(i).getHeight();
+            if (objectWidth <= 0 || objectHeight <= 0 || arrowWidth <= 0 || arrowHeight <= 0) {
+                continue;
+            }
+            int arrowX = arrow.getX();
+            int arrowY = arrow.getY();
+            int objectX = levelTwoSectionTwoScreen.getEnemiesInThisSection().get(i).getX();
+            int objectY = levelTwoSectionTwoScreen.getEnemiesInThisSection().get(i).getY();
+            objectWidth += objectX;
+            objectHeight += objectY;
+            arrowWidth += arrowX;
+            arrowHeight += arrowY;
+
+            //      overflow || bombIntersectWithObjects
+            if ((objectWidth < objectX || objectWidth > arrowX) &&
+                    (objectHeight < objectY || objectHeight > arrowY) &&
+                    (arrowWidth < arrowX || arrowWidth > objectX) &&
+                    (arrowHeight < arrowY || arrowHeight > objectY)) {
+
+                levelTwoSectionTwoScreen.remove(arrow);
+                levelTwoSectionTwoScreen.remove(levelTwoSectionTwoScreen.getEnemiesInThisSection().get(i));
+                levelTwoSectionTwoScreen.getEnemiesInThisSection().remove(i);
+                levelTwoSectionTwoScreen.getWeaponsInThisSection().remove(arrow);
+                return;
+            }
+        }
+
+        // Arrow Hits An Object:
+        for (int i = 0; i < levelTwoSectionTwoScreen.getObjectsInThisSection().size(); i++) {
+            int arrowWidth = arrow.getWidth();
+            int arrowHeight = arrow.getHeight()+10;
+            int objectWidth = levelTwoSectionTwoScreen.getObjectsInThisSection().get(i).getWidth();
+            int objectHeight = levelTwoSectionTwoScreen.getObjectsInThisSection().get(i).getHeight();
+            if (objectWidth <= 0 || objectHeight <= 0 || arrowWidth <= 0 || arrowHeight <= 0) {
+                continue;
+            }
+            int arrowX = arrow.getX();
+            int arrowY = arrow.getY();
+            int objectX = levelTwoSectionTwoScreen.getObjectsInThisSection().get(i).getX();
+            int objectY = levelTwoSectionTwoScreen.getObjectsInThisSection().get(i).getY();
+            objectWidth += objectX;
+            objectHeight += objectY;
+            arrowWidth += arrowX;
+            arrowHeight += arrowY;
+
+            //      overflow || bombIntersectWithObjects
+            if ((objectWidth < objectX || objectWidth > arrowX) &&
+                    (objectHeight < objectY || objectHeight > arrowY) &&
+                    (arrowWidth < arrowX || arrowWidth > objectX) &&
+                    (arrowHeight < arrowY || arrowHeight > objectY)) {
+
+                levelTwoSectionTwoScreen.remove(arrow);
+                levelTwoSectionTwoScreen.getWeaponsInThisSection().remove(arrow);
+                return;
+
+            }
+        }
+
+    }
+
+    public void swordIntersection(MarioWeapon sword) {
+
+        if (sword.getMarioVelocity() >= 0) {// Sword Throwed in positive direction:
+            if (sword.getX() <= sword.getXStartPosition()) {// sword come back to mario
+                levelTwoSectionTwoScreen.remove(sword);
+                levelTwoSectionTwoScreen.getWeaponsInThisSection().remove(sword);
+                return;
+            }
+        } else {
+            if (sword.getX() >= sword.getXStartPosition() && sword.getXStartPosition() != 0) {// sword come back to mario
+                levelTwoSectionTwoScreen.remove(sword);
+                levelTwoSectionTwoScreen.getWeaponsInThisSection().remove(sword);
+                return;
+            }
+        }
+
+
+
+        // Sword Hits An Enemy:
+        for (int i = 0; i < levelTwoSectionTwoScreen.getEnemiesInThisSection().size(); i++) {
+            int arrowWidth = sword.getWidth();
+            int arrowHeight = sword.getHeight();
+            int objectWidth = levelTwoSectionTwoScreen.getEnemiesInThisSection().get(i).getWidth();
+            int objectHeight = levelTwoSectionTwoScreen.getEnemiesInThisSection().get(i).getHeight();
+            if (objectWidth <= 0 || objectHeight <= 0 || arrowWidth <= 0 || arrowHeight <= 0) {
+                continue;
+            }
+            int arrowX = sword.getX();
+            int arrowY = sword.getY();
+            int objectX = levelTwoSectionTwoScreen.getEnemiesInThisSection().get(i).getX();
+            int objectY = levelTwoSectionTwoScreen.getEnemiesInThisSection().get(i).getY();
+            objectWidth += objectX;
+            objectHeight += objectY;
+            arrowWidth += arrowX;
+            arrowHeight += arrowY;
+
+            //      overflow || bombIntersectWithObjects
+            if ((objectWidth < objectX || objectWidth > arrowX) &&
+                    (objectHeight < objectY || objectHeight > arrowY) &&
+                    (arrowWidth < arrowX || arrowWidth > objectX) &&
+                    (arrowHeight < arrowY || arrowHeight > objectY)) {
+
+                levelTwoSectionTwoScreen.remove(sword);
+                levelTwoSectionTwoScreen.remove(levelTwoSectionTwoScreen.getEnemiesInThisSection().get(i));
+                levelTwoSectionTwoScreen.getEnemiesInThisSection().remove(i);
+                levelTwoSectionTwoScreen.getWeaponsInThisSection().remove(sword);
+                return;
+            }
+        }
+
+        // Sword Hits An Object:
+        for (int i = 0; i < levelTwoSectionTwoScreen.getObjectsInThisSection().size(); i++) {
+            int arrowWidth = sword.getWidth();
+            int arrowHeight = sword.getHeight() + 10;
+            int objectWidth = levelTwoSectionTwoScreen.getObjectsInThisSection().get(i).getWidth();
+            int objectHeight = levelTwoSectionTwoScreen.getObjectsInThisSection().get(i).getHeight();
+            if (objectWidth <= 0 || objectHeight <= 0 || arrowWidth <= 0 || arrowHeight <= 0) {
+                continue;
+            }
+            int arrowX = sword.getX();
+            int arrowY = sword.getY();
+            int objectX = levelTwoSectionTwoScreen.getObjectsInThisSection().get(i).getX();
+            int objectY = levelTwoSectionTwoScreen.getObjectsInThisSection().get(i).getY();
+            objectWidth += objectX;
+            objectHeight += objectY;
+            arrowWidth += arrowX;
+            arrowHeight += arrowY;
+
+            //      overflow || bombIntersectWithObjects
+            if ((objectWidth < objectX || objectWidth > arrowX) &&
+                    (objectHeight < objectY || objectHeight > arrowY) &&
+                    (arrowWidth < arrowX || arrowWidth > objectX) &&
+                    (arrowHeight < arrowY || arrowHeight > objectY)) {
+
+                levelTwoSectionTwoScreen.remove(sword);
+                levelTwoSectionTwoScreen.getWeaponsInThisSection().remove(sword);
+                return;
+
+            }
+        }
+
+    }
+
     public void generateRandomItem(PrizeInAir prizeInAir) {
 
         Random random = new Random();

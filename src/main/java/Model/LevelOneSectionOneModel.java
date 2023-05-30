@@ -8,9 +8,12 @@ public class LevelOneSectionOneModel {
 
     LevelOneSectionOneScreen levelOneSectionOneScreen;
     IntersectInLevelOneSectionOne intersect;
+    MarioMoverModel marioMoverModel;
+    private int swordCoolDownCounter = 10;
     public Gravity gravity;
 
-    public LevelOneSectionOneModel(LevelOneSectionOneScreen levelOneSectionOneScreen, IntersectInLevelOneSectionOne intersect) {
+    public LevelOneSectionOneModel(LevelOneSectionOneScreen levelOneSectionOneScreen, IntersectInLevelOneSectionOne intersect, MarioMoverModel marioMoverModel) {
+        this.marioMoverModel = marioMoverModel;
         this.intersect = intersect;
         this.levelOneSectionOneScreen = levelOneSectionOneScreen;
         gravityStarter();
@@ -173,6 +176,35 @@ public class LevelOneSectionOneModel {
 
     }
 
+    public void moveShot() {
+
+        ArrayList<MarioWeapon> weaponsInThisSection = levelOneSectionOneScreen.getWeaponsInThisSection();
+        for (MarioWeapon marioWeapon : weaponsInThisSection) {
+            marioWeapon.move();
+        }
+
+    }
+
+    public void startThrowSword() {
+        swordCoolDownCounter++;
+        if (marioMoverModel.isUserPressedUp() && marioMoverModel.isUserPressedDown() && swordCoolDownCounter >= 200) {
+            marioMoverModel.setMarioThrowSword(true);
+            marioMoverModel.marioStartsThrowsSword();
+            marioMoverModel.setUserPressedDown(false);
+            swordCoolDownCounter = 0;
+        }
+    }
+
+    public void intersectShot() {
+        for (int i = 0; i < levelOneSectionOneScreen.getWeaponsInThisSection().size(); i++) {
+            if (levelOneSectionOneScreen.getWeaponsInThisSection().get(i) instanceof Arrow) {
+                intersect.arrowIntersection(levelOneSectionOneScreen.getWeaponsInThisSection().get(i));
+            } else if (levelOneSectionOneScreen.getWeaponsInThisSection().get(i) instanceof Sword) {
+                intersect.swordIntersection(levelOneSectionOneScreen.getWeaponsInThisSection().get(i));
+            }
+        }
+    }
+
     public void setLocationOfEnemies() {
 
         for (int i = 0; i < levelOneSectionOneScreen.getEnemiesInThisSection().size(); i++) {
@@ -197,4 +229,11 @@ public class LevelOneSectionOneModel {
 
     }
 
+    public int getSwordCoolDownCounter() {
+        return swordCoolDownCounter;
+    }
+
+    public void setSwordCoolDownCounter(int swordCoolDownCounter) {
+        this.swordCoolDownCounter = swordCoolDownCounter;
+    }
 }

@@ -8,16 +8,22 @@ import java.awt.image.BufferedImage;
 public class Sword extends MarioWeapon{
 
     private final BufferedImage background;
+    private final BufferedImage backgroundFilliped;
     private int x;
     private int y;
     private int XEndPosition;
-    private int height = 50;// Do the Math for height
-    private int width = 120;// Do the math for width
-    private int velocity = 10;
+    private int XStartPosition;
+    private int height = 50;
+    private int width = 120;
+    private int velocity;
+    private int secondCounter = 0;
+    private boolean isSwordChangeDirection;
+    private boolean isMarioThrowedSword;
 
     public Sword(int x, int y) {
 
         background = MyProjectData.getProjectData().getSword();
+        backgroundFilliped = MyProjectData.getProjectData().getSwordFilliped();
         this.setSize(width, height);
         this.x = x;
         this.y = y;
@@ -28,11 +34,51 @@ public class Sword extends MarioWeapon{
 
     public void move() {
 
+        secondCounter++;
+        if (secondCounter == 5) {
+            if (!isMarioThrowedSword) {
+                if (getMarioVelocity() > 0) {
+                    velocity = 30;
+                    XStartPosition = x - 10;
+                    XEndPosition = x + 600;
+                } else {
+                    velocity = -30;
+                    XStartPosition = x + 10;
+                    XEndPosition = x - 600;
+                }
+                isMarioThrowedSword = true;
+            }
+
+            if (getMarioVelocity() > 0) {// Mario Throws Sword in positive direction:
+                if (x <= XEndPosition) {
+                    x += velocity;
+                } else if (!isSwordChangeDirection) {
+                    velocity = -velocity;
+                    x += velocity;
+                    isSwordChangeDirection = true;
+                }
+            } else {
+                if (x >= XEndPosition) {
+                    x += velocity;
+                } else if (!isSwordChangeDirection) {
+                    velocity = -velocity;
+                    x += velocity;
+                    isSwordChangeDirection = true;
+                }
+            }
+
+            secondCounter = 0;
+        }
+
     }
 
     public void paint(Graphics graphics) {
         Graphics2D graphics2D = (Graphics2D) graphics;
-        graphics2D.drawImage(background, -0, -0, null);
+        if (velocity > 0) {
+            graphics2D.drawImage(background, -0, -0, null);
+        } else {
+            graphics2D.drawImage(backgroundFilliped, -0, -0, null);
+        }
     }
 
     @Override
@@ -79,11 +125,39 @@ public class Sword extends MarioWeapon{
         this.velocity = velocity;
     }
 
+    public int getXStartPosition() {
+        return XStartPosition;
+    }
+
+    public void setXStartPosition(int XStartPosition) {
+        this.XStartPosition = XStartPosition;
+    }
+
     public int getXEndPosition() {
         return XEndPosition;
     }
 
     public void setXEndPosition(int XEndPosition) {
         this.XEndPosition = XEndPosition;
+    }
+
+    public int getSecondCounter() {
+        return secondCounter;
+    }
+
+    public void setSecondCounter(int secondCounter) {
+        this.secondCounter = secondCounter;
+    }
+
+    public boolean isSwordChangeDirection() {
+        return isSwordChangeDirection;
+    }
+
+    public void setSwordChangeDirection(boolean swordChangeDirection) {
+        isSwordChangeDirection = swordChangeDirection;
+    }
+
+    public void setMarioThrowedSword(boolean marioThrowedSword) {
+        isMarioThrowedSword = marioThrowedSword;
     }
 }

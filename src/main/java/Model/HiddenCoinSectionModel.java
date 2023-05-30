@@ -1,19 +1,24 @@
 package Model;
 
-import Graphic.HiddenCoinSectionScreen;
-import Graphic.ItemsInGame;
-import Graphic.ObjectsInGame;
+import Graphic.*;
+
+import java.util.ArrayList;
 
 public class HiddenCoinSectionModel {
 
     HiddenCoinSectionScreen hiddenCoinSectionScreen;
+    IntersectInHiddenCoinSection intersect;
+    MarioMoverModel marioMoverModel;
     private volatile boolean cannonOneWorking = true;
     private volatile boolean cannonTwoWorking;
     private volatile boolean cannonThreeWorking;
     public volatile int coinCounter = 0;
+    private int swordCoolDownCounter = 10;
     public Gravity gravity;
 
-    public HiddenCoinSectionModel(HiddenCoinSectionScreen hiddenCoinSectionScreen) {
+    public HiddenCoinSectionModel(HiddenCoinSectionScreen hiddenCoinSectionScreen, IntersectInHiddenCoinSection intersect, MarioMoverModel marioMoverModel) {
+        this.marioMoverModel = marioMoverModel;
+        this.intersect = intersect;
         this.hiddenCoinSectionScreen = hiddenCoinSectionScreen;
         gravityStarter();
     }
@@ -80,6 +85,36 @@ public class HiddenCoinSectionModel {
             }
         };
     }
+
+    public void moveShot() {
+
+        ArrayList<MarioWeapon> weaponsInThisSection = hiddenCoinSectionScreen.getWeaponsInThisSection();
+        for (MarioWeapon marioWeapon : weaponsInThisSection) {
+            marioWeapon.move();
+        }
+
+    }
+
+    public void startThrowSword() {
+        swordCoolDownCounter++;
+        if (marioMoverModel.isUserPressedUp() && marioMoverModel.isUserPressedDown() && swordCoolDownCounter >= 200) {
+            marioMoverModel.setMarioThrowSword(true);
+            marioMoverModel.marioStartsThrowsSword();
+            marioMoverModel.setUserPressedDown(false);
+            swordCoolDownCounter = 0;
+        }
+    }
+
+    public void intersectShot() {
+        for (int i = 0; i < hiddenCoinSectionScreen.getWeaponsInThisSection().size(); i++) {
+            if (hiddenCoinSectionScreen.getWeaponsInThisSection().get(i) instanceof Arrow) {
+                intersect.arrowIntersection(hiddenCoinSectionScreen.getWeaponsInThisSection().get(i));
+            } else if (hiddenCoinSectionScreen.getWeaponsInThisSection().get(i) instanceof Sword) {
+                intersect.swordIntersection(hiddenCoinSectionScreen.getWeaponsInThisSection().get(i));
+            }
+        }
+    }
+
 
     public boolean isCannonOneWorking() {
         return cannonOneWorking;

@@ -13,6 +13,7 @@ public class LevelTwoSectionTwoScreen extends JLayeredPane {
     public ArrayList<ItemsInGame> itemsInThisSection = new ArrayList<>();
     protected ArrayList<Enemy> enemiesInThisSection = new ArrayList<>();
     protected ArrayList<BirdBomb> bombsInThisSection = new ArrayList<>();
+    protected ArrayList<MarioWeapon> weaponsInThisSection = new ArrayList<>();
     protected ArrayList<EmptySpaceInGround> emptySpaceInGroundsInThisSection = new ArrayList<>();
     public ArrayList<Mario> activeMario;
 
@@ -343,6 +344,14 @@ public class LevelTwoSectionTwoScreen extends JLayeredPane {
 
     public void setBombsInThisSection(ArrayList<BirdBomb> bombsInThisSection) {
         this.bombsInThisSection = bombsInThisSection;
+    }
+
+    public ArrayList<MarioWeapon> getWeaponsInThisSection() {
+        return weaponsInThisSection;
+    }
+
+    public void setWeaponsInThisSection(ArrayList<MarioWeapon> weaponsInThisSection) {
+        this.weaponsInThisSection = weaponsInThisSection;
     }
 
     public void setGameData(GameData gameData) {
