@@ -61,9 +61,9 @@ public class RunnerMario extends Mario {
 
         if (isMarioMini()) {
 
-            if (isMarioRight()) {
+            if (velocityX > 0) {
                 graphics2D.drawImage(run_3_Mini, -0, -5, null);
-            } else if (isMarioLeft()) {
+            } else if (velocityX < 0) {
                 graphics2D.drawImage(run_3_Flipped_Mini, -0, -5, null);
             } else {
                 graphics2D.drawImage(stand_Mini, -0, -5, null);
@@ -72,17 +72,17 @@ public class RunnerMario extends Mario {
         } else if (isMarioMega()) {
 
             if (isMarioSit()) {// Mario is Siting:
-                if (isMarioRight()) {
+                if (velocityX > 0) {
                     graphics2D.drawImage(run_3_Mini, -0, -5, null);
-                } else if (isMarioLeft()) {
+                } else if (velocityX < 0) {
                     graphics2D.drawImage(run_3_Flipped_Mini, -0, -5, null);
                 } else {
                     graphics2D.drawImage(stand_Mini, -0, -5, null);
                 }
             } else {// Mario is standing:
-                if (isMarioRight()) {
+                if (velocityX > 0) {
                     graphics2D.drawImage(run_3, -0, -5, null);
-                } else if (isMarioLeft()) {
+                } else if (velocityX < 0) {
                     graphics2D.drawImage(run_3_Flipped, -0, -5, null);
                 } else {
                     graphics2D.drawImage(stand, -0, -5, null);
@@ -92,17 +92,17 @@ public class RunnerMario extends Mario {
         } else if (isMarioShooter()) {
 
             if (isMarioSit()) {// Mario is Siting:
-                if (isMarioRight()) {
+                if (velocityX > 0) {
                     graphics2D.drawImage(getFireMario_Mini(), -0, -5, null);
-                } else if (isMarioLeft()) {
+                } else if (velocityX < 0) {
                     graphics2D.drawImage(getFireMario_Filliped_Mini(), -0, -5, null);
                 } else {
                     graphics2D.drawImage(getFireMario_Mini(), -0, -5, null);
                 }
             } else {// Mario is standing:
-                if (isMarioRight()) {
+                if (velocityX > 0) {
                     graphics2D.drawImage(getFireMario(), -0, -5, null);
-                } else if (isMarioLeft()) {
+                } else if (velocityX < 0) {
                     graphics2D.drawImage(getFireMario_Filliped(), -0, -5, null);
                 } else {
                     graphics2D.drawImage(getFireMario(), -0, -5, null);

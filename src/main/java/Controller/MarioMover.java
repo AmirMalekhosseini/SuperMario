@@ -49,6 +49,9 @@ public class MarioMover implements KeyListener {
         }
 
         if (e.getKeyCode() == KeyEvent.VK_SHIFT) {// Shooting
+            if (!marioMoverModel.activeMario.isMarioShooter()) {
+                return;
+            }
             marioMoverModel.setMarioShooting(true);
             marioMoverModel.marioStartShooting();
         }
@@ -62,11 +65,17 @@ public class MarioMover implements KeyListener {
         }
 
         if (e.getKeyChar() == 's') {
-            marioMoverModel.setDownMario(true);
-            marioMoverModel.setUserPressedDown(true);
-            if (!marioMoverModel.isUpMario()) {
-                marioMoverModel.activeMario.setMarioSit(true);
+
+            if (marioMoverModel.isUpMario()) {
+                return;
             }
+            marioMoverModel.setUserPressedDown(true);
+            if (!marioMoverModel.isUserPressedUp()) {
+                marioMoverModel.activeMario.setMarioSit(true);
+            } else {
+                marioMoverModel.activeMario.setMarioSit(false);
+            }
+
         }
 
         if (e.getKeyChar() == 'a') {
@@ -90,7 +99,6 @@ public class MarioMover implements KeyListener {
         }
 
         if (e.getKeyChar() == 's') {
-            marioMoverModel.setDownMario(false);
             marioMoverModel.activeMario.setMarioSit(false);
             marioMoverModel.setUserPressedDown(false);
         }

@@ -4,7 +4,7 @@ import Model.*;
 import javax.swing.*;
 import java.awt.image.BufferedImage;
 
-public abstract class Mario extends JLabel {
+public abstract class Mario extends ObjectsInGame {
 
 
     private final BufferedImage fireMario;
@@ -17,9 +17,11 @@ public abstract class Mario extends JLabel {
     private boolean isMarioLeft;
     private boolean isMarioRight;
     private boolean isMarioSit;
-    private boolean isMarioMini = false;
+    private boolean isMarioMini = true;
     private boolean isMarioMega;
-    private boolean isMarioShooter = true;
+    private boolean isMarioShooter;
+    private boolean isMarioEnemyProof;
+    private boolean marioShouldDie;
 
     public Mario() {
 
@@ -132,5 +134,21 @@ public abstract class Mario extends JLabel {
 
     public void setMarioSit(boolean marioSit) {
         isMarioSit = marioSit;
+    }
+
+    public boolean isMarioEnemyProof() {
+        return isMarioEnemyProof;
+    }
+
+    public void setMarioEnemyProof(boolean marioEnemyProof) {
+        isMarioEnemyProof = marioEnemyProof;
+    }
+
+    public boolean isMarioShouldDie() {
+        return marioShouldDie;
+    }
+
+    public void setMarioShouldDie(boolean marioShouldDie) {
+        this.marioShouldDie = marioShouldDie;
     }
 }

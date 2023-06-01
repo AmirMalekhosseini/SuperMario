@@ -8,14 +8,17 @@ public class IntersectInLevelTwoSectionOne {
 
     GameScreenFrame gameScreenFrame;
     LevelTwoSectionOneScreen levelTwoSectionOneScreen;
+    PowerUp powerUp;
     protected boolean marioHitsLeftOfTheObject;
     protected boolean marioHitsRightOfTheObject;
     protected boolean marioHitsUpOfTheObject;
     protected boolean marioHitsDownOfTheObject;
     protected boolean marioHitsAnObject;
     protected boolean marioHitsFullOfCoinBlockInAir;
+    protected boolean marioHitsTurtle;
 
-    public IntersectInLevelTwoSectionOne(GameScreenFrame gameScreenFrame) {
+    public IntersectInLevelTwoSectionOne(GameScreenFrame gameScreenFrame, PowerUp powerUp) {
+        this.powerUp = powerUp;
         this.gameScreenFrame = gameScreenFrame;
         this.levelTwoSectionOneScreen = gameScreenFrame.getLevelTwoSectionOneScreen();
     }
@@ -89,7 +92,13 @@ public class IntersectInLevelTwoSectionOne {
                         marioHitsAnObject = true;
                     }
                     continue;
-                } else if (levelTwoSectionOneScreen.getObjectsInThisSection().get(i) instanceof SimpleBlockInAir && marioHitsDownOfTheObject && !marioHitsAnObject) {
+                }
+
+                if (levelTwoSectionOneScreen.activeMario.get(0).isMarioMini()) {// Mini Mario cant destroy
+                    return;
+                }
+
+                if (levelTwoSectionOneScreen.getObjectsInThisSection().get(i) instanceof SimpleBlockInAir && marioHitsDownOfTheObject && !marioHitsAnObject) {
                     levelTwoSectionOneScreen.remove(levelTwoSectionOneScreen.getObjectsInThisSection().get(i));
                     levelTwoSectionOneScreen.getObjectsInThisSection().remove(levelTwoSectionOneScreen.getObjectsInThisSection().get(i));
                     gameScreenFrame.getGameData().thisGameScore++;
@@ -162,6 +171,8 @@ public class IntersectInLevelTwoSectionOne {
                 if (!levelTwoSectionOneScreen.getItemsInThisSection().get(i).isItemCatch()) {
                     if (levelTwoSectionOneScreen.getItemsInThisSection().get(i) instanceof Coin) {
                         levelTwoSectionOneScreen.getGameData().thisGameCoin++;
+                    }else {
+                        powerUp.allocatePowerUpInLevelTwoSectionOne();
                     }
                     levelTwoSectionOneScreen.getGameData().thisGameScore += levelTwoSectionOneScreen.getItemsInThisSection().get(i).getScoreItemAdds();
 
@@ -173,20 +184,22 @@ public class IntersectInLevelTwoSectionOne {
 
     }
 
-    public boolean intersectWithEnemies() {
+    public boolean marioIntersectWithEnemies() {
 
         for (int i = 0; i < levelTwoSectionOneScreen.getEnemiesInThisSection().size(); i++) {
-            int marioWidth = levelTwoSectionOneScreen.activeMario.get(0).getWidth();
-            int marioHeight = levelTwoSectionOneScreen.activeMario.get(0).getHeight();
-            int objectWidth = levelTwoSectionOneScreen.getEnemiesInThisSection().get(i).getWidth();
-            int objectHeight = levelTwoSectionOneScreen.getEnemiesInThisSection().get(i).getHeight();
+            Enemy enemy = levelTwoSectionOneScreen.getEnemiesInThisSection().get(i);
+            Mario activeMario = levelTwoSectionOneScreen.activeMario.get(0);
+            int marioWidth = activeMario.getWidth();
+            int marioHeight = activeMario.getHeight();
+            int objectWidth = enemy.getWidth();
+            int objectHeight = enemy.getHeight();
             if (objectWidth <= 0 || objectHeight <= 0 || marioWidth <= 0 || marioHeight <= 0) {
                 continue;
             }
-            int marioX = levelTwoSectionOneScreen.activeMario.get(0).getX();
-            int marioY = levelTwoSectionOneScreen.activeMario.get(0).getY();
-            int objectX = levelTwoSectionOneScreen.getEnemiesInThisSection().get(i).getX();
-            int objectY = levelTwoSectionOneScreen.getEnemiesInThisSection().get(i).getY();
+            int marioX = activeMario.getX();
+            int marioY = activeMario.getY();
+            int objectX = enemy.getX();
+            int objectY = enemy.getY();
             objectWidth += objectX;
             objectHeight += objectY;
             marioWidth += marioX;
@@ -197,25 +210,62 @@ public class IntersectInLevelTwoSectionOne {
                     (objectHeight < objectY || objectHeight > marioY) &&
                     (marioWidth < marioX || marioWidth > objectX) &&
                     (marioHeight < marioY || marioHeight > objectY)) {
-                levelTwoSectionOneScreen.getGameData().userHeartValue--;
-                return true;
+                if ((marioWidth >= objectX || objectWidth >= marioX) && marioHeight <= objectY + 30) {// Hit up of Object and kill Enemy
+                    if (enemy instanceof Goompa) {
+                        levelTwoSectionOneScreen.remove(enemy);
+                        levelTwoSectionOneScreen.getEnemiesInThisSection().remove(i);
+                        gameScreenFrame.getGameData().thisGameCoin += 3;
+                        gameScreenFrame.getGameData().thisGameScore++;
+                        return false;
+                    }
+
+                    if (enemy instanceof Turtle && !marioHitsTurtle) {
+                        ((Turtle) enemy).hitCounter++;
+                        ((Turtle) enemy).setTurtleHit(true);
+                        if (((Turtle) enemy).hitCounter >= 2) {
+                            levelTwoSectionOneScreen.remove(enemy);
+                            levelTwoSectionOneScreen.getEnemiesInThisSection().remove(i);
+                            gameScreenFrame.getGameData().thisGameCoin += 3;
+                            gameScreenFrame.getGameData().thisGameScore += 2;
+                        }
+
+                        int x = enemy.getX() + 500;
+                        enemy.setX(x);
+                        marioHitsTurtle = true;
+                        return false;
+                    }
+                }
+
+                powerUp.decreasePowerUpInLevelOneSectionOne();
+                if (activeMario.isMarioShouldDie()) {
+                    levelTwoSectionOneScreen.getGameData().userHeartValue--;
+                    levelTwoSectionOneScreen.thisSectionTime.setSectionTime(50);
+                    return true;
+                } else {// Mario decrease powerUp and the enemy will be killed:
+                    levelTwoSectionOneScreen.remove(enemy);
+                    levelTwoSectionOneScreen.getEnemiesInThisSection().remove(enemy);
+                    return false;
+                }
+
             }
 
         }
 
         // Bomb Hits mario:
         for (int i = 0; i < levelTwoSectionOneScreen.getBombsInThisSection().size(); i++) {
-            int marioWidth = levelTwoSectionOneScreen.activeMario.get(0).getWidth();
-            int marioHeight = levelTwoSectionOneScreen.activeMario.get(0).getHeight();
-            int objectWidth = levelTwoSectionOneScreen.getBombsInThisSection().get(i).getWidth();
-            int objectHeight = levelTwoSectionOneScreen.getBombsInThisSection().get(i).getHeight();
+            BirdBomb bomb = levelTwoSectionOneScreen.getBombsInThisSection().get(i);
+            Mario activeMario = levelTwoSectionOneScreen.activeMario.get(0);
+            int marioWidth = activeMario.getWidth();
+            int marioHeight = activeMario.getHeight();
+            int objectWidth = bomb.getWidth();
+            int objectHeight = bomb.getHeight();
             if (objectWidth <= 0 || objectHeight <= 0 || marioWidth <= 0 || marioHeight <= 0) {
                 continue;
             }
-            int marioX = levelTwoSectionOneScreen.activeMario.get(0).getX();
-            int marioY = levelTwoSectionOneScreen.activeMario.get(0).getY();
-            int objectX = levelTwoSectionOneScreen.getBombsInThisSection().get(i).getX();
-            int objectY = levelTwoSectionOneScreen.getBombsInThisSection().get(i).getY();
+            int marioX = activeMario.getX();
+            int marioY = activeMario.getY();
+            int objectX = bomb.getX();
+            int objectY = bomb.getY();
             objectWidth += objectX;
             objectHeight += objectY;
             marioWidth += marioX;
@@ -226,11 +276,14 @@ public class IntersectInLevelTwoSectionOne {
                     (objectHeight < objectY || objectHeight > marioY) &&
                     (marioWidth < marioX || marioWidth > objectX) &&
                     (marioHeight < marioY || marioHeight > objectY)) {
-                levelTwoSectionOneScreen.remove(levelTwoSectionOneScreen.getBombsInThisSection().get(i));
+                levelTwoSectionOneScreen.remove(bomb);
                 levelTwoSectionOneScreen.getBombsInThisSection().remove(i);
-                levelTwoSectionOneScreen.getGameData().userHeartValue--;
-                levelTwoSectionOneScreen.thisSectionTime.setSectionTime(50);
-                return true;
+                powerUp.decreasePowerUpInLevelTwoSectionOne();
+                if (activeMario.isMarioShouldDie()) {
+                    levelTwoSectionOneScreen.getGameData().userHeartValue--;
+                    levelTwoSectionOneScreen.thisSectionTime.setSectionTime(50);
+                    return true;
+                }
             }
         }
 
@@ -547,6 +600,16 @@ public class IntersectInLevelTwoSectionOne {
 
     }
 
+    public void intersectShot() {
+        for (int i = 0; i < levelTwoSectionOneScreen.getWeaponsInThisSection().size(); i++) {
+            if (levelTwoSectionOneScreen.getWeaponsInThisSection().get(i) instanceof Arrow) {
+                arrowIntersection(levelTwoSectionOneScreen.getWeaponsInThisSection().get(i));
+            } else if (levelTwoSectionOneScreen.getWeaponsInThisSection().get(i) instanceof Sword) {
+                swordIntersection(levelTwoSectionOneScreen.getWeaponsInThisSection().get(i));
+            }
+        }
+    }
+
     public void arrowIntersection(MarioWeapon arrow) {
 
         if (arrow.getX() >= arrow.getXEndPosition()) {
@@ -791,5 +854,20 @@ public class IntersectInLevelTwoSectionOne {
 
     public void setLevelTwoSectionOneScreen(LevelTwoSectionOneScreen levelTwoSectionOneScreen) {
         this.levelTwoSectionOneScreen = levelTwoSectionOneScreen;
+    }
+    public PowerUp getPowerUp() {
+        return powerUp;
+    }
+
+    public void setPowerUp(PowerUp powerUp) {
+        this.powerUp = powerUp;
+    }
+
+    public boolean isMarioHitsTurtle() {
+        return marioHitsTurtle;
+    }
+
+    public void setMarioHitsTurtle(boolean marioHitsTurtle) {
+        this.marioHitsTurtle = marioHitsTurtle;
     }
 }

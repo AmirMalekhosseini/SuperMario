@@ -105,17 +105,6 @@ public class HiddenCoinSectionModel {
         }
     }
 
-    public void intersectShot() {
-        for (int i = 0; i < hiddenCoinSectionScreen.getWeaponsInThisSection().size(); i++) {
-            if (hiddenCoinSectionScreen.getWeaponsInThisSection().get(i) instanceof Arrow) {
-                intersect.arrowIntersection(hiddenCoinSectionScreen.getWeaponsInThisSection().get(i));
-            } else if (hiddenCoinSectionScreen.getWeaponsInThisSection().get(i) instanceof Sword) {
-                intersect.swordIntersection(hiddenCoinSectionScreen.getWeaponsInThisSection().get(i));
-            }
-        }
-    }
-
-
     public boolean isCannonOneWorking() {
         return cannonOneWorking;
     }

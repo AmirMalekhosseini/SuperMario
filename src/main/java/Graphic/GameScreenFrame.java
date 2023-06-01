@@ -8,6 +8,7 @@ import javax.swing.*;
 public class GameScreenFrame extends JFrame {
 
     protected GameData gameData;
+    protected PowerUp powerUp;
     protected GravityData gravityData;
     protected JPanel hiddenEnemyBackgroundPanel;
     protected JPanel hiddenCoinBackgroundPanel;
@@ -68,12 +69,13 @@ public class GameScreenFrame extends JFrame {
                 calculateScore = new CalculateScore(gameScreenFrame);
                 marioMoverModel = new MarioMoverModel(gameScreenFrame);
                 marioMover = new MarioMover(gameScreenFrame, marioMoverModel);
-                intersectInLevelOneSectionTwo = new IntersectInLevelOneSectionTwo(gameScreenFrame);
-                intersectInLevelOneSectionOne = new IntersectInLevelOneSectionOne(gameScreenFrame);
-                intersectInLevelTwoSectionOne = new IntersectInLevelTwoSectionOne(gameScreenFrame);
-                intersectInLevelTwoSectionTwo = new IntersectInLevelTwoSectionTwo(gameScreenFrame);
-                intersectInHiddenCoinSection = new IntersectInHiddenCoinSection(gameScreenFrame);
-                intersectInHiddenEnemySection = new IntersectInHiddenEnemySection(gameScreenFrame);
+                powerUp = new PowerUp(gameScreenFrame);
+                intersectInLevelOneSectionOne = new IntersectInLevelOneSectionOne(gameScreenFrame, powerUp);
+                intersectInLevelOneSectionTwo = new IntersectInLevelOneSectionTwo(gameScreenFrame, powerUp);
+                intersectInLevelTwoSectionOne = new IntersectInLevelTwoSectionOne(gameScreenFrame, powerUp);
+                intersectInLevelTwoSectionTwo = new IntersectInLevelTwoSectionTwo(gameScreenFrame, powerUp);
+                intersectInHiddenCoinSection = new IntersectInHiddenCoinSection(gameScreenFrame, powerUp);
+                intersectInHiddenEnemySection = new IntersectInHiddenEnemySection(gameScreenFrame, powerUp);
                 gravityData = new GravityData(gameScreenFrame);
                 hiddenEnemySectionModel = new HiddenEnemySectionModel(hiddenEnemySectionScreen, intersectInHiddenEnemySection, marioMoverModel);
                 hiddenCoinSectionModel = new HiddenCoinSectionModel(hiddenCoinSectionScreen, intersectInHiddenCoinSection, marioMoverModel);
@@ -309,4 +311,11 @@ public class GameScreenFrame extends JFrame {
         this.gravityData = gravityData;
     }
 
+    public PowerUp getPowerUp() {
+        return powerUp;
+    }
+
+    public void setPowerUp(PowerUp powerUp) {
+        this.powerUp = powerUp;
+    }
 }

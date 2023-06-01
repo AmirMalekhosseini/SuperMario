@@ -27,7 +27,10 @@ public class LevelOneSectionOneModel {
 
                 for (ObjectsInGame objects : levelOneSectionOneScreen.getObjectsInThisSection()) {
                     int firstObjectWidth = object.getWidth();
-                    int firstObjectHeight = object.getHeight() + 15;
+                    int firstObjectHeight = object.getHeight();
+                    if (object instanceof ItemsInGame) {
+                        firstObjectHeight += 15;
+                    }
                     int secondObjectWidth = objects.getWidth();
                     int secondObjectHeight = objects.getHeight();
                     if (secondObjectWidth <= 0 || secondObjectHeight <= 0 || firstObjectWidth <= 0 || firstObjectHeight <= 0) {
@@ -190,18 +193,8 @@ public class LevelOneSectionOneModel {
         if (marioMoverModel.isUserPressedUp() && marioMoverModel.isUserPressedDown() && swordCoolDownCounter >= 200) {
             marioMoverModel.setMarioThrowSword(true);
             marioMoverModel.marioStartsThrowsSword();
-            marioMoverModel.setUserPressedDown(false);
+//            marioMoverModel.setUserPressedDown(false);
             swordCoolDownCounter = 0;
-        }
-    }
-
-    public void intersectShot() {
-        for (int i = 0; i < levelOneSectionOneScreen.getWeaponsInThisSection().size(); i++) {
-            if (levelOneSectionOneScreen.getWeaponsInThisSection().get(i) instanceof Arrow) {
-                intersect.arrowIntersection(levelOneSectionOneScreen.getWeaponsInThisSection().get(i));
-            } else if (levelOneSectionOneScreen.getWeaponsInThisSection().get(i) instanceof Sword) {
-                intersect.swordIntersection(levelOneSectionOneScreen.getWeaponsInThisSection().get(i));
-            }
         }
     }
 

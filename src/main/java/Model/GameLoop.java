@@ -74,7 +74,7 @@ public class GameLoop {
                         gameScreenFrame.intersectInLevelOneSectionTwo.refreshIntersectsBooleans();
                         gameScreenFrame.intersectInLevelOneSectionTwo.intersectWithObjects();
                         gameScreenFrame.intersectInLevelOneSectionTwo.intersectWithItems();
-                        if (gameScreenFrame.intersectInLevelOneSectionTwo.intersectWithEnemies()) {
+                        if (gameScreenFrame.intersectInLevelOneSectionTwo.marioIntersectWithEnemies()) {
                             gameScreenFrame.setXLevelOneBackgroundPanel(-6800);
                             gameScreenFrame.getLevelOneSectionTwoModel().setLocationAfterLoose();
                         }
@@ -91,8 +91,6 @@ public class GameLoop {
                             gameScreenFrame.getLevelOneSectionTwoScreen().thisSectionTime.setSectionTime(50);
                         }
                     }
-
-                    setGameDataInLevelOne();
 
                     if (gameScreenFrame.getGameData().userHeartValue == 0) {
                         gameScreenFrame.getGameData().isGameFinish = true;
@@ -184,6 +182,8 @@ public class GameLoop {
                     gameScreenFrame.getLevelOneGameBackgroundPanel().setLocation(xLevelOneBackgroundPanel, 0);
                     gameScreenFrame.marioMover.getMarioMoverModel().move();
                     gameScreenFrame.getLevelOneSectionOneModel().moveShot();
+                    setGameDataInLevelOne();
+                    gameScreenFrame.marioMoverModel.changeMarioHeight();
                     gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).setLocation
                             (gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).getX(),
                                     gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).getY());
@@ -347,7 +347,7 @@ public class GameLoop {
                     long startTime = System.currentTimeMillis();
                     gameScreenFrame.getLevelOneSectionOneModel().moveEnemy();
                     gameScreenFrame.getLevelOneSectionOneModel().moveItem();
-                    gameScreenFrame.getLevelOneSectionOneModel().intersectShot();
+                    gameScreenFrame.intersectInLevelOneSectionOne.intersectShot();
                     gameScreenFrame.getLevelOneSectionOneModel().startThrowSword();
                     gameScreenFrame.getLevelOneSectionTwoModel().moveEnemy();
                     gameScreenFrame.getLevelOneSectionTwoModel().moveItem();

@@ -193,17 +193,6 @@ public class LevelOneSectionTwoModel {
         }
     }
 
-    public void intersectShot() {
-        for (int i = 0; i < levelOneSectionTwoScreen.getWeaponsInThisSection().size(); i++) {
-            if (levelOneSectionTwoScreen.getWeaponsInThisSection().get(i) instanceof Arrow) {
-                intersect.arrowIntersection(levelOneSectionTwoScreen.getWeaponsInThisSection().get(i));
-            } else if (levelOneSectionTwoScreen.getWeaponsInThisSection().get(i) instanceof Sword) {
-                intersect.swordIntersection(levelOneSectionTwoScreen.getWeaponsInThisSection().get(i));
-            }
-        }
-    }
-
-
     public void setLocationOfEnemies() {
 
         for (int i = 0; i < levelOneSectionTwoScreen.getEnemiesInThisSection().size(); i++) {

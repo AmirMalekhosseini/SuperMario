@@ -15,7 +15,6 @@ public class MarioMoverModel {
     private boolean rightMario;
     private boolean leftMario;
     private boolean upMario;
-    private boolean downMario;
     private boolean isUserPressedUp;
     private boolean isUserPressedDown;
     private boolean marioEnterInSectionTwo;
@@ -49,9 +48,16 @@ public class MarioMoverModel {
 
                 }
 
+                if (isUserPressedUp && isUserPressedDown) {// When both button pressed together:
+                    upMario = false;
+                    isUserPressedUp = false;
+                    activeMario.setMarioSit(false);
+                    return;
+                }
+
                 // GravityData:
 
-                if (upMario && !downMario) {// Mario start jumping
+                if (upMario) {// Mario start jumping
 
                     activeMario.setVelocityY(gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).getVelocityY() + (GravityData.gravity * GravityData.dt));
                     activeMario.setY((int) (gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).getY() + gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).getVelocityY()));
@@ -146,7 +152,7 @@ public class MarioMoverModel {
 
                 // GravityData:
 
-                if (upMario && !downMario) {// Mario start jumping
+                if (upMario) {// Mario start jumping
 
                     activeMario.setVelocityY(activeMario.getVelocityY() + (GravityData.gravity * GravityData.dt));
                     activeMario.setY((int) (activeMario.getY() + activeMario.getVelocityY()));
@@ -272,7 +278,8 @@ public class MarioMoverModel {
     public void addSwordToScreen() {
 
         int x = activeMario.getX();
-        int y = activeMario.getY() + 30;
+//        int y = activeMario.getY() + 30;
+        int y = 890;
         Sword newSword = new Sword(x, y);
         newSword.setMarioVelocity((int) activeMario.getVelocityX());
 
@@ -294,6 +301,29 @@ public class MarioMoverModel {
         }else if (gameData.getMarioLocation().equalsIgnoreCase("hiddenenemysection")) {
             hiddenEnemySectionScreen.add(newSword, Integer.valueOf(1));
             hiddenEnemySectionScreen.getWeaponsInThisSection().add(newSword);
+        }
+
+    }
+
+    public void changeMarioHeight() {
+
+        if (isUpMario()) {
+            return;
+        }
+
+        if (activeMario.isMarioMini()) {
+            activeMario.setHeight(60);
+            activeMario.setY(900);
+        } else if (activeMario.isMarioMega() || activeMario.isMarioShooter()) {
+
+            if (activeMario.isMarioSit()) {
+                activeMario.setHeight(60);
+                activeMario.setY(900);
+            } else {
+                activeMario.setHeight(120);
+                activeMario.setY(840);
+            }
+
         }
 
     }
@@ -321,14 +351,6 @@ public class MarioMoverModel {
 
     public void setUpMario(boolean upMario) {
         this.upMario = upMario;
-    }
-
-    public boolean isDownMario() {
-        return downMario;
-    }
-
-    public void setDownMario(boolean downMario) {
-        this.downMario = downMario;
     }
 
     public boolean isUserPressedUp() {

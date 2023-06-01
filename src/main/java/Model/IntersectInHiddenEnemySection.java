@@ -8,6 +8,7 @@ public class IntersectInHiddenEnemySection {
 
     GameScreenFrame gameScreenFrame;
     HiddenEnemySectionScreen hiddenEnemySectionScreen;
+    PowerUp powerUp;
     protected boolean marioHitsLeftOfTheObject;
     protected boolean marioHitsRightOfTheObject;
     protected boolean marioHitsUpOfTheObject;
@@ -16,7 +17,8 @@ public class IntersectInHiddenEnemySection {
     protected boolean marioHitsFullOfCoinBlockInAir;
     protected boolean marioHitsTurtle;
 
-    public IntersectInHiddenEnemySection(GameScreenFrame gameScreenFrame) {
+    public IntersectInHiddenEnemySection(GameScreenFrame gameScreenFrame, PowerUp powerUp) {
+        this.powerUp = powerUp;
         this.gameScreenFrame = gameScreenFrame;
         this.hiddenEnemySectionScreen = gameScreenFrame.getHiddenEnemySectionScreen();
     }
@@ -90,7 +92,13 @@ public class IntersectInHiddenEnemySection {
                         marioHitsAnObject = true;
                     }
                     continue;
-                } else if (hiddenEnemySectionScreen.getObjectsInThisSection().get(i) instanceof SimpleBlockInAir && marioHitsDownOfTheObject && !marioHitsAnObject) {
+                }
+
+                if (hiddenEnemySectionScreen.activeMario.get(0).isMarioMini()) {// Mini Mario cant destroy
+                    return;
+                }
+
+                if (hiddenEnemySectionScreen.getObjectsInThisSection().get(i) instanceof SimpleBlockInAir && marioHitsDownOfTheObject && !marioHitsAnObject) {
                     hiddenEnemySectionScreen.remove(hiddenEnemySectionScreen.getObjectsInThisSection().get(i));
                     hiddenEnemySectionScreen.getObjectsInThisSection().remove(hiddenEnemySectionScreen.getObjectsInThisSection().get(i));
                     gameScreenFrame.getGameData().thisGameScore++;
@@ -162,6 +170,8 @@ public class IntersectInHiddenEnemySection {
                 if (!hiddenEnemySectionScreen.getItemsInThisSection().get(i).isItemCatch()) {
                     if (hiddenEnemySectionScreen.getItemsInThisSection().get(i) instanceof Coin) {
                         hiddenEnemySectionScreen.getGameData().thisGameCoin++;
+                    }else {
+                        powerUp.allocatePowerUpInHiddenCoinSection();
                     }
                     hiddenEnemySectionScreen.getGameData().thisGameScore += hiddenEnemySectionScreen.getItemsInThisSection().get(i).getScoreItemAdds();
 
@@ -221,14 +231,30 @@ public class IntersectInHiddenEnemySection {
                         marioHitsTurtle = true;
                         return false;
                     }
+                }
+                powerUp.decreasePowerUpInHiddenEnemySection();
+                if (hiddenEnemySectionScreen.activeMario.get(0).isMarioShouldDie()) {
+                    hiddenEnemySectionScreen.getGameData().userHeartValue--;
+                    return true;
+                } else {// Mario decrease powerUp and the enemy will be killed:
+                    hiddenEnemySectionScreen.remove(hiddenEnemySectionScreen.getEnemiesInThisSection().get(i));
+                    hiddenEnemySectionScreen.getEnemiesInThisSection().remove(hiddenEnemySectionScreen.getEnemiesInThisSection().get(i));
                     return false;
                 }
-                hiddenEnemySectionScreen.getGameData().userHeartValue--;
-                return true;
             }
 
         }
         return false;
+    }
+
+    public void intersectShot() {
+        for (int i = 0; i < hiddenEnemySectionScreen.getWeaponsInThisSection().size(); i++) {
+            if (hiddenEnemySectionScreen.getWeaponsInThisSection().get(i) instanceof Arrow) {
+                arrowIntersection(hiddenEnemySectionScreen.getWeaponsInThisSection().get(i));
+            } else if (hiddenEnemySectionScreen.getWeaponsInThisSection().get(i) instanceof Sword) {
+                swordIntersection(hiddenEnemySectionScreen.getWeaponsInThisSection().get(i));
+            }
+        }
     }
 
     public void arrowIntersection(MarioWeapon arrow) {
@@ -467,5 +493,12 @@ public class IntersectInHiddenEnemySection {
 
     public void setMarioHitsTurtle(boolean marioHitsTurtle) {
         this.marioHitsTurtle = marioHitsTurtle;
+    }
+    public PowerUp getPowerUp() {
+        return powerUp;
+    }
+
+    public void setPowerUp(PowerUp powerUp) {
+        this.powerUp = powerUp;
     }
 }

@@ -8,6 +8,7 @@ public class IntersectInHiddenCoinSection {
 
     GameScreenFrame gameScreenFrame;
     HiddenCoinSectionScreen hiddenCoinSectionScreen;
+    PowerUp powerUp;
     protected boolean marioHitsLeftOfTheObject;
     protected boolean marioHitsRightOfTheObject;
     protected boolean marioHitsUpOfTheObject;
@@ -15,7 +16,8 @@ public class IntersectInHiddenCoinSection {
     protected boolean marioHitsAnObject;
     protected boolean marioHitsFullOfCoinBlockInAir;
 
-    public IntersectInHiddenCoinSection(GameScreenFrame gameScreenFrame) {
+    public IntersectInHiddenCoinSection(GameScreenFrame gameScreenFrame, PowerUp powerUp) {
+        this.powerUp = powerUp;
         this.gameScreenFrame = gameScreenFrame;
         this.hiddenCoinSectionScreen = gameScreenFrame.getHiddenCoinSectionScreen();
     }
@@ -89,7 +91,13 @@ public class IntersectInHiddenCoinSection {
                         marioHitsAnObject = true;
                     }
                     continue;
-                } else if (hiddenCoinSectionScreen.getObjectsInThisSection().get(i) instanceof SimpleBlockInAir && marioHitsDownOfTheObject && !marioHitsAnObject) {
+                }
+
+                if (hiddenCoinSectionScreen.activeMario.get(0).isMarioMini()) {// Mini Mario cant destroy
+                    return;
+                }
+
+                if (hiddenCoinSectionScreen.getObjectsInThisSection().get(i) instanceof SimpleBlockInAir && marioHitsDownOfTheObject && !marioHitsAnObject) {
                     hiddenCoinSectionScreen.remove(hiddenCoinSectionScreen.getObjectsInThisSection().get(i));
                     hiddenCoinSectionScreen.getObjectsInThisSection().remove(hiddenCoinSectionScreen.getObjectsInThisSection().get(i));
                     gameScreenFrame.getGameData().thisGameScore++;
@@ -161,6 +169,8 @@ public class IntersectInHiddenCoinSection {
                 if (!hiddenCoinSectionScreen.getItemsInThisSection().get(i).isItemCatch()) {
                     if (hiddenCoinSectionScreen.getItemsInThisSection().get(i) instanceof Coin) {
                         hiddenCoinSectionScreen.getGameData().thisGameCoin++;
+                    }else {
+                        powerUp.allocatePowerUpInHiddenCoinSection();
                     }
                     hiddenCoinSectionScreen.getGameData().thisGameScore += hiddenCoinSectionScreen.getItemsInThisSection().get(i).getScoreItemAdds();
 
@@ -170,6 +180,16 @@ public class IntersectInHiddenCoinSection {
 
         }
 
+    }
+
+    public void intersectShot() {
+        for (int i = 0; i < hiddenCoinSectionScreen.getWeaponsInThisSection().size(); i++) {
+            if (hiddenCoinSectionScreen.getWeaponsInThisSection().get(i) instanceof Arrow) {
+                arrowIntersection(hiddenCoinSectionScreen.getWeaponsInThisSection().get(i));
+            } else if (hiddenCoinSectionScreen.getWeaponsInThisSection().get(i) instanceof Sword) {
+                swordIntersection(hiddenCoinSectionScreen.getWeaponsInThisSection().get(i));
+            }
+        }
     }
 
     public void arrowIntersection(MarioWeapon arrow) {
@@ -326,5 +346,13 @@ public class IntersectInHiddenCoinSection {
 
     public void setMarioHitsAnObject(boolean marioHitsAnObject) {
         this.marioHitsAnObject = marioHitsAnObject;
+    }
+
+    public PowerUp getPowerUp() {
+        return powerUp;
+    }
+
+    public void setPowerUp(PowerUp powerUp) {
+        this.powerUp = powerUp;
     }
 }

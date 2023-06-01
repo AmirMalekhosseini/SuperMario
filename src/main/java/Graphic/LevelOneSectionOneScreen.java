@@ -7,7 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class LevelOneSectionOneScreen extends JLayeredPane {
+public class LevelOneSectionOneScreen extends LevelScreens {
 
     protected ArrayList<ObjectsInGame> objectsInThisSection = new ArrayList<>();
     protected ArrayList<ItemsInGame> itemsInThisSection = new ArrayList<>();
