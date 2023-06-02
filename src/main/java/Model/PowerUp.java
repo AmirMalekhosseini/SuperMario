@@ -39,6 +39,8 @@ public class PowerUp {
 
         }
 
+        savePowerUp(activeMario);
+
     }
 
     public void decreasePowerUpInLevelOneSectionOne() {
@@ -60,6 +62,8 @@ public class PowerUp {
             activeMario.setMarioShouldDie(true);
         }
 
+        savePowerUp(activeMario);
+
     }
 
     public void allocatePowerUpInLevelOneSectionTwo() {
@@ -79,6 +83,8 @@ public class PowerUp {
 
         }
 
+        savePowerUp(activeMario);
+
     }
 
     public void decreasePowerUpInLevelOneSectionTwo() {
@@ -96,9 +102,11 @@ public class PowerUp {
             activeMario.setMarioMega(false);
             activeMario.setMarioMini(true);
 
-        }else if (activeMario.isMarioMini()) {// Mario dies after hit
+        } else if (activeMario.isMarioMini()) {// Mario dies after hit
             activeMario.setMarioShouldDie(true);
         }
+
+        savePowerUp(activeMario);
 
     }
 
@@ -119,6 +127,8 @@ public class PowerUp {
 
         }
 
+        savePowerUp(activeMario);
+
     }
 
     public void decreasePowerUpInLevelTwoSectionOne() {
@@ -136,9 +146,11 @@ public class PowerUp {
             activeMario.setMarioMega(false);
             activeMario.setMarioMini(true);
 
-        }else if (activeMario.isMarioMini()) {// Mario dies after hit
+        } else if (activeMario.isMarioMini()) {// Mario dies after hit
             activeMario.setMarioShouldDie(true);
         }
+
+        savePowerUp(activeMario);
 
     }
 
@@ -159,6 +171,8 @@ public class PowerUp {
 
         }
 
+        savePowerUp(activeMario);
+
     }
 
     public void decreasePowerUpInLevelTwoSectionTwo() {
@@ -176,9 +190,11 @@ public class PowerUp {
             activeMario.setMarioMega(false);
             activeMario.setMarioMini(true);
 
-        }else if (activeMario.isMarioMini()) {// Mario dies after hit
+        } else if (activeMario.isMarioMini()) {// Mario dies after hit
             activeMario.setMarioShouldDie(true);
         }
+
+        savePowerUp(activeMario);
 
     }
 
@@ -199,6 +215,8 @@ public class PowerUp {
 
         }
 
+        savePowerUp(activeMario);
+
     }
 
     public void decreasePowerUpInHiddenCoinSection() {
@@ -216,9 +234,11 @@ public class PowerUp {
             activeMario.setMarioMega(false);
             activeMario.setMarioMini(true);
 
-        }else if (activeMario.isMarioMini()) {// Mario dies after hit
+        } else if (activeMario.isMarioMini()) {// Mario dies after hit
             activeMario.setMarioShouldDie(true);
         }
+
+        savePowerUp(activeMario);
 
     }
 
@@ -239,6 +259,8 @@ public class PowerUp {
 
         }
 
+        savePowerUp(activeMario);
+
     }
 
     public void decreasePowerUpInHiddenEnemySection() {
@@ -256,9 +278,27 @@ public class PowerUp {
             activeMario.setMarioMega(false);
             activeMario.setMarioMini(true);
 
-        }else if (activeMario.isMarioMini()) {// Mario dies after hit
+        } else if (activeMario.isMarioMini()) {// Mario dies after hit
             activeMario.setMarioShouldDie(true);
         }
+
+        savePowerUp(activeMario);
+
+    }
+
+    public void savePowerUp(Mario activeMario) {// Get Mario powerUp Info and save it
+
+        gameScreenFrame.getGameData().setMarioMini(activeMario.isMarioMini());
+        gameScreenFrame.getGameData().setMarioMega(activeMario.isMarioMega());
+        gameScreenFrame.getGameData().setMarioShooter(activeMario.isMarioShooter());
+
+    }
+
+    public void loadPowerUp(Mario activeMario) {// Load Mario PowerUp Info from saved Info
+
+        activeMario.setMarioMini(gameScreenFrame.getGameData().isMarioMini());
+        activeMario.setMarioMega(gameScreenFrame.getGameData().isMarioMega());
+        activeMario.setMarioShooter(gameScreenFrame.getGameData().isMarioShooter());
 
     }
 

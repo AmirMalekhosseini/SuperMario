@@ -4,6 +4,9 @@ public class GameData {
 
     protected volatile boolean isGameFinish;
     protected volatile boolean isGamePause;
+    private boolean isMarioMini;
+    private boolean isMarioMega;
+    private boolean isMarioShooter;
     protected int userHeartValue = 3;
     protected int thisGameScore = 0;
     protected int thisGameCoin = 0;
@@ -88,4 +91,27 @@ public class GameData {
         this.section = section;
     }
 
+    public boolean isMarioMini() {
+        return isMarioMini;
+    }
+
+    public void setMarioMini(boolean marioMini) {
+        isMarioMini = marioMini;
+    }
+
+    public boolean isMarioMega() {
+        return isMarioMega;
+    }
+
+    public void setMarioMega(boolean marioMega) {
+        isMarioMega = marioMega;
+    }
+
+    public boolean isMarioShooter() {
+        return isMarioShooter;
+    }
+
+    public void setMarioShooter(boolean marioShooter) {
+        isMarioShooter = marioShooter;
+    }
 }

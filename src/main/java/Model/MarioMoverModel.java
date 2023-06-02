@@ -17,7 +17,7 @@ public class MarioMoverModel {
     private boolean upMario;
     private boolean isUserPressedUp;
     private boolean isUserPressedDown;
-    private boolean marioEnterInSectionTwo;
+    private boolean marioEnterInLevelOneSectionTwo;
     private boolean marioShooting;
     private boolean marioThrowSword;
     public Mario activeMario;
@@ -137,8 +137,9 @@ public class MarioMoverModel {
 
             gameScreenFrame.getGameData().setMarioLocation("levelonesectiontwo");
             activeMario = gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0);
-            if (!marioEnterInSectionTwo) {
-                marioEnterInSectionTwo = true;
+            gameScreenFrame.getPowerUp().loadPowerUp(activeMario);
+            if (!marioEnterInLevelOneSectionTwo) {
+                marioEnterInLevelOneSectionTwo = true;
                 gameScreenFrame.getLevelOneSectionTwoScreen().thisSectionTime.setSectionTime(50);
                 // Add Score At The End Of SectionOne
                 gameScreenFrame.calculateScore.calculateScoreInSectionOneLevelOne();
@@ -369,12 +370,12 @@ public class MarioMoverModel {
         isUserPressedDown = userPressedDown;
     }
 
-    public boolean isMarioEnterInSectionTwo() {
-        return marioEnterInSectionTwo;
+    public boolean isMarioEnterInLevelOneSectionTwo() {
+        return marioEnterInLevelOneSectionTwo;
     }
 
-    public void setMarioEnterInSectionTwo(boolean marioEnterInSectionTwo) {
-        this.marioEnterInSectionTwo = marioEnterInSectionTwo;
+    public void setMarioEnterInLevelOneSectionTwo(boolean marioEnterInLevelOneSectionTwo) {
+        this.marioEnterInLevelOneSectionTwo = marioEnterInLevelOneSectionTwo;
     }
 
     public boolean isMarioShooting() {
