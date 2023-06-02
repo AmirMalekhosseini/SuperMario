@@ -124,7 +124,7 @@ public class LevelTwoSectionOneModel {
 
             levelTwoSectionOneScreen.getItemsInThisSection().get(i).move();
             // Item Changes its Direction:
-            if (intersect.isItemHitAnObject
+            if (intersect.intersection.isItemHitAnObject
                     (levelTwoSectionOneScreen.getItemsInThisSection().get(i))) {
                 int velocity = levelTwoSectionOneScreen.getItemsInThisSection().get(i).getXVelocity();
                 levelTwoSectionOneScreen.getItemsInThisSection().get(i).setXVelocity(-velocity);
@@ -161,7 +161,7 @@ public class LevelTwoSectionOneModel {
 
             levelTwoSectionOneScreen.getEnemiesInThisSection().get(i).move();
             // Enemy Changes its Direction:
-            if (intersect.isEnemyHitAnObject
+            if (intersect.intersection.isEnemyHitAnObject
                     (levelTwoSectionOneScreen.getEnemiesInThisSection().get(i))) {
                 double velocity = levelTwoSectionOneScreen.getEnemiesInThisSection().get(i).getVelocity();
                 levelTwoSectionOneScreen.getEnemiesInThisSection().get(i).setVelocity(-velocity);
@@ -170,7 +170,7 @@ public class LevelTwoSectionOneModel {
         }
 
         for (int i = 0; i < levelTwoSectionOneScreen.getBombsInThisSection().size(); i++) {
-            intersect.bombIntersection(levelTwoSectionOneScreen.getBombsInThisSection().get(i));
+            intersect.intersection.bombIntersection(levelTwoSectionOneScreen.getBombsInThisSection().get(i));
         }
 
     }

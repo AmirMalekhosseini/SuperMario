@@ -110,13 +110,13 @@ public class GameScreenFrame extends JFrame {
 
         levelOneGameBackgroundPanel.setBounds(xLevelOneBackgroundPanel, 0, 14000, 1300);
         levelOneGameBackgroundPanel.setLayout(null);
-        levelOneGameBackgroundPanel.setVisible(false);
+        levelOneGameBackgroundPanel.setVisible(true);
         levelOneGameBackgroundPanel.add(levelOneSectionOneScreen);
         levelOneGameBackgroundPanel.add(levelOneSectionTwoScreen);
 
         levelTwoGameBackgroundPanel.setBounds(xLevelTwoBackgroundPanel, 0, 14000, 1300);
         levelTwoGameBackgroundPanel.setLayout(null);
-        levelTwoGameBackgroundPanel.setVisible(true);
+        levelTwoGameBackgroundPanel.setVisible(false);
         levelTwoGameBackgroundPanel.add(levelTwoSectionOneScreen);
         levelTwoGameBackgroundPanel.add(levelTwoSectionTwoScreen);
 

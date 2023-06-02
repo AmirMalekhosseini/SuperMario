@@ -31,7 +31,7 @@ public class NormalMario extends Mario {
     private double velocityY = -10;
     private double velocityX = 5;
 
-    NormalMario(int x, int y) {
+    public NormalMario(int x, int y) {
 
         this.setSize(super.getWidth(), super.getHeight());
 

@@ -28,7 +28,7 @@ public class ShooterMario extends Mario {
     private double velocityY;
     private double velocityX;
 
-    ShooterMario(int x, int y) {
+    public ShooterMario(int x, int y) {
 
         this.setSize(super.getWidth(), super.getHeight());
         MyProjectData projectData = MyProjectData.getProjectData();

@@ -1,24 +1,25 @@
-package Model;
+package Graphic;
 
-import Graphic.*;
+import Model.SectionsTime;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class LevelOneSectionOneTime extends SectionsTime {
+public class HiddenEnemySectionTime extends SectionsTime {
 
     javax.swing.Timer timer;
     private int sectionTime;
 
-    public LevelOneSectionOneTime(LevelOneSectionOneScreen levelOneSectionOneScreen) {
+    public HiddenEnemySectionTime(HiddenEnemySectionScreen hiddenEnemySectionScreen) {
 
         sectionTime = 50;
         timer=new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (!levelOneSectionOneScreen.getGameData().isGamePause && !levelOneSectionOneScreen.getGameData().isGameFinish) {
+                if (!hiddenEnemySectionScreen.getGameData().isGamePause && !hiddenEnemySectionScreen.getGameData().isGameFinish) {
                     sectionTime--;
-                    levelOneSectionOneScreen.thisSectionTimeLabel.setText("Time: "+ sectionTime);
+                    hiddenEnemySectionScreen.thisSectionTimeLabel.setText("Time: "+ sectionTime);
                 }
             }
         });
@@ -26,7 +27,7 @@ public class LevelOneSectionOneTime extends SectionsTime {
         timer.start();
     }
 
-    public LevelOneSectionOneTime() {
+    public HiddenEnemySectionTime() {
 
     }
 

@@ -1,6 +1,7 @@
 package Graphic;
 
 import Model.GameData;
+import Model.LevelOneSectionOneTime;
 import Model.MyProjectData;
 import MyProject.MyProject;
 
@@ -8,13 +9,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class HiddenEnemySectionScreen extends JLayeredPane {
+public class HiddenEnemySectionScreen extends LevelScreens {
 
     protected ArrayList<ObjectsInGame> objectsInThisSection = new ArrayList<>();
     protected volatile ArrayList<Enemy> enemiesInThisSection = new ArrayList<>();
     protected volatile ArrayList<ItemsInGame> itemsInThisSection = new ArrayList<>();
     protected ArrayList<MarioWeapon> weaponsInThisSection = new ArrayList<>();
-    public ArrayList<Mario> activeMario;
     GameData gameData;
     NormalMario normalMario;
     CoinMario coinMario;
@@ -83,6 +83,8 @@ public class HiddenEnemySectionScreen extends JLayeredPane {
         activeMario = new ArrayList<>();
         activeMario.add(new NormalMario(0, 0));
         Font font1 = MyProjectData.getProjectData().getFont22();
+        thisSectionTime = new HiddenEnemySectionTime(this);
+
         this.setSize(1700, 1100);
         this.setVisible(true);
         backgroundLabel = new JLabel(backgroundImage);

@@ -1,6 +1,7 @@
 package Graphic;
 
 import Model.GameData;
+import Model.SectionsTime;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -14,9 +15,8 @@ public class LevelScreens extends JLayeredPane {
     protected volatile ArrayList<MarioWeapon> weaponsInThisSection = new ArrayList<>();
     protected ArrayList<EmptySpaceInGround> emptySpaceInGroundsInThisSection = new ArrayList<>();
     public ArrayList<Mario> activeMario;
-
+    public SectionsTime thisSectionTime;
     GameData gameData;
-
 
     public ArrayList<ObjectsInGame> getObjectsInThisSection() {
         return objectsInThisSection;

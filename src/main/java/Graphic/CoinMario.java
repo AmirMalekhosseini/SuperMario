@@ -28,7 +28,7 @@ public class CoinMario extends Mario {
     private double velocityY;
     private double velocityX;
 
-    CoinMario(int x, int y) {
+    public CoinMario(int x, int y) {
 
         this.setSize(super.getWidth(), super.getHeight());
 

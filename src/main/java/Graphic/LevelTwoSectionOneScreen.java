@@ -7,7 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class LevelTwoSectionOneScreen extends JLayeredPane {
+public class LevelTwoSectionOneScreen extends LevelScreens {
 
     protected ArrayList<ObjectsInGame> objectsInThisSection = new ArrayList<>();
     public ArrayList<ItemsInGame> itemsInThisSection = new ArrayList<>();
@@ -15,7 +15,6 @@ public class LevelTwoSectionOneScreen extends JLayeredPane {
     protected ArrayList<BirdBomb> bombsInThisSection = new ArrayList<>();
     protected ArrayList<MarioWeapon> weaponsInThisSection = new ArrayList<>();
     protected ArrayList<EmptySpaceInGround> emptySpaceInGroundsInThisSection = new ArrayList<>();
-    public ArrayList<Mario> activeMario;
 
     GameData gameData;
     public JLabel backgroundLabelSceneOne;
@@ -29,7 +28,6 @@ public class LevelTwoSectionOneScreen extends JLayeredPane {
     public JLabel thisSectionTimeLabel;
     public JLabel thisGameCoin;
     public CoinForStore thisGameCoinImage;
-    public LevelTwoSectionOneTime thisSectionTime;
 
     public int XUserHeartImage = 1520;
     public int XUserHeartValueLabel = 1510;

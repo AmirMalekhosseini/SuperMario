@@ -29,7 +29,7 @@ public class JumperMario extends Mario {
     private double velocityX;
 
 
-    JumperMario(int x, int y) {
+    public JumperMario(int x, int y) {
 
         this.setSize(super.getWidth(), super.getHeight());
 

@@ -62,16 +62,16 @@ public class MarioMoverModel {
                     activeMario.setVelocityY(gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).getVelocityY() + (GravityData.gravity * GravityData.dt));
                     activeMario.setY((int) (gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).getY() + gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).getVelocityY()));
                     activeMario.setMarioJumping(true);// Mario is jumping
-                    if (gameScreenFrame.intersectInLevelOneSectionOne.isMarioHitsDownOfTheObject()) {// Mario hits down of an object and comes back to ground
+                    if (gameScreenFrame.intersectInLevelOneSectionOne.intersection.isMarioHitsDownOfTheObject()) {// Mario hits down of an object and comes back to ground
                         activeMario.setVelocityY(0);
                         activeMario.setY((activeMario.getY() + 2));
-                    } else if (gameScreenFrame.intersectInLevelOneSectionOne.isMarioHitsUpOfTheObject()) {// Mario hits up an object and stand on it
+                    } else if (gameScreenFrame.intersectInLevelOneSectionOne.intersection.isMarioHitsUpOfTheObject()) {// Mario hits up an object and stand on it
                         activeMario.setVelocityY(0);
                         activeMario.setY((activeMario.getY() - 2));
                         activeMario.setMarioJumping(false);// Mario stop jumping
-                        gameScreenFrame.intersectInLevelOneSectionOne.setMarioHitsAnObject(false);
-                        gameScreenFrame.intersectInLevelOneSectionOne.setMarioHitsFullOfCoinBlockInAir(false);
-                        gameScreenFrame.intersectInLevelOneSectionOne.setMarioHitsTurtle(false);
+                        gameScreenFrame.intersectInLevelOneSectionOne.intersection.setMarioHitsAnObject(false);
+                        gameScreenFrame.intersectInLevelOneSectionOne.intersection.setMarioHitsFullOfCoinBlockInAir(false);
+                        gameScreenFrame.intersectInLevelOneSectionOne.intersection.setMarioHitsTurtle(false);
                         isUserPressedUp = false;
 
                     }
@@ -83,14 +83,14 @@ public class MarioMoverModel {
                         upMario = false;
                         isUserPressedUp = false;
                         activeMario.setMarioJumping(false);
-                        gameScreenFrame.intersectInLevelOneSectionOne.setMarioHitsAnObject(false);
-                        gameScreenFrame.intersectInLevelOneSectionOne.setMarioHitsFullOfCoinBlockInAir(false);
-                        gameScreenFrame.intersectInLevelOneSectionOne.setMarioHitsTurtle(false);
+                        gameScreenFrame.intersectInLevelOneSectionOne.intersection.setMarioHitsAnObject(false);
+                        gameScreenFrame.intersectInLevelOneSectionOne.intersection.setMarioHitsFullOfCoinBlockInAir(false);
+                        gameScreenFrame.intersectInLevelOneSectionOne.intersection.setMarioHitsTurtle(false);
                     }
 
                 }
 
-                if (rightMario && !leftMario && !gameScreenFrame.intersectInLevelOneSectionOne.isMarioHitsLeftOfTheObject()) {// Go Right
+                if (rightMario && !leftMario && !gameScreenFrame.intersectInLevelOneSectionOne.intersection.isMarioHitsLeftOfTheObject()) {// Go Right
                     if (activeMario.getX() < 830 || activeMario.getX() >= 5800) {// Move Mario
                         activeMario.setVelocityX(5);
                         activeMario.setX((int) (activeMario.getX() + activeMario.getVelocityX()));
@@ -109,7 +109,7 @@ public class MarioMoverModel {
                         gameScreenFrame.getLevelOneSectionOneScreen().XUserHeartValueLabel += 5;
                     }
                 }
-                if (leftMario && !rightMario && !gameScreenFrame.intersectInLevelOneSectionOne.isMarioHitsRightOfTheObject()) {// Go Left
+                if (leftMario && !rightMario && !gameScreenFrame.intersectInLevelOneSectionOne.intersection.isMarioHitsRightOfTheObject()) {// Go Left
                     if (activeMario.getX() < 840 || activeMario.getX() >= 5800) {// Move Mario
                         activeMario.setVelocityX(-5);
                         activeMario.setX((int) (activeMario.getX() + activeMario.getVelocityX()));
@@ -158,15 +158,15 @@ public class MarioMoverModel {
                     activeMario.setVelocityY(activeMario.getVelocityY() + (GravityData.gravity * GravityData.dt));
                     activeMario.setY((int) (activeMario.getY() + activeMario.getVelocityY()));
                     activeMario.setMarioJumping(true);// Mario is jumping
-                    if (gameScreenFrame.intersectInLevelOneSectionTwo.isMarioHitsDownOfTheObject()) {// Mario hits down of an object and comes back to ground
+                    if (gameScreenFrame.intersectInLevelOneSectionTwo.intersection.isMarioHitsDownOfTheObject()) {// Mario hits down of an object and comes back to ground
                         activeMario.setVelocityY(0);
                         activeMario.setY(((activeMario).getY() + 2));
-                    } else if (gameScreenFrame.intersectInLevelOneSectionTwo.isMarioHitsUpOfTheObject()) {// Mario hits up an object and stand on it
+                    } else if (gameScreenFrame.intersectInLevelOneSectionTwo.intersection.isMarioHitsUpOfTheObject()) {// Mario hits up an object and stand on it
                         activeMario.setVelocityY(0);
                         activeMario.setY((gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).getY() - 2));
                         activeMario.setMarioJumping(false);// Mario stop jumping
-                        gameScreenFrame.intersectInLevelOneSectionTwo.setMarioHitsAnObject(false);
-                        gameScreenFrame.intersectInLevelOneSectionTwo.setMarioHitsFullOfCoinBlockInAir(false);
+                        gameScreenFrame.intersectInLevelOneSectionTwo.intersection.setMarioHitsAnObject(false);
+                        gameScreenFrame.intersectInLevelOneSectionTwo.intersection.setMarioHitsFullOfCoinBlockInAir(false);
                         isUserPressedUp = false;
                     }
 
@@ -175,14 +175,14 @@ public class MarioMoverModel {
                         upMario = false;
                         isUserPressedUp = false;
                         activeMario.setMarioJumping(false);
-                        gameScreenFrame.intersectInLevelOneSectionTwo.setMarioHitsAnObject(false);
-                        gameScreenFrame.intersectInLevelOneSectionTwo.setMarioHitsFullOfCoinBlockInAir(false);
+                        gameScreenFrame.intersectInLevelOneSectionTwo.intersection.setMarioHitsAnObject(false);
+                        gameScreenFrame.intersectInLevelOneSectionTwo.intersection.setMarioHitsFullOfCoinBlockInAir(false);
                     }
 
                 }
 
 
-                if (rightMario && !leftMario && !gameScreenFrame.intersectInLevelOneSectionTwo.isMarioHitsLeftOfTheObject()) {
+                if (rightMario && !leftMario && !gameScreenFrame.intersectInLevelOneSectionTwo.intersection.isMarioHitsLeftOfTheObject()) {
                     if (activeMario.getX() < 830 || activeMario.getX() >= 5800) {// Move Mario
                         activeMario.setVelocityX(5);
                         activeMario.setX((int) (activeMario.getX() + activeMario.getVelocityX()));
@@ -201,7 +201,7 @@ public class MarioMoverModel {
                         gameScreenFrame.getLevelOneSectionTwoScreen().XUserHeartValueLabel += 5;
                     }
                 }
-                if (leftMario && !rightMario && !gameScreenFrame.intersectInLevelOneSectionTwo.isMarioHitsRightOfTheObject()) {
+                if (leftMario && !rightMario && !gameScreenFrame.intersectInLevelOneSectionTwo.intersection.isMarioHitsRightOfTheObject()) {
                     if (activeMario.getX() < 840 || activeMario.getX() >= 5800) {// Move Mario
                         activeMario.setVelocityX(-5);
                         activeMario.setX((int) (activeMario.getX() + activeMario.getVelocityX()));

@@ -28,7 +28,7 @@ public class RunnerMario extends Mario {
     private double velocityY;
     private double velocityX;
 
-    RunnerMario(int x, int y) {
+    public RunnerMario(int x, int y) {
 
         this.setSize(super.getWidth(), super.getHeight());
 

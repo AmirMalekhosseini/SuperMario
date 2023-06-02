@@ -15,7 +15,7 @@ public class LevelOneSectionOneScreen extends LevelScreens {
     protected ArrayList<BirdBomb> bombsInThisSection = new ArrayList<>();
     protected volatile ArrayList<MarioWeapon> weaponsInThisSection = new ArrayList<>();
     protected ArrayList<EmptySpaceInGround> emptySpaceInGroundsInThisSection = new ArrayList<>();
-    public ArrayList<Mario> activeMario;
+
 
     GameData gameData;
     public JLabel backgroundLabelSceneOne;
@@ -90,7 +90,7 @@ public class LevelOneSectionOneScreen extends LevelScreens {
     public JLabel thisSectionTimeLabel;
     public JLabel thisGameCoin;
     public CoinForStore thisGameCoinImage;
-    public LevelOneSectionOneTime thisSectionTime;
+
 
     public int XUserHeartImage = 1520;
     public int XUserHeartValueLabel = 1510;

@@ -1,10 +1,13 @@
 package Model;
 
+import Graphic.*;
+import MyProject.MyProject;
+
 public class GameData {
 
-    protected volatile boolean isGameFinish;
-    protected volatile boolean isGamePause;
-    private boolean isMarioMini;
+    public volatile boolean isGameFinish;
+    public volatile boolean isGamePause;
+    private boolean isMarioMini = true;
     private boolean isMarioMega;
     private boolean isMarioShooter;
     protected int userHeartValue = 3;
@@ -28,7 +31,7 @@ public class GameData {
     }
 
     public boolean isGamePause() {
-        return isGamePause;
+        return !isGamePause;
     }
 
     public void setGamePause(boolean gamePause) {

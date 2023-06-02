@@ -5,16 +5,16 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class LevelOneSectionTwoTime {
+public class LevelOneSectionTwoTime extends SectionsTime {
 
     javax.swing.Timer timer;
-    private int sectionTime = 1;
+    private int sectionTime;
 
     public LevelOneSectionTwoTime(LevelOneSectionTwoScreen levelOneSectionTwoScreen) {
         timer=new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (!levelOneSectionTwoScreen.getGameData().isGamePause() && levelOneSectionTwoScreen.getGameData().isGameFinish()) {
+                if (levelOneSectionTwoScreen.getGameData().isGamePause() && levelOneSectionTwoScreen.getGameData().isGameFinish()) {
                     sectionTime--;
                     levelOneSectionTwoScreen.thisSectionTimeLabel.setText("Time: "+ sectionTime);
                 }
