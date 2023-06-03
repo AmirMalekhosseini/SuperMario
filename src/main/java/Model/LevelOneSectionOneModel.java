@@ -193,7 +193,6 @@ public class LevelOneSectionOneModel {
         if (marioMoverModel.isUserPressedUp() && marioMoverModel.isUserPressedDown() && swordCoolDownCounter >= 200) {
             marioMoverModel.setMarioThrowSword(true);
             marioMoverModel.marioStartsThrowsSword();
-//            marioMoverModel.setUserPressedDown(false);
             swordCoolDownCounter = 0;
         }
     }

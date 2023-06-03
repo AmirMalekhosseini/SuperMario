@@ -13,15 +13,10 @@ public class CalculateScore {
     public CalculateScore() {
 
     }
-    public void calculateScoreInSectionOneLevelOne() {
+    public void calculateScore(LevelScreens screen) {
 
-        gameScreenFrame.getGameData().thisGameScore += gameScreenFrame.getLevelOneSectionOneScreen().thisSectionTime.getSectionTime();
-        gameScreenFrame.getGameData().thisGameScore += gameScreenFrame.getGameData().userHeartValue * 20;
-    }
-
-    public void calculateScoreInSectionTwoLevelOne() {
-        gameScreenFrame.getGameData().thisGameScore += gameScreenFrame.getLevelOneSectionTwoScreen().thisSectionTime.getSectionTime();
-        gameScreenFrame.getGameData().thisGameScore += gameScreenFrame.getGameData().userHeartValue * 20;
+        gameScreenFrame.getGameData().thisGameScore += screen.thisSectionTime.getSectionTime();
+        gameScreenFrame.getGameData().thisGameScore += screen.getGameData().userHeartValue * 20;
     }
 
     public GameScreenFrame getGameScreenFrame() {

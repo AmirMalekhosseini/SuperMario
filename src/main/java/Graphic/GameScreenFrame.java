@@ -4,6 +4,7 @@ import Controller.MarioMover;
 import Model.*;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class GameScreenFrame extends JFrame {
 
@@ -36,6 +37,8 @@ public class GameScreenFrame extends JFrame {
     public MarioMoverModel marioMoverModel;
     public GameLoop gameLoop;
     public CalculateScore calculateScore;
+    public JPanel currentPanel;
+    public JPanel containerPanel;
 
     private int xLevelOneBackgroundPanel = 0;
     private int xLevelTwoBackgroundPanel = 0;
@@ -62,6 +65,8 @@ public class GameScreenFrame extends JFrame {
         hiddenEnemyBackgroundPanel = new JPanel();
         levelOneGameBackgroundPanel = new JPanel();
         levelTwoGameBackgroundPanel = new JPanel();
+        currentPanel = new JPanel();
+
         Model modelStarter = new Model() {
             @Override
             public void startModel(GameScreenFrame gameScreenFrame) {
@@ -87,8 +92,11 @@ public class GameScreenFrame extends JFrame {
 
             }
         };
-        modelStarter.startModel(this);
 
+
+        this.setFocusable(true);
+        this.requestFocusInWindow();
+        this.requestFocus();
         this.setSize(1700, 1300);
         this.setLayout(null);
         this.setLocationRelativeTo(null);
@@ -96,7 +104,7 @@ public class GameScreenFrame extends JFrame {
         this.setVisible(true);
         this.setResizable(false);
         this.setIconImage(gameIcon.getImage());
-        this.addKeyListener(marioMover);
+
 
         hiddenEnemyBackgroundPanel.setBounds(0, 0, 1700, 1300);
         hiddenEnemyBackgroundPanel.setLayout(null);
@@ -119,12 +127,15 @@ public class GameScreenFrame extends JFrame {
         levelTwoGameBackgroundPanel.setVisible(false);
         levelTwoGameBackgroundPanel.add(levelTwoSectionOneScreen);
         levelTwoGameBackgroundPanel.add(levelTwoSectionTwoScreen);
+        currentPanel = levelOneGameBackgroundPanel;
 
         this.add(hiddenEnemyBackgroundPanel);
         this.add(hiddenCoinBackgroundPanel);
         this.add(levelOneGameBackgroundPanel);
         this.add(levelTwoGameBackgroundPanel);
 
+
+        modelStarter.startModel(this);
     }
 
     public GameData getGameData() {
@@ -317,5 +328,21 @@ public class GameScreenFrame extends JFrame {
 
     public void setPowerUp(PowerUp powerUp) {
         this.powerUp = powerUp;
+    }
+
+    public JPanel getHiddenEnemyBackgroundPanel() {
+        return hiddenEnemyBackgroundPanel;
+    }
+
+    public void setHiddenEnemyBackgroundPanel(JPanel hiddenEnemyBackgroundPanel) {
+        this.hiddenEnemyBackgroundPanel = hiddenEnemyBackgroundPanel;
+    }
+
+    public JPanel getHiddenCoinBackgroundPanel() {
+        return hiddenCoinBackgroundPanel;
+    }
+
+    public void setHiddenCoinBackgroundPanel(JPanel hiddenCoinBackgroundPanel) {
+        this.hiddenCoinBackgroundPanel = hiddenCoinBackgroundPanel;
     }
 }

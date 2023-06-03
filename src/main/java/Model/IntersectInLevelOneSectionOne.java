@@ -2,18 +2,13 @@ package Model;
 
 import Graphic.*;
 
-public class IntersectInLevelOneSectionOne {
-
-    GameScreenFrame gameScreenFrame;
-    LevelOneSectionOneScreen levelOneSectionOneScreen;
-    PowerUp powerUp;
-    Intersection intersection;
+public class IntersectInLevelOneSectionOne extends IntersectInGame {
 
     public IntersectInLevelOneSectionOne(GameScreenFrame gameScreenFrame, PowerUp powerUp) {
         this.powerUp = powerUp;
         this.gameScreenFrame = gameScreenFrame;
-        this.levelOneSectionOneScreen = gameScreenFrame.getLevelOneSectionOneScreen();
-        intersection = new Intersection(gameScreenFrame,powerUp,levelOneSectionOneScreen) {
+        this.levelScreen = gameScreenFrame.getLevelOneSectionOneScreen();
+        intersection = new Intersection(gameScreenFrame,powerUp,levelScreen) {
             @Override
             public void marioIntersectWithObjects() {
                 super.marioIntersectWithObjects();

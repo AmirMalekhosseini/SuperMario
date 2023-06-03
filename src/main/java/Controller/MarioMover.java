@@ -1,21 +1,23 @@
 package Controller;
 
+import javax.swing.*;
 import MyProject.MyProject;
-import Model.*;
-import Graphic.*;
+import java.awt.event.*;
+import Graphic.GameScreenFrame;
+import Graphic.MainMenuScreen;
+import Model.MarioMoverModel;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.IOException;
 
-public class MarioMover implements KeyListener {
-
-    ObjectMapper objectMapper;
-    GameScreenFrame gameScreenFrame;
-    MarioMoverModel marioMoverModel;
+@SuppressWarnings("deprecation")
+public class MarioMover {
+    private final ObjectMapper objectMapper;
+    private GameScreenFrame gameScreenFrame;
+    private MarioMoverModel marioMoverModel;
+    InputMap inputMap;
+    ActionMap actionMap;
 
     public MarioMover(GameScreenFrame gameScreenFrame, MarioMoverModel marioMoverModel) {
         this.marioMoverModel = marioMoverModel;
@@ -23,104 +25,137 @@ public class MarioMover implements KeyListener {
         objectMapper = new ObjectMapper();
         objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
         objectMapper.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
+
+        createKeyBindings();
     }
 
-    public MarioMover() {
+    private void createKeyBindings() {
 
-    }
+        inputMap = gameScreenFrame.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+        actionMap = gameScreenFrame.getRootPane().getActionMap();
 
-    @Override
-    public void keyTyped(KeyEvent e) {
+        // Key Press:
+        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), "pause");
+        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_SHIFT, InputEvent.SHIFT_MASK), "shoot");
+        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_W, 0), "moveUp");
+        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_S, 0), "moveDown");
+        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_A, 0), "moveLeft");
+        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_D, 0), "moveRight");
 
-    }
+        // Key Release:
+        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_SHIFT, InputEvent.SHIFT_MASK, true), "shootReleased");
+        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_W, 0, true), "moveUpReleased");
+        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_S, 0, true), "moveDownReleased");
+        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_A, 0, true), "moveLeftReleased");
+        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_D, 0, true), "moveRightReleased");
 
-    @Override
-    public void keyPressed(KeyEvent e) {
-
-        if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-            gameScreenFrame.dispose();
-            gameScreenFrame.getGameData().setGamePause(true);
-            new MainMenuScreen();
-            try {
-                objectMapper.writeValue(new File("User.jason"), MyProject.allUsers);
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
+        actionMap.put("pause", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                gameScreenFrame.dispose();
+                gameScreenFrame.getGameData().setGamePause(true);
+                new MainMenuScreen();
+                try {
+                    objectMapper.writeValue(new File("User.jason"), MyProject.allUsers);
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
-        }
+        });
 
-        if (e.getKeyCode() == KeyEvent.VK_SHIFT) {// Shooting
-            if (!marioMoverModel.activeMario.isMarioShooter()) {
-                return;
+        actionMap.put("shoot", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (!marioMoverModel.activeMario.isMarioShooter()) {
+                    return;
+                }
+                marioMoverModel.setMarioShooting(true);
+                marioMoverModel.marioStartShooting();
             }
-            marioMoverModel.setMarioShooting(true);
-            marioMoverModel.marioStartShooting();
-        }
+        });
 
-        if (e.getKeyChar() == 'w') {
-            if (!marioMoverModel.isUserPressedUp()) {
-                marioMoverModel.setUpMario(true);
-                marioMoverModel.activeMario.setVelocityY(-10);
-                marioMoverModel.setUserPressedUp(true);
+        actionMap.put("moveUp", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (!marioMoverModel.isUserPressedUp()) {
+                    marioMoverModel.setUpMario(true);
+                    marioMoverModel.activeMario.setVelocityY(-10);
+                    marioMoverModel.setUserPressedUp(true);
+                }
             }
-        }
+        });
 
-        if (e.getKeyChar() == 's') {
-
-            if (marioMoverModel.isUpMario()) {
-                return;
+        actionMap.put("moveDown", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (marioMoverModel.isUpMario()) {
+                    return;
+                }
+                marioMoverModel.setUserPressedDown(true);
+                marioMoverModel.activeMario.setMarioSit(!marioMoverModel.isUserPressedUp());
             }
-            marioMoverModel.setUserPressedDown(true);
-            if (!marioMoverModel.isUserPressedUp()) {
-                marioMoverModel.activeMario.setMarioSit(true);
-            } else {
+        });
+
+        actionMap.put("moveLeft", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                marioMoverModel.setLeftMario(true);
+                marioMoverModel.activeMario.setMarioRight(false);
+                marioMoverModel.activeMario.setMarioLeft(true);
+            }
+        });
+
+        actionMap.put("moveRight", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                marioMoverModel.setRightMario(true);
+                marioMoverModel.activeMario.setMarioRight(true);
+                marioMoverModel.activeMario.setMarioLeft(false);
+            }
+        });
+
+        // Key Release Actions
+        actionMap.put("shootReleased", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                marioMoverModel.setMarioShooting(false);
+            }
+        });
+
+//        actionMap.put("moveUpReleased", new AbstractAction() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                marioMoverModel.setUpMario(false);
+//                marioMoverModel.activeMario.setVelocityY(0);
+//                marioMoverModel.setUserPressedUp(false);
+//            }
+//        });
+
+        actionMap.put("moveDownReleased", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
                 marioMoverModel.activeMario.setMarioSit(false);
+                marioMoverModel.setUserPressedDown(false);
             }
+        });
 
-        }
+        actionMap.put("moveLeftReleased", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                marioMoverModel.setLeftMario(false);
+                marioMoverModel.activeMario.setMarioLeft(false);
+            }
+        });
 
-        if (e.getKeyChar() == 'a') {
-            marioMoverModel.setLeftMario(true);
-            marioMoverModel.activeMario.setMarioRight(false);
-            marioMoverModel.activeMario.setMarioLeft(true);
-        }
-
-        if (e.getKeyChar() == 'd') {
-            marioMoverModel.setRightMario(true);
-            marioMoverModel.activeMario.setMarioRight(true);
-            marioMoverModel.activeMario.setMarioLeft(false);
-        }
+        actionMap.put("moveRightReleased", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                marioMoverModel.setRightMario(false);
+                marioMoverModel.activeMario.setMarioRight(false);
+            }
+        });
     }
 
-    @Override
-    public void keyReleased(KeyEvent e) {
-
-        if (e.getKeyCode() == KeyEvent.VK_SHIFT) {// Shooting
-            marioMoverModel.setMarioShooting(false);
-        }
-
-        if (e.getKeyChar() == 's') {
-            marioMoverModel.activeMario.setMarioSit(false);
-            marioMoverModel.setUserPressedDown(false);
-        }
-
-        if (e.getKeyChar() == 'a') {
-            marioMoverModel.setLeftMario(false);
-            marioMoverModel.activeMario.setMarioLeft(false);
-        }
-
-        if (e.getKeyChar() == 'd') {
-            marioMoverModel.setRightMario(false);
-            marioMoverModel.activeMario.setMarioRight(false);
-        }
-    }
-
-    public ObjectMapper getObjectMapper() {
-        return objectMapper;
-    }
-
-    public void setObjectMapper(ObjectMapper objectMapper) {
-        this.objectMapper = objectMapper;
-    }
     public GameScreenFrame getGameScreenFrame() {
         return gameScreenFrame;
     }

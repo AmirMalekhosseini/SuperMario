@@ -72,21 +72,7 @@ public class LevelOneSectionTwoScreen extends LevelScreens {
     JumperMario jumperMario;
     RunnerMario runnerMario;
     ShooterMario shooterMario;
-
-    public UserHeart userHeartImage;
-    public JLabel userHeartValueLabel;
-    public JLabel userScoreLabel;
-    public JLabel thisSectionTimeLabel;
-    public JLabel thisGameCoin;
-    public CoinForStore thisGameCoinImage;
     Castle castle;
-
-    public int XUserHeartImage = 1520;
-    public int XUserHeartValueLabel = 1510;
-    public int XUserScoreLabel = 1345;
-    public int XThisSectionTimeLabel = 1180;
-    public int XThisGameCoin = 1080;
-    public int XThisGameCoinImage = 1110;
 
     LevelOneSectionTwoScreen(GameData gameData) {
         init(gameData);

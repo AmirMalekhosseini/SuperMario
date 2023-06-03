@@ -84,22 +84,6 @@ public class LevelOneSectionOneScreen extends LevelScreens {
     RunnerMario runnerMario;
     ShooterMario shooterMario;
 
-    public UserHeart userHeartImage;
-    public JLabel userHeartValueLabel;
-    public JLabel userScoreLabel;
-    public JLabel thisSectionTimeLabel;
-    public JLabel thisGameCoin;
-    public CoinForStore thisGameCoinImage;
-
-
-    public int XUserHeartImage = 1520;
-    public int XUserHeartValueLabel = 1510;
-    public int XUserScoreLabel = 1345;
-    public int XThisSectionTimeLabel = 1180;
-    public int XThisGameCoin = 1080;
-    public int XThisGameCoinImage = 1110;
-
-
     LevelOneSectionOneScreen(GameData gameData) {
         init(gameData);
     }
@@ -226,7 +210,7 @@ public class LevelOneSectionOneScreen extends LevelScreens {
         plantInFirstPipeSceneThree = new Plant(4125, 750);
         secondPipeSceneThree = new Pipe(4800, 765);
         firstEnemyInSceneThree = new Bird(3200, 300, 3200, 4000);
-        secondEnemyInSceneThree = new Spiny(3600, 890);
+        secondEnemyInSceneThree = new Spiny(3000, 890);
         thirdEnemyInSceneThree = new Goompa(4300, 890);
         fourthEnemyInSceneThree = new Goompa(4400, 890);
         fifthEnemyInSceneThree = new Goompa(4500, 890);

@@ -22,20 +22,6 @@ public class LevelTwoSectionTwoScreen extends LevelScreens {
     public JLabel backgroundLabelSceneThree;
     public JLabel backgroundLabelSceneFour;
 
-    public UserHeart userHeartImage;
-    public JLabel userHeartValueLabel;
-    public JLabel userScoreLabel;
-    public JLabel thisSectionTimeLabel;
-    public JLabel thisGameCoin;
-    public CoinForStore thisGameCoinImage;
-
-    public int XUserHeartImage = 1520;
-    public int XUserHeartValueLabel = 1510;
-    public int XUserScoreLabel = 1345;
-    public int XThisSectionTimeLabel = 1180;
-    public int XThisGameCoin = 1080;
-    public int XThisGameCoinImage = 1110;
-
     BlockInAir firstBlockInAirSceneOne;
     Coin coinOnFirstBlockInAirSceneOne;
     BlockInAir secondBlockInAirSceneOne;

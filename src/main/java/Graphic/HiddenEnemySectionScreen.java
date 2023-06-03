@@ -1,7 +1,6 @@
 package Graphic;
 
 import Model.GameData;
-import Model.LevelOneSectionOneTime;
 import Model.MyProjectData;
 import MyProject.MyProject;
 
@@ -22,18 +21,6 @@ public class HiddenEnemySectionScreen extends LevelScreens {
     RunnerMario runnerMario;
     ShooterMario shooterMario;
     public JLabel backgroundLabel;
-    public UserHeart userHeartImage;
-    public JLabel userHeartValueLabel;
-    public JLabel userScoreLabel;
-    public JLabel thisSectionTimeLabel;
-    public JLabel thisGameCoin;
-    public CoinForStore thisGameCoinImage;
-    public int XUserHeartImage = 1520;
-    public int XUserHeartValueLabel = 1510;
-    public int XUserScoreLabel = 1345;
-    public int XThisSectionTimeLabel = 1180;
-    public int XThisGameCoin = 1080;
-    public int XThisGameCoinImage = 1110;
 
     Cannon cannon_1;
     Cannon cannon_2;
@@ -51,7 +38,6 @@ public class HiddenEnemySectionScreen extends LevelScreens {
     BlockInAir blockInAir1_11;
     BlockInAir blockInAir1_12;
     BlockInAir blockInAir1_13;
-    BlockInAir blockInAir1_14;
     BlockInAir blockInAir2_1;
     BlockInAir blockInAir2_2;
     BlockInAir blockInAir2_3;
@@ -134,20 +120,19 @@ public class HiddenEnemySectionScreen extends LevelScreens {
         }
 
         cannon_1 = new Cannon(1260, 270);
-        blockInAir1_1 = new SimpleBlockInAir(400, 750);
-        blockInAir1_2 = new SimpleBlockInAir(470, 750);
-        blockInAir1_3 = new SimpleBlockInAir(540, 750);
-        blockInAir1_4 = new SimpleBlockInAir(610, 750);
-        blockInAir1_5 = new SimpleBlockInAir(680, 750);
-        blockInAir1_6 = new SimpleBlockInAir(750, 750);
-        blockInAir1_7 = new SimpleBlockInAir(820, 750);
-        blockInAir1_8 = new SimpleBlockInAir(890, 750);
-        blockInAir1_9 = new SimpleBlockInAir(960, 750);
-        blockInAir1_10 = new SimpleBlockInAir(1030, 750);
-        blockInAir1_11 = new SimpleBlockInAir(1100, 750);
-        blockInAir1_12 = new SimpleBlockInAir(1170, 750);
-        blockInAir1_13 = new SimpleBlockInAir(1240, 750);
-        blockInAir1_14 = new SimpleBlockInAir(1310, 750);
+        blockInAir1_1 = new SimpleBlockInAir(470, 750);
+        blockInAir1_2 = new SimpleBlockInAir(540, 750);
+        blockInAir1_3 = new SimpleBlockInAir(610, 750);
+        blockInAir1_4 = new SimpleBlockInAir(680, 750);
+        blockInAir1_5 = new SimpleBlockInAir(750, 750);
+        blockInAir1_6 = new SimpleBlockInAir(820, 750);
+        blockInAir1_7 = new SimpleBlockInAir(890, 750);
+        blockInAir1_8 = new SimpleBlockInAir(960, 750);
+        blockInAir1_9 = new SimpleBlockInAir(1030, 750);
+        blockInAir1_10 = new SimpleBlockInAir(1100, 750);
+        blockInAir1_11 = new SimpleBlockInAir(1170, 750);
+        blockInAir1_12 = new SimpleBlockInAir(1240, 750);
+        blockInAir1_13 = new SimpleBlockInAir(1310, 750);
 
         cannon_2 = new Cannon(1260, 470);
         blockInAir2_1 = new SimpleBlockInAir(680, 550);
@@ -195,7 +180,6 @@ public class HiddenEnemySectionScreen extends LevelScreens {
         this.add(blockInAir1_11, Integer.valueOf(1));
         this.add(blockInAir1_12, Integer.valueOf(1));
         this.add(blockInAir1_13, Integer.valueOf(1));
-        this.add(blockInAir1_14, Integer.valueOf(1));
 
         this.add(cannon_2, Integer.valueOf(1));
         this.add(blockInAir2_1, Integer.valueOf(1));
@@ -235,7 +219,6 @@ public class HiddenEnemySectionScreen extends LevelScreens {
         objectsInThisSection.add(blockInAir1_11);
         objectsInThisSection.add(blockInAir1_12);
         objectsInThisSection.add(blockInAir1_13);
-        objectsInThisSection.add(blockInAir1_14);
 
         objectsInThisSection.add(cannon_2);
         objectsInThisSection.add(blockInAir2_1);

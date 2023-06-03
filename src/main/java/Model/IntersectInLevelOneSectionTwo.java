@@ -4,19 +4,14 @@ import Graphic.*;
 
 import java.util.Random;
 
-public class IntersectInLevelOneSectionTwo {
-
-    GameScreenFrame gameScreenFrame;
-    LevelOneSectionTwoScreen levelOneSectionTwoScreen;
-    PowerUp powerUp;
-    Intersection intersection;
+public class IntersectInLevelOneSectionTwo extends IntersectInGame {
 
     public IntersectInLevelOneSectionTwo(GameScreenFrame gameScreenFrame, PowerUp powerUp) {
         this.powerUp = powerUp;
         this.gameScreenFrame = gameScreenFrame;
-        this.levelOneSectionTwoScreen = gameScreenFrame.getLevelOneSectionTwoScreen();
+        this.levelScreen = gameScreenFrame.getLevelOneSectionTwoScreen();
 
-        intersection=new Intersection(gameScreenFrame,powerUp,levelOneSectionTwoScreen) {
+        intersection=new Intersection(gameScreenFrame,powerUp,levelScreen) {
             @Override
             public void marioIntersectWithObjects() {
                 super.marioIntersectWithObjects();

@@ -27,7 +27,10 @@ public class LevelOneSectionTwoModel {
 
                 for (ObjectsInGame objects : levelOneSectionTwoScreen.getObjectsInThisSection()) {
                     int firstObjectWidth = object.getWidth();
-                    int firstObjectHeight = object.getHeight() + 5;
+                    int firstObjectHeight = object.getHeight();
+                    if (object instanceof ItemsInGame) {
+                        firstObjectHeight += 15;
+                    }
                     int secondObjectWidth = objects.getWidth();
                     int secondObjectHeight = objects.getHeight();
                     if (secondObjectWidth <= 0 || secondObjectHeight <= 0 || firstObjectWidth <= 0 || firstObjectHeight <= 0) {
@@ -49,27 +52,27 @@ public class LevelOneSectionTwoModel {
                             (firstObjectHeight < firstObjectY || firstObjectHeight > secondObjectY)) {
 
                         if ((firstObjectWidth >= secondObjectX || secondObjectWidth >= firstObjectX) && firstObjectHeight <= secondObjectY + 10) {// Hit up of Object
-                            return false;
+                            return true;
                         }
                     }
                 }
-                return true;
+                return false;
             }
 
             @Override
             public void allocateGravity() {
 
-                for (ItemsInGame itemsInGame : levelOneSectionTwoScreen.getItemsInThisSection()) {
+                for (ItemsInGame item : levelOneSectionTwoScreen.getItemsInThisSection()) {
 
-                    if (itemsInGame instanceof Star && ((Star) itemsInGame).isJumping()) {
+                    if (item instanceof Star && ((Star) item).isJumping()) {
                         continue;
                     }
 
                     // Object is on the Ground or On an Object:
-                    if (gravity.isItemOnTopOfAnObject(itemsInGame) &&
-                            (itemsInGame.getY() <= 920 - itemsInGame.getHeight())) {
-                        int currentY = itemsInGame.getY();
-                        itemsInGame.setY(currentY + 10);
+                    if (!gravity.isItemOnTopOfAnObject(item) &&
+                            (item.getY() <= 920 - item.getHeight())) {
+                        int currentY = item.getY();
+                        item.setY(currentY + 10);
                         try {
                             Thread.sleep(5);
                         } catch (InterruptedException e) {
@@ -79,12 +82,14 @@ public class LevelOneSectionTwoModel {
 
                 }
 
-                for (Enemy enemy : levelOneSectionTwoScreen.getEnemiesInThisSection()) {
+                ArrayList<Enemy> enemiesInThisSection = levelOneSectionTwoScreen.getEnemiesInThisSection();
+                for (int i = 0; i < enemiesInThisSection.size(); i++) {
+                    Enemy enemy = enemiesInThisSection.get(i);
 
                     if (enemy instanceof Plant || enemy instanceof Bird) {
                         continue;
                     }
-                    if (gravity.isItemOnTopOfAnObject(enemy) &&
+                    if (!gravity.isItemOnTopOfAnObject(enemy) &&
                             (enemy.getY() <= 940 - enemy.getHeight())) {
                         // Object is not on the Ground or On an Object:
                         int currentY = enemy.getY();
