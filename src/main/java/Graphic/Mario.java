@@ -37,6 +37,7 @@ public abstract class Mario extends ObjectsInGame {
 
     public abstract void setY(int y);
 
+    public abstract void changeBackground();
 
 
     public int getWidth() {

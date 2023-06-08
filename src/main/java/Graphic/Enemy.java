@@ -1,6 +1,5 @@
 package Graphic;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
@@ -20,11 +19,14 @@ public abstract class Enemy extends ObjectsInGame {
 
     }
 
-    public void paint(Graphics graphics) {
+    protected void paintComponent(Graphics graphics) {
+        super.paintComponent(graphics);
         Graphics2D graphics2D = (Graphics2D) graphics;
         graphics2D.drawImage(background, 0, -5, null);
     }
     public abstract void move();
+
+    public abstract void changeBackground();
     @Override
     public int getX() {
         return x;
@@ -71,10 +73,11 @@ public abstract class Enemy extends ObjectsInGame {
     }
 
     public boolean isEnemyHitsAnObject() {
-        return isEnemyHitsAnObject;
+        return !isEnemyHitsAnObject;
     }
 
     public void setEnemyHitsAnObject(boolean enemyHitsAnObject) {
+
         isEnemyHitsAnObject = enemyHitsAnObject;
     }
 }

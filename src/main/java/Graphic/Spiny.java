@@ -8,6 +8,7 @@ import java.awt.image.BufferedImage;
 
 public class Spiny extends Enemy {
 
+    private BufferedImage activeBackground;
     private BufferedImage background;
     private BufferedImage background_Filliped;
     private int x;
@@ -26,6 +27,7 @@ public class Spiny extends Enemy {
 
         background = MyProjectData.getProjectData().getSpiny();
         background_Filliped = MyProjectData.getProjectData().getSpiny_Filliped();
+        activeBackground = background;
 
         this.x = xx;
         this.y = yy;
@@ -65,14 +67,19 @@ public class Spiny extends Enemy {
         }
 
     }
-
-    public void paint(Graphics graphics) {
-        Graphics2D graphics2D = (Graphics2D) graphics;
+    @Override
+    public void changeBackground() {
         if (velocity <= 0) {
-            graphics2D.drawImage(background, -5, 0, null);
+            activeBackground = background;
         } else {
-            graphics2D.drawImage(background_Filliped, -5, 0, null);
+            activeBackground = background_Filliped;
         }
+    }
+
+    protected void paintComponent(Graphics graphics) {
+        super.paintComponent(graphics);
+        Graphics2D graphics2D = (Graphics2D) graphics;
+        graphics2D.drawImage(activeBackground, -5, 0, null);
     }
 
     @Override

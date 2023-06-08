@@ -14,6 +14,7 @@ public class LevelScreens extends JLayeredPane {
     protected ArrayList<BirdBomb> bombsInThisSection = new ArrayList<>();
     protected volatile ArrayList<MarioWeapon> weaponsInThisSection = new ArrayList<>();
     protected ArrayList<EmptySpaceInGround> emptySpaceInGroundsInThisSection = new ArrayList<>();
+    // ToDo: change activeMario to an Object
     public ArrayList<Mario> activeMario;
     public SectionsTime thisSectionTime;
     GameData gameData;

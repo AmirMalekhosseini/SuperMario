@@ -142,18 +142,13 @@ public class GameLoop {
                 if (!gameScreenFrame.getGameData().isGameFinish) {
                     long startTime = System.currentTimeMillis();
 
-                    gameScreenFrame.getLevelOneSectionOneScreen().backgroundLabelSceneOne.repaint();
-                    gameScreenFrame.getLevelOneSectionOneScreen().backgroundLabelSceneTwo.repaint();
-                    gameScreenFrame.getLevelOneSectionOneScreen().backgroundLabelSceneThree.repaint();
-                    gameScreenFrame.getLevelOneSectionOneScreen().backgroundLabelSceneFour.repaint();
-                    gameScreenFrame.getLevelOneSectionTwoScreen().backgroundLabelSceneOne.repaint();
-                    gameScreenFrame.getLevelOneSectionTwoScreen().backgroundLabelSceneTwo.repaint();
-                    gameScreenFrame.getLevelOneSectionTwoScreen().backgroundLabelSceneThree.repaint();
-                    gameScreenFrame.getLevelOneSectionTwoScreen().backgroundLabelSceneFour.repaint();
                     gameScreenFrame.repaint();
-                    gameScreenFrame.setFocusable(true);
-                    gameScreenFrame.requestFocusInWindow();
-                    gameScreenFrame.requestFocus();
+                    gameScreenFrame.getHiddenCoinBackgroundPanel().repaint();
+                    gameScreenFrame.getHiddenEnemyBackgroundPanel().repaint();
+                    gameScreenFrame.getLevelOneGameBackgroundPanel().repaint();
+                    gameScreenFrame.getLevelTwoGameBackgroundPanel().repaint();
+
+
                     long elapsedTime = System.currentTimeMillis() - startTime;
                     long sleepTime = targetTime - elapsedTime;
                     if (sleepTime > 0) {
@@ -182,6 +177,7 @@ public class GameLoop {
                     long startTime = System.currentTimeMillis();
 
                     gameScreenFrame.marioMover.getMarioMoverModel().move();
+                    gameScreenFrame.marioMover.getMarioMoverModel().activeScreen.activeMario.get(0).changeBackground();
                     gameScreenFrame.getLevelOneSectionOneModel().moveShot();
                     gameScreenFrame.getLevelOneSectionTwoModel().moveShot();
                     setGameDataInLevelOne();

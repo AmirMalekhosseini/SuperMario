@@ -19,6 +19,17 @@ public class MyProjectData {
     protected ImageIcon shooterMarioImage;
     protected ImageIcon coinMarioImage;
 
+    protected BufferedImage Vilgax_FireBall;
+    protected BufferedImage Vilgax_Phase1;
+    protected BufferedImage Vilgax_Phase1_Jump_Attack;
+    protected BufferedImage Vilgax_Phase1_Filliped;
+    protected BufferedImage Vilgax_Phase1_Filliped_Jump_Attack;
+    protected BufferedImage Vilgax_Phase2;
+    protected BufferedImage Vilgax_Phase2_Jump_Attack;
+    protected BufferedImage Vilgax_Phase2_Filliped;
+    protected BufferedImage Vilgax_Phase2_Filliped_Jump_Attack;
+    protected BufferedImage Vilgax_Grab;
+    protected BufferedImage Vilgax_Grab_Filliped;
     protected BufferedImage sword;
     protected BufferedImage swordFilliped;
     protected BufferedImage fireBall;
@@ -152,6 +163,8 @@ public class MyProjectData {
 
     public void importObjectsInGame() {
 
+
+
         try {
             String pathBackground = "BlockInAir.png";
             File fileBackground = new File(pathBackground);
@@ -237,6 +250,105 @@ public class MyProjectData {
             String pathBackground = "PipeHorizontal.png";
             File fileBackground = new File(pathBackground);
             pipeHorizontal = ImageIO.read(fileBackground);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            String pathBackground = "Enemy/Vilgax/Vilgax_FireBall.png";
+            File fileBackground = new File(pathBackground);
+            Vilgax_FireBall = ImageIO.read(fileBackground);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            String pathBackground = "Enemy/Vilgax/Phase1/Vilgax.png";
+            File fileBackground = new File(pathBackground);
+            Vilgax_Phase1 = ImageIO.read(fileBackground);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            String pathBackground = "Enemy/Vilgax/Phase1/Vilgax_Filliped.png";
+            File fileBackground = new File(pathBackground);
+            Vilgax_Phase1_Filliped = ImageIO.read(fileBackground);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            String pathBackground = "Enemy/Vilgax/Phase1/Vilgax_Jump_Attack.png";
+            File fileBackground = new File(pathBackground);
+            Vilgax_Phase1_Jump_Attack = ImageIO.read(fileBackground);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            String pathBackground = "Enemy/Vilgax/Phase1/Vilgax_Filliped_Jump_Attack.png";
+            File fileBackground = new File(pathBackground);
+            Vilgax_Phase1_Filliped_Jump_Attack = ImageIO.read(fileBackground);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            String pathBackground = "Enemy/Vilgax/Phase2/Vilgax.png";
+            File fileBackground = new File(pathBackground);
+            Vilgax_Phase2 = ImageIO.read(fileBackground);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            String pathBackground = "Enemy/Vilgax/Phase2/Vilgax_Filliped.png";
+            File fileBackground = new File(pathBackground);
+            Vilgax_Phase2_Filliped = ImageIO.read(fileBackground);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            String pathBackground = "Enemy/Vilgax/Phase2/Vilgax_Jump_Attack.png";
+            File fileBackground = new File(pathBackground);
+            Vilgax_Phase2_Jump_Attack = ImageIO.read(fileBackground);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            String pathBackground = "Enemy/Vilgax/Phase2/Vilgax_Filliped_Jump_Attack.png";
+            File fileBackground = new File(pathBackground);
+            Vilgax_Phase2_Filliped_Jump_Attack = ImageIO.read(fileBackground);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            String pathBackground = "Enemy/Vilgax/Vilgax_Grab.png";
+            File fileBackground = new File(pathBackground);
+            Vilgax_Grab = ImageIO.read(fileBackground);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            String pathBackground = "Enemy/Vilgax/Vilgax_Grab_Filliped.png";
+            File fileBackground = new File(pathBackground);
+            Vilgax_Grab_Filliped = ImageIO.read(fileBackground);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -1566,5 +1678,49 @@ public class MyProjectData {
 
     public BufferedImage getSwordFilliped() {
         return swordFilliped;
+    }
+
+    public BufferedImage getVilgax_Phase1() {
+        return Vilgax_Phase1;
+    }
+
+    public BufferedImage getVilgax_Phase1_Jump_Attack() {
+        return Vilgax_Phase1_Jump_Attack;
+    }
+
+    public BufferedImage getVilgax_Phase1_Filliped() {
+        return Vilgax_Phase1_Filliped;
+    }
+
+    public BufferedImage getVilgax_Phase1_Filliped_Jump_Attack() {
+        return Vilgax_Phase1_Filliped_Jump_Attack;
+    }
+
+    public BufferedImage getVilgax_Phase2() {
+        return Vilgax_Phase2;
+    }
+
+    public BufferedImage getVilgax_Phase2_Jump_Attack() {
+        return Vilgax_Phase2_Jump_Attack;
+    }
+
+    public BufferedImage getVilgax_Phase2_Filliped() {
+        return Vilgax_Phase2_Filliped;
+    }
+
+    public BufferedImage getVilgax_Phase2_Filliped_Jump_Attack() {
+        return Vilgax_Phase2_Filliped_Jump_Attack;
+    }
+
+    public BufferedImage getVilgax_Grab() {
+        return Vilgax_Grab;
+    }
+
+    public BufferedImage getVilgax_Grab_Filliped() {
+        return Vilgax_Grab_Filliped;
+    }
+
+    public BufferedImage getVilgax_FireBall() {
+        return Vilgax_FireBall;
     }
 }

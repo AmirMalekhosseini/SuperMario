@@ -31,7 +31,8 @@ public class OneCoinBlockInAir extends BlockInAir{
     }
 
 
-    public void paint(Graphics graphics) {
+    protected void paintComponent(Graphics graphics) {
+        super.paintComponent(graphics);
         Graphics2D graphics2D = (Graphics2D) graphics;
         graphics2D.drawImage(background, 0, -5, null);
     }

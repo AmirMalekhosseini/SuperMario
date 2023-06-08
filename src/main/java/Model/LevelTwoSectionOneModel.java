@@ -160,6 +160,8 @@ public class LevelTwoSectionOneModel {
 
 
             levelTwoSectionOneScreen.getEnemiesInThisSection().get(i).move();
+            levelTwoSectionOneScreen.getEnemiesInThisSection().get(i).changeBackground();
+
             // Enemy Changes its Direction:
             if (intersect.intersection.isEnemyHitAnObject
                     (levelTwoSectionOneScreen.getEnemiesInThisSection().get(i))) {

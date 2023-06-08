@@ -9,6 +9,7 @@ import java.io.IOException;
 
 public class CoinMario extends Mario {
 
+    private BufferedImage activeBackground;
     private BufferedImage run_1;
     private BufferedImage run_2;
     private BufferedImage run_3;
@@ -46,6 +47,7 @@ public class CoinMario extends Mario {
         run_3_Flipped_Mini = projectData.getCoinMario_Run_3_Flipped_Mini();
         jump_Flipped = projectData.getCoinMario_jump_Flipped();
         stand_Flipped = projectData.getCoinMario_Stand_Flipped();
+        activeBackground = stand_Mini;
 
         this.x = x;
         this.y = y;
@@ -56,37 +58,36 @@ public class CoinMario extends Mario {
 
     }
 
-
-    public void paint(Graphics graphics) {
-        Graphics2D graphics2D = (Graphics2D) graphics;
+    @Override
+    public void changeBackground() {
 
         if (isMarioMini()) {
 
             if (velocityX > 0) {
-                graphics2D.drawImage(run_3_Mini, -0, -5, null);
+                activeBackground = run_3_Mini;
             } else if (velocityX < 0) {
-                graphics2D.drawImage(run_3_Flipped_Mini, -0, -5, null);
+                activeBackground = run_3_Flipped_Mini;
             } else {
-                graphics2D.drawImage(stand_Mini, -0, -5, null);
+                activeBackground = stand_Mini;
             }
 
         } else if (isMarioMega()) {
 
             if (isMarioSit()) {// Mario is Siting:
                 if (velocityX > 0) {
-                    graphics2D.drawImage(run_3_Mini, -0, -5, null);
+                    activeBackground = run_3_Mini;
                 } else if (velocityX < 0) {
-                    graphics2D.drawImage(run_3_Flipped_Mini, -0, -5, null);
+                    activeBackground = run_3_Flipped_Mini;
                 } else {
-                    graphics2D.drawImage(stand_Mini, -0, -5, null);
+                    activeBackground = stand_Mini;
                 }
             } else {// Mario is standing:
                 if (velocityX > 0) {
-                    graphics2D.drawImage(run_3, -0, -5, null);
+                    activeBackground = run_3;
                 } else if (velocityX < 0) {
-                    graphics2D.drawImage(run_3_Flipped, -0, -5, null);
+                    activeBackground = run_3_Flipped;
                 } else {
-                    graphics2D.drawImage(stand, -0, -5, null);
+                    activeBackground = stand;
                 }
             }
 
@@ -94,24 +95,31 @@ public class CoinMario extends Mario {
 
             if (isMarioSit()) {// Mario is Siting:
                 if (velocityX > 0) {
-                    graphics2D.drawImage(getFireMario_Mini(), -0, -5, null);
+                    activeBackground = getFireMario_Mini();
                 } else if (velocityX < 0) {
-                    graphics2D.drawImage(getFireMario_Filliped_Mini(), -0, -5, null);
+                    activeBackground = getFireMario_Filliped_Mini();
                 } else {
-                    graphics2D.drawImage(getFireMario_Mini(), -0, -5, null);
+                    activeBackground = getFireMario_Mini();
                 }
             } else {// Mario is standing:
                 if (velocityX > 0) {
-                    graphics2D.drawImage(getFireMario(), -0, -5, null);
+                    activeBackground = getFireMario();
                 } else if (velocityX < 0) {
-                    graphics2D.drawImage(getFireMario_Filliped(), -0, -5, null);
+                    activeBackground = getFireMario_Filliped();
                 } else {
-                    graphics2D.drawImage(getFireMario(), -0, -5, null);
+                    activeBackground = getFireMario();
                 }
             }
 
         }
 
+    }
+
+
+    protected void paintComponent(Graphics graphics) {
+        super.paintComponent(graphics);
+        Graphics2D graphics2D = (Graphics2D) graphics;
+        graphics2D.drawImage(activeBackground, -0, -5, null);
     }
 
     @Override
@@ -133,6 +141,7 @@ public class CoinMario extends Mario {
     public void setY(int y) {
         this.y = y;
     }
+
     @Override
     public double getVelocityY() {
         return velocityY;

@@ -10,6 +10,8 @@ public class LevelOneSectionOneTime extends SectionsTime {
     javax.swing.Timer timer;
     private int sectionTime;
 
+    // ToDo: create  coolDown fields for everything in this section
+
     public LevelOneSectionOneTime(LevelOneSectionOneScreen levelOneSectionOneScreen) {
 
         sectionTime = 50;

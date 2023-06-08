@@ -7,6 +7,7 @@ import java.awt.image.BufferedImage;
 
 public class Goompa extends Enemy {
 
+    private BufferedImage activeBackground;
     private BufferedImage background;
     private BufferedImage background_Filliped;
     private int x;
@@ -16,10 +17,12 @@ public class Goompa extends Enemy {
     private double velocity = -5;
 
     public Goompa(int xx, int yy) {
+
         this.setSize(width, height);
 
         background = MyProjectData.getProjectData().getGoompa();
         background_Filliped = MyProjectData.getProjectData().getGoompa_Filliped();
+        activeBackground = background;
 
         this.x = xx;
         this.y = yy;
@@ -41,13 +44,19 @@ public class Goompa extends Enemy {
 
     }
 
-    public void paint(Graphics graphics) {
-        Graphics2D graphics2D = (Graphics2D) graphics;
+    @Override
+    public void changeBackground() {
         if (velocity <= 0) {
-            graphics2D.drawImage(background, -5, 0, null);
+            activeBackground = background;
         } else {
-            graphics2D.drawImage(background_Filliped, -5, 0, null);
+            activeBackground = background_Filliped;
         }
+    }
+
+    protected void paintComponent(Graphics graphics) {
+        super.paintComponent(graphics);
+        Graphics2D graphics2D = (Graphics2D) graphics;
+        graphics2D.drawImage(activeBackground, -5, 0, null);
     }
 
     @Override

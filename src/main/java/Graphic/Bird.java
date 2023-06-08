@@ -5,7 +5,9 @@ import Model.MyProjectData;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class Bird extends Enemy{
+public class Bird extends Enemy {
+
+    private BufferedImage activeBackground;
     private BufferedImage background;
     private BufferedImage background_Filliped;
     private int secondCounterForBomb = 0;
@@ -25,6 +27,7 @@ public class Bird extends Enemy{
 
         background = MyProjectData.getProjectData().getNukeBird();
         background_Filliped = MyProjectData.getProjectData().getNukeBird_Filliped();
+        activeBackground = background;
 
         this.x = xx;
         this.y = yy;
@@ -42,28 +45,33 @@ public class Bird extends Enemy{
 
         secondCounter++;
         if (secondCounter == 10) {
-        secondCounterForBomb++;
-        x += velocity;
-        if (x >= endPosition || x <= startPosition) {
-            velocity = -velocity;
-        }
-        if (secondCounterForBomb == 20 && !throwBomb) {
-            throwBomb = true;
-            secondCounterForBomb = 0;
-        }
+            secondCounterForBomb++;
+            x += velocity;
+            if (x >= endPosition || x <= startPosition) {
+                velocity = -velocity;
+            }
+            if (secondCounterForBomb == 20 && !throwBomb) {
+                throwBomb = true;
+                secondCounterForBomb = 0;
+            }
             secondCounter = 0;
-    }
-
-    }
-
-    public void paint(Graphics graphics) {
-        Graphics2D graphics2D = (Graphics2D) graphics;
-        if (velocity <= 0) {
-            graphics2D.drawImage(background, -15, 0, null);
-        } else {
-            graphics2D.drawImage(background_Filliped, -15, 0, null);
         }
 
+    }
+
+    @Override
+    public void changeBackground() {
+        if (velocity <= 0) {
+            activeBackground = background;
+        } else {
+            activeBackground = background_Filliped;
+        }
+    }
+
+    protected void paintComponent(Graphics graphics) {
+        super.paintComponent(graphics);
+        Graphics2D graphics2D = (Graphics2D) graphics;
+        graphics2D.drawImage(activeBackground, -15, 0, null);
     }
 
     @Override

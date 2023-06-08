@@ -72,7 +72,8 @@ public class Sword extends MarioWeapon{
 
     }
 
-    public void paint(Graphics graphics) {
+    protected void paintComponent(Graphics graphics) {
+        super.paintComponent(graphics);
         Graphics2D graphics2D = (Graphics2D) graphics;
         if (velocity > 0) {
             graphics2D.drawImage(background, -0, -0, null);

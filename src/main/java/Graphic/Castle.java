@@ -27,7 +27,8 @@ public class Castle extends JLabel {
 
     }
 
-    public void paint(Graphics graphics) {
+    protected void paintComponent(Graphics graphics) {
+        super.paintComponent(graphics);
         Graphics2D graphics2D = (Graphics2D) graphics;
         graphics2D.drawImage(castleImage, 0, -5, null);
     }

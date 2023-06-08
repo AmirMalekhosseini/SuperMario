@@ -2,7 +2,7 @@ package Graphic;
 
 import javax.swing.*;
 
-public abstract class MarioWeapon extends JLabel {
+public abstract class MarioWeapon extends ObjectsInGame {
 
     private int x;
     private int y;

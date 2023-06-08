@@ -14,6 +14,7 @@ import java.io.IOException;
 
 public class Plant extends Enemy {
 
+    private BufferedImage activeBackground;
     private BufferedImage background;
     public int plantWaitTime = 0;
 
@@ -27,6 +28,7 @@ public class Plant extends Enemy {
         this.setSize(width, height);
 
         background = MyProjectData.getProjectData().getPlant();
+        activeBackground = background;
 
         this.x = xx;
         this.y = yy;
@@ -47,7 +49,7 @@ public class Plant extends Enemy {
                 velocity = -velocity;
                 plantWaitTime++;
                 velocity = 0;
-                if (plantWaitTime == 12) {
+                if (plantWaitTime == 20) {
                     velocity = -5;
                     plantWaitTime = 0;
                 }
@@ -58,10 +60,15 @@ public class Plant extends Enemy {
         }
 
     }
+    @Override
+    public void changeBackground() {
+        activeBackground = background;
+    }
 
-    public void paint(Graphics graphics) {
+    protected void paintComponent(Graphics graphics) {
+        super.paintComponent(graphics);
         Graphics2D graphics2D = (Graphics2D) graphics;
-        graphics2D.drawImage(background, 0, -5, null);
+        graphics2D.drawImage(activeBackground, -5, 0, null);
     }
 
     @Override

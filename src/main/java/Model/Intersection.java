@@ -345,7 +345,7 @@ public abstract class Intersection {
                     (objectHeight < objectY || objectHeight > enemyY) &&
                     (enemyWidth < enemyX || enemyWidth > objectX) &&
                     (enemyHeight < enemyY || enemyHeight > objectY)) {
-                if ((objectHeight > enemyY || enemyHeight > objectY) && enemyWidth <= objectX + 30 && !enemy.isEnemyHitsAnObject()) {// Hit left of Object
+                if ((objectHeight > enemyY || enemyHeight > objectY) && enemyWidth <= objectX + 30 && enemy.isEnemyHitsAnObject()) {// Hit left of Object
 
                     if (enemy instanceof Spiny) {
                         enemy.setVelocity(0);
@@ -360,7 +360,7 @@ public abstract class Intersection {
                     return true;
 
                 }
-                if ((objectHeight > enemyY || enemyHeight > objectY) && objectWidth <= enemyX + 30 && !enemy.isEnemyHitsAnObject()) {// Hit right of Object
+                if ((objectHeight > enemyY || enemyHeight > objectY) && objectWidth <= enemyX + 30 && enemy.isEnemyHitsAnObject()) {// Hit right of Object
 
                     if (enemy instanceof Spiny) {
                         enemy.setVelocity(0);
@@ -399,7 +399,7 @@ public abstract class Intersection {
                     (objectHeight < objectY || objectHeight > enemyY) &&
                     (enemyWidth < enemyX || enemyWidth > objectX) &&
                     (enemyHeight < enemyY || enemyHeight > objectY)) {
-                if ((objectHeight > enemyY || enemyHeight > objectY) && enemyWidth <= objectX + 30 && !enemy.isEnemyHitsAnObject()) {// Hit left of Object
+                if ((objectHeight > enemyY || enemyHeight > objectY) && enemyWidth <= objectX + 30 && enemy.isEnemyHitsAnObject()) {// Hit left of Object
 
                     if (enemy instanceof Spiny) {
                         enemy.setVelocity(0);
@@ -414,7 +414,7 @@ public abstract class Intersection {
                     return true;
 
                 }
-                if ((objectHeight > enemyY || enemyHeight > objectY) && objectWidth <= enemyX + 30 && !enemy.isEnemyHitsAnObject()) {// Hit right of Object
+                if ((objectHeight > enemyY || enemyHeight > objectY) && objectWidth <= enemyX + 30 && enemy.isEnemyHitsAnObject()) {// Hit right of Object
 
                     if (enemy instanceof Spiny) {
                         enemy.setVelocity(0);

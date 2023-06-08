@@ -8,6 +8,7 @@ import java.awt.image.BufferedImage;
 
 public class BirdBomb extends Enemy {
 
+    private BufferedImage activeBackground;
     private BufferedImage background;
     private int x;
     private int y;
@@ -19,6 +20,7 @@ public class BirdBomb extends Enemy {
         this.setSize(width, height);
 
         background = MyProjectData.getProjectData().getBirdBomb();
+        activeBackground = background;
 
         this.x = xx;
         this.y = yy;
@@ -33,10 +35,15 @@ public class BirdBomb extends Enemy {
     public void move() {
 
     }
+    @Override
+    public void changeBackground() {
+        activeBackground = background;
+    }
 
-    public void paint(Graphics graphics) {
+    protected void paintComponent(Graphics graphics) {
+        super.paintComponent(graphics);
         Graphics2D graphics2D = (Graphics2D) graphics;
-        graphics2D.drawImage(background, -15, -5, null);
+        graphics2D.drawImage(activeBackground, -15, 0, null);
     }
 
     @Override
