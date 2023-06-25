@@ -5,7 +5,7 @@ import Model.MyProjectData;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class VilgaxFireball extends VilgaxWeapon {
+public class VilgaxFireBall extends VilgaxWeapon {
 
     private final BufferedImage background;
     private int x;
@@ -15,7 +15,7 @@ public class VilgaxFireball extends VilgaxWeapon {
     private int velocity = 30;
     private int secondCounter = 0;
 
-    public VilgaxFireball(int x, int y) {
+    public VilgaxFireBall(int x, int y) {
 
         background = MyProjectData.getProjectData().getVilgax_FireBall();
         this.setSize(width, height);
@@ -29,15 +29,11 @@ public class VilgaxFireball extends VilgaxWeapon {
     public void move() {
 
         secondCounter++;
-        if (secondCounter == 5) {
-            if (getVilgaxVelocity() >= 0) {
-                velocity = 30;
-            } else {
-                velocity = -30;
-            }
-            x += velocity;
+        if (secondCounter == 7) {
 
+            x += velocity;
             secondCounter = 0;
+
         }
 
     }

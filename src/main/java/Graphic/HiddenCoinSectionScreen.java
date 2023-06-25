@@ -165,45 +165,6 @@ public class HiddenCoinSectionScreen extends LevelScreens {
         this.add(thisGameCoin, Integer.valueOf(1));
         this.add(thisGameCoinImage, Integer.valueOf(1));
 
-        this.add(cannon_1, Integer.valueOf(1));
-        this.add(blockInAir1_1, Integer.valueOf(1));
-        this.add(blockInAir1_2, Integer.valueOf(1));
-        this.add(blockInAir1_3, Integer.valueOf(1));
-        this.add(blockInAir1_4, Integer.valueOf(1));
-        this.add(blockInAir1_5, Integer.valueOf(1));
-        this.add(blockInAir1_6, Integer.valueOf(1));
-        this.add(blockInAir1_7, Integer.valueOf(1));
-        this.add(blockInAir1_8, Integer.valueOf(1));
-        this.add(blockInAir1_9, Integer.valueOf(1));
-        this.add(blockInAir1_10, Integer.valueOf(1));
-        this.add(blockInAir1_11, Integer.valueOf(1));
-        this.add(blockInAir1_12, Integer.valueOf(1));
-        this.add(blockInAir1_13, Integer.valueOf(1));
-
-        this.add(cannon_2, Integer.valueOf(1));
-        this.add(blockInAir2_1, Integer.valueOf(1));
-        this.add(blockInAir2_2, Integer.valueOf(1));
-        this.add(blockInAir2_3, Integer.valueOf(1));
-        this.add(blockInAir2_4, Integer.valueOf(1));
-        this.add(blockInAir2_5, Integer.valueOf(1));
-        this.add(blockInAir2_6, Integer.valueOf(1));
-        this.add(blockInAir2_7, Integer.valueOf(1));
-        this.add(blockInAir2_8, Integer.valueOf(1));
-        this.add(blockInAir2_9, Integer.valueOf(1));
-        this.add(blockInAir2_10, Integer.valueOf(1));
-
-        this.add(cannon_3, Integer.valueOf(1));
-        this.add(blockInAir3_1, Integer.valueOf(1));
-        this.add(blockInAir3_2, Integer.valueOf(1));
-        this.add(blockInAir3_3, Integer.valueOf(1));
-        this.add(blockInAir3_4, Integer.valueOf(1));
-        this.add(blockInAir3_5, Integer.valueOf(1));
-        this.add(blockInAir3_6, Integer.valueOf(1));
-        this.add(blockInAir3_7, Integer.valueOf(1));
-        this.add(blockInAir3_8, Integer.valueOf(1));
-        this.add(pipeHorizontal, Integer.valueOf(1));
-
-
         objectsInThisSection.add(cannon_1);
         objectsInThisSection.add(blockInAir1_1);
         objectsInThisSection.add(blockInAir1_2);
@@ -242,7 +203,9 @@ public class HiddenCoinSectionScreen extends LevelScreens {
         objectsInThisSection.add(blockInAir3_8);
         objectsInThisSection.add(pipeHorizontal);
 
-
+        for (ObjectsInGame object : objectsInThisSection) {
+            this.add(object, Integer.valueOf(1));
+        }
 
     }
 

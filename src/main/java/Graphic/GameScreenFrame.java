@@ -4,7 +4,6 @@ import Controller.MarioMover;
 import Model.*;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class GameScreenFrame extends JFrame {
 
@@ -16,7 +15,7 @@ public class GameScreenFrame extends JFrame {
     protected JPanel levelOneGameBackgroundPanel;
     protected JPanel levelTwoGameBackgroundPanel;
     protected JPanel levelThreeGameBackgroundPanel;
-    protected BossFightScreenSection bossFightScreenSection;
+    protected BossFightScreenSectionScreen bossFightScreenSectionScreen;
     protected HiddenCoinSectionScreen hiddenCoinSectionScreen;
     protected HiddenCoinSectionModel hiddenCoinSectionModel;
     protected HiddenEnemySectionScreen hiddenEnemySectionScreen;
@@ -58,7 +57,7 @@ public class GameScreenFrame extends JFrame {
 
         this.gameData = gameData;
         ImageIcon gameIcon = new ImageIcon("GameIcon.jpeg");
-        bossFightScreenSection = new BossFightScreenSection(gameData);
+        bossFightScreenSectionScreen = new BossFightScreenSectionScreen(gameData);
         hiddenEnemySectionScreen = new HiddenEnemySectionScreen(gameData);
         hiddenCoinSectionScreen = new HiddenCoinSectionScreen(gameData);
         levelOneSectionOneScreen = new LevelOneSectionOneScreen(gameData);
@@ -86,7 +85,7 @@ public class GameScreenFrame extends JFrame {
                 intersectInLevelTwoSectionTwo = new IntersectInLevelTwoSectionTwo(gameScreenFrame, powerUp);
                 intersectInHiddenCoinSection = new IntersectInHiddenCoinSection(gameScreenFrame, powerUp);
                 intersectInHiddenEnemySection = new IntersectInHiddenEnemySection(gameScreenFrame, powerUp);
-                gravityData = new GravityData(gameScreenFrame);
+                gravityData = new GravityData();
                 hiddenEnemySectionModel = new HiddenEnemySectionModel(hiddenEnemySectionScreen, intersectInHiddenEnemySection, marioMoverModel);
                 hiddenCoinSectionModel = new HiddenCoinSectionModel(hiddenCoinSectionScreen, intersectInHiddenCoinSection, marioMoverModel);
                 levelOneSectionOneModel = new LevelOneSectionOneModel(levelOneSectionOneScreen, intersectInLevelOneSectionOne, marioMoverModel);
@@ -123,7 +122,7 @@ public class GameScreenFrame extends JFrame {
 
         levelOneGameBackgroundPanel.setBounds(xLevelOneBackgroundPanel, 0, 14000, 1300);
         levelOneGameBackgroundPanel.setLayout(null);
-        levelOneGameBackgroundPanel.setVisible(true);
+        levelOneGameBackgroundPanel.setVisible(false);
         levelOneGameBackgroundPanel.add(levelOneSectionOneScreen);
         levelOneGameBackgroundPanel.add(levelOneSectionTwoScreen);
 
@@ -136,13 +135,14 @@ public class GameScreenFrame extends JFrame {
 
         levelThreeGameBackgroundPanel.setBounds(xLevelThreeBackgroundPanel, 0, 14000, 1300);
         levelThreeGameBackgroundPanel.setLayout(null);
-        levelThreeGameBackgroundPanel.setVisible(false);
-        levelThreeGameBackgroundPanel.add(levelTwoSectionOneScreen);
+        levelThreeGameBackgroundPanel.setVisible(true);
+        levelThreeGameBackgroundPanel.add(bossFightScreenSectionScreen);
 
         this.add(hiddenEnemyBackgroundPanel);
         this.add(hiddenCoinBackgroundPanel);
         this.add(levelOneGameBackgroundPanel);
         this.add(levelTwoGameBackgroundPanel);
+        this.add(levelThreeGameBackgroundPanel);
 
 
         modelStarter.startModel(this);
@@ -242,6 +242,14 @@ public class GameScreenFrame extends JFrame {
 
     public void setLevelTwoSectionTwoScreen(LevelTwoSectionTwoScreen levelTwoSectionTwoScreen) {
         this.levelTwoSectionTwoScreen = levelTwoSectionTwoScreen;
+    }
+
+    public BossFightScreenSectionScreen getBossFightScreenSection() {
+        return bossFightScreenSectionScreen;
+    }
+
+    public void setBossFightScreenSection(BossFightScreenSectionScreen bossFightScreenSectionScreen) {
+        this.bossFightScreenSectionScreen = bossFightScreenSectionScreen;
     }
 
     public IntersectInLevelOneSectionOne getIntersectMarioAndObjectsInLevelOneSectionOne() {
@@ -371,4 +379,6 @@ public class GameScreenFrame extends JFrame {
     public void setxLevelThreeBackgroundPanel(int xLevelThreeBackgroundPanel) {
         this.xLevelThreeBackgroundPanel = xLevelThreeBackgroundPanel;
     }
+
+
 }

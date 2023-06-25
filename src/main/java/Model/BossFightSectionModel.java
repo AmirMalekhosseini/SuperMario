@@ -1,10 +1,10 @@
 package Model;
 
-import Graphic.BossFightScreenSection;
+import Graphic.BossFightScreenSectionScreen;
 
 public class BossFightSectionModel {
 
-    BossFightScreenSection bossFightScreenSection;
+    BossFightScreenSectionScreen bossFightScreenSectionScreen;
     MarioMoverModel marioMoverModel;
 
 }

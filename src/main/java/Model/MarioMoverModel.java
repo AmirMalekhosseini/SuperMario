@@ -54,7 +54,7 @@ public class MarioMoverModel {
             if (activeMario.getX() <= 6400) {// Game is in SectionOne:
                 if (!marioEnterInLevelOneSectionOne) {
                     marioEnterInLevelOneSectionOne = true;
-                    gameScreenFrame.getGameData().setMarioLocation("levelonesectionone");
+//                    gameScreenFrame.getGameData().setMarioLocation("levelonesectionone");
                     activeIntersection = gameScreenFrame.intersectInLevelOneSectionOne;
                     activeScreen = gameScreenFrame.getLevelOneSectionOneScreen();
 
@@ -71,7 +71,7 @@ public class MarioMoverModel {
                     gameScreenFrame.getLevelOneSectionTwoScreen().thisSectionTime.setSectionTime(50);
                     // Add Score At The End Of SectionOne
                     gameScreenFrame.calculateScore.calculateScore(gameScreenFrame.getLevelOneSectionOneScreen());
-                    gameScreenFrame.getGameData().setMarioLocation("levelonesectiontwo");
+//                    gameScreenFrame.getGameData().setMarioLocation("levelonesectiontwo");
                     gameScreenFrame.getPowerUp().loadPowerUp(activeMario);
                 }
             }
@@ -88,7 +88,7 @@ public class MarioMoverModel {
                     gameScreenFrame.getLevelTwoSectionOneScreen().thisSectionTime.setSectionTime(50);
                     // Add Score At The End Of LevelOneSectionTwo
                     gameScreenFrame.calculateScore.calculateScore(gameScreenFrame.getLevelOneSectionTwoScreen());
-                    gameScreenFrame.getGameData().setMarioLocation("leveltwosectionone");
+//                    gameScreenFrame.getGameData().setMarioLocation("leveltwosectionone");
 //                    gameScreenFrame.getPowerUp().loadPowerUp(activeMario);
                     activeIntersection = gameScreenFrame.intersectInLevelTwoSectionOne;
                 }
@@ -143,7 +143,7 @@ public class MarioMoverModel {
 
             if (upMario) {// Mario start jumping
 
-                activeMario.setVelocityY(activeMario.getVelocityY() + (GravityData.gravity * GravityData.dt));
+                activeMario.setVelocityY(activeMario.getVelocityY() + (GravityData.getGravityData().gravity * GravityData.getGravityData().marioDt));
                 activeMario.setY((int) (activeMario.getY() + activeMario.getVelocityY()));
                 activeMario.setMarioJumping(true);// Mario is jumping
                 if (activeIntersection.intersection.isMarioHitsDownOfTheObject()) {// Mario hits down of an object and comes back to ground

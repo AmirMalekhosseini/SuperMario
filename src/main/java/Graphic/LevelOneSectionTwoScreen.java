@@ -221,101 +221,75 @@ public class LevelOneSectionTwoScreen extends LevelScreens {
         this.add(thisGameCoinImage, Integer.valueOf(1));
 
         // Scene One:
-        this.add(firstCoinOnGroundSceneOne, Integer.valueOf(1));
         itemsInThisSection.add(firstCoinOnGroundSceneOne);
-        this.add(secondCoinOnGroundSceneOne, Integer.valueOf(1));
         itemsInThisSection.add(secondCoinOnGroundSceneOne);
-        this.add(thirdCoinOnGroundSceneOne, Integer.valueOf(1));
         itemsInThisSection.add(thirdCoinOnGroundSceneOne);
-        this.add(firstBlockInAirSceneOne, Integer.valueOf(1));
         objectsInThisSection.add(firstBlockInAirSceneOne);
-        this.add(coinOnFirstBlockInAirSceneOne, Integer.valueOf(1));
         itemsInThisSection.add(coinOnFirstBlockInAirSceneOne);
-        this.add(secondBlockInAirSceneOne, Integer.valueOf(1));
         objectsInThisSection.add(secondBlockInAirSceneOne);
-        this.add(firstPrizeInAirSceneOne, Integer.valueOf(1));
         objectsInThisSection.add(firstPrizeInAirSceneOne);
-        this.add(thirdBlockInAirSceneOne, Integer.valueOf(1));
         objectsInThisSection.add(thirdBlockInAirSceneOne);
-        this.add(fourthBlockInAirSceneOne, Integer.valueOf(1));
         objectsInThisSection.add(fourthBlockInAirSceneOne);
-        this.add(coinOnFourthBlockInAirSceneOne, Integer.valueOf(1));
         itemsInThisSection.add(coinOnFourthBlockInAirSceneOne);
-        this.add(firstEnemyInSceneOne, Integer.valueOf(1));
         enemiesInThisSection.add(firstEnemyInSceneOne);
-        this.add(secondEnemyInSceneOne, Integer.valueOf(1));
         enemiesInThisSection.add(secondEnemyInSceneOne);
-        this.add(thirdEnemyInSceneOne, Integer.valueOf(1));
         enemiesInThisSection.add(thirdEnemyInSceneOne);
-        this.add(fourthEnemyInSceneOne, Integer.valueOf(1));
         enemiesInThisSection.add(fourthEnemyInSceneOne);
-        this.add(fifthEnemyInSceneOne, Integer.valueOf(1));
         enemiesInThisSection.add(fifthEnemyInSceneOne);
 
         // Scene Two:
-        this.add(firstCoinOnGroundSceneTwo, Integer.valueOf(1));
         itemsInThisSection.add(firstCoinOnGroundSceneTwo);
-        this.add(firstBlockInAirSceneTwo, Integer.valueOf(1));
         objectsInThisSection.add(firstBlockInAirSceneTwo);
-        this.add(coinOnFirstBlockInAirSceneTwo, Integer.valueOf(1));
         itemsInThisSection.add(coinOnFirstBlockInAirSceneTwo);
-        this.add(secondBlockInAirSceneTwo, Integer.valueOf(1));
         objectsInThisSection.add(secondBlockInAirSceneTwo);
-        this.add(coinOnSecondBlockInAirSceneTwo, Integer.valueOf(1));
         itemsInThisSection.add(coinOnSecondBlockInAirSceneTwo);
-        this.add(thirdBlockInAirSceneTwo, Integer.valueOf(1));
         objectsInThisSection.add(thirdBlockInAirSceneTwo);
-        this.add(coinOnThirdBlockInAirSceneTwo, Integer.valueOf(1));
         itemsInThisSection.add(coinOnThirdBlockInAirSceneTwo);
-        this.add(fourthBlockInAirSceneTwo, Integer.valueOf(1));
         objectsInThisSection.add(fourthBlockInAirSceneTwo);
-        this.add(coinOnFourthBlockInAirSceneTwo, Integer.valueOf(1));
         itemsInThisSection.add(coinOnFourthBlockInAirSceneTwo);
-        this.add(firstPrizeInAirSceneTwo, Integer.valueOf(1));
         objectsInThisSection.add(firstPrizeInAirSceneTwo);
-        this.add(firstEmptySpaceInGroundSceneTwo, Integer.valueOf(1));
         emptySpaceInGroundsInThisSection.add(firstEmptySpaceInGroundSceneTwo);
-        this.add(firstEnemyInSceneTwo, Integer.valueOf(1));
         enemiesInThisSection.add(firstEnemyInSceneTwo);
-        this.add(secondEnemyInSceneTwo, Integer.valueOf(1));
         enemiesInThisSection.add(secondEnemyInSceneTwo);
-        this.add(thirdEnemyInSceneTwo, Integer.valueOf(1));
         enemiesInThisSection.add(thirdEnemyInSceneTwo);
 
         // Scene Three:
-        this.add(firstCoinOnGroundSceneThree, Integer.valueOf(1));
         itemsInThisSection.add(firstCoinOnGroundSceneThree);
-        this.add(secondCoinOnGroundSceneThree, Integer.valueOf(1));
         itemsInThisSection.add(secondCoinOnGroundSceneThree);
-        this.add(thirdCoinOnGroundSceneThree, Integer.valueOf(1));
         itemsInThisSection.add(thirdCoinOnGroundSceneThree);
-        this.add(firstPrizeInAirSceneThree, Integer.valueOf(1));
         objectsInThisSection.add(firstPrizeInAirSceneThree);
-        this.add(secondPrizeInAirSceneThree, Integer.valueOf(1));
         objectsInThisSection.add(secondPrizeInAirSceneThree);
-        this.add(firstPipeSceneThree, Integer.valueOf(1));
         objectsInThisSection.add(firstPipeSceneThree);
-        this.add(secondPipeSceneThree, Integer.valueOf(1));
         objectsInThisSection.add(secondPipeSceneThree);
-        this.add(plantInSecondPipeSceneThree, Integer.valueOf(1));
         enemiesInThisSection.add(plantInSecondPipeSceneThree);
-        this.add(fourthCoinOnGroundSceneThree, Integer.valueOf(1));
         itemsInThisSection.add(fourthCoinOnGroundSceneThree);
-        this.add(firstEnemyInSceneThree, Integer.valueOf(1));
         enemiesInThisSection.add(firstEnemyInSceneThree);
-        this.add(secondEnemyInSceneThree, Integer.valueOf(1));
         enemiesInThisSection.add(secondEnemyInSceneThree);
-        this.add(thirdEnemyInSceneThree, Integer.valueOf(1));
         enemiesInThisSection.add(thirdEnemyInSceneThree);
-        this.add(fourthEnemyInSceneThree, Integer.valueOf(1));
         enemiesInThisSection.add(fourthEnemyInSceneThree);
-        this.add(fifthEnemyInSceneThree, Integer.valueOf(1));
         enemiesInThisSection.add(fifthEnemyInSceneThree);
-        this.add(sixthEnemyInSceneThree, Integer.valueOf(1));
         enemiesInThisSection.add(sixthEnemyInSceneThree);
 
         // Scene Four:
         this.add(castle, Integer.valueOf(1));
+
+        // Add To Screen:
+
+        for (ObjectsInGame object : objectsInThisSection) {
+            this.add(object, Integer.valueOf(1));
+        }
+
+        for (Enemy enemy : enemiesInThisSection) {
+            this.add(enemy, Integer.valueOf(1));
+        }
+
+        for (ItemsInGame item : itemsInThisSection) {
+            this.add(item, Integer.valueOf(1));
+        }
+
+        for (EmptySpaceInGround emptySpaceInGround : emptySpaceInGroundsInThisSection) {
+            this.add(emptySpaceInGround, Integer.valueOf(1));
+        }
 
     }
     public ArrayList<ObjectsInGame> getObjectsInThisSection() {

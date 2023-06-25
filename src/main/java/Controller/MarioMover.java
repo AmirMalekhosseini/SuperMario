@@ -122,15 +122,6 @@ public class MarioMover {
             }
         });
 
-//        actionMap.put("moveUpReleased", new AbstractAction() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                marioMoverModel.setUpMario(false);
-//                marioMoverModel.activeMario.setVelocityY(0);
-//                marioMoverModel.setUserPressedUp(false);
-//            }
-//        });
-
         actionMap.put("moveDownReleased", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {

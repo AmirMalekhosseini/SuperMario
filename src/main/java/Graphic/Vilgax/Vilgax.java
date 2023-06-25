@@ -3,12 +3,14 @@ package Graphic.Vilgax;
 import Graphic.ObjectsInGame;
 import Model.MyProjectData;
 import Model.Vilgax.*;
+import Model.VilgaxAndScreenConnection;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Vilgax extends ObjectsInGame {
 
+    public VilgaxAndScreenConnection vilgaxAndScreenConnection;
     private BufferedImage activeBackground;
     private final BufferedImage Vilgax_Phase1;
     private final BufferedImage Vilgax_Phase1_Jump_Attack;
@@ -21,7 +23,8 @@ public class Vilgax extends ObjectsInGame {
     private final BufferedImage Vilgax_Grab;
     private final BufferedImage Vilgax_Grab_Filliped;
 
-
+    public VilgaxMove activeMove;
+    public VilgaxMove vilgaxDoNothing;
     public VilgaxMove vilgaxFireBallAttack;
     public VilgaxMove vilgaxGrabAttack;
     public VilgaxMove vilgaxNukeAttack;
@@ -33,18 +36,22 @@ public class Vilgax extends ObjectsInGame {
     private int y;
     private int width = 150;
     private int height = 240;
-    private double velocity = -5;
+    private double velocity = -1;// Run: -3
 
-    public Vilgax() {
+    public Vilgax(int x, int y) {
 
         this.setSize(width, height);
+        this.x = x;
+        this.y = y;
 
+        vilgaxDoNothing = new VilgaxDoNothing();
         vilgaxFireBallAttack = new VilgaxFireBallAttack(this);
         vilgaxGrabAttack = new VilgaxGrabAttack(this);
         vilgaxNukeAttack = new VilgaxNukeAttack(this);
         vilgaxJumpAttack = new VilgaxJumpAttack(this);
         vilgaxRun = new VilgaxRun(this);
         vilgaxJump = new VilgaxJump(this);
+        activeMove = vilgaxFireBallAttack;
 
         Vilgax_Phase1 = MyProjectData.getProjectData().getVilgax_Phase1();
         Vilgax_Phase1_Jump_Attack = MyProjectData.getProjectData().getVilgax_Phase1_Jump_Attack();
@@ -61,6 +68,10 @@ public class Vilgax extends ObjectsInGame {
 
         activeBackground = Vilgax_Phase1;
 
+    }
+
+    public void addConnection(VilgaxAndScreenConnection vilgaxAndScreenConnection) {
+        this.vilgaxAndScreenConnection = vilgaxAndScreenConnection;
     }
 
     @Override

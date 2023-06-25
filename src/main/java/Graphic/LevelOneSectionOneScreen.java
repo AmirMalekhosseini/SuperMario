@@ -233,115 +233,82 @@ public class LevelOneSectionOneScreen extends LevelScreens {
         this.add(thisGameCoinImage, Integer.valueOf(1));
 
         // Scene One:
-        this.add(firstBlockInAirSceneOne, Integer.valueOf(1));
         objectsInThisSection.add(firstBlockInAirSceneOne);
-        this.add(coinOnFirstBlockInAirSceneOne, Integer.valueOf(1));
         itemsInThisSection.add(coinOnFirstBlockInAirSceneOne);
-        this.add(secondBlockInAirSceneOne, Integer.valueOf(1));
         objectsInThisSection.add(secondBlockInAirSceneOne);
-        this.add(firstPrizeInAirSceneOne, Integer.valueOf(1));
         objectsInThisSection.add(firstPrizeInAirSceneOne);
-        this.add(thirdBlockInAirSceneOne, Integer.valueOf(1));
         objectsInThisSection.add(thirdBlockInAirSceneOne);
-        this.add(coinOnThirdBlockInAirSceneOne, Integer.valueOf(1));
         itemsInThisSection.add(coinOnThirdBlockInAirSceneOne);
-        this.add(fourthBlockInAirSceneOne, Integer.valueOf(1));
         objectsInThisSection.add(fourthBlockInAirSceneOne);
-        this.add(firstCoinOnGroundSceneOne, Integer.valueOf(1));
         itemsInThisSection.add(firstCoinOnGroundSceneOne);
-        this.add(secondCoinOnGroundSceneOne, Integer.valueOf(1));
         itemsInThisSection.add(secondCoinOnGroundSceneOne);
-        this.add(thirdCoinOnGroundSceneOne, Integer.valueOf(1));
         itemsInThisSection.add(thirdCoinOnGroundSceneOne);
-        this.add(fifthBlockInAirSceneOne, Integer.valueOf(1));
         objectsInThisSection.add(fifthBlockInAirSceneOne);
-        this.add(secondPrizeInAirSceneOne, Integer.valueOf(1));
         objectsInThisSection.add(secondPrizeInAirSceneOne);
-        this.add(sixthBlockInAirSceneOne, Integer.valueOf(1));
         objectsInThisSection.add(sixthBlockInAirSceneOne);
-        this.add(coinOnSixthBlockInAirSceneOne, Integer.valueOf(1));
         itemsInThisSection.add(coinOnSixthBlockInAirSceneOne);
-        this.add(seventhBlockInAirSceneOne, Integer.valueOf(1));
         objectsInThisSection.add(seventhBlockInAirSceneOne);
-        this.add(fourthCoinOnGroundSceneOne, Integer.valueOf(1));
         itemsInThisSection.add(fourthCoinOnGroundSceneOne);
-        this.add(fifthCoinOnGroundSceneOne, Integer.valueOf(1));
         itemsInThisSection.add(fifthCoinOnGroundSceneOne);
-        this.add(firstEnemyInSceneOne, Integer.valueOf(1));
         enemiesInThisSection.add(firstEnemyInSceneOne);
-        this.add(secondEnemyInSceneOne, Integer.valueOf(1));
         enemiesInThisSection.add(secondEnemyInSceneOne);
-        this.add(thirdEnemyInSceneOne, Integer.valueOf(1));
         enemiesInThisSection.add(thirdEnemyInSceneOne);
-        this.add(fourthEnemyInSceneOne, Integer.valueOf(1));
         enemiesInThisSection.add(fourthEnemyInSceneOne);
-        this.add(fifthEnemyInSceneOne, Integer.valueOf(1));
         enemiesInThisSection.add(fifthEnemyInSceneOne);
 
         // Scene Two:
-        this.add(firstBlockInAirSceneTwo, Integer.valueOf(1));
         objectsInThisSection.add(firstBlockInAirSceneTwo);
-        this.add(secondBlockInAirSceneTwo, Integer.valueOf(1));
         objectsInThisSection.add(secondBlockInAirSceneTwo);
-        this.add(thirdBlockInAirSceneTwo, Integer.valueOf(1));
         objectsInThisSection.add(thirdBlockInAirSceneTwo);
-        this.add(fourthBlockInAirSceneTwo, Integer.valueOf(1));
         objectsInThisSection.add(fourthBlockInAirSceneTwo);
-        this.add(firstPrizeInAirSceneTwo, Integer.valueOf(1));
         objectsInThisSection.add(firstPrizeInAirSceneTwo);
-        this.add(firstEmptySpaceInGroundSceneTwo, Integer.valueOf(1));
         emptySpaceInGroundsInThisSection.add(firstEmptySpaceInGroundSceneTwo);
-        this.add(fifthBlockInAirSceneTwo, Integer.valueOf(1));
         objectsInThisSection.add(fifthBlockInAirSceneTwo);
-        this.add(coinOnFifthBlockInAirSceneTwo, Integer.valueOf(1));
         itemsInThisSection.add(coinOnFifthBlockInAirSceneTwo);
-        this.add(sixthBlockInAirSceneTwo, Integer.valueOf(1));
         objectsInThisSection.add(sixthBlockInAirSceneTwo);
-        this.add(coinOnSixthBlockInAirSceneTwo, Integer.valueOf(1));
         itemsInThisSection.add(coinOnSixthBlockInAirSceneTwo);
-        this.add(seventhBlockInAirSceneTwo, Integer.valueOf(1));
         objectsInThisSection.add(seventhBlockInAirSceneTwo);
-        this.add(coinOnSeventhBlockInAirSceneTwo, Integer.valueOf(1));
         itemsInThisSection.add(coinOnSeventhBlockInAirSceneTwo);
-        this.add(firstEnemyInSceneTwo, Integer.valueOf(1));
         enemiesInThisSection.add(firstEnemyInSceneTwo);
-        this.add(secondEnemyInSceneTwo, Integer.valueOf(1));
         enemiesInThisSection.add(secondEnemyInSceneTwo);
-        this.add(thirdEnemyInSceneTwo, Integer.valueOf(1));
         enemiesInThisSection.add(thirdEnemyInSceneTwo);
 
         // Scene Three:
-        this.add(firstPrizeInAirSceneThree, Integer.valueOf(1));
         objectsInThisSection.add(firstPrizeInAirSceneThree);
-        this.add(secondPrizeInAirSceneThree, Integer.valueOf(1));
         objectsInThisSection.add(secondPrizeInAirSceneThree);
-        this.add(firstPipeSceneThree, Integer.valueOf(1));
         objectsInThisSection.add(firstPipeSceneThree);
-        this.add(plantInFirstPipeSceneThree, Integer.valueOf(1));
         enemiesInThisSection.add(plantInFirstPipeSceneThree);
-        this.add(firstCoinOnGroundSceneThree, Integer.valueOf(1));
         itemsInThisSection.add(firstCoinOnGroundSceneThree);
-        this.add(secondCoinOnGroundSceneThree, Integer.valueOf(1));
         itemsInThisSection.add(secondCoinOnGroundSceneThree);
-        this.add(thirdCoinOnGroundSceneThree, Integer.valueOf(1));
         itemsInThisSection.add(thirdCoinOnGroundSceneThree);
-        this.add(secondPipeSceneThree, Integer.valueOf(1));
         objectsInThisSection.add(secondPipeSceneThree);
-        this.add(firstEnemyInSceneThree, Integer.valueOf(1));
         enemiesInThisSection.add(firstEnemyInSceneThree);
-        this.add(secondEnemyInSceneThree, Integer.valueOf(1));
         enemiesInThisSection.add(secondEnemyInSceneThree);
-        this.add(thirdEnemyInSceneThree, Integer.valueOf(1));
         enemiesInThisSection.add(thirdEnemyInSceneThree);
-        this.add(fourthEnemyInSceneThree, Integer.valueOf(1));
         enemiesInThisSection.add(fourthEnemyInSceneThree);
-        this.add(fifthEnemyInSceneThree, Integer.valueOf(1));
         enemiesInThisSection.add(fifthEnemyInSceneThree);
 
         // Scene Four:
         this.add(castle, Integer.valueOf(1));
-        this.add(pipeHorizontalSceneFour, Integer.valueOf(1));
         objectsInThisSection.add(pipeHorizontalSceneFour);
+
+        // Add To Screen:
+
+        for (ObjectsInGame object : objectsInThisSection) {
+            this.add(object, Integer.valueOf(1));
+        }
+
+        for (Enemy enemy : enemiesInThisSection) {
+            this.add(enemy, Integer.valueOf(1));
+        }
+
+        for (ItemsInGame item : itemsInThisSection) {
+            this.add(item, Integer.valueOf(1));
+        }
+
+        for (EmptySpaceInGround emptySpaceInGround : emptySpaceInGroundsInThisSection) {
+            this.add(emptySpaceInGround, Integer.valueOf(1));
+        }
 
     }
 

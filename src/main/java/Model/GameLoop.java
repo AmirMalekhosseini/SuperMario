@@ -25,12 +25,14 @@ public class GameLoop {
         CalculatorThread calculatorThread = new CalculatorThread();
         GraphicThread graphicThread = new GraphicThread();
         EnemyThread enemyThread = new EnemyThread();
+        VilgaxThread vilgaxThread = new VilgaxThread();
         HiddenCoinSectionThread hiddenCoinSectionThread = new HiddenCoinSectionThread();
         HiddenEnemySectionThread hiddenEnemySectionThread = new HiddenEnemySectionThread();
         marioMoverThread.start();
         calculatorThread.start();
         graphicThread.start();
         enemyThread.start();
+        vilgaxThread.start();
 //        hiddenCoinSectionThread.start();
 //        hiddenEnemySectionThread.start();
     }
@@ -182,12 +184,6 @@ public class GameLoop {
                     gameScreenFrame.getLevelOneSectionTwoModel().moveShot();
                     setGameDataInLevelOne();
                     gameScreenFrame.marioMoverModel.changeMarioHeight();
-//                    gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).setLocation
-//                            (gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).getX(),
-//                                    gameScreenFrame.getLevelOneSectionOneScreen().activeMario.get(0).getY());
-//                    gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).setLocation
-//                            (gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).getX(),
-//                                    gameScreenFrame.getLevelOneSectionTwoScreen().activeMario.get(0).getY());
 
                     long elapsedTime = System.currentTimeMillis() - startTime;
                     long sleepTime = targetTime - elapsedTime;
@@ -381,6 +377,37 @@ public class GameLoop {
         }
 
     }
+
+    private class VilgaxThread extends Thread {
+
+        public void run() {
+
+            while (!gameScreenFrame.getGameData().isGameFinish) {
+
+                int fps = 120;
+                long targetTime = 1000 / fps;
+                if (!gameScreenFrame.getGameData().isGameFinish) {
+                    long startTime = System.currentTimeMillis();
+
+                    gameScreenFrame.getBossFightScreenSection().vilgax.activeMove.action();
+                    gameScreenFrame.getBossFightScreenSection().vilgaxAndScreenConnection.moveVilgaxWeapon();
+                    long elapsedTime = System.currentTimeMillis() - startTime;
+                    long sleepTime = targetTime - elapsedTime;
+                    if (sleepTime > 0) {
+                        try {
+                            Thread.sleep(sleepTime);
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+
+                }
+
+            }
+        }
+
+    }
+
 
     public void setGameDataInLevelOne() {
 

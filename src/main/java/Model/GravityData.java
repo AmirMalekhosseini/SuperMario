@@ -4,24 +4,21 @@ import Graphic.GameScreenFrame;
 
 public class GravityData {
 
-    public static final int gravity = 10;
-    public static final double dt = 0.018;
+    private static GravityData gravityData;
 
-    GameScreenFrame gameScreenFrame;
+    public final int gravity = 10;
+    public double marioDt = 0.018;
+    public double vilgaxDt = 0.006;
 
-    public GravityData(GameScreenFrame gameScreenFrame) {
-        this.gameScreenFrame = gameScreenFrame;
+    public static GravityData getGravityData() {
+        if (gravityData == null) {
+            gravityData = new GravityData();
+        }
+        return gravityData;
     }
 
     public GravityData() {
 
     }
 
-    public GameScreenFrame getGameScreenFrame() {
-        return gameScreenFrame;
-    }
-
-    public void setGameScreenFrame(GameScreenFrame gameScreenFrame) {
-        this.gameScreenFrame = gameScreenFrame;
-    }
 }
