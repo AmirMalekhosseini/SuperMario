@@ -4,7 +4,7 @@ import Graphic.*;
 
 public class PowerUp {
 
-    GameScreenFrame gameScreenFrame;
+    GameGodFather gameGodFather;
     LevelOneSectionOneScreen levelOneSectionOneScreen;
     LevelOneSectionTwoScreen levelOneSectionTwoScreen;
     LevelTwoSectionOneScreen levelTwoSectionOneScreen;
@@ -12,14 +12,14 @@ public class PowerUp {
     HiddenCoinSectionScreen hiddenCoinSectionScreen;
     HiddenEnemySectionScreen hiddenEnemySectionScreen;
 
-    public PowerUp(GameScreenFrame gameScreenFrame) {
-        this.gameScreenFrame = gameScreenFrame;
-        this.levelOneSectionOneScreen = gameScreenFrame.getLevelOneSectionOneScreen();
-        this.levelOneSectionTwoScreen = gameScreenFrame.getLevelOneSectionTwoScreen();
-        this.levelTwoSectionOneScreen = gameScreenFrame.getLevelTwoSectionOneScreen();
-        this.levelTwoSectionTwoScreen = gameScreenFrame.getLevelTwoSectionTwoScreen();
-        this.hiddenCoinSectionScreen = gameScreenFrame.getHiddenCoinSectionScreen();
-        this.hiddenEnemySectionScreen = gameScreenFrame.getHiddenEnemySectionScreen();
+    public PowerUp(GameGodFather gameGodFather) {
+        this.gameGodFather = gameGodFather;
+        this.levelOneSectionOneScreen = gameGodFather.getLevelOneSectionOneScreen();
+        this.levelOneSectionTwoScreen = gameGodFather.getLevelOneSectionTwoScreen();
+        this.levelTwoSectionOneScreen = gameGodFather.getLevelTwoSectionOneScreen();
+        this.levelTwoSectionTwoScreen = gameGodFather.getLevelTwoSectionTwoScreen();
+        this.hiddenCoinSectionScreen = gameGodFather.getHiddenCoinSectionScreen();
+        this.hiddenEnemySectionScreen = gameGodFather.getHiddenEnemySectionScreen();
     }
 
     public void allocatePowerUp(Mario activeMario) {
@@ -66,18 +66,18 @@ public class PowerUp {
 
     public void savePowerUp(Mario activeMario) {// Get Mario powerUp Info and save it
 
-        gameScreenFrame.getGameData().setMarioMini(activeMario.isMarioMini());
-        gameScreenFrame.getGameData().setMarioMega(activeMario.isMarioMega());
-        gameScreenFrame.getGameData().setMarioShooter(activeMario.isMarioShooter());
+        gameGodFather.getGameData().setMarioMini(activeMario.isMarioMini());
+        gameGodFather.getGameData().setMarioMega(activeMario.isMarioMega());
+        gameGodFather.getGameData().setMarioShooter(activeMario.isMarioShooter());
 
     }
 
     public void loadPowerUp(Mario activeMario) {// Load Mario PowerUp Info from saved Info
 
 
-        activeMario.setMarioMini(gameScreenFrame.getGameData().isMarioMini());
-        activeMario.setMarioMega(gameScreenFrame.getGameData().isMarioMega());
-        activeMario.setMarioShooter(gameScreenFrame.getGameData().isMarioShooter());
+        activeMario.setMarioMini(gameGodFather.getGameData().isMarioMini());
+        activeMario.setMarioMega(gameGodFather.getGameData().isMarioMega());
+        activeMario.setMarioShooter(gameGodFather.getGameData().isMarioShooter());
 
     }
 

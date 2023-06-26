@@ -3,22 +3,22 @@ package Model;
 import Graphic.*;
 public class Game {
 
-    GameScreenFrame gameScreenFrame;
+    GameGodFather gameGodFather;
 
-    public Game(GameScreenFrame gameScreenFrame) {
+    public Game(GameGodFather gameGodFather) {
 
-        this.gameScreenFrame = gameScreenFrame;
+        this.gameGodFather = gameGodFather;
     }
 
     public Game() {
 
     }
 
-    public GameScreenFrame getGameScreenFrame() {
-        return gameScreenFrame;
+    public GameGodFather getGameScreenFrame() {
+        return gameGodFather;
     }
 
-    public void setGameScreenFrame(GameScreenFrame gameScreenFrame) {
-        this.gameScreenFrame = gameScreenFrame;
+    public void setGameScreenFrame(GameGodFather gameGodFather) {
+        this.gameGodFather = gameGodFather;
     }
 }

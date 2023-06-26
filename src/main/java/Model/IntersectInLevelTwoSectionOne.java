@@ -5,12 +5,12 @@ import Graphic.*;
 public class IntersectInLevelTwoSectionOne extends IntersectInGame {
 
 
-    public IntersectInLevelTwoSectionOne(GameScreenFrame gameScreenFrame, PowerUp powerUp) {
+    public IntersectInLevelTwoSectionOne(GameGodFather gameGodFather, PowerUp powerUp) {
         this.powerUp = powerUp;
-        this.gameScreenFrame = gameScreenFrame;
-        this.levelScreen = gameScreenFrame.getLevelTwoSectionOneScreen();
+        this.gameGodFather = gameGodFather;
+        this.levelScreen = gameGodFather.getLevelTwoSectionOneScreen();
 
-        intersection=new Intersection(gameScreenFrame,powerUp, levelScreen) {
+        intersection=new Intersection(gameGodFather,powerUp, levelScreen) {
             @Override
             public void marioIntersectWithObjects() {
                 super.marioIntersectWithObjects();
@@ -142,13 +142,13 @@ public class IntersectInLevelTwoSectionOne extends IntersectInGame {
             }
 
             @Override
-            public GameScreenFrame getGameScreenFrame() {
+            public GameGodFather getGameScreenFrame() {
                 return super.getGameScreenFrame();
             }
 
             @Override
-            public void setGameScreenFrame(GameScreenFrame gameScreenFrame) {
-                super.setGameScreenFrame(gameScreenFrame);
+            public void setGameScreenFrame(GameGodFather gameGodFather) {
+                super.setGameScreenFrame(gameGodFather);
             }
 
             @Override

@@ -1,9 +1,11 @@
 package Controller;
 
 import javax.swing.*;
+
+import Graphic.GameGodFather;
 import MyProject.MyProject;
 import java.awt.event.*;
-import Graphic.GameScreenFrame;
+
 import Graphic.MainMenuScreen;
 import Model.MarioMoverModel;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -14,14 +16,14 @@ import java.io.IOException;
 @SuppressWarnings("deprecation")
 public class MarioMover {
     private final ObjectMapper objectMapper;
-    private GameScreenFrame gameScreenFrame;
+    private GameGodFather gameGodFather;
     private MarioMoverModel marioMoverModel;
     InputMap inputMap;
     ActionMap actionMap;
 
-    public MarioMover(GameScreenFrame gameScreenFrame, MarioMoverModel marioMoverModel) {
+    public MarioMover(GameGodFather gameGodFather, MarioMoverModel marioMoverModel) {
         this.marioMoverModel = marioMoverModel;
-        this.gameScreenFrame = gameScreenFrame;
+        this.gameGodFather = gameGodFather;
         objectMapper = new ObjectMapper();
         objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
         objectMapper.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
@@ -31,8 +33,8 @@ public class MarioMover {
 
     private void createKeyBindings() {
 
-        inputMap = gameScreenFrame.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
-        actionMap = gameScreenFrame.getRootPane().getActionMap();
+        inputMap = gameGodFather.getGameScreenFrame().getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+        actionMap = gameGodFather.getGameScreenFrame().getRootPane().getActionMap();
 
         // Key Press:
         inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), "pause");
@@ -52,8 +54,8 @@ public class MarioMover {
         actionMap.put("pause", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                gameScreenFrame.dispose();
-                gameScreenFrame.getGameData().setGamePause(true);
+                gameGodFather.getGameScreenFrame().dispose();
+                gameGodFather.getGameData().setGamePause(true);
                 new MainMenuScreen();
                 try {
                     objectMapper.writeValue(new File("User.jason"), MyProject.allUsers);
@@ -147,12 +149,12 @@ public class MarioMover {
         });
     }
 
-    public GameScreenFrame getGameScreenFrame() {
-        return gameScreenFrame;
+    public GameGodFather getGameScreenFrame() {
+        return gameGodFather;
     }
 
-    public void setGameScreenFrame(GameScreenFrame gameScreenFrame) {
-        this.gameScreenFrame = gameScreenFrame;
+    public void setGameScreenFrame(GameGodFather gameGodFather) {
+        this.gameGodFather = gameGodFather;
     }
 
     public MarioMoverModel getMarioMoverModel() {

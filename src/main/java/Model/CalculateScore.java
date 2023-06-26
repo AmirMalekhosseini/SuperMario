@@ -4,10 +4,10 @@ import Graphic.*;
 
 public class CalculateScore {
 
-    GameScreenFrame gameScreenFrame;
+    GameGodFather gameGodFather;
 
-    public CalculateScore(GameScreenFrame gameScreenFrame) {
-        this.gameScreenFrame = gameScreenFrame;
+    public CalculateScore(GameGodFather gameGodFather) {
+        this.gameGodFather = gameGodFather;
     }
 
     public CalculateScore() {
@@ -15,15 +15,15 @@ public class CalculateScore {
     }
     public void calculateScore(LevelScreens screen) {
 
-        gameScreenFrame.getGameData().thisGameScore += screen.thisSectionTime.getSectionTime();
-        gameScreenFrame.getGameData().thisGameScore += screen.getGameData().userHeartValue * 20;
+        gameGodFather.getGameData().thisGameScore += screen.thisSectionTime.getSectionTime();
+        gameGodFather.getGameData().thisGameScore += screen.getGameData().userHeartValue * 20;
     }
 
-    public GameScreenFrame getGameScreenFrame() {
-        return gameScreenFrame;
+    public GameGodFather getGameScreenFrame() {
+        return gameGodFather;
     }
 
-    public void setGameScreenFrame(GameScreenFrame gameScreenFrame) {
-        this.gameScreenFrame = gameScreenFrame;
+    public void setGameScreenFrame(GameGodFather gameGodFather) {
+        this.gameGodFather = gameGodFather;
     }
 }

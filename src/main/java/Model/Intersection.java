@@ -6,7 +6,7 @@ import java.util.Random;
 
 public abstract class Intersection {
 
-    GameScreenFrame gameScreenFrame;
+    GameGodFather gameGodFather;
     LevelScreens screen;
     PowerUp powerUp;
     protected boolean marioHitsLeftOfTheObject;
@@ -17,9 +17,9 @@ public abstract class Intersection {
     protected boolean marioHitsFullOfCoinBlockInAir;
     protected boolean marioHitsTurtle;
 
-    public Intersection(GameScreenFrame gameScreenFrame, PowerUp powerUp,LevelScreens screen) {
+    public Intersection(GameGodFather gameGodFather, PowerUp powerUp, LevelScreens screen) {
         this.powerUp = powerUp;
-        this.gameScreenFrame = gameScreenFrame;
+        this.gameGodFather = gameGodFather;
         this.screen = screen;
     }
 
@@ -98,7 +98,7 @@ public abstract class Intersection {
                 if (screen.getObjectsInThisSection().get(i) instanceof SimpleBlockInAir && marioHitsDownOfTheObject && !marioHitsAnObject) {
                     screen.remove(screen.getObjectsInThisSection().get(i));
                     screen.getObjectsInThisSection().remove(screen.getObjectsInThisSection().get(i));
-                    gameScreenFrame.getGameData().thisGameScore++;
+                    gameGodFather.getGameData().thisGameScore++;
                     marioHitsAnObject = true;
                     i = 0;
                     continue;
@@ -113,14 +113,14 @@ public abstract class Intersection {
                     SimpleBlockInAir newSimpleBlockInAir = new SimpleBlockInAir(x, y + 50);
                     screen.getObjectsInThisSection().set(i, newSimpleBlockInAir);
                     screen.add(newSimpleBlockInAir, Integer.valueOf(1));
-                    gameScreenFrame.getGameData().thisGameScore++;
+                    gameGodFather.getGameData().thisGameScore++;
                     marioHitsAnObject = true;
                     i = 0;
                     continue;
                 } else if (screen.getObjectsInThisSection().get(i) instanceof FullOfCoinBlockInAir && marioHitsDownOfTheObject
                         && !marioHitsAnObject && !marioHitsFullOfCoinBlockInAir) {
                     ((FullOfCoinBlockInAir) screen.getObjectsInThisSection().get(i)).hitCounter++;
-                    gameScreenFrame.getGameData().thisGameCoin++;
+                    gameGodFather.getGameData().thisGameCoin++;
                     marioHitsFullOfCoinBlockInAir = true;
 
                     if (((FullOfCoinBlockInAir) screen.getObjectsInThisSection().get(i)).getHitCounter() == 5) {
@@ -210,8 +210,8 @@ public abstract class Intersection {
                     if (enemy instanceof Goompa) {
                         screen.remove(enemy);
                         screen.getEnemiesInThisSection().remove(i);
-                        gameScreenFrame.getGameData().thisGameCoin += 3;
-                        gameScreenFrame.getGameData().thisGameScore++;
+                        gameGodFather.getGameData().thisGameCoin += 3;
+                        gameGodFather.getGameData().thisGameScore++;
                         return false;
                     }
 
@@ -221,8 +221,8 @@ public abstract class Intersection {
                         if (((Turtle) enemy).hitCounter >= 2) {
                             screen.remove(enemy);
                             screen.getEnemiesInThisSection().remove(i);
-                            gameScreenFrame.getGameData().thisGameCoin += 3;
-                            gameScreenFrame.getGameData().thisGameScore += 2;
+                            gameGodFather.getGameData().thisGameCoin += 3;
+                            gameGodFather.getGameData().thisGameScore += 2;
                         }
 
                         int x = enemy.getX() + 500;
@@ -846,12 +846,12 @@ public abstract class Intersection {
         this.marioHitsTurtle = marioHitsTurtle;
     }
 
-    public GameScreenFrame getGameScreenFrame() {
-        return gameScreenFrame;
+    public GameGodFather getGameScreenFrame() {
+        return gameGodFather;
     }
 
-    public void setGameScreenFrame(GameScreenFrame gameScreenFrame) {
-        this.gameScreenFrame = gameScreenFrame;
+    public void setGameScreenFrame(GameGodFather gameGodFather) {
+        this.gameGodFather = gameGodFather;
     }
 
     public LevelScreens getScreen() {

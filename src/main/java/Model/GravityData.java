@@ -1,7 +1,5 @@
 package Model;
 
-import Graphic.GameScreenFrame;
-
 public class GravityData {
 
     private static GravityData gravityData;

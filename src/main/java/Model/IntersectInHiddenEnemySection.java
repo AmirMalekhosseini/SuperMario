@@ -2,16 +2,14 @@ package Model;
 
 import Graphic.*;
 
-import java.util.Random;
-
 public class IntersectInHiddenEnemySection extends IntersectInGame{
 
-    public IntersectInHiddenEnemySection(GameScreenFrame gameScreenFrame, PowerUp powerUp) {
+    public IntersectInHiddenEnemySection(GameGodFather gameGodFather, PowerUp powerUp) {
         this.powerUp = powerUp;
-        this.gameScreenFrame = gameScreenFrame;
-        this.levelScreen = gameScreenFrame.getHiddenEnemySectionScreen();
+        this.gameGodFather = gameGodFather;
+        this.levelScreen = gameGodFather.getHiddenEnemySectionScreen();
 
-        intersection = new Intersection(gameScreenFrame, powerUp, levelScreen) {
+        intersection = new Intersection(gameGodFather, powerUp, levelScreen) {
             @Override
             public void marioIntersectWithObjects() {
                 super.marioIntersectWithObjects();
@@ -123,13 +121,13 @@ public class IntersectInHiddenEnemySection extends IntersectInGame{
             }
 
             @Override
-            public GameScreenFrame getGameScreenFrame() {
+            public GameGodFather getGameScreenFrame() {
                 return super.getGameScreenFrame();
             }
 
             @Override
-            public void setGameScreenFrame(GameScreenFrame gameScreenFrame) {
-                super.setGameScreenFrame(gameScreenFrame);
+            public void setGameScreenFrame(GameGodFather gameGodFather) {
+                super.setGameScreenFrame(gameGodFather);
             }
 
             @Override

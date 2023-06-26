@@ -1,10 +1,9 @@
 package Model;
 
-import Graphic.GameScreenFrame;
-import Graphic.Graphic;
+import Graphic.GameGodFather;
 
 public interface Model {
 
-    public void startModel(GameScreenFrame gameScreenFrame);
+    public void startModel(GameGodFather gameGodFather);
 
 }

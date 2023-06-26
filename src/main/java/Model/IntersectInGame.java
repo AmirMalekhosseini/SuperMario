@@ -1,21 +1,21 @@
 package Model;
 
-import Graphic.GameScreenFrame;
+import Graphic.GameGodFather;
 import Graphic.LevelScreens;
 
 public class IntersectInGame {
 
-    GameScreenFrame gameScreenFrame;
+    GameGodFather gameGodFather;
     LevelScreens levelScreen;
     PowerUp powerUp;
     public Intersection intersection;
 
-    public GameScreenFrame getGameScreenFrame() {
-        return gameScreenFrame;
+    public GameGodFather getGameScreenFrame() {
+        return gameGodFather;
     }
 
-    public void setGameScreenFrame(GameScreenFrame gameScreenFrame) {
-        this.gameScreenFrame = gameScreenFrame;
+    public void setGameScreenFrame(GameGodFather gameGodFather) {
+        this.gameGodFather = gameGodFather;
     }
 
     public LevelScreens getLevelScreen() {

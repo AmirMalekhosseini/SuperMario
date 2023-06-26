@@ -11,16 +11,16 @@ import java.io.IOException;
 public class GameLoop {
 
     ObjectMapper objectMapper;
-    GameScreenFrame gameScreenFrame;
+    GameGodFather gameGodFather;
 
-    public GameLoop(GameScreenFrame gameScreenFrame) {
+    public GameLoop(GameGodFather gameGodFather) {
 
         objectMapper = new ObjectMapper();
         objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
         objectMapper.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
 
-        this.gameScreenFrame = gameScreenFrame;
-        gameScreenFrame.marioMover.getMarioMoverModel().locateMarioLocation();
+        this.gameGodFather = gameGodFather;
+        gameGodFather.marioMover.getMarioMoverModel().locateMarioLocation();
         MarioMoverThread marioMoverThread = new MarioMoverThread();
         CalculatorThread calculatorThread = new CalculatorThread();
         GraphicThread graphicThread = new GraphicThread();
@@ -45,58 +45,58 @@ public class GameLoop {
 
         public void run() {
 
-            while (!gameScreenFrame.getGameData().isGameFinish) {
+            while (!gameGodFather.getGameData().isGameFinish) {
 
                 int fps = 120;
                 long targetTime = 1000 / fps;
-                if (!gameScreenFrame.getGameData().isGameFinish) {
+                if (!gameGodFather.getGameData().isGameFinish) {
                     long startTime = System.currentTimeMillis();
-                    gameScreenFrame.marioMover.getMarioMoverModel().locateMarioLocation();
-                    if (gameScreenFrame.getGameData().getMarioLocation().equalsIgnoreCase("levelonesectionone")) {
-                        gameScreenFrame.getLevelOneSectionOneModel().gravity.allocateGravity();
-                        gameScreenFrame.intersectInLevelOneSectionOne.intersection.refreshIntersectsBooleans();
-                        gameScreenFrame.intersectInLevelOneSectionOne.intersection.marioIntersectWithObjects();
-                        gameScreenFrame.intersectInLevelOneSectionOne.intersection.marioIntersectWithItems();
-                        if (gameScreenFrame.intersectInLevelOneSectionOne.intersection.marioIntersectWithEnemies()) {
-                            gameScreenFrame.currentPanel.setLocation(0, 0);
-                            gameScreenFrame.getLevelOneSectionOneModel().setLocationAfterLoose();
+                    gameGodFather.marioMover.getMarioMoverModel().locateMarioLocation();
+                    if (gameGodFather.getGameData().getMarioLocation().equalsIgnoreCase("levelonesectionone")) {
+                        gameGodFather.getLevelOneSectionOneModel().gravity.allocateGravity();
+                        gameGodFather.intersectInLevelOneSectionOne.intersection.refreshIntersectsBooleans();
+                        gameGodFather.intersectInLevelOneSectionOne.intersection.marioIntersectWithObjects();
+                        gameGodFather.intersectInLevelOneSectionOne.intersection.marioIntersectWithItems();
+                        if (gameGodFather.intersectInLevelOneSectionOne.intersection.marioIntersectWithEnemies()) {
+                            gameGodFather.currentPanel.setLocation(0, 0);
+                            gameGodFather.getLevelOneSectionOneModel().setLocationAfterLoose();
                         }
-                        if (gameScreenFrame.intersectInLevelOneSectionOne.intersection.marioIntersectWithEmptyGround()) {
-                            gameScreenFrame.currentPanel.setLocation(0, 0);
-                            gameScreenFrame.getLevelOneSectionOneModel().setLocationAfterLoose();
-                            gameScreenFrame.getLevelOneSectionOneScreen().thisSectionTime.setSectionTime(50);
+                        if (gameGodFather.intersectInLevelOneSectionOne.intersection.marioIntersectWithEmptyGround()) {
+                            gameGodFather.currentPanel.setLocation(0, 0);
+                            gameGodFather.getLevelOneSectionOneModel().setLocationAfterLoose();
+                            gameGodFather.getLevelOneSectionOneScreen().thisSectionTime.setSectionTime(50);
                         }
-                        if (gameScreenFrame.getLevelOneSectionOneScreen().thisSectionTime.getSectionTime() == 0) {
-                            gameScreenFrame.getGameData().setUserHeartValue(gameScreenFrame.getGameData().getUserHeartValue() - 1);
-                            gameScreenFrame.currentPanel.setLocation(0, 0);
-                            gameScreenFrame.getLevelOneSectionOneModel().setLocationAfterLoose();
-                            gameScreenFrame.getLevelOneSectionOneScreen().thisSectionTime.setSectionTime(50);
+                        if (gameGodFather.getLevelOneSectionOneScreen().thisSectionTime.getSectionTime() == 0) {
+                            gameGodFather.getGameData().setUserHeartValue(gameGodFather.getGameData().getUserHeartValue() - 1);
+                            gameGodFather.currentPanel.setLocation(0, 0);
+                            gameGodFather.getLevelOneSectionOneModel().setLocationAfterLoose();
+                            gameGodFather.getLevelOneSectionOneScreen().thisSectionTime.setSectionTime(50);
                         }
                     }
-                    if (gameScreenFrame.getGameData().getMarioLocation().equalsIgnoreCase("levelonesectiontwo")) {
-                        gameScreenFrame.getLevelOneSectionTwoModel().gravity.allocateGravity();
-                        gameScreenFrame.intersectInLevelOneSectionTwo.intersection.refreshIntersectsBooleans();
-                        gameScreenFrame.intersectInLevelOneSectionTwo.intersection.marioIntersectWithObjects();
-                        gameScreenFrame.intersectInLevelOneSectionTwo.intersection.marioIntersectWithItems();
-                        if (gameScreenFrame.intersectInLevelOneSectionTwo.intersection.marioIntersectWithEnemies()) {
-                            gameScreenFrame.currentPanel.setLocation(-6800, 0);
-                            gameScreenFrame.getLevelOneSectionTwoModel().setLocationAfterLoose();
+                    if (gameGodFather.getGameData().getMarioLocation().equalsIgnoreCase("levelonesectiontwo")) {
+                        gameGodFather.getLevelOneSectionTwoModel().gravity.allocateGravity();
+                        gameGodFather.intersectInLevelOneSectionTwo.intersection.refreshIntersectsBooleans();
+                        gameGodFather.intersectInLevelOneSectionTwo.intersection.marioIntersectWithObjects();
+                        gameGodFather.intersectInLevelOneSectionTwo.intersection.marioIntersectWithItems();
+                        if (gameGodFather.intersectInLevelOneSectionTwo.intersection.marioIntersectWithEnemies()) {
+                            gameGodFather.currentPanel.setLocation(-6800, 0);
+                            gameGodFather.getLevelOneSectionTwoModel().setLocationAfterLoose();
                         }
-                        if (gameScreenFrame.intersectInLevelOneSectionTwo.intersection.marioIntersectWithEmptyGround()) {
-                            gameScreenFrame.currentPanel.setLocation(-6800, 0);
-                            gameScreenFrame.getLevelOneSectionTwoModel().setLocationAfterLoose();
-                            gameScreenFrame.getLevelOneSectionTwoScreen().thisSectionTime.setSectionTime(50);
+                        if (gameGodFather.intersectInLevelOneSectionTwo.intersection.marioIntersectWithEmptyGround()) {
+                            gameGodFather.currentPanel.setLocation(-6800, 0);
+                            gameGodFather.getLevelOneSectionTwoModel().setLocationAfterLoose();
+                            gameGodFather.getLevelOneSectionTwoScreen().thisSectionTime.setSectionTime(50);
                         }
-                        if (gameScreenFrame.getLevelOneSectionTwoScreen().thisSectionTime.getSectionTime() == 0) {
-                            gameScreenFrame.getGameData().setUserHeartValue(gameScreenFrame.getGameData().getUserHeartValue() - 1);
-                            gameScreenFrame.currentPanel.setLocation(-6800, 0);
-                            gameScreenFrame.getLevelOneSectionTwoModel().setLocationAfterLoose();
-                            gameScreenFrame.getLevelOneSectionTwoScreen().thisSectionTime.setSectionTime(50);
+                        if (gameGodFather.getLevelOneSectionTwoScreen().thisSectionTime.getSectionTime() == 0) {
+                            gameGodFather.getGameData().setUserHeartValue(gameGodFather.getGameData().getUserHeartValue() - 1);
+                            gameGodFather.currentPanel.setLocation(-6800, 0);
+                            gameGodFather.getLevelOneSectionTwoModel().setLocationAfterLoose();
+                            gameGodFather.getLevelOneSectionTwoScreen().thisSectionTime.setSectionTime(50);
                         }
                     }
 
-                    if (gameScreenFrame.getGameData().userHeartValue == 0) {
-                        gameScreenFrame.getGameData().isGameFinish = true;
+                    if (gameGodFather.getGameData().userHeartValue == 0) {
+                        gameGodFather.getGameData().isGameFinish = true;
                     }
 
                     long elapsedTime = System.currentTimeMillis() - startTime;
@@ -110,17 +110,17 @@ public class GameLoop {
                     }
 
                 }
-                if (gameScreenFrame.getGameData().isGameFinish) {// Finish the Game
-                    gameScreenFrame.calculateScore.calculateScore(gameScreenFrame.getLevelOneSectionTwoScreen());
+                if (gameGodFather.getGameData().isGameFinish) {// Finish the Game
+                    gameGodFather.calculateScore.calculateScore(gameGodFather.getLevelOneSectionTwoScreen());
                     Score thisGameScore = new Score();
-                    thisGameScore.setUserScore(gameScreenFrame.getGameData().thisGameScore);
-                    MyProject.activeUser.get(0).setUserCoinValue(MyProject.activeUser.get(0).getUserCoinValue() + gameScreenFrame.getGameData().thisGameCoin);
+                    thisGameScore.setUserScore(gameGodFather.getGameData().thisGameScore);
+                    MyProject.activeUser.get(0).setUserCoinValue(MyProject.activeUser.get(0).getUserCoinValue() + gameGodFather.getGameData().thisGameCoin);
                     MyProject.activeUser.get(0).userScore.add(thisGameScore);
                     if (MyProject.activeUser.get(0).userHighScore.getUserScore() <= thisGameScore.getUserScore()) {
                         MyProject.activeUser.get(0).userHighScore = thisGameScore;
                     }
 
-                    gameScreenFrame.dispose();
+                    gameGodFather.getGameScreenFrame().dispose();
                     new MainMenuScreen();
 
                     try {
@@ -137,18 +137,18 @@ public class GameLoop {
 
         public void run() {
 
-            while (!gameScreenFrame.getGameData().isGameFinish) {
+            while (!gameGodFather.getGameData().isGameFinish) {
 
                 int fps = 120;
                 long targetTime = 1000 / fps;
-                if (!gameScreenFrame.getGameData().isGameFinish) {
+                if (!gameGodFather.getGameData().isGameFinish) {
                     long startTime = System.currentTimeMillis();
 
-                    gameScreenFrame.repaint();
-                    gameScreenFrame.getHiddenCoinBackgroundPanel().repaint();
-                    gameScreenFrame.getHiddenEnemyBackgroundPanel().repaint();
-                    gameScreenFrame.getLevelOneGameBackgroundPanel().repaint();
-                    gameScreenFrame.getLevelTwoGameBackgroundPanel().repaint();
+                    gameGodFather.getGameScreenFrame().repaint();
+                    gameGodFather.getHiddenCoinBackgroundPanel().repaint();
+                    gameGodFather.getHiddenEnemyBackgroundPanel().repaint();
+                    gameGodFather.getLevelOneGameBackgroundPanel().repaint();
+                    gameGodFather.getLevelTwoGameBackgroundPanel().repaint();
 
 
                     long elapsedTime = System.currentTimeMillis() - startTime;
@@ -171,19 +171,19 @@ public class GameLoop {
 
         public void run() {
 
-            while (!gameScreenFrame.getGameData().isGameFinish) {
+            while (!gameGodFather.getGameData().isGameFinish) {
 
                 int fps = 120;
                 long targetTime = 1000 / fps;
-                if (!gameScreenFrame.getGameData().isGameFinish) {
+                if (!gameGodFather.getGameData().isGameFinish) {
                     long startTime = System.currentTimeMillis();
 
-                    gameScreenFrame.marioMover.getMarioMoverModel().move();
-                    gameScreenFrame.marioMover.getMarioMoverModel().activeScreen.activeMario.get(0).changeBackground();
-                    gameScreenFrame.getLevelOneSectionOneModel().moveShot();
-                    gameScreenFrame.getLevelOneSectionTwoModel().moveShot();
+                    gameGodFather.marioMover.getMarioMoverModel().move();
+                    gameGodFather.marioMover.getMarioMoverModel().activeScreen.activeMario.get(0).changeBackground();
+                    gameGodFather.getLevelOneSectionOneModel().moveShot();
+                    gameGodFather.getLevelOneSectionTwoModel().moveShot();
                     setGameDataInLevelOne();
-                    gameScreenFrame.marioMoverModel.changeMarioHeight();
+                    gameGodFather.marioMoverModel.changeMarioHeight();
 
                     long elapsedTime = System.currentTimeMillis() - startTime;
                     long sleepTime = targetTime - elapsedTime;
@@ -217,32 +217,32 @@ public class GameLoop {
 
                 synchronized (this) {
 
-                    if (gameScreenFrame.getHiddenEnemySectionModel().enemyCounter <= 25) {
+                    if (gameGodFather.getHiddenEnemySectionModel().enemyCounter <= 25) {
 
-                        if (gameScreenFrame.getHiddenEnemySectionModel().isCannonOneWorking()) {
+                        if (gameGodFather.getHiddenEnemySectionModel().isCannonOneWorking()) {
                             Enemy newEnemy = new Goompa(1250, 275);
-                            gameScreenFrame.getHiddenEnemySectionScreen().getEnemiesInThisSection().add(newEnemy);
-                            gameScreenFrame.getHiddenEnemySectionScreen().add(newEnemy, Integer.valueOf(1));
-                            gameScreenFrame.getHiddenEnemySectionModel().setCannonOneWorking(false);
-                            gameScreenFrame.getHiddenEnemySectionModel().setCannonTwoWorking(true);
-                            gameScreenFrame.getHiddenEnemySectionModel().setCannonThreeWorking(false);
-                            gameScreenFrame.getHiddenEnemySectionModel().enemyCounter++;
-                        } else if (gameScreenFrame.getHiddenEnemySectionModel().isCannonTwoWorking()) {
+                            gameGodFather.getHiddenEnemySectionScreen().getEnemiesInThisSection().add(newEnemy);
+                            gameGodFather.getHiddenEnemySectionScreen().add(newEnemy, Integer.valueOf(1));
+                            gameGodFather.getHiddenEnemySectionModel().setCannonOneWorking(false);
+                            gameGodFather.getHiddenEnemySectionModel().setCannonTwoWorking(true);
+                            gameGodFather.getHiddenEnemySectionModel().setCannonThreeWorking(false);
+                            gameGodFather.getHiddenEnemySectionModel().enemyCounter++;
+                        } else if (gameGodFather.getHiddenEnemySectionModel().isCannonTwoWorking()) {
                             Enemy newEnemy = new Goompa(1200, 475);
-                            gameScreenFrame.getHiddenEnemySectionScreen().getEnemiesInThisSection().add(newEnemy);
-                            gameScreenFrame.getHiddenEnemySectionScreen().add(newEnemy, Integer.valueOf(1));
-                            gameScreenFrame.getHiddenEnemySectionModel().setCannonOneWorking(false);
-                            gameScreenFrame.getHiddenEnemySectionModel().setCannonTwoWorking(false);
-                            gameScreenFrame.getHiddenEnemySectionModel().setCannonThreeWorking(true);
-                            gameScreenFrame.getHiddenEnemySectionModel().enemyCounter++;
-                        } else if (gameScreenFrame.getHiddenEnemySectionModel().isCannonThreeWorking()) {
+                            gameGodFather.getHiddenEnemySectionScreen().getEnemiesInThisSection().add(newEnemy);
+                            gameGodFather.getHiddenEnemySectionScreen().add(newEnemy, Integer.valueOf(1));
+                            gameGodFather.getHiddenEnemySectionModel().setCannonOneWorking(false);
+                            gameGodFather.getHiddenEnemySectionModel().setCannonTwoWorking(false);
+                            gameGodFather.getHiddenEnemySectionModel().setCannonThreeWorking(true);
+                            gameGodFather.getHiddenEnemySectionModel().enemyCounter++;
+                        } else if (gameGodFather.getHiddenEnemySectionModel().isCannonThreeWorking()) {
                             Enemy newEnemy = new Goompa(1150, 675);
-                            gameScreenFrame.getHiddenEnemySectionScreen().getEnemiesInThisSection().add(newEnemy);
-                            gameScreenFrame.getHiddenEnemySectionScreen().add(newEnemy, Integer.valueOf(1));
-                            gameScreenFrame.getHiddenEnemySectionModel().setCannonOneWorking(true);
-                            gameScreenFrame.getHiddenEnemySectionModel().setCannonTwoWorking(false);
-                            gameScreenFrame.getHiddenEnemySectionModel().setCannonThreeWorking(false);
-                            gameScreenFrame.getHiddenEnemySectionModel().enemyCounter++;
+                            gameGodFather.getHiddenEnemySectionScreen().getEnemiesInThisSection().add(newEnemy);
+                            gameGodFather.getHiddenEnemySectionScreen().add(newEnemy, Integer.valueOf(1));
+                            gameGodFather.getHiddenEnemySectionModel().setCannonOneWorking(true);
+                            gameGodFather.getHiddenEnemySectionModel().setCannonTwoWorking(false);
+                            gameGodFather.getHiddenEnemySectionModel().setCannonThreeWorking(false);
+                            gameGodFather.getHiddenEnemySectionModel().enemyCounter++;
                         }
                     }
                 }
@@ -255,7 +255,7 @@ public class GameLoop {
 
                 synchronized (this) {
 
-                    gameScreenFrame.getHiddenEnemySectionModel().gravity.allocateGravity();
+                    gameGodFather.getHiddenEnemySectionModel().gravity.allocateGravity();
 
                 }
 
@@ -280,32 +280,32 @@ public class GameLoop {
 
                 synchronized (this) {
 
-                    if (gameScreenFrame.getHiddenCoinSectionModel().coinCounter <= 25) {
+                    if (gameGodFather.getHiddenCoinSectionModel().coinCounter <= 25) {
 
-                        if (gameScreenFrame.getHiddenCoinSectionModel().isCannonOneWorking()) {
+                        if (gameGodFather.getHiddenCoinSectionModel().isCannonOneWorking()) {
                             Coin newCoin = new Coin(1250, 300);
-                            gameScreenFrame.getHiddenCoinSectionScreen().getItemsInThisSection().add(newCoin);
-                            gameScreenFrame.getHiddenCoinSectionScreen().add(newCoin, Integer.valueOf(1));
-                            gameScreenFrame.getHiddenCoinSectionModel().setCannonOneWorking(false);
-                            gameScreenFrame.getHiddenCoinSectionModel().setCannonTwoWorking(true);
-                            gameScreenFrame.getHiddenCoinSectionModel().setCannonThreeWorking(false);
-                            gameScreenFrame.getHiddenCoinSectionModel().coinCounter++;
-                        } else if (gameScreenFrame.getHiddenCoinSectionModel().isCannonTwoWorking()) {
+                            gameGodFather.getHiddenCoinSectionScreen().getItemsInThisSection().add(newCoin);
+                            gameGodFather.getHiddenCoinSectionScreen().add(newCoin, Integer.valueOf(1));
+                            gameGodFather.getHiddenCoinSectionModel().setCannonOneWorking(false);
+                            gameGodFather.getHiddenCoinSectionModel().setCannonTwoWorking(true);
+                            gameGodFather.getHiddenCoinSectionModel().setCannonThreeWorking(false);
+                            gameGodFather.getHiddenCoinSectionModel().coinCounter++;
+                        } else if (gameGodFather.getHiddenCoinSectionModel().isCannonTwoWorking()) {
                             Coin newCoin = new Coin(1200, 500);
-                            gameScreenFrame.getHiddenCoinSectionScreen().getItemsInThisSection().add(newCoin);
-                            gameScreenFrame.getHiddenCoinSectionScreen().add(newCoin, Integer.valueOf(1));
-                            gameScreenFrame.getHiddenCoinSectionModel().setCannonOneWorking(false);
-                            gameScreenFrame.getHiddenCoinSectionModel().setCannonTwoWorking(false);
-                            gameScreenFrame.getHiddenCoinSectionModel().setCannonThreeWorking(true);
-                            gameScreenFrame.getHiddenCoinSectionModel().coinCounter++;
-                        } else if (gameScreenFrame.getHiddenCoinSectionModel().isCannonThreeWorking()) {
+                            gameGodFather.getHiddenCoinSectionScreen().getItemsInThisSection().add(newCoin);
+                            gameGodFather.getHiddenCoinSectionScreen().add(newCoin, Integer.valueOf(1));
+                            gameGodFather.getHiddenCoinSectionModel().setCannonOneWorking(false);
+                            gameGodFather.getHiddenCoinSectionModel().setCannonTwoWorking(false);
+                            gameGodFather.getHiddenCoinSectionModel().setCannonThreeWorking(true);
+                            gameGodFather.getHiddenCoinSectionModel().coinCounter++;
+                        } else if (gameGodFather.getHiddenCoinSectionModel().isCannonThreeWorking()) {
                             Coin newCoin = new Coin(1150, 700);
-                            gameScreenFrame.getHiddenCoinSectionScreen().getItemsInThisSection().add(newCoin);
-                            gameScreenFrame.getHiddenCoinSectionScreen().add(newCoin, Integer.valueOf(1));
-                            gameScreenFrame.getHiddenCoinSectionModel().setCannonOneWorking(true);
-                            gameScreenFrame.getHiddenCoinSectionModel().setCannonTwoWorking(false);
-                            gameScreenFrame.getHiddenCoinSectionModel().setCannonThreeWorking(false);
-                            gameScreenFrame.getHiddenCoinSectionModel().coinCounter++;
+                            gameGodFather.getHiddenCoinSectionScreen().getItemsInThisSection().add(newCoin);
+                            gameGodFather.getHiddenCoinSectionScreen().add(newCoin, Integer.valueOf(1));
+                            gameGodFather.getHiddenCoinSectionModel().setCannonOneWorking(true);
+                            gameGodFather.getHiddenCoinSectionModel().setCannonTwoWorking(false);
+                            gameGodFather.getHiddenCoinSectionModel().setCannonThreeWorking(false);
+                            gameGodFather.getHiddenCoinSectionModel().coinCounter++;
                         }
                     }
                 }
@@ -318,7 +318,7 @@ public class GameLoop {
 
                 synchronized (this) {
 
-                    gameScreenFrame.getHiddenCoinSectionModel().gravity.allocateGravity();
+                    gameGodFather.getHiddenCoinSectionModel().gravity.allocateGravity();
 
                 }
 
@@ -333,32 +333,32 @@ public class GameLoop {
 
         public void run() {
 
-            while (!gameScreenFrame.getGameData().isGameFinish) {
+            while (!gameGodFather.getGameData().isGameFinish) {
 
                 int fps = 120;
                 long targetTime = 1000 / fps;
-                if (!gameScreenFrame.getGameData().isGameFinish) {
+                if (!gameGodFather.getGameData().isGameFinish) {
                     long startTime = System.currentTimeMillis();
-                    if (gameScreenFrame.getGameData().getMarioLocation().equalsIgnoreCase("levelonesectionone")) {
-                        gameScreenFrame.getLevelOneSectionOneModel().moveEnemy();
-                        gameScreenFrame.getLevelOneSectionOneModel().moveItem();
-                        gameScreenFrame.intersectInLevelOneSectionOne.intersection.intersectShot();
-                        gameScreenFrame.getLevelOneSectionOneModel().startThrowSword();
-                    } else if (gameScreenFrame.getGameData().getMarioLocation().equalsIgnoreCase("levelonesectiontwo")) {
-                        gameScreenFrame.getLevelOneSectionTwoModel().moveEnemy();
-                        gameScreenFrame.getLevelOneSectionTwoModel().moveItem();
-                        gameScreenFrame.intersectInLevelOneSectionTwo.intersection.intersectShot();
-                        gameScreenFrame.getLevelOneSectionTwoModel().startThrowSword();
-                    } else if (gameScreenFrame.getGameData().getMarioLocation().equalsIgnoreCase("leveltwosectionone")) {
-                        gameScreenFrame.getLevelTwoSectionOneModel().moveEnemy();
-                        gameScreenFrame.getLevelTwoSectionOneModel().moveItem();
-                        gameScreenFrame.intersectInLevelTwoSectionOne.intersection.intersectShot();
-                        gameScreenFrame.getLevelTwoSectionOneModel().startThrowSword();
-                    } else if (gameScreenFrame.getGameData().getMarioLocation().equalsIgnoreCase("levelTwosectiontwo")) {
-                        gameScreenFrame.getLevelTwoSectionTwoModel().moveEnemy();
-                        gameScreenFrame.getLevelTwoSectionTwoModel().moveItem();
-                        gameScreenFrame.intersectInLevelTwoSectionTwo.intersection.intersectShot();
-                        gameScreenFrame.getLevelTwoSectionTwoModel().startThrowSword();
+                    if (gameGodFather.getGameData().getMarioLocation().equalsIgnoreCase("levelonesectionone")) {
+                        gameGodFather.getLevelOneSectionOneModel().moveEnemy();
+                        gameGodFather.getLevelOneSectionOneModel().moveItem();
+                        gameGodFather.intersectInLevelOneSectionOne.intersection.intersectShot();
+                        gameGodFather.getLevelOneSectionOneModel().startThrowSword();
+                    } else if (gameGodFather.getGameData().getMarioLocation().equalsIgnoreCase("levelonesectiontwo")) {
+                        gameGodFather.getLevelOneSectionTwoModel().moveEnemy();
+                        gameGodFather.getLevelOneSectionTwoModel().moveItem();
+                        gameGodFather.intersectInLevelOneSectionTwo.intersection.intersectShot();
+                        gameGodFather.getLevelOneSectionTwoModel().startThrowSword();
+                    } else if (gameGodFather.getGameData().getMarioLocation().equalsIgnoreCase("leveltwosectionone")) {
+                        gameGodFather.getLevelTwoSectionOneModel().moveEnemy();
+                        gameGodFather.getLevelTwoSectionOneModel().moveItem();
+                        gameGodFather.intersectInLevelTwoSectionOne.intersection.intersectShot();
+                        gameGodFather.getLevelTwoSectionOneModel().startThrowSword();
+                    } else if (gameGodFather.getGameData().getMarioLocation().equalsIgnoreCase("levelTwosectiontwo")) {
+                        gameGodFather.getLevelTwoSectionTwoModel().moveEnemy();
+                        gameGodFather.getLevelTwoSectionTwoModel().moveItem();
+                        gameGodFather.intersectInLevelTwoSectionTwo.intersection.intersectShot();
+                        gameGodFather.getLevelTwoSectionTwoModel().startThrowSword();
                     }
 
                     long elapsedTime = System.currentTimeMillis() - startTime;
@@ -382,15 +382,15 @@ public class GameLoop {
 
         public void run() {
 
-            while (!gameScreenFrame.getGameData().isGameFinish) {
+            while (!gameGodFather.getGameData().isGameFinish) {
 
                 int fps = 120;
                 long targetTime = 1000 / fps;
-                if (!gameScreenFrame.getGameData().isGameFinish) {
+                if (!gameGodFather.getGameData().isGameFinish) {
                     long startTime = System.currentTimeMillis();
 
-                    gameScreenFrame.getBossFightScreenSection().vilgax.activeMove.action();
-                    gameScreenFrame.getBossFightScreenSection().vilgaxAndScreenConnection.moveVilgaxWeapon();
+                    gameGodFather.getBossFightScreenSection().vilgax.activeMove.action();
+                    gameGodFather.getBossFightScreenSection().vilgaxAndScreenConnection.moveVilgaxWeapon();
                     long elapsedTime = System.currentTimeMillis() - startTime;
                     long sleepTime = targetTime - elapsedTime;
                     if (sleepTime > 0) {
@@ -411,33 +411,33 @@ public class GameLoop {
 
     public void setGameDataInLevelOne() {
 
-        gameScreenFrame.getLevelOneSectionOneScreen().userHeartValueLabel.setText(String.valueOf(gameScreenFrame.getGameData().userHeartValue));
-        gameScreenFrame.getLevelOneSectionOneScreen().thisGameCoin.setText(String.valueOf(gameScreenFrame.getGameData().thisGameCoin));
-        gameScreenFrame.getLevelOneSectionOneScreen().userScoreLabel.setText("Score: " + gameScreenFrame.getGameData().thisGameScore);
-        gameScreenFrame.getLevelOneSectionTwoScreen().userHeartValueLabel.setText(String.valueOf(gameScreenFrame.getGameData().userHeartValue));
-        gameScreenFrame.getLevelOneSectionTwoScreen().thisGameCoin.setText(String.valueOf(gameScreenFrame.getGameData().thisGameCoin));
-        gameScreenFrame.getLevelOneSectionTwoScreen().userScoreLabel.setText("Score: " + gameScreenFrame.getGameData().thisGameScore);
-        gameScreenFrame.getLevelOneSectionOneScreen().userHeartValueLabel.setLocation(gameScreenFrame.getLevelOneSectionOneScreen().XUserHeartValueLabel, 30);
-        gameScreenFrame.getLevelOneSectionOneScreen().userHeartImage.setLocation(gameScreenFrame.getLevelOneSectionOneScreen().XUserHeartImage, 30);
-        gameScreenFrame.getLevelOneSectionOneScreen().userScoreLabel.setLocation(gameScreenFrame.getLevelOneSectionOneScreen().XUserScoreLabel, 30);
-        gameScreenFrame.getLevelOneSectionOneScreen().thisSectionTimeLabel.setLocation(gameScreenFrame.getLevelOneSectionOneScreen().XThisSectionTimeLabel, 30);
-        gameScreenFrame.getLevelOneSectionOneScreen().thisGameCoin.setLocation(gameScreenFrame.getLevelOneSectionOneScreen().XThisGameCoin, 27);
-        gameScreenFrame.getLevelOneSectionOneScreen().thisGameCoinImage.setLocation(gameScreenFrame.getLevelOneSectionOneScreen().XThisGameCoinImage, 30);
-        gameScreenFrame.getLevelOneSectionTwoScreen().userHeartValueLabel.setLocation(gameScreenFrame.getLevelOneSectionTwoScreen().XUserHeartValueLabel, 30);
-        gameScreenFrame.getLevelOneSectionTwoScreen().userHeartImage.setLocation(gameScreenFrame.getLevelOneSectionTwoScreen().XUserHeartImage, 30);
-        gameScreenFrame.getLevelOneSectionTwoScreen().userScoreLabel.setLocation(gameScreenFrame.getLevelOneSectionTwoScreen().XUserScoreLabel, 30);
-        gameScreenFrame.getLevelOneSectionTwoScreen().thisSectionTimeLabel.setLocation(gameScreenFrame.getLevelOneSectionTwoScreen().XThisSectionTimeLabel, 30);
-        gameScreenFrame.getLevelOneSectionTwoScreen().thisGameCoin.setLocation(gameScreenFrame.getLevelOneSectionTwoScreen().XThisGameCoin, 27);
-        gameScreenFrame.getLevelOneSectionTwoScreen().thisGameCoinImage.setLocation(gameScreenFrame.getLevelOneSectionTwoScreen().XThisGameCoinImage, 30);
+        gameGodFather.getLevelOneSectionOneScreen().userHeartValueLabel.setText(String.valueOf(gameGodFather.getGameData().userHeartValue));
+        gameGodFather.getLevelOneSectionOneScreen().thisGameCoin.setText(String.valueOf(gameGodFather.getGameData().thisGameCoin));
+        gameGodFather.getLevelOneSectionOneScreen().userScoreLabel.setText("Score: " + gameGodFather.getGameData().thisGameScore);
+        gameGodFather.getLevelOneSectionTwoScreen().userHeartValueLabel.setText(String.valueOf(gameGodFather.getGameData().userHeartValue));
+        gameGodFather.getLevelOneSectionTwoScreen().thisGameCoin.setText(String.valueOf(gameGodFather.getGameData().thisGameCoin));
+        gameGodFather.getLevelOneSectionTwoScreen().userScoreLabel.setText("Score: " + gameGodFather.getGameData().thisGameScore);
+        gameGodFather.getLevelOneSectionOneScreen().userHeartValueLabel.setLocation(gameGodFather.getLevelOneSectionOneScreen().XUserHeartValueLabel, 30);
+        gameGodFather.getLevelOneSectionOneScreen().userHeartImage.setLocation(gameGodFather.getLevelOneSectionOneScreen().XUserHeartImage, 30);
+        gameGodFather.getLevelOneSectionOneScreen().userScoreLabel.setLocation(gameGodFather.getLevelOneSectionOneScreen().XUserScoreLabel, 30);
+        gameGodFather.getLevelOneSectionOneScreen().thisSectionTimeLabel.setLocation(gameGodFather.getLevelOneSectionOneScreen().XThisSectionTimeLabel, 30);
+        gameGodFather.getLevelOneSectionOneScreen().thisGameCoin.setLocation(gameGodFather.getLevelOneSectionOneScreen().XThisGameCoin, 27);
+        gameGodFather.getLevelOneSectionOneScreen().thisGameCoinImage.setLocation(gameGodFather.getLevelOneSectionOneScreen().XThisGameCoinImage, 30);
+        gameGodFather.getLevelOneSectionTwoScreen().userHeartValueLabel.setLocation(gameGodFather.getLevelOneSectionTwoScreen().XUserHeartValueLabel, 30);
+        gameGodFather.getLevelOneSectionTwoScreen().userHeartImage.setLocation(gameGodFather.getLevelOneSectionTwoScreen().XUserHeartImage, 30);
+        gameGodFather.getLevelOneSectionTwoScreen().userScoreLabel.setLocation(gameGodFather.getLevelOneSectionTwoScreen().XUserScoreLabel, 30);
+        gameGodFather.getLevelOneSectionTwoScreen().thisSectionTimeLabel.setLocation(gameGodFather.getLevelOneSectionTwoScreen().XThisSectionTimeLabel, 30);
+        gameGodFather.getLevelOneSectionTwoScreen().thisGameCoin.setLocation(gameGodFather.getLevelOneSectionTwoScreen().XThisGameCoin, 27);
+        gameGodFather.getLevelOneSectionTwoScreen().thisGameCoinImage.setLocation(gameGodFather.getLevelOneSectionTwoScreen().XThisGameCoinImage, 30);
 
     }
 
-    public GameScreenFrame getGameScreenFrame() {
-        return gameScreenFrame;
+    public GameGodFather getGameScreenFrame() {
+        return gameGodFather;
     }
 
-    public void setGameScreenFrame(GameScreenFrame gameScreenFrame) {
-        this.gameScreenFrame = gameScreenFrame;
+    public void setGameScreenFrame(GameGodFather gameGodFather) {
+        this.gameGodFather = gameGodFather;
     }
 }
 
