@@ -12,5 +12,19 @@ public class VilgaxGrabAttack extends VilgaxMove {
     @Override
     public void action() {
 
+        changeBackground();
+
+    }
+
+    @Override
+    public void changeBackground() {
+
+        // Couldn't find a picture for Phase_2 :)
+        if (vilgax.getXVelocity() >= 0) {
+            vilgax.setActiveBackground(vilgax.getVilgax_Grab_Filliped());
+        } else {
+            vilgax.setActiveBackground(vilgax.getVilgax_Grab());
+        }
+
     }
 }

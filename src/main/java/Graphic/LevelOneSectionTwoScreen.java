@@ -50,6 +50,7 @@ public class LevelOneSectionTwoScreen extends LevelScreens {
     Enemy firstEnemyInSceneTwo;
     Enemy secondEnemyInSceneTwo;
     Enemy thirdEnemyInSceneTwo;
+    BlockInAir slimeBlockInSceneTwo;
 
     Coin firstCoinOnGroundSceneThree;
     Coin secondCoinOnGroundSceneThree;
@@ -170,6 +171,7 @@ public class LevelOneSectionTwoScreen extends LevelScreens {
         fifthEnemyInSceneOne = new Goompa(1500, 890);
 
         // Scene Two:
+        slimeBlockInSceneTwo = new SlimeBlockInAir(2100, 700);
         firstCoinOnGroundSceneTwo = new Coin(1800, 890);
         firstBlockInAirSceneTwo = new OneCoinBlockInAir(2620,700);
         coinOnFirstBlockInAirSceneTwo = new Coin(2620, 650);
@@ -237,6 +239,7 @@ public class LevelOneSectionTwoScreen extends LevelScreens {
         enemiesInThisSection.add(fifthEnemyInSceneOne);
 
         // Scene Two:
+        objectsInThisSection.add(slimeBlockInSceneTwo);
         itemsInThisSection.add(firstCoinOnGroundSceneTwo);
         objectsInThisSection.add(firstBlockInAirSceneTwo);
         itemsInThisSection.add(coinOnFirstBlockInAirSceneTwo);

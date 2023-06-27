@@ -70,6 +70,7 @@ public class LevelTwoSectionOneScreen extends LevelScreens {
     Enemy secondEnemyInSceneTwo;
     Enemy thirdEnemyInSceneTwo;
 
+    BlockInAir slimeBlockInAirSceneThree;
     BlockInAir firstBlockInAirSceneThree;
     Coin coinOnFirstBlockInAirSceneThree;
     BlockInAir secondBlockInAirSceneThree;
@@ -220,6 +221,7 @@ public class LevelTwoSectionOneScreen extends LevelScreens {
         thirdEnemyInSceneTwo = new Turtle(2450, 890);
 
         // Scene Three
+        slimeBlockInAirSceneThree = new SlimeBlockInAir(3400, 700);
         firstBlockInAirSceneThree = new FullOfCoinBlockInAir(3700, 500);
         coinOnFirstBlockInAirSceneThree = new Coin(3700, 450);
         secondBlockInAirSceneThree = new EmptyBlockInAir(3770, 500);
@@ -305,6 +307,7 @@ public class LevelTwoSectionOneScreen extends LevelScreens {
         enemiesInThisSection.add(thirdEnemyInSceneTwo);
 
         // Scene Three:
+        objectsInThisSection.add(slimeBlockInAirSceneThree);
         objectsInThisSection.add(firstBlockInAirSceneThree);
         itemsInThisSection.add(coinOnFirstBlockInAirSceneThree);
         objectsInThisSection.add(secondBlockInAirSceneThree);

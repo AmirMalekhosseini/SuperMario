@@ -8,6 +8,8 @@ public abstract class VilgaxMove {
 
     public abstract void action();
 
+    public abstract void changeBackground();
+
     public Vilgax getVilgax() {
         return vilgax;
     }

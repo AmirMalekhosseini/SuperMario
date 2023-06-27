@@ -54,7 +54,7 @@ public class MarioMoverModel {
             if (activeMario.getX() <= 6400) {// Game is in SectionOne:
                 if (!marioEnterInLevelOneSectionOne) {
                     marioEnterInLevelOneSectionOne = true;
-//                    gameGodFather.getGameData().setMarioLocation("levelonesectionone");
+                    gameGodFather.getGameData().setMarioLocation("levelonesectionone");
                     activeIntersection = gameGodFather.intersectInLevelOneSectionOne;
                     activeScreen = gameGodFather.getLevelOneSectionOneScreen();
 
@@ -71,7 +71,7 @@ public class MarioMoverModel {
                     gameGodFather.gameTimer.setSectionTime(50);
                     // Add Score At The End Of SectionOne
                     gameGodFather.calculateScore.calculateScore(gameGodFather.getLevelOneSectionOneScreen());
-//                    gameGodFather.getGameData().setMarioLocation("levelonesectiontwo");
+                    gameGodFather.getGameData().setMarioLocation("levelonesectiontwo");
                     gameGodFather.getPowerUp().loadPowerUp(activeMario);
                 }
             }
@@ -169,6 +169,7 @@ public class MarioMoverModel {
                     activeIntersection.intersection.setMarioHitsAnObject(false);
                     activeIntersection.intersection.setMarioHitsFullOfCoinBlockInAir(false);
                     activeIntersection.intersection.setMarioHitsTurtle(false);
+                    GravityData.getGravityData().marioDt = 0.018;
 
                 }
 

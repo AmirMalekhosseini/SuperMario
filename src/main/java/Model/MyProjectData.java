@@ -113,8 +113,10 @@ public class MyProjectData {
     protected BufferedImage coinMario_Stand_Flipped_Mini;
 
     protected BufferedImage blockInAir;
+    protected BufferedImage slimeBlockInAir;
     protected BufferedImage emptyBlockInAir;
-    protected BufferedImage castleLevelOne;
+    protected BufferedImage castle;
+    protected BufferedImage checkPoint;
     protected BufferedImage coin;
     protected BufferedImage mushroom;
     protected BufferedImage star;
@@ -175,6 +177,15 @@ public class MyProjectData {
         }
 
         try {
+            String pathBackground = "Slime.png";
+            File fileBackground = new File(pathBackground);
+            slimeBlockInAir = ImageIO.read(fileBackground);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
             String pathBackground = "EmptyBlockInAir.png";
             File fileBackground = new File(pathBackground);
             emptyBlockInAir = ImageIO.read(fileBackground);
@@ -186,7 +197,16 @@ public class MyProjectData {
         try {
             String pathBackground = "Castle.png";
             File fileBackground = new File(pathBackground);
-            castleLevelOne = ImageIO.read(fileBackground);
+            castle = ImageIO.read(fileBackground);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            String pathBackground = "Checkpoint.png";
+            File fileBackground = new File(pathBackground);
+            checkPoint = ImageIO.read(fileBackground);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -1496,13 +1516,22 @@ public class MyProjectData {
         return blockInAir;
     }
 
+    public BufferedImage getSlimeBlockInAir() {
+        return slimeBlockInAir;
+    }
+
     public BufferedImage getEmptyBlockInAir() {
         return emptyBlockInAir;
     }
 
-    public BufferedImage getCastleLevelOne() {
-        return castleLevelOne;
+    public BufferedImage getCastle() {
+        return castle;
     }
+
+    public BufferedImage getCheckPoint() {
+        return checkPoint;
+    }
+
     public BufferedImage getCoin() {
         return coin;
     }

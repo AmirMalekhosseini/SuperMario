@@ -56,6 +56,7 @@ public class LevelTwoSectionTwoScreen extends LevelScreens {
     Enemy secondEnemyInSceneTwo;
     Enemy thirdEnemyInSceneTwo;
     Enemy fourthEnemyInSceneTwo;
+    CheckPoint checkPointInSceneTwo;
 
     BlockInAir firstBlockInAirSceneThree;
     BlockInAir secondBlockInAirSceneThree;
@@ -185,6 +186,7 @@ public class LevelTwoSectionTwoScreen extends LevelScreens {
         coinOnFirstBlockInAirSceneTwo = new Coin(2320, 650);
         secondBlockInAirSceneTwo = new EmptyBlockInAir(2390, 700);
         thirdBlockInAirSceneTwo = new EmptyBlockInAir(2460, 700);
+        checkPointInSceneTwo = new CheckPoint(2470, 590);
         fourthBlockInAirSceneTwo = new OneCoinBlockInAir(2530, 700);
         firstPrizeInAirSceneTwo = new PrizeInAir(2900, 520);
         firstPipeInSceneTwo = new Pipe(2880, 765);
@@ -298,6 +300,8 @@ public class LevelTwoSectionTwoScreen extends LevelScreens {
         this.add(castle, Integer.valueOf(1));
 
         // Add To Screen:
+
+        this.add(checkPointInSceneTwo, Integer.valueOf(1));
 
         for (ObjectsInGame object : objectsInThisSection) {
             this.add(object, Integer.valueOf(1));

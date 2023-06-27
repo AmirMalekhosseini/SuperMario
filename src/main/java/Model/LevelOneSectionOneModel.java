@@ -199,16 +199,6 @@ public class LevelOneSectionOneModel {
         }
     }
 
-    public void setLocationOfEnemies() {
-
-        for (int i = 0; i < levelOneSectionOneScreen.getEnemiesInThisSection().size(); i++) {
-            int x = levelOneSectionOneScreen.getEnemiesInThisSection().get(i).getX();
-            int y = levelOneSectionOneScreen.getEnemiesInThisSection().get(i).getY();
-            levelOneSectionOneScreen.getEnemiesInThisSection().get(i).setLocation(x, y);
-
-        }
-    }
-
     public void setLocationAfterLoose() {
 
         levelOneSectionOneScreen.activeMario.get(0).setX(100);

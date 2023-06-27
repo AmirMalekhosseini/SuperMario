@@ -66,6 +66,7 @@ public class GameGodFather {
         this.gameData = gameData;
 
         graphicStarter = gameData1 -> {
+
             bossFightScreenSectionScreen = new BossFightScreenSectionScreen(gameData1);
             hiddenEnemySectionScreen = new HiddenEnemySectionScreen(gameData1);
             hiddenCoinSectionScreen = new HiddenCoinSectionScreen(gameData1);
@@ -99,7 +100,7 @@ public class GameGodFather {
 
             levelOneGameBackgroundPanel.setBounds(xLevelOneBackgroundPanel, 0, 14000, 1300);
             levelOneGameBackgroundPanel.setLayout(null);
-            levelOneGameBackgroundPanel.setVisible(false);
+            levelOneGameBackgroundPanel.setVisible(true);
             levelOneGameBackgroundPanel.add(levelOneSectionOneScreen);
             levelOneGameBackgroundPanel.add(levelOneSectionTwoScreen);
             gamePanels[2] = levelOneGameBackgroundPanel;
@@ -113,19 +114,20 @@ public class GameGodFather {
 
             levelThreeGameBackgroundPanel.setBounds(xLevelThreeBackgroundPanel, 0, 14000, 1300);
             levelThreeGameBackgroundPanel.setLayout(null);
-            levelThreeGameBackgroundPanel.setVisible(true);
+            levelThreeGameBackgroundPanel.setVisible(false);
             levelThreeGameBackgroundPanel.add(bossFightScreenSectionScreen);
             gamePanels[4] = levelThreeGameBackgroundPanel;
 
             gameScreenFrame = new GameScreenFrame(gamePanels);
+
         };
 
         modelStarter = godFather -> {
 
             calculateScore = new CalculateScore(godFather);
             marioMoverModel = new MarioMoverModel(godFather);
-            marioMover = new MarioMover(godFather, marioMoverModel);
             powerUp = new PowerUp(godFather);
+            marioMover = new MarioMover(godFather, marioMoverModel);
             intersectInLevelOneSectionOne = new IntersectInLevelOneSectionOne(godFather, powerUp);
             intersectInLevelOneSectionTwo = new IntersectInLevelOneSectionTwo(godFather, powerUp);
             intersectInLevelTwoSectionOne = new IntersectInLevelTwoSectionOne(godFather, powerUp);
@@ -140,6 +142,7 @@ public class GameGodFather {
             levelTwoSectionOneModel = new LevelTwoSectionOneModel(levelTwoSectionOneScreen, intersectInLevelTwoSectionOne, marioMoverModel);
             levelTwoSectionTwoModel = new LevelTwoSectionTwoModel(levelTwoSectionTwoScreen, intersectInLevelTwoSectionTwo, marioMoverModel);
             gameLoop = new GameLoop(godFather);
+
 
         };
 

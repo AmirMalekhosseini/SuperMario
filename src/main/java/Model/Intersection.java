@@ -91,6 +91,16 @@ public abstract class Intersection {
                     continue;
                 }
 
+                // handling Slime BlockInAir:
+                if (screen.getObjectsInThisSection().get(i) instanceof SlimeBlockInAir && marioHitsUpOfTheObject && !marioHitsAnObject) {
+                    GravityData.getGravityData().marioDt = 0.015;
+                    marioHitsAnObject = true;
+                    continue;
+                }else
+                    GravityData.getGravityData().marioDt = 0.018;
+
+
+                // Handling Destroying BlockInAirs:
                 if (screen.activeMario.get(0).isMarioMini()) {// Mini Mario cant destroy
                     return;
                 }

@@ -12,5 +12,12 @@ public class VilgaxNukeAttack extends VilgaxMove {
     @Override
     public void action() {
 
+        changeBackground();
+
+    }
+
+    @Override
+    public void changeBackground() {
+
     }
 }

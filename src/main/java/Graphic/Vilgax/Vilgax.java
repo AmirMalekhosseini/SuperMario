@@ -36,7 +36,9 @@ public class Vilgax extends ObjectsInGame {
     private int y;
     private int width = 150;
     private int height = 240;
-    private double velocity = -1;// Run: -3
+    private double XVelocity = -3;// Run: -3
+    private double YVelocity = -5;
+    private boolean isVilgaxPhase_2 =true;
 
     public Vilgax(int x, int y) {
 
@@ -44,14 +46,14 @@ public class Vilgax extends ObjectsInGame {
         this.x = x;
         this.y = y;
 
-        vilgaxDoNothing = new VilgaxDoNothing();
+        vilgaxDoNothing = new VilgaxDoNothing(this);
+        vilgaxJump = new VilgaxJump(this);
+        vilgaxRun = new VilgaxRun(this);
         vilgaxFireBallAttack = new VilgaxFireBallAttack(this);
         vilgaxGrabAttack = new VilgaxGrabAttack(this);
         vilgaxNukeAttack = new VilgaxNukeAttack(this);
         vilgaxJumpAttack = new VilgaxJumpAttack(this);
-        vilgaxRun = new VilgaxRun(this);
-        vilgaxJump = new VilgaxJump(this);
-        activeMove = vilgaxFireBallAttack;
+        activeMove = vilgaxJump;
 
         Vilgax_Phase1 = MyProjectData.getProjectData().getVilgax_Phase1();
         Vilgax_Phase1_Jump_Attack = MyProjectData.getProjectData().getVilgax_Phase1_Jump_Attack();
@@ -121,12 +123,12 @@ public class Vilgax extends ObjectsInGame {
         this.height = height;
     }
 
-    public double getVelocity() {
-        return velocity;
+    public double getXVelocity() {
+        return XVelocity;
     }
 
-    public void setVelocity(double velocity) {
-        this.velocity = velocity;
+    public void setXVelocity(double XVelocity) {
+        this.XVelocity = XVelocity;
     }
 
     public BufferedImage getActiveBackground() {
@@ -175,5 +177,21 @@ public class Vilgax extends ObjectsInGame {
 
     public BufferedImage getVilgax_Grab_Filliped() {
         return Vilgax_Grab_Filliped;
+    }
+
+    public double getYVelocity() {
+        return YVelocity;
+    }
+
+    public void setYVelocity(double YVelocity) {
+        this.YVelocity = YVelocity;
+    }
+
+    public boolean isVilgaxPhase_2() {
+        return isVilgaxPhase_2;
+    }
+
+    public void setVilgaxPhase_2(boolean vilgaxPhase_2) {
+        isVilgaxPhase_2 = vilgaxPhase_2;
     }
 }

@@ -10,9 +10,10 @@ public class GameTimer {
 
     GameData gameData;
     javax.swing.Timer timer;
-    private int sectionTime;
+    private int sectionTime = 50;
 
     public GameTimer(GameData gameData) {
+
         this.gameData = gameData;
         timer = new Timer(1000, new ActionListener() {
             @Override
@@ -24,8 +25,9 @@ public class GameTimer {
 
             }
         });
-        timer.start();
         timer.setRepeats(true);
+        timer.start();
+
     }
 
     public int getSectionTime() {
