@@ -52,9 +52,9 @@ public class GameGodFather {
 
     public GameGodFather(GameData gameData) {
         init(gameData);
+        gameTimer = new GameTimer(gameData);
         graphicStarter.startGraphic(gameData);
         modelStarter.startModel(this);
-        gameTimer = new GameTimer(gameScreenFrame, gameData);
     }
 
     public GameGodFather() {

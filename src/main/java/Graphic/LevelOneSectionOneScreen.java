@@ -99,7 +99,6 @@ public class LevelOneSectionOneScreen extends LevelScreens {
         activeMario = new ArrayList<>();
         activeMario.add(new NormalMario(0, 0));
         Font font1 = MyProjectData.getProjectData().getFont22();
-        thisSectionTime = new LevelOneSectionOneTime(this);
 
         this.setSize(6800, 1100);
         this.setVisible(true);
@@ -126,7 +125,7 @@ public class LevelOneSectionOneScreen extends LevelScreens {
         userScoreLabel.setBounds(XUserScoreLabel, 30, 200, 20);
         userScoreLabel.setFont(font1);
 
-        thisSectionTimeLabel = new JLabel("Time: " + thisSectionTime.getSectionTime());
+        thisSectionTimeLabel = new JLabel("Time: ");
         thisSectionTimeLabel.setBounds(XThisSectionTimeLabel, 30, 200, 20);
         thisSectionTimeLabel.setFont(font1);
 

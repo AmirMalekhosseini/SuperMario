@@ -68,7 +68,6 @@ public class HiddenCoinSectionScreen extends LevelScreens {
         activeMario = new ArrayList<>();
         activeMario.add(new NormalMario(0, 0));
         Font font1 = MyProjectData.getProjectData().getFont22();
-        thisSectionTime = new HiddenCoinSectionTime(this);
 
         this.setSize(1700, 1100);
         this.setVisible(true);

@@ -15,7 +15,7 @@ public class CalculateScore {
     }
     public void calculateScore(LevelScreens screen) {
 
-        gameGodFather.getGameData().thisGameScore += screen.thisSectionTime.getSectionTime();
+        gameGodFather.getGameData().thisGameScore += gameGodFather.gameTimer.getSectionTime();
         gameGodFather.getGameData().thisGameScore += screen.getGameData().userHeartValue * 20;
     }
 

@@ -68,7 +68,7 @@ public class MarioMoverModel {
                     activeScreen = gameGodFather.getLevelOneSectionTwoScreen();
                     activeIntersection = gameGodFather.intersectInLevelOneSectionTwo;
                     marioEnterInLevelOneSectionTwo = true;
-                    gameGodFather.getLevelOneSectionTwoScreen().thisSectionTime.setSectionTime(50);
+                    gameGodFather.gameTimer.setSectionTime(50);
                     // Add Score At The End Of SectionOne
                     gameGodFather.calculateScore.calculateScore(gameGodFather.getLevelOneSectionOneScreen());
 //                    gameGodFather.getGameData().setMarioLocation("levelonesectiontwo");
@@ -85,7 +85,7 @@ public class MarioMoverModel {
 
                 if (!marioEnterInLevelTwoSectionOne) {
                     marioEnterInLevelTwoSectionOne = true;
-                    gameGodFather.getLevelTwoSectionOneScreen().thisSectionTime.setSectionTime(50);
+                    gameGodFather.gameTimer.setSectionTime(50);
                     // Add Score At The End Of LevelOneSectionTwo
                     gameGodFather.calculateScore.calculateScore(gameGodFather.getLevelOneSectionTwoScreen());
 //                    gameGodFather.getGameData().setMarioLocation("leveltwosectionone");
@@ -96,7 +96,7 @@ public class MarioMoverModel {
 
                 if (!marioEnterInLevelTwoSectionTwo) {
                     marioEnterInLevelTwoSectionTwo = true;
-                    gameGodFather.getLevelTwoSectionTwoScreen().thisSectionTime.setSectionTime(50);
+                    gameGodFather.gameTimer.setSectionTime(50);
                     // Add Score At The End Of SectionOne
                     gameGodFather.calculateScore.calculateScore(gameGodFather.getLevelTwoSectionTwoScreen());
                     gameGodFather.getGameData().setMarioLocation("leveltwosectiontwo");

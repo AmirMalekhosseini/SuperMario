@@ -89,7 +89,6 @@ public class LevelOneSectionTwoScreen extends LevelScreens {
         Font font1 = MyProjectData.getProjectData().getFont22();
         activeMario = new ArrayList<>();
         activeMario.add(new NormalMario(0, 0));
-        this.thisSectionTime = new LevelOneSectionTwoTime(this);
 
         this.setSize(6800, 1100);
         this.setLocation(6800,0);

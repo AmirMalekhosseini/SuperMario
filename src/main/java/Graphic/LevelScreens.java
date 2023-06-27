@@ -16,7 +16,6 @@ public class LevelScreens extends JLayeredPane {
     protected ArrayList<EmptySpaceInGround> emptySpaceInGroundsInThisSection = new ArrayList<>();
     // ToDo: change activeMario to an Object
     public ArrayList<Mario> activeMario;
-    public SectionsTime thisSectionTime;
     GameData gameData;
 
     public UserHeart userHeartImage;

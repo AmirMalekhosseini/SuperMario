@@ -64,13 +64,13 @@ public class GameLoop {
                         if (gameGodFather.intersectInLevelOneSectionOne.intersection.marioIntersectWithEmptyGround()) {
                             gameGodFather.getGameScreenFrame().currentPanel.setLocation(0, 0);
                             gameGodFather.getLevelOneSectionOneModel().setLocationAfterLoose();
-                            gameGodFather.getLevelOneSectionOneScreen().thisSectionTime.setSectionTime(50);
+                            gameGodFather.gameTimer.setSectionTime(50);
                         }
-                        if (gameGodFather.getLevelOneSectionOneScreen().thisSectionTime.getSectionTime() == 0) {
+                        if (gameGodFather.gameTimer.getSectionTime() == 0) {
                             gameGodFather.getGameData().setUserHeartValue(gameGodFather.getGameData().getUserHeartValue() - 1);
                             gameGodFather.getGameScreenFrame().currentPanel.setLocation(0, 0);
                             gameGodFather.getLevelOneSectionOneModel().setLocationAfterLoose();
-                            gameGodFather.getLevelOneSectionOneScreen().thisSectionTime.setSectionTime(50);
+                            gameGodFather.gameTimer.setSectionTime(50);
                         }
                     }
                     if (gameGodFather.getGameData().getMarioLocation().equalsIgnoreCase("levelonesectiontwo")) {
@@ -85,13 +85,13 @@ public class GameLoop {
                         if (gameGodFather.intersectInLevelOneSectionTwo.intersection.marioIntersectWithEmptyGround()) {
                             gameGodFather.getGameScreenFrame().currentPanel.setLocation(-6800, 0);
                             gameGodFather.getLevelOneSectionTwoModel().setLocationAfterLoose();
-                            gameGodFather.getLevelOneSectionTwoScreen().thisSectionTime.setSectionTime(50);
+                            gameGodFather.gameTimer.setSectionTime(50);
                         }
-                        if (gameGodFather.getLevelOneSectionTwoScreen().thisSectionTime.getSectionTime() == 0) {
+                        if (gameGodFather.gameTimer.getSectionTime() == 0) {
                             gameGodFather.getGameData().setUserHeartValue(gameGodFather.getGameData().getUserHeartValue() - 1);
                             gameGodFather.getGameScreenFrame().currentPanel.setLocation(-6800, 0);
                             gameGodFather.getLevelOneSectionTwoModel().setLocationAfterLoose();
-                            gameGodFather.getLevelOneSectionTwoScreen().thisSectionTime.setSectionTime(50);
+                            gameGodFather.gameTimer.setSectionTime(50);
                         }
                     }
 

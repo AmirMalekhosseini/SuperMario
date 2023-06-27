@@ -8,13 +8,11 @@ import java.awt.event.ActionListener;
 
 public class GameTimer {
 
-    GameScreenFrame gameScreenFrame;
     GameData gameData;
     javax.swing.Timer timer;
     private int sectionTime;
 
-    public GameTimer(GameScreenFrame gameScreenFrame, GameData gameData) {
-        this.gameScreenFrame = gameScreenFrame;
+    public GameTimer(GameData gameData) {
         this.gameData = gameData;
         timer = new Timer(1000, new ActionListener() {
             @Override
@@ -26,6 +24,8 @@ public class GameTimer {
 
             }
         });
+        timer.start();
+        timer.setRepeats(true);
     }
 
     public int getSectionTime() {

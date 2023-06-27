@@ -235,7 +235,7 @@ public abstract class Intersection {
                 powerUp.decreasePowerUp(screen.activeMario.get(0));
                 if (activeMario.isMarioShouldDie()) {
                     screen.getGameData().userHeartValue--;
-                    screen.thisSectionTime.setSectionTime(50);
+                    gameGodFather.gameTimer.setSectionTime(50);
                     return true;
                 } else {// Mario decrease powerUp and the enemy will be killed:
                     screen.remove(enemy);
@@ -277,7 +277,7 @@ public abstract class Intersection {
                 powerUp.decreasePowerUp(screen.activeMario.get(0));
                 if (activeMario.isMarioShouldDie()) {
                     screen.getGameData().userHeartValue--;
-                    screen.thisSectionTime.setSectionTime(50);
+                    gameGodFather.gameTimer.setSectionTime(50);
                     return true;
                 }
             }
@@ -310,7 +310,7 @@ public abstract class Intersection {
                     (marioWidth < marioX || marioWidth > objectX) &&
                     (marioHeight < marioY || marioHeight > objectY)) {
                 screen.getGameData().userHeartValue--;
-                screen.thisSectionTime.setSectionTime(50);
+                gameGodFather.gameTimer.setSectionTime(50);
                 return true;
             }
 
