@@ -25,16 +25,13 @@ public class LevelTwoSectionTwoScreen extends LevelScreens {
     BlockInAir firstBlockInAirSceneOne;
     Coin coinOnFirstBlockInAirSceneOne;
     BlockInAir secondBlockInAirSceneOne;
-    ItemsInGame itemOnSecondBlockInAirSceneOne;
     BlockInAir thirdBlockInAirSceneOne;
     BlockInAir fourthBlockInAirSceneOne;
-    ItemsInGame itemOnFourthBlockInAirSceneOne;
     BlockInAir fifthBlockInAirSceneOne;
     BlockInAir sixthBlockInAirSceneOne;
     Coin coinOnSixthBlockInAirSceneOne;
     BlockInAir seventhBlockInAirSceneOne;
     BlockInAir eighthBlockInAirSceneOne;
-    ItemsInGame itemOnEighthBlockInAirSceneOne;
     Coin firstCoinOnGroundSceneOne;
     Coin secondCoinOnGroundSceneOne;
     Coin thirdCoinOnGroundSceneOne;
@@ -48,7 +45,6 @@ public class LevelTwoSectionTwoScreen extends LevelScreens {
     BlockInAir firstBlockInAirSceneTwo;
     Coin coinOnFirstBlockInAirSceneTwo;
     BlockInAir secondBlockInAirSceneTwo;
-    ItemsInGame itemOnSecondBlockInAirSceneTwo;
     BlockInAir thirdBlockInAirSceneTwo;
     BlockInAir fourthBlockInAirSceneTwo;
     PrizeInAir firstPrizeInAirSceneTwo;

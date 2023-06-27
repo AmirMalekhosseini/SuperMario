@@ -4,11 +4,14 @@ import Controller.MarioMover;
 import Model.*;
 
 import javax.swing.*;
+import java.util.ArrayList;
 
 public class GameGodFather {
 
     private Graphic graphicStarter;
     private Model modelStarter;
+    protected ArrayList<LevelScreens> gameScreens = new ArrayList<>();
+    public GameTimer gameTimer;
     protected GameData gameData;
     protected PowerUp powerUp;
     protected GravityData gravityData;
@@ -42,7 +45,6 @@ public class GameGodFather {
     public MarioMoverModel marioMoverModel;
     public GameLoop gameLoop;
     public CalculateScore calculateScore;
-    public JPanel currentPanel;
 
     private int xLevelOneBackgroundPanel = 0;
     private int xLevelTwoBackgroundPanel = 0;
@@ -52,6 +54,7 @@ public class GameGodFather {
         init(gameData);
         graphicStarter.startGraphic(gameData);
         modelStarter.startModel(this);
+        gameTimer = new GameTimer(gameScreenFrame, gameData);
     }
 
     public GameGodFather() {
@@ -70,12 +73,18 @@ public class GameGodFather {
             levelOneSectionTwoScreen = new LevelOneSectionTwoScreen(gameData1);
             levelTwoSectionOneScreen = new LevelTwoSectionOneScreen(gameData1);
             levelTwoSectionTwoScreen = new LevelTwoSectionTwoScreen(gameData1);
+            gameScreens.add(bossFightScreenSectionScreen);
+            gameScreens.add(hiddenEnemySectionScreen);
+            gameScreens.add(hiddenCoinSectionScreen);
+            gameScreens.add(levelOneSectionOneScreen);
+            gameScreens.add(levelOneSectionTwoScreen);
+            gameScreens.add(levelTwoSectionOneScreen);
+            gameScreens.add(levelTwoSectionTwoScreen);
             hiddenCoinBackgroundPanel = new JPanel();
             hiddenEnemyBackgroundPanel = new JPanel();
             levelOneGameBackgroundPanel = new JPanel();
             levelTwoGameBackgroundPanel = new JPanel();
             levelThreeGameBackgroundPanel = new JPanel();
-            currentPanel = new JPanel();
             hiddenEnemyBackgroundPanel.setBounds(0, 0, 1700, 1300);
             hiddenEnemyBackgroundPanel.setLayout(null);
             hiddenEnemyBackgroundPanel.setVisible(false);
@@ -101,7 +110,6 @@ public class GameGodFather {
             levelTwoGameBackgroundPanel.add(levelTwoSectionOneScreen);
             levelTwoGameBackgroundPanel.add(levelTwoSectionTwoScreen);
             gamePanels[3] = levelTwoGameBackgroundPanel;
-            currentPanel = levelOneGameBackgroundPanel;
 
             levelThreeGameBackgroundPanel.setBounds(xLevelThreeBackgroundPanel, 0, 14000, 1300);
             levelThreeGameBackgroundPanel.setLayout(null);
@@ -135,6 +143,14 @@ public class GameGodFather {
 
         };
 
+    }
+
+    public ArrayList<LevelScreens> getGameScreens() {
+        return gameScreens;
+    }
+
+    public void setGameScreens(ArrayList<LevelScreens> gameScreens) {
+        this.gameScreens = gameScreens;
     }
 
     public GameScreenFrame getGameScreenFrame() {

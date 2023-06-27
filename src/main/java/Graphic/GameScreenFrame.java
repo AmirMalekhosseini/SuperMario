@@ -4,11 +4,13 @@ import javax.swing.*;
 
 public class GameScreenFrame extends JFrame {
 
+    public JPanel currentPanel;
     protected JPanel hiddenEnemyBackgroundPanel;
     protected JPanel hiddenCoinBackgroundPanel;
     protected JPanel levelOneGameBackgroundPanel;
     protected JPanel levelTwoGameBackgroundPanel;
     protected JPanel levelThreeGameBackgroundPanel;
+
 
     public GameScreenFrame(JPanel[] gamePanels) {
         hiddenEnemyBackgroundPanel = gamePanels[0];
@@ -16,6 +18,7 @@ public class GameScreenFrame extends JFrame {
         levelOneGameBackgroundPanel = gamePanels[2];
         levelTwoGameBackgroundPanel = gamePanels[3];
         levelThreeGameBackgroundPanel = gamePanels[4];
+        currentPanel = levelOneGameBackgroundPanel;
         init();
     }
 

@@ -45,7 +45,7 @@ public class MarioMoverModel {
 
     public void locateMarioLocation() {
 
-        if (gameGodFather.getLevelOneGameBackgroundPanel() == gameGodFather.currentPanel) {// Game is in LevelOne:
+        if (gameGodFather.getLevelOneGameBackgroundPanel() == gameGodFather.getGameScreenFrame().currentPanel) {// Game is in LevelOne:
 
             if (!marioEnterInLevelOneSectionOne) {
                 activeMario = gameGodFather.getLevelOneSectionOneScreen().activeMario.get(0);
@@ -76,7 +76,7 @@ public class MarioMoverModel {
                 }
             }
 
-        } else if (gameGodFather.getLevelTwoGameBackgroundPanel() == gameGodFather.currentPanel) {// Game is in LevelTwo:
+        } else if (gameGodFather.getLevelTwoGameBackgroundPanel() == gameGodFather.getGameScreenFrame().currentPanel) {// Game is in LevelTwo:
 
 
             activeScreen = gameGodFather.getLevelTwoSectionOneScreen();
@@ -107,7 +107,7 @@ public class MarioMoverModel {
                 }
             }
 
-        } else if (gameGodFather.getHiddenCoinBackgroundPanel() == gameGodFather.currentPanel) {// Game is in HiddenCoin:
+        } else if (gameGodFather.getHiddenCoinBackgroundPanel() == gameGodFather.getGameScreenFrame().currentPanel) {// Game is in HiddenCoin:
 
             gameGodFather.getGameData().setMarioLocation("hiddencoinsection");
 //            gameGodFather.getPowerUp().loadPowerUp(activeMario);
@@ -115,7 +115,7 @@ public class MarioMoverModel {
             activeScreen = gameGodFather.getHiddenCoinSectionScreen();
             activeIntersection = gameGodFather.intersectInHiddenCoinSection;
 
-        } else if (gameGodFather.getHiddenEnemyBackgroundPanel() == gameGodFather.currentPanel) {// Game is in HiddenEnemy:
+        } else if (gameGodFather.getHiddenEnemyBackgroundPanel() == gameGodFather.getGameScreenFrame().currentPanel) {// Game is in HiddenEnemy:
 
             gameGodFather.getGameData().setMarioLocation("hiddenenemysection");
             gameGodFather.getPowerUp().loadPowerUp(activeMario);
@@ -180,8 +180,8 @@ public class MarioMoverModel {
                     activeMario.setX((int) (activeMario.getX() + activeMario.getVelocityX()));
                 } else {// Move Panel
 //
-                    int xLevelScreenBackgroundPanel = gameGodFather.currentPanel.getX();
-                    gameGodFather.currentPanel.setLocation(xLevelScreenBackgroundPanel - 5, 0);
+                    int xLevelScreenBackgroundPanel = gameGodFather.getGameScreenFrame().currentPanel.getX();
+                    gameGodFather.getGameScreenFrame().currentPanel.setLocation(xLevelScreenBackgroundPanel - 5, 0);
 
                     activeMario.setVelocityX(5);
                     activeMario.setX((int) (activeMario.getX() + activeMario.getVelocityX()));
@@ -201,8 +201,8 @@ public class MarioMoverModel {
                     activeMario.setVelocityX(-5);
                     activeMario.setX((int) (activeMario.getX() + activeMario.getVelocityX()));
                 } else {// Move Panel
-                    int xLevelScreenBackgroundPanel = gameGodFather.currentPanel.getX();
-                    gameGodFather.currentPanel.setLocation(xLevelScreenBackgroundPanel + 5, 0);
+                    int xLevelScreenBackgroundPanel = gameGodFather.getGameScreenFrame().currentPanel.getX();
+                    gameGodFather.getGameScreenFrame().currentPanel.setLocation(xLevelScreenBackgroundPanel + 5, 0);
                     activeMario.setVelocityX(-5);
                     activeMario.setX((int) (activeMario.getX() + activeMario.getVelocityX()));
                     activeScreen.XThisGameCoinImage -= 5;

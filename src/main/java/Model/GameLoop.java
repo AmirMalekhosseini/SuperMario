@@ -58,17 +58,17 @@ public class GameLoop {
                         gameGodFather.intersectInLevelOneSectionOne.intersection.marioIntersectWithObjects();
                         gameGodFather.intersectInLevelOneSectionOne.intersection.marioIntersectWithItems();
                         if (gameGodFather.intersectInLevelOneSectionOne.intersection.marioIntersectWithEnemies()) {
-                            gameGodFather.currentPanel.setLocation(0, 0);
+                            gameGodFather.getGameScreenFrame().currentPanel.setLocation(0, 0);
                             gameGodFather.getLevelOneSectionOneModel().setLocationAfterLoose();
                         }
                         if (gameGodFather.intersectInLevelOneSectionOne.intersection.marioIntersectWithEmptyGround()) {
-                            gameGodFather.currentPanel.setLocation(0, 0);
+                            gameGodFather.getGameScreenFrame().currentPanel.setLocation(0, 0);
                             gameGodFather.getLevelOneSectionOneModel().setLocationAfterLoose();
                             gameGodFather.getLevelOneSectionOneScreen().thisSectionTime.setSectionTime(50);
                         }
                         if (gameGodFather.getLevelOneSectionOneScreen().thisSectionTime.getSectionTime() == 0) {
                             gameGodFather.getGameData().setUserHeartValue(gameGodFather.getGameData().getUserHeartValue() - 1);
-                            gameGodFather.currentPanel.setLocation(0, 0);
+                            gameGodFather.getGameScreenFrame().currentPanel.setLocation(0, 0);
                             gameGodFather.getLevelOneSectionOneModel().setLocationAfterLoose();
                             gameGodFather.getLevelOneSectionOneScreen().thisSectionTime.setSectionTime(50);
                         }
@@ -79,17 +79,17 @@ public class GameLoop {
                         gameGodFather.intersectInLevelOneSectionTwo.intersection.marioIntersectWithObjects();
                         gameGodFather.intersectInLevelOneSectionTwo.intersection.marioIntersectWithItems();
                         if (gameGodFather.intersectInLevelOneSectionTwo.intersection.marioIntersectWithEnemies()) {
-                            gameGodFather.currentPanel.setLocation(-6800, 0);
+                            gameGodFather.getGameScreenFrame().currentPanel.setLocation(-6800, 0);
                             gameGodFather.getLevelOneSectionTwoModel().setLocationAfterLoose();
                         }
                         if (gameGodFather.intersectInLevelOneSectionTwo.intersection.marioIntersectWithEmptyGround()) {
-                            gameGodFather.currentPanel.setLocation(-6800, 0);
+                            gameGodFather.getGameScreenFrame().currentPanel.setLocation(-6800, 0);
                             gameGodFather.getLevelOneSectionTwoModel().setLocationAfterLoose();
                             gameGodFather.getLevelOneSectionTwoScreen().thisSectionTime.setSectionTime(50);
                         }
                         if (gameGodFather.getLevelOneSectionTwoScreen().thisSectionTime.getSectionTime() == 0) {
                             gameGodFather.getGameData().setUserHeartValue(gameGodFather.getGameData().getUserHeartValue() - 1);
-                            gameGodFather.currentPanel.setLocation(-6800, 0);
+                            gameGodFather.getGameScreenFrame().currentPanel.setLocation(-6800, 0);
                             gameGodFather.getLevelOneSectionTwoModel().setLocationAfterLoose();
                             gameGodFather.getLevelOneSectionTwoScreen().thisSectionTime.setSectionTime(50);
                         }
@@ -145,10 +145,10 @@ public class GameLoop {
                     long startTime = System.currentTimeMillis();
 
                     gameGodFather.getGameScreenFrame().repaint();
-                    gameGodFather.getHiddenCoinBackgroundPanel().repaint();
-                    gameGodFather.getHiddenEnemyBackgroundPanel().repaint();
-                    gameGodFather.getLevelOneGameBackgroundPanel().repaint();
-                    gameGodFather.getLevelTwoGameBackgroundPanel().repaint();
+                    for (LevelScreens screen : gameGodFather.getGameScreens()) {
+                        screen.repaint();
+                        screen.thisSectionTimeLabel.setText("Time: " + gameGodFather.gameTimer.getSectionTime());
+                    }
 
 
                     long elapsedTime = System.currentTimeMillis() - startTime;
