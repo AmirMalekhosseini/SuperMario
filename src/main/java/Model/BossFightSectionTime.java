@@ -1,6 +1,6 @@
 package Model;
 
-import Graphic.BossFightScreenSectionScreen;
+import Graphic.BossFightSectionScreen;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -13,15 +13,15 @@ public class BossFightSectionTime extends SectionsTime{
 
     // ToDo: create  coolDown fields for everything in this section
 
-    public BossFightSectionTime(BossFightScreenSectionScreen bossFightScreenSectionScreen) {
+    public BossFightSectionTime(BossFightSectionScreen bossFightSectionScreen) {
 
         sectionTime = 50;
         timer=new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-//                if (!bossFightScreenSectionScreen.getGameData().isGamePause && !bossFightScreenSectionScreen.getGameData().isGameFinish) {
+//                if (!bossFightSectionScreen.getGameData().isGamePause && !bossFightSectionScreen.getGameData().isGameFinish) {
 //                    sectionTime--;
-//                    bossFightScreenSectionScreen.thisSectionTimeLabel.setText("Time: "+ sectionTime);
+//                    bossFightSectionScreen.thisSectionTimeLabel.setText("Time: "+ sectionTime);
 //                }
             }
         });

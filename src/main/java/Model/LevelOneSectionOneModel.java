@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 public class LevelOneSectionOneModel {
 
+    // ToDO: Convert all LevelModels to One Model.
     LevelOneSectionOneScreen levelOneSectionOneScreen;
     IntersectInLevelOneSectionOne intersect;
     MarioMoverModel marioMoverModel;
@@ -145,9 +146,9 @@ public class LevelOneSectionOneModel {
 
             // send mario x,y,height to spiny
             if (levelOneSectionOneScreen.getEnemiesInThisSection().get(i) instanceof Spiny) {
-                int marioX = levelOneSectionOneScreen.activeMario.get(0).getX();
-                int marioY = levelOneSectionOneScreen.activeMario.get(0).getY();
-                int marioHeight = levelOneSectionOneScreen.activeMario.get(0).getHeight();
+                int marioX = levelOneSectionOneScreen.activeMario.getX();
+                int marioY = levelOneSectionOneScreen.activeMario.getY();
+                int marioHeight = levelOneSectionOneScreen.activeMario.getHeight();
                 ((Spiny) levelOneSectionOneScreen.getEnemiesInThisSection().get(i)).setMarioX(marioX);
                 ((Spiny) levelOneSectionOneScreen.getEnemiesInThisSection().get(i)).setMarioY(marioY);
                 ((Spiny) levelOneSectionOneScreen.getEnemiesInThisSection().get(i)).setMarioHeight(marioHeight);
@@ -185,6 +186,10 @@ public class LevelOneSectionOneModel {
 
         ArrayList<MarioWeapon> weaponsInThisSection = levelOneSectionOneScreen.getWeaponsInThisSection();
         for (MarioWeapon marioWeapon : weaponsInThisSection) {
+            if (marioWeapon instanceof Shield) {
+                ((Shield) marioWeapon).setMarioX(levelOneSectionOneScreen.activeMario.getX());
+                ((Shield) marioWeapon).setMarioY(levelOneSectionOneScreen.activeMario.getY());
+            }
             marioWeapon.move();
         }
 
@@ -201,7 +206,7 @@ public class LevelOneSectionOneModel {
 
     public void setLocationAfterLoose() {
 
-        levelOneSectionOneScreen.activeMario.get(0).setX(100);
+        levelOneSectionOneScreen.activeMario.setX(100);
         levelOneSectionOneScreen.XUserHeartImage = 1520;
         levelOneSectionOneScreen.userHeartImage.setX(levelOneSectionOneScreen.XUserHeartImage);
         levelOneSectionOneScreen.XThisGameCoinImage = 1110;

@@ -1,25 +1,24 @@
 package Model;
 
-import Graphic.BossFightScreenSectionScreen;
-import Graphic.LevelScreens;
+import Graphic.BossFightSectionScreen;
 import Graphic.Vilgax.VilgaxWeapon;
 
 public class VilgaxAndScreenConnection {
 
-    BossFightScreenSectionScreen bossFightScreenSectionScreen;
+    BossFightSectionScreen bossFightSectionScreen;
 
 
-    public VilgaxAndScreenConnection(BossFightScreenSectionScreen bossFightScreenSectionScreen) {
-        this.bossFightScreenSectionScreen = bossFightScreenSectionScreen;
+    public VilgaxAndScreenConnection(BossFightSectionScreen bossFightSectionScreen) {
+        this.bossFightSectionScreen = bossFightSectionScreen;
     }
 
     public void addVilgaxWeaponToScreen(VilgaxWeapon weapon) {
-        bossFightScreenSectionScreen.add(weapon, Integer.valueOf(1));
-        bossFightScreenSectionScreen.getVilgaxWeaponsInThisSection().add(weapon);
+        bossFightSectionScreen.add(weapon, Integer.valueOf(1));
+        bossFightSectionScreen.getVilgaxWeaponsInThisSection().add(weapon);
     }
 
     public void moveVilgaxWeapon() {
-        for (VilgaxWeapon weapon : bossFightScreenSectionScreen.getVilgaxWeaponsInThisSection()) {
+        for (VilgaxWeapon weapon : bossFightSectionScreen.getVilgaxWeaponsInThisSection()) {
             weapon.move();
         }
     }

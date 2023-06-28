@@ -1,8 +1,5 @@
 package Model;
 
-import Graphic.*;
-import MyProject.MyProject;
-
 public class GameData {
 
     public volatile boolean isGameFinish;
@@ -17,6 +14,7 @@ public class GameData {
     protected String marioLocation = "";
     private int level;
     private int section;
+    private boolean isBossTriggered;
 
     public GameData() {
 
@@ -116,5 +114,13 @@ public class GameData {
 
     public void setMarioShooter(boolean marioShooter) {
         isMarioShooter = marioShooter;
+    }
+
+    public boolean isBossTriggered() {
+        return isBossTriggered;
+    }
+
+    public void setBossTriggered(boolean bossTriggered) {
+        isBossTriggered = bossTriggered;
     }
 }

@@ -8,6 +8,8 @@ import java.util.ArrayList;
 
 public class GameGodFather {
 
+    // ToDo : set Active screen,Intersect,... in GodFather Class and
+    //  Add their needed method to their parents
     private Graphic graphicStarter;
     private Model modelStarter;
     protected ArrayList<LevelScreens> gameScreens = new ArrayList<>();
@@ -22,7 +24,7 @@ public class GameGodFather {
     protected JPanel levelOneGameBackgroundPanel;
     protected JPanel levelTwoGameBackgroundPanel;
     protected JPanel levelThreeGameBackgroundPanel;
-    protected BossFightScreenSectionScreen bossFightScreenSectionScreen;
+    protected BossFightSectionScreen bossFightSectionScreen;
     protected HiddenCoinSectionScreen hiddenCoinSectionScreen;
     protected HiddenCoinSectionModel hiddenCoinSectionModel;
     protected HiddenEnemySectionScreen hiddenEnemySectionScreen;
@@ -67,14 +69,14 @@ public class GameGodFather {
 
         graphicStarter = gameData1 -> {
 
-            bossFightScreenSectionScreen = new BossFightScreenSectionScreen(gameData1);
+            bossFightSectionScreen = new BossFightSectionScreen(gameData1);
             hiddenEnemySectionScreen = new HiddenEnemySectionScreen(gameData1);
             hiddenCoinSectionScreen = new HiddenCoinSectionScreen(gameData1);
             levelOneSectionOneScreen = new LevelOneSectionOneScreen(gameData1);
             levelOneSectionTwoScreen = new LevelOneSectionTwoScreen(gameData1);
             levelTwoSectionOneScreen = new LevelTwoSectionOneScreen(gameData1);
             levelTwoSectionTwoScreen = new LevelTwoSectionTwoScreen(gameData1);
-            gameScreens.add(bossFightScreenSectionScreen);
+            gameScreens.add(bossFightSectionScreen);
             gameScreens.add(hiddenEnemySectionScreen);
             gameScreens.add(hiddenCoinSectionScreen);
             gameScreens.add(levelOneSectionOneScreen);
@@ -100,7 +102,7 @@ public class GameGodFather {
 
             levelOneGameBackgroundPanel.setBounds(xLevelOneBackgroundPanel, 0, 14000, 1300);
             levelOneGameBackgroundPanel.setLayout(null);
-            levelOneGameBackgroundPanel.setVisible(true);
+            levelOneGameBackgroundPanel.setVisible(false);
             levelOneGameBackgroundPanel.add(levelOneSectionOneScreen);
             levelOneGameBackgroundPanel.add(levelOneSectionTwoScreen);
             gamePanels[2] = levelOneGameBackgroundPanel;
@@ -114,8 +116,8 @@ public class GameGodFather {
 
             levelThreeGameBackgroundPanel.setBounds(xLevelThreeBackgroundPanel, 0, 14000, 1300);
             levelThreeGameBackgroundPanel.setLayout(null);
-            levelThreeGameBackgroundPanel.setVisible(false);
-            levelThreeGameBackgroundPanel.add(bossFightScreenSectionScreen);
+            levelThreeGameBackgroundPanel.setVisible(true);
+            levelThreeGameBackgroundPanel.add(bossFightSectionScreen);
             gamePanels[4] = levelThreeGameBackgroundPanel;
 
             gameScreenFrame = new GameScreenFrame(gamePanels);
@@ -260,12 +262,12 @@ public class GameGodFather {
         this.levelTwoSectionTwoScreen = levelTwoSectionTwoScreen;
     }
 
-    public BossFightScreenSectionScreen getBossFightScreenSection() {
-        return bossFightScreenSectionScreen;
+    public BossFightSectionScreen getBossFightScreenSection() {
+        return bossFightSectionScreen;
     }
 
-    public void setBossFightScreenSection(BossFightScreenSectionScreen bossFightScreenSectionScreen) {
-        this.bossFightScreenSectionScreen = bossFightScreenSectionScreen;
+    public void setBossFightScreenSection(BossFightSectionScreen bossFightSectionScreen) {
+        this.bossFightSectionScreen = bossFightSectionScreen;
     }
 
     public IntersectInLevelOneSectionOne getIntersectMarioAndObjectsInLevelOneSectionOne() {

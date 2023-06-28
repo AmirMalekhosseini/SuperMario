@@ -96,8 +96,7 @@ public class LevelOneSectionOneScreen extends LevelScreens {
 
         this.gameData = gameData;
         ImageIcon backgroundImage = new ImageIcon("BackgroundSections.jpg");
-        activeMario = new ArrayList<>();
-        activeMario.add(new NormalMario(0, 0));
+        activeMario = new NormalMario(0, 0);
         Font font1 = MyProjectData.getProjectData().getFont22();
 
         this.setSize(6800, 1100);
@@ -138,23 +137,23 @@ public class LevelOneSectionOneScreen extends LevelScreens {
 //        Add Mario:
         if (MyProject.activeUser.get(0).isUserChooseNormal_RedMario()) {
             normalMario = new NormalMario(100, 840);
-            activeMario.set(0, normalMario);
+            activeMario = normalMario;
             this.add(normalMario, Integer.valueOf(2));
         } else if (MyProject.activeUser.get(0).isUserChooseCoin_YellowMario()) {
             coinMario = new CoinMario(100, 840);
-            activeMario.set(0, coinMario);
+            activeMario = coinMario;
             this.add(coinMario, Integer.valueOf(2));
         } else if (MyProject.activeUser.get(0).isUserChooseJumper_GreenMario()) {
             jumperMario = new JumperMario(100, 840);
-            activeMario.set(0, jumperMario);
+            activeMario = jumperMario;
             this.add(jumperMario, Integer.valueOf(2));
         } else if (MyProject.activeUser.get(0).isUserChooseRunner_BlueMario()) {
             runnerMario = new RunnerMario(100, 840);
-            activeMario.set(0, runnerMario);
+            activeMario = runnerMario;
             this.add(runnerMario, Integer.valueOf(2));
         } else if (MyProject.activeUser.get(0).isUserChooseShooter_BlackMario()) {
             shooterMario = new ShooterMario(100, 840);
-            activeMario.set(0, shooterMario);
+            activeMario = shooterMario;
             this.add(shooterMario, Integer.valueOf(2));
         }
 

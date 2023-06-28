@@ -27,15 +27,18 @@ public abstract class Intersection {
     public void marioIntersectWithObjects() {
 
         for (int i = 0; i < screen.getObjectsInThisSection().size(); i++) {
-            int marioWidth = screen.activeMario.get(0).getWidth();
-            int marioHeight = screen.activeMario.get(0).getHeight();
+            if (screen.getObjectsInThisSection().get(i) instanceof Castle) {
+                continue;
+            }
+            int marioWidth = screen.activeMario.getWidth();
+            int marioHeight = screen.activeMario.getHeight();
             int objectWidth = screen.getObjectsInThisSection().get(i).getWidth();
             int objectHeight = screen.getObjectsInThisSection().get(i).getHeight();
             if (objectWidth <= 0 || objectHeight <= 0 || marioWidth <= 0 || marioHeight <= 0) {
                 continue;
             }
-            int marioX = screen.activeMario.get(0).getX();
-            int marioY = screen.activeMario.get(0).getY();
+            int marioX = screen.activeMario.getX();
+            int marioY = screen.activeMario.getY();
             int objectX = screen.getObjectsInThisSection().get(i).getX();
             int objectY = screen.getObjectsInThisSection().get(i).getY();
             objectWidth += objectX;
@@ -92,16 +95,15 @@ public abstract class Intersection {
                 }
 
                 // handling Slime BlockInAir:
-                if (screen.getObjectsInThisSection().get(i) instanceof SlimeBlockInAir && marioHitsUpOfTheObject && !marioHitsAnObject) {
-                    GravityData.getGravityData().marioDt = 0.015;
-                    marioHitsAnObject = true;
+                if (screen.getObjectsInThisSection().get(i) instanceof SlimeBlockInAir && marioHitsUpOfTheObject) {
+                    GravityData.getGravityData().marioDt = 0.013;
                     continue;
                 }else
                     GravityData.getGravityData().marioDt = 0.018;
 
 
                 // Handling Destroying BlockInAirs:
-                if (screen.activeMario.get(0).isMarioMini()) {// Mini Mario cant destroy
+                if (screen.activeMario.isMarioMini()) {// Mini Mario cant destroy
                     return;
                 }
 
@@ -153,15 +155,15 @@ public abstract class Intersection {
     public void marioIntersectWithItems() {
 
         for (int i = 0; i < screen.getItemsInThisSection().size(); i++) {
-            int marioWidth = screen.activeMario.get(0).getWidth();
-            int marioHeight = screen.activeMario.get(0).getHeight();
+            int marioWidth = screen.activeMario.getWidth();
+            int marioHeight = screen.activeMario.getHeight();
             int objectWidth = screen.getItemsInThisSection().get(i).getWidth();
             int objectHeight = screen.getItemsInThisSection().get(i).getHeight();
             if (objectWidth <= 0 || objectHeight <= 0 || marioWidth <= 0 || marioHeight <= 0) {
                 continue;
             }
-            int marioX = screen.activeMario.get(0).getX();
-            int marioY = screen.activeMario.get(0).getY();
+            int marioX = screen.activeMario.getX();
+            int marioY = screen.activeMario.getY();
             int objectX = screen.getItemsInThisSection().get(i).getX();
             int objectY = screen.getItemsInThisSection().get(i).getY();
             objectWidth += objectX;
@@ -178,7 +180,7 @@ public abstract class Intersection {
                     if (screen.getItemsInThisSection().get(i) instanceof Coin) {
                         screen.getGameData().thisGameCoin++;
                     } else {
-                        powerUp.allocatePowerUp(screen.activeMario.get(0));
+                        powerUp.allocatePowerUp(screen.activeMario);
                     }
                     screen.getGameData().thisGameScore += screen.getItemsInThisSection().get(i).getScoreItemAdds();
 
@@ -194,7 +196,7 @@ public abstract class Intersection {
 
         for (int i = 0; i < screen.getEnemiesInThisSection().size(); i++) {
             Enemy enemy = screen.getEnemiesInThisSection().get(i);
-            Mario activeMario = screen.activeMario.get(0);
+            Mario activeMario = screen.activeMario;
             int marioWidth = activeMario.getWidth();
             int marioHeight = activeMario.getHeight();
             int objectWidth = enemy.getWidth();
@@ -242,7 +244,7 @@ public abstract class Intersection {
                     }
                 }
 
-                powerUp.decreasePowerUp(screen.activeMario.get(0));
+                powerUp.decreasePowerUp(screen.activeMario);
                 if (activeMario.isMarioShouldDie()) {
                     screen.getGameData().userHeartValue--;
                     gameGodFather.gameTimer.setSectionTime(50);
@@ -260,7 +262,7 @@ public abstract class Intersection {
         // Bomb Hits mario:
         for (int i = 0; i < screen.getBombsInThisSection().size(); i++) {
             BirdBomb bomb = screen.getBombsInThisSection().get(i);
-            Mario activeMario = screen.activeMario.get(0);
+            Mario activeMario = screen.activeMario;
             int marioWidth = activeMario.getWidth();
             int marioHeight = activeMario.getHeight();
             int objectWidth = bomb.getWidth();
@@ -284,7 +286,7 @@ public abstract class Intersection {
                     (marioHeight < marioY || marioHeight > objectY)) {
                 screen.remove(bomb);
                 screen.getBombsInThisSection().remove(i);
-                powerUp.decreasePowerUp(screen.activeMario.get(0));
+                powerUp.decreasePowerUp(screen.activeMario);
                 if (activeMario.isMarioShouldDie()) {
                     screen.getGameData().userHeartValue--;
                     gameGodFather.gameTimer.setSectionTime(50);
@@ -298,15 +300,15 @@ public abstract class Intersection {
 
     public boolean marioIntersectWithEmptyGround() {
         for (int i = 0; i < screen.getEmptySpaceInGroundsInThisSection().size(); i++) {
-            int marioWidth = screen.activeMario.get(0).getWidth();
-            int marioHeight = screen.activeMario.get(0).getHeight();
+            int marioWidth = screen.activeMario.getWidth();
+            int marioHeight = screen.activeMario.getHeight();
             int objectWidth = screen.getEmptySpaceInGroundsInThisSection().get(i).getWidth();
             int objectHeight = screen.getEmptySpaceInGroundsInThisSection().get(i).getHeight();
             if (objectWidth <= 0 || objectHeight <= 0 || marioWidth <= 0 || marioHeight <= 0) {
                 continue;
             }
-            int marioX = screen.activeMario.get(0).getX();
-            int marioY = screen.activeMario.get(0).getY();
+            int marioX = screen.activeMario.getX();
+            int marioY = screen.activeMario.getY();
             int objectX = screen.getEmptySpaceInGroundsInThisSection().get(i).getX();
             int objectY = screen.getEmptySpaceInGroundsInThisSection().get(i).getY();
             objectWidth += objectX;

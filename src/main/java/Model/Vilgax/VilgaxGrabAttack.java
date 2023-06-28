@@ -12,6 +12,7 @@ public class VilgaxGrabAttack extends VilgaxMove {
     @Override
     public void action() {
 
+        vilgax.vilgaxAndMarioConnection.vilgaxGrabMario();
         changeBackground();
 
     }

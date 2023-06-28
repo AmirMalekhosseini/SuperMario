@@ -140,9 +140,9 @@ public class LevelTwoSectionTwoModel {
 
             // send mario x,y,height to spiny
             if (levelTwoSectionTwoScreen.getEnemiesInThisSection().get(i) instanceof Spiny) {
-                int marioX = levelTwoSectionTwoScreen.activeMario.get(0).getX();
-                int marioY = levelTwoSectionTwoScreen.activeMario.get(0).getY();
-                int marioHeight = levelTwoSectionTwoScreen.activeMario.get(0).getHeight();
+                int marioX = levelTwoSectionTwoScreen.activeMario.getX();
+                int marioY = levelTwoSectionTwoScreen.activeMario.getY();
+                int marioHeight = levelTwoSectionTwoScreen.activeMario.getHeight();
                 ((Spiny) levelTwoSectionTwoScreen.getEnemiesInThisSection().get(i)).setMarioX(marioX);
                 ((Spiny) levelTwoSectionTwoScreen.getEnemiesInThisSection().get(i)).setMarioY(marioY);
                 ((Spiny) levelTwoSectionTwoScreen.getEnemiesInThisSection().get(i)).setMarioHeight(marioHeight);
@@ -207,7 +207,7 @@ public class LevelTwoSectionTwoModel {
 
     public void setLocationAfterLoose() {
 
-        levelTwoSectionTwoScreen.activeMario.get(0).setX(100);
+        levelTwoSectionTwoScreen.activeMario.setX(100);
         levelTwoSectionTwoScreen.XUserHeartImage = 1520;
         levelTwoSectionTwoScreen.userHeartImage.setX(levelTwoSectionTwoScreen.XUserHeartImage);
         levelTwoSectionTwoScreen.XThisGameCoinImage = 1110;

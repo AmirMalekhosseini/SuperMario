@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class Castle extends JLabel {
+public class Castle extends ObjectsInGame {
 
     private BufferedImage castleImage;
     private int x;

@@ -2,17 +2,14 @@ package Graphic;
 
 import Graphic.Vilgax.Vilgax;
 import Graphic.Vilgax.VilgaxWeapon;
-import Model.BossFightSectionTime;
-import Model.GameData;
-import Model.MyProjectData;
-import Model.VilgaxAndScreenConnection;
+import Model.*;
 import MyProject.MyProject;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class BossFightScreenSectionScreen extends LevelScreens {
+public class BossFightSectionScreen extends LevelScreens {
 
     protected ArrayList<ObjectsInGame> objectsInThisSection = new ArrayList<>();
     protected ArrayList<BlockInAir> wall_BlockInAir = new ArrayList<>();
@@ -21,6 +18,7 @@ public class BossFightScreenSectionScreen extends LevelScreens {
     protected volatile ArrayList<VilgaxWeapon> vilgaxWeaponsInThisSection = new ArrayList<>();
     GameData gameData;
     public VilgaxAndScreenConnection vilgaxAndScreenConnection;
+    public VilgaxAndMarioConnection vilgaxAndMarioConnection;
     public JLabel backgroundLabelSceneOne;
     public JLabel backgroundLabelSceneTwo;
     public JLabel backgroundLabelSceneThree;
@@ -82,16 +80,15 @@ public class BossFightScreenSectionScreen extends LevelScreens {
     ShooterMario shooterMario;
 
 
-    public BossFightScreenSectionScreen(GameData gameData) {
+    public BossFightSectionScreen(GameData gameData) {
         init(gameData);
     }
 
     private void init(GameData gameData) {
+
         this.gameData = gameData;
-        vilgaxAndScreenConnection = new VilgaxAndScreenConnection(this);
         ImageIcon backgroundImage = new ImageIcon("BackgroundSections.jpg");
-        activeMario = new ArrayList<>();
-        activeMario.add(new NormalMario(0, 0));
+        activeMario = new NormalMario(0, 0);
         Font font1 = MyProjectData.getProjectData().getFont22();
 
         this.setSize(6800, 1100);
@@ -131,33 +128,33 @@ public class BossFightScreenSectionScreen extends LevelScreens {
         thisGameCoinImage.setLocation(thisGameCoinImage.getX(), thisGameCoinImage.getY());
 
         vilgax = new Vilgax(6300, 720);
-        vilgax.addConnection(vilgaxAndScreenConnection);
         this.add(vilgax, Integer.valueOf(2));
 //        Add Mario:
         if (MyProject.activeUser.get(0).isUserChooseNormal_RedMario()) {
-            normalMario = new NormalMario(100, 840);
-            activeMario.set(0, normalMario);
+            normalMario = new NormalMario(5200, 900);
+            activeMario = normalMario;
             this.add(normalMario, Integer.valueOf(2));
         } else if (MyProject.activeUser.get(0).isUserChooseCoin_YellowMario()) {
             coinMario = new CoinMario(100, 840);
-            activeMario.set(0, coinMario);
+            activeMario = coinMario;
             this.add(coinMario, Integer.valueOf(2));
         } else if (MyProject.activeUser.get(0).isUserChooseJumper_GreenMario()) {
             jumperMario = new JumperMario(100, 840);
-            activeMario.set(0, jumperMario);
+            activeMario = jumperMario;
             this.add(jumperMario, Integer.valueOf(2));
         } else if (MyProject.activeUser.get(0).isUserChooseRunner_BlueMario()) {
             runnerMario = new RunnerMario(100, 840);
-            activeMario.set(0, runnerMario);
+            activeMario = runnerMario;
             this.add(runnerMario, Integer.valueOf(2));
         } else if (MyProject.activeUser.get(0).isUserChooseShooter_BlackMario()) {
             shooterMario = new ShooterMario(100, 840);
-            activeMario.set(0, shooterMario);
+            activeMario = shooterMario;
             this.add(shooterMario, Integer.valueOf(2));
         }
 
-
-
+        vilgaxAndScreenConnection = new VilgaxAndScreenConnection(this);
+        vilgaxAndMarioConnection = new VilgaxAndMarioConnection(this);
+        vilgax.addConnection(vilgaxAndScreenConnection, vilgaxAndMarioConnection);
 
         // Scene BossFight:
         Left_Wall_1 = new EmptyBlockInAir(5100, 890);

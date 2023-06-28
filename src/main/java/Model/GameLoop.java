@@ -179,7 +179,7 @@ public class GameLoop {
                     long startTime = System.currentTimeMillis();
 
                     gameGodFather.marioMover.getMarioMoverModel().move();
-                    gameGodFather.marioMover.getMarioMoverModel().activeScreen.activeMario.get(0).changeBackground();
+                    gameGodFather.marioMover.getMarioMoverModel().activeScreen.activeMario.changeBackground();
                     gameGodFather.getLevelOneSectionOneModel().moveShot();
                     gameGodFather.getLevelOneSectionTwoModel().moveShot();
                     setGameDataInLevelOne();

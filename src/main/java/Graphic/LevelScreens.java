@@ -14,8 +14,7 @@ public class LevelScreens extends JLayeredPane {
     protected ArrayList<BirdBomb> bombsInThisSection = new ArrayList<>();
     protected volatile ArrayList<MarioWeapon> weaponsInThisSection = new ArrayList<>();
     protected ArrayList<EmptySpaceInGround> emptySpaceInGroundsInThisSection = new ArrayList<>();
-    // ToDo: change activeMario to an Object
-    public ArrayList<Mario> activeMario;
+    public Mario activeMario;
     GameData gameData;
 
     public UserHeart userHeartImage;
@@ -78,14 +77,6 @@ public class LevelScreens extends JLayeredPane {
 
     public void setEmptySpaceInGroundsInThisSection(ArrayList<EmptySpaceInGround> emptySpaceInGroundsInThisSection) {
         this.emptySpaceInGroundsInThisSection = emptySpaceInGroundsInThisSection;
-    }
-
-    public ArrayList<Mario> getActiveMario() {
-        return activeMario;
-    }
-
-    public void setActiveMario(ArrayList<Mario> activeMario) {
-        this.activeMario = activeMario;
     }
 
     public GameData getGameData() {

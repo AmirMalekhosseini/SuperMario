@@ -3,6 +3,7 @@ package Graphic.Vilgax;
 import Graphic.ObjectsInGame;
 import Model.MyProjectData;
 import Model.Vilgax.*;
+import Model.VilgaxAndMarioConnection;
 import Model.VilgaxAndScreenConnection;
 
 import java.awt.*;
@@ -11,6 +12,7 @@ import java.awt.image.BufferedImage;
 public class Vilgax extends ObjectsInGame {
 
     public VilgaxAndScreenConnection vilgaxAndScreenConnection;
+    public VilgaxAndMarioConnection vilgaxAndMarioConnection;
     private BufferedImage activeBackground;
     private final BufferedImage Vilgax_Phase1;
     private final BufferedImage Vilgax_Phase1_Jump_Attack;
@@ -38,7 +40,7 @@ public class Vilgax extends ObjectsInGame {
     private int height = 240;
     private double XVelocity = -3;// Run: -3
     private double YVelocity = -5;
-    private boolean isVilgaxPhase_2 =true;
+    private boolean isVilgaxPhase_2;
 
     public Vilgax(int x, int y) {
 
@@ -53,7 +55,7 @@ public class Vilgax extends ObjectsInGame {
         vilgaxGrabAttack = new VilgaxGrabAttack(this);
         vilgaxNukeAttack = new VilgaxNukeAttack(this);
         vilgaxJumpAttack = new VilgaxJumpAttack(this);
-        activeMove = vilgaxJump;
+        activeMove = vilgaxGrabAttack;
 
         Vilgax_Phase1 = MyProjectData.getProjectData().getVilgax_Phase1();
         Vilgax_Phase1_Jump_Attack = MyProjectData.getProjectData().getVilgax_Phase1_Jump_Attack();
@@ -72,7 +74,8 @@ public class Vilgax extends ObjectsInGame {
 
     }
 
-    public void addConnection(VilgaxAndScreenConnection vilgaxAndScreenConnection) {
+    public void addConnection(VilgaxAndScreenConnection vilgaxAndScreenConnection, VilgaxAndMarioConnection vilgaxAndMarioConnection) {
+        this.vilgaxAndMarioConnection = vilgaxAndMarioConnection;
         this.vilgaxAndScreenConnection = vilgaxAndScreenConnection;
     }
 

@@ -22,6 +22,7 @@ public abstract class Mario extends ObjectsInGame {
     private boolean isMarioShooter;
     private boolean isMarioEnemyProof;
     private boolean marioShouldDie;
+    private boolean isMarioReleaseFromVilgax;
 
     public Mario() {
 
@@ -151,5 +152,13 @@ public abstract class Mario extends ObjectsInGame {
 
     public void setMarioShouldDie(boolean marioShouldDie) {
         this.marioShouldDie = marioShouldDie;
+    }
+
+    public boolean isMarioReleaseFromVilgax() {
+        return isMarioReleaseFromVilgax;
+    }
+
+    public void setMarioReleaseFromVilgax(boolean marioReleaseFromVilgax) {
+        isMarioReleaseFromVilgax = marioReleaseFromVilgax;
     }
 }
