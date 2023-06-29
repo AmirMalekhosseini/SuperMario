@@ -1,5 +1,6 @@
 package Model;
 
+import Graphic.Bomb;
 import Graphic.BossFightSectionScreen;
 import Graphic.Vilgax.VilgaxWeapon;
 
@@ -21,6 +22,13 @@ public class VilgaxAndScreenConnection {
         for (VilgaxWeapon weapon : bossFightSectionScreen.getVilgaxWeaponsInThisSection()) {
             weapon.move();
         }
+    }
+
+    public void addVilgaxBombToScreen(Bomb bomb) {
+
+        bossFightSectionScreen.add(bomb, Integer.valueOf(1));
+        bossFightSectionScreen.getBombsInThisSection().add(bomb);
+
     }
 
 }

@@ -102,9 +102,9 @@ public abstract class ScreenController {
                     }
                 }
 
-                ArrayList<BirdBomb> bombInThisSection = screen.getBombsInThisSection();
+                ArrayList<Bomb> bombInThisSection = screen.getBombsInThisSection();
                 for (int i = 0; i < bombInThisSection.size(); i++) {
-                    BirdBomb bomb = bombInThisSection.get(i);
+                    Bomb bomb = bombInThisSection.get(i);
 
                     if (!gravity.isItemOnTopOfAnObject(bomb) &&
                             (bomb.getY() <= 940 - bomb.getHeight())) {
@@ -158,7 +158,7 @@ public abstract class ScreenController {
                 ((Bird) screen.getEnemiesInThisSection().get(i)).setThrowBomb(false);
                 int xBomb = screen.getEnemiesInThisSection().get(i).getX();
                 int yBomb = screen.getEnemiesInThisSection().get(i).getY() + 200;
-                BirdBomb bomb = new BirdBomb(xBomb, yBomb);
+                Bomb bomb = new Bomb(xBomb, yBomb);
                 screen.add(bomb, Integer.valueOf(1));
                 screen.getBombsInThisSection().add(bomb);
             }

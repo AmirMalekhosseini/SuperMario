@@ -20,6 +20,7 @@ public class MyProjectData {
     protected ImageIcon coinMarioImage;
 
     protected BufferedImage Vilgax_FireBall;
+    protected BufferedImage Vilgax_Button;
     protected BufferedImage Vilgax_Phase1;
     protected BufferedImage Vilgax_Phase1_Jump_Attack;
     protected BufferedImage Vilgax_Phase1_Filliped;
@@ -280,6 +281,15 @@ public class MyProjectData {
             String pathBackground = "Enemy/Vilgax/Vilgax_FireBall.png";
             File fileBackground = new File(pathBackground);
             Vilgax_FireBall = ImageIO.read(fileBackground);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            String pathBackground = "Enemy/Vilgax/Button.png";
+            File fileBackground = new File(pathBackground);
+            Vilgax_Button = ImageIO.read(fileBackground);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -1766,5 +1776,9 @@ public class MyProjectData {
 
     public BufferedImage getVilgax_FireBall() {
         return Vilgax_FireBall;
+    }
+
+    public BufferedImage getVilgax_Button() {
+        return Vilgax_Button;
     }
 }

@@ -4,12 +4,12 @@ import Graphic.*;
 
 public class LevelOneSectionOneModel extends ScreenModel {
 
-    public LevelOneSectionOneModel(LevelOneSectionOneScreen levelOneSectionOneScreen, IntersectInLevelOneSectionOne intersect, MarioMoverModel marioMoverModel) {
+    public LevelOneSectionOneModel(LevelOneSectionOneScreen screen, IntersectInLevelOneSectionOne intersect, MarioMoverModel marioMoverModel) {
         this.marioMoverModel = marioMoverModel;
         this.intersect = intersect;
-        this.screen = levelOneSectionOneScreen;
+        this.screen = screen;
 
-        controller = new ScreenController(screen, intersect, marioMoverModel) {
+        controller = new ScreenController(LevelOneSectionOneModel.this.screen, intersect, marioMoverModel) {
             @Override
             public void gravityStarter() {
                 super.gravityStarter();

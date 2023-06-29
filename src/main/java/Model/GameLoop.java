@@ -316,27 +316,11 @@ public class GameLoop {
                 long targetTime = 1000 / fps;
                 if (!gameGodFather.getGameData().isGameFinish) {
                     long startTime = System.currentTimeMillis();
-                    if (gameGodFather.getGameData().getMarioLocation().equalsIgnoreCase("levelonesectionone")) {
-                        gameGodFather.getLevelOneSectionOneModel().controller.moveEnemy();
-                        gameGodFather.getLevelOneSectionOneModel().controller.moveItem();
-                        gameGodFather.intersectInLevelOneSectionOne.intersection.intersectShot();
-                        gameGodFather.getLevelOneSectionOneModel().controller.startThrowSword();
-                    } else if (gameGodFather.getGameData().getMarioLocation().equalsIgnoreCase("levelonesectiontwo")) {
-                        gameGodFather.getLevelOneSectionTwoModel().controller.moveEnemy();
-                        gameGodFather.getLevelOneSectionTwoModel().controller.moveItem();
-                        gameGodFather.intersectInLevelOneSectionTwo.intersection.intersectShot();
-                        gameGodFather.getLevelOneSectionTwoModel().controller.startThrowSword();
-                    } else if (gameGodFather.getGameData().getMarioLocation().equalsIgnoreCase("leveltwosectionone")) {
-                        gameGodFather.getLevelTwoSectionOneModel().controller.moveEnemy();
-                        gameGodFather.getLevelTwoSectionOneModel().controller.moveItem();
-                        gameGodFather.intersectInLevelTwoSectionOne.intersection.intersectShot();
-                        gameGodFather.getLevelTwoSectionOneModel().controller.startThrowSword();
-                    } else if (gameGodFather.getGameData().getMarioLocation().equalsIgnoreCase("levelTwosectiontwo")) {
-                        gameGodFather.getLevelTwoSectionTwoModel().controller.moveEnemy();
-                        gameGodFather.getLevelTwoSectionTwoModel().controller.moveItem();
-                        gameGodFather.intersectInLevelTwoSectionTwo.intersection.intersectShot();
-                        gameGodFather.getLevelTwoSectionTwoModel().controller.startThrowSword();
-                    }
+
+                    gameGodFather.activeLevel.screenModel.controller.moveEnemy();
+                    gameGodFather.activeLevel.screenModel.controller.moveItem();
+                    gameGodFather.activeLevel.screenModel.controller.startThrowSword();
+                    gameGodFather.activeLevel.intersect.intersection.intersectShot();
 
                     long elapsedTime = System.currentTimeMillis() - startTime;
                     long sleepTime = targetTime - elapsedTime;
@@ -368,6 +352,7 @@ public class GameLoop {
 
                     gameGodFather.getBossFightScreenSection().vilgax.activeMove.action();
                     gameGodFather.getBossFightScreenSection().vilgaxAndScreenConnection.moveVilgaxWeapon();
+                    gameGodFather.intersectInBossSection.vilgaxIntersection.vilgaxIntersectWithObjects();
                     long elapsedTime = System.currentTimeMillis() - startTime;
                     long sleepTime = targetTime - elapsedTime;
                     if (sleepTime > 0) {

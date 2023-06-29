@@ -26,6 +26,7 @@ public class GameGodFather {
     protected JPanel levelTwoGameBackgroundPanel;
     protected JPanel levelThreeGameBackgroundPanel;
     protected BossFightSectionScreen bossFightSectionScreen;
+    protected BossFightSectionModel bossFightSectionModel;
     protected HiddenCoinSectionScreen hiddenCoinSectionScreen;
     protected HiddenCoinSectionModel hiddenCoinSectionModel;
     protected HiddenEnemySectionScreen hiddenEnemySectionScreen;
@@ -44,6 +45,7 @@ public class GameGodFather {
     public IntersectInLevelTwoSectionTwo intersectInLevelTwoSectionTwo;
     public IntersectInHiddenCoinSection intersectInHiddenCoinSection;
     public IntersectInHiddenEnemySection intersectInHiddenEnemySection;
+    public IntersectInBossSection intersectInBossSection;
     public MarioMover marioMover;
     public MarioMoverModel marioMoverModel;
     public GameLoop gameLoop;
@@ -104,7 +106,7 @@ public class GameGodFather {
 
             levelOneGameBackgroundPanel.setBounds(xLevelOneBackgroundPanel, 0, 14000, 1300);
             levelOneGameBackgroundPanel.setLayout(null);
-            levelOneGameBackgroundPanel.setVisible(true);
+            levelOneGameBackgroundPanel.setVisible(false);
             levelOneGameBackgroundPanel.add(levelOneSectionOneScreen);
             levelOneGameBackgroundPanel.add(levelOneSectionTwoScreen);
             gamePanels[2] = levelOneGameBackgroundPanel;
@@ -118,7 +120,7 @@ public class GameGodFather {
 
             levelThreeGameBackgroundPanel.setBounds(xLevelThreeBackgroundPanel, 0, 14000, 1300);
             levelThreeGameBackgroundPanel.setLayout(null);
-            levelThreeGameBackgroundPanel.setVisible(false);
+            levelThreeGameBackgroundPanel.setVisible(true);
             levelThreeGameBackgroundPanel.add(bossFightSectionScreen);
             gamePanels[4] = levelThreeGameBackgroundPanel;
 
@@ -138,6 +140,7 @@ public class GameGodFather {
             intersectInLevelTwoSectionTwo = new IntersectInLevelTwoSectionTwo(godFather, powerUp);
             intersectInHiddenCoinSection = new IntersectInHiddenCoinSection(godFather, powerUp);
             intersectInHiddenEnemySection = new IntersectInHiddenEnemySection(godFather, powerUp);
+            intersectInBossSection = new IntersectInBossSection(godFather, powerUp);
             gravityData = new GravityData();
             hiddenEnemySectionModel = new HiddenEnemySectionModel(hiddenEnemySectionScreen, intersectInHiddenEnemySection, marioMoverModel);
             hiddenCoinSectionModel = new HiddenCoinSectionModel(hiddenCoinSectionScreen, intersectInHiddenCoinSection, marioMoverModel);
@@ -145,6 +148,7 @@ public class GameGodFather {
             levelOneSectionTwoModel = new LevelOneSectionTwoModel(levelOneSectionTwoScreen, intersectInLevelOneSectionTwo, marioMoverModel);
             levelTwoSectionOneModel = new LevelTwoSectionOneModel(levelTwoSectionOneScreen, intersectInLevelTwoSectionOne, marioMoverModel);
             levelTwoSectionTwoModel = new LevelTwoSectionTwoModel(levelTwoSectionTwoScreen, intersectInLevelTwoSectionTwo, marioMoverModel);
+            bossFightSectionModel = new BossFightSectionModel(bossFightSectionScreen, intersectInBossSection, marioMoverModel);
             gameLoop = new GameLoop(godFather);
 
 
@@ -270,6 +274,14 @@ public class GameGodFather {
 
     public void setBossFightScreenSection(BossFightSectionScreen bossFightSectionScreen) {
         this.bossFightSectionScreen = bossFightSectionScreen;
+    }
+
+    public BossFightSectionModel getBossFightSectionModel() {
+        return bossFightSectionModel;
+    }
+
+    public void setBossFightSectionModel(BossFightSectionModel bossFightSectionModel) {
+        this.bossFightSectionModel = bossFightSectionModel;
     }
 
     public IntersectInLevelOneSectionOne getIntersectMarioAndObjectsInLevelOneSectionOne() {

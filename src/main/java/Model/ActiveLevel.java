@@ -17,7 +17,7 @@ public class ActiveLevel {
 
     public ActiveLevel(GameGodFather godFather) {
         this.godFather = godFather;
-        levelPanel = godFather.getLevelOneGameBackgroundPanel();
+        levelPanel = godFather.getLevelThreeGameBackgroundPanel();
     }
 
 

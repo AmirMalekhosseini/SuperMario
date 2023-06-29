@@ -43,7 +43,7 @@ public class MarioMoverModel {
             if (activeMario.getX() <= 6400) {// Game is in SectionOne:
                 if (!marioEnterInLevelOneSectionOne) {
                     marioEnterInLevelOneSectionOne = true;
-                    godFather.getGameData().setMarioLocation("levelonesectionone");
+//                    godFather.getGameData().setMarioLocation("levelonesectionone");
                     activeLevel.intersect = godFather.intersectInLevelOneSectionOne;
                     activeLevel.screen = godFather.getLevelOneSectionOneScreen();
                     activeLevel.screenModel = godFather.getLevelOneSectionOneModel();
@@ -62,7 +62,7 @@ public class MarioMoverModel {
                     godFather.gameTimer.setSectionTime(50);
                     // Add Score At The End Of SectionOne
                     godFather.calculateScore.calculateScore(godFather.getLevelOneSectionOneScreen());
-                    godFather.getGameData().setMarioLocation("levelonesectiontwo");
+//                    godFather.getGameData().setMarioLocation("levelonesectiontwo");
                     godFather.getPowerUp().loadPowerUp(activeMario);
                     marioEnterInLevelOneSectionTwo = true;
                 }
@@ -104,6 +104,16 @@ public class MarioMoverModel {
                 }
             }
 
+        } else if (godFather.getLevelThreeGameBackgroundPanel() == godFather.activeLevel.levelPanel) {
+
+            godFather.getGameData().setMarioLocation("bossfightsection");
+            activeLevel.mario = godFather.getBossFightScreenSection().activeMario;
+            activeMario = activeLevel.mario;
+            activeLevel.intersect = godFather.intersectInBossSection;
+            activeLevel.screen = godFather.getBossFightScreenSection();
+            activeLevel.screenModel = godFather.getBossFightSectionModel();
+//            godFather.getPowerUp().loadPowerUp(activeMario);
+
         } else if (godFather.getHiddenCoinBackgroundPanel() == godFather.activeLevel.levelPanel) {// Game is in HiddenCoin:
 
             godFather.getGameData().setMarioLocation("hiddencoinsection");
@@ -144,6 +154,7 @@ public class MarioMoverModel {
 
             if (upMario) {// Mario start jumping
 
+                activeMario.setMarioOnGround(false);
                 activeMario.setVelocityY(activeMario.getVelocityY() + (GravityData.getGravityData().gravity * GravityData.getGravityData().marioDt));
                 activeMario.setY((int) (activeMario.getY() + activeMario.getVelocityY()));
                 activeMario.setMarioJumping(true);// Mario is jumping
@@ -166,6 +177,7 @@ public class MarioMoverModel {
 
                     upMario = false;
                     isUserPressedUp = false;
+                    activeMario.setMarioOnGround(true);
                     activeMario.setMarioJumping(false);
                     activeLevel.intersect.intersection.setMarioHitsAnObject(false);
                     activeLevel.intersect.intersection.setMarioHitsFullOfCoinBlockInAir(false);

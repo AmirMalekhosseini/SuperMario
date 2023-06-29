@@ -41,6 +41,7 @@ public class Vilgax extends ObjectsInGame {
     private double XVelocity = -3;// Run: -3
     private double YVelocity = -5;
     private boolean isVilgaxPhase_2;
+    private int health = 100;
 
     public Vilgax(int x, int y) {
 
@@ -55,7 +56,7 @@ public class Vilgax extends ObjectsInGame {
         vilgaxGrabAttack = new VilgaxGrabAttack(this);
         vilgaxNukeAttack = new VilgaxNukeAttack(this);
         vilgaxJumpAttack = new VilgaxJumpAttack(this);
-        activeMove = vilgaxGrabAttack;
+        activeMove = vilgaxNukeAttack;
 
         Vilgax_Phase1 = MyProjectData.getProjectData().getVilgax_Phase1();
         Vilgax_Phase1_Jump_Attack = MyProjectData.getProjectData().getVilgax_Phase1_Jump_Attack();
@@ -196,5 +197,13 @@ public class Vilgax extends ObjectsInGame {
 
     public void setVilgaxPhase_2(boolean vilgaxPhase_2) {
         isVilgaxPhase_2 = vilgaxPhase_2;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
     }
 }

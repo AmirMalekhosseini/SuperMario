@@ -41,7 +41,7 @@ public class IntersectInLevelOneSectionTwo extends IntersectInGame {
             }
 
             @Override
-            public void bombIntersection(BirdBomb bomb) {
+            public void bombIntersection(Bomb bomb) {
                 super.bombIntersection(bomb);
             }
 

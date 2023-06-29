@@ -5,21 +5,9 @@ import Graphic.*;
 public class PowerUp {
 
     GameGodFather gameGodFather;
-    LevelOneSectionOneScreen levelOneSectionOneScreen;
-    LevelOneSectionTwoScreen levelOneSectionTwoScreen;
-    LevelTwoSectionOneScreen levelTwoSectionOneScreen;
-    LevelTwoSectionTwoScreen levelTwoSectionTwoScreen;
-    HiddenCoinSectionScreen hiddenCoinSectionScreen;
-    HiddenEnemySectionScreen hiddenEnemySectionScreen;
 
     public PowerUp(GameGodFather gameGodFather) {
         this.gameGodFather = gameGodFather;
-        this.levelOneSectionOneScreen = gameGodFather.getLevelOneSectionOneScreen();
-        this.levelOneSectionTwoScreen = gameGodFather.getLevelOneSectionTwoScreen();
-        this.levelTwoSectionOneScreen = gameGodFather.getLevelTwoSectionOneScreen();
-        this.levelTwoSectionTwoScreen = gameGodFather.getLevelTwoSectionTwoScreen();
-        this.hiddenCoinSectionScreen = gameGodFather.getHiddenCoinSectionScreen();
-        this.hiddenEnemySectionScreen = gameGodFather.getHiddenEnemySectionScreen();
     }
 
     public void allocatePowerUp(Mario activeMario) {

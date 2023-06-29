@@ -1,49 +1,33 @@
-package Graphic;
+package Graphic.Vilgax;
 
+import Graphic.ObjectsInGame;
 import Model.MyProjectData;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class BirdBomb extends Enemy {
+public class VilgaxButton extends ObjectsInGame {
 
-    private BufferedImage activeBackground;
     private BufferedImage background;
     private int x;
     private int y;
-    private int width = 30;
-    private int height = 65;
+    private int width = 50;
+    private int height = 50;
 
-    public BirdBomb(int xx, int yy) {
+    public VilgaxButton(int x, int y) {
+
+        background = MyProjectData.getProjectData().getVilgax_Button();
 
         this.setSize(width, height);
+        this.x = x;
+        this.y = y;
 
-        background = MyProjectData.getProjectData().getBirdBomb();
-        activeBackground = background;
-
-        this.x = xx;
-        this.y = yy;
-
-    }
-
-    public BirdBomb() {
-
-    }
-
-    @Override
-    public void move() {
-
-    }
-    @Override
-    public void changeBackground() {
-        activeBackground = background;
     }
 
     protected void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
         Graphics2D graphics2D = (Graphics2D) graphics;
-        graphics2D.drawImage(activeBackground, -15, 0, null);
+        graphics2D.drawImage(background, 0, 0, 50, 50, null);
     }
 
     @Override
@@ -51,6 +35,7 @@ public class BirdBomb extends Enemy {
         return x;
     }
 
+    @Override
     public void setX(int x) {
         this.x = x;
     }
@@ -60,6 +45,7 @@ public class BirdBomb extends Enemy {
         return y;
     }
 
+    @Override
     public void setY(int y) {
         this.y = y;
     }
@@ -69,6 +55,7 @@ public class BirdBomb extends Enemy {
         return width;
     }
 
+    @Override
     public void setWidth(int width) {
         this.width = width;
     }
@@ -78,8 +65,8 @@ public class BirdBomb extends Enemy {
         return height;
     }
 
+    @Override
     public void setHeight(int height) {
         this.height = height;
     }
-
 }

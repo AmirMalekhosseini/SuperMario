@@ -12,7 +12,7 @@ public class LevelOneSectionOneScreen extends LevelScreens {
     protected ArrayList<ObjectsInGame> objectsInThisSection = new ArrayList<>();
     protected ArrayList<ItemsInGame> itemsInThisSection = new ArrayList<>();
     protected volatile ArrayList<Enemy> enemiesInThisSection = new ArrayList<>();
-    protected ArrayList<BirdBomb> bombsInThisSection = new ArrayList<>();
+    protected ArrayList<Bomb> bombsInThisSection = new ArrayList<>();
     protected volatile ArrayList<MarioWeapon> weaponsInThisSection = new ArrayList<>();
     protected ArrayList<EmptySpaceInGround> emptySpaceInGroundsInThisSection = new ArrayList<>();
 
@@ -327,11 +327,11 @@ public class LevelOneSectionOneScreen extends LevelScreens {
         return emptySpaceInGroundsInThisSection;
     }
 
-    public ArrayList<BirdBomb> getBombsInThisSection() {
+    public ArrayList<Bomb> getBombsInThisSection() {
         return bombsInThisSection;
     }
 
-    public void setBombsInThisSection(ArrayList<BirdBomb> bombsInThisSection) {
+    public void setBombsInThisSection(ArrayList<Bomb> bombsInThisSection) {
         this.bombsInThisSection = bombsInThisSection;
     }
 

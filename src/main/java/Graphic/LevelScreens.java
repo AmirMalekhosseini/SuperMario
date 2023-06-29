@@ -1,7 +1,7 @@
 package Graphic;
 
+import Graphic.Vilgax.Vilgax;
 import Model.GameData;
-import Model.SectionsTime;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -11,7 +11,7 @@ public class LevelScreens extends JLayeredPane {
     protected ArrayList<ObjectsInGame> objectsInThisSection = new ArrayList<>();
     protected ArrayList<ItemsInGame> itemsInThisSection = new ArrayList<>();
     protected volatile ArrayList<Enemy> enemiesInThisSection = new ArrayList<>();
-    protected ArrayList<BirdBomb> bombsInThisSection = new ArrayList<>();
+    protected ArrayList<Bomb> bombsInThisSection = new ArrayList<>();
     protected volatile ArrayList<MarioWeapon> weaponsInThisSection = new ArrayList<>();
     protected ArrayList<EmptySpaceInGround> emptySpaceInGroundsInThisSection = new ArrayList<>();
     public Mario activeMario;
@@ -55,11 +55,11 @@ public class LevelScreens extends JLayeredPane {
         this.enemiesInThisSection = enemiesInThisSection;
     }
 
-    public ArrayList<BirdBomb> getBombsInThisSection() {
+    public ArrayList<Bomb> getBombsInThisSection() {
         return bombsInThisSection;
     }
 
-    public void setBombsInThisSection(ArrayList<BirdBomb> bombsInThisSection) {
+    public void setBombsInThisSection(ArrayList<Bomb> bombsInThisSection) {
         this.bombsInThisSection = bombsInThisSection;
     }
 

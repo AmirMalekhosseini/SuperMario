@@ -1,9 +1,11 @@
 package Model.Vilgax;
 
+import Graphic.Bomb;
 import Graphic.Vilgax.Vilgax;
 
-public class VilgaxNukeAttack extends VilgaxMove {
+import java.util.Random;
 
+public class VilgaxNukeAttack extends VilgaxMove {
 
     public VilgaxNukeAttack(Vilgax vilgax) {
         this.vilgax = vilgax;
@@ -12,7 +14,11 @@ public class VilgaxNukeAttack extends VilgaxMove {
     @Override
     public void action() {
 
+        // ToDO: make it only one time attack
+        Bomb bomb = new Bomb(generateBombX(), 300);
+        vilgax.vilgaxAndScreenConnection.addVilgaxBombToScreen(bomb);
         changeBackground();
+        vilgax.activeMove = vilgax.vilgaxRun;
 
     }
 
@@ -20,4 +26,12 @@ public class VilgaxNukeAttack extends VilgaxMove {
     public void changeBackground() {
 
     }
+
+    public int  generateBombX() {
+
+        Random random = new Random();
+
+        return random.nextInt(6300 - 5400) + 5400;
+    }
+
 }

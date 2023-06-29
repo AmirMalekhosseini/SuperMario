@@ -23,6 +23,12 @@ public abstract class Intersection {
         this.screen = screen;
     }
 
+    public Intersection(GameGodFather gameGodFather, PowerUp powerUp, BossFightSectionScreen screen) {
+        this.powerUp = powerUp;
+        this.gameGodFather = gameGodFather;
+        this.screen = screen;
+    }
+
 
     public void marioIntersectWithObjects() {
 
@@ -113,7 +119,7 @@ public abstract class Intersection {
                     gameGodFather.getGameData().thisGameScore++;
                     marioHitsAnObject = true;
                     i = 0;
-                    continue;
+                    return;
                 } else if (screen.getObjectsInThisSection().get(i) instanceof OneCoinBlockInAir && marioHitsDownOfTheObject && !marioHitsAnObject) {
                     int x = screen.getObjectsInThisSection().get(i).getX();
                     int y = screen.getObjectsInThisSection().get(i).getY() - 50;
@@ -128,7 +134,7 @@ public abstract class Intersection {
                     gameGodFather.getGameData().thisGameScore++;
                     marioHitsAnObject = true;
                     i = 0;
-                    continue;
+                    return;
                 } else if (screen.getObjectsInThisSection().get(i) instanceof FullOfCoinBlockInAir && marioHitsDownOfTheObject
                         && !marioHitsAnObject && !marioHitsFullOfCoinBlockInAir) {
                     ((FullOfCoinBlockInAir) screen.getObjectsInThisSection().get(i)).hitCounter++;
@@ -144,7 +150,7 @@ public abstract class Intersection {
                         screen.add(newEmptyBlockInAir, Integer.valueOf(1));
                     }
                     i = 0;
-                    continue;
+                    return;
                 }
 
                 break;
@@ -261,7 +267,7 @@ public abstract class Intersection {
 
         // Bomb Hits mario:
         for (int i = 0; i < screen.getBombsInThisSection().size(); i++) {
-            BirdBomb bomb = screen.getBombsInThisSection().get(i);
+            Bomb bomb = screen.getBombsInThisSection().get(i);
             Mario activeMario = screen.activeMario;
             int marioWidth = activeMario.getWidth();
             int marioHeight = activeMario.getHeight();
@@ -536,7 +542,7 @@ public abstract class Intersection {
         return false;
     }
 
-    public void bombIntersection(BirdBomb bomb) {
+    public void bombIntersection(Bomb bomb) {
 
         // Bomb Hits Ground:
         if (bomb.getY() + bomb.getHeight() >= 940) {

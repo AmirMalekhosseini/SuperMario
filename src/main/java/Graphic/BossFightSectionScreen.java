@@ -14,8 +14,11 @@ public class BossFightSectionScreen extends LevelScreens {
     protected ArrayList<ObjectsInGame> objectsInThisSection = new ArrayList<>();
     protected ArrayList<BlockInAir> wall_BlockInAir = new ArrayList<>();
     protected ArrayList<ItemsInGame> itemsInThisSection = new ArrayList<>();
+    protected ArrayList<Bomb> bombsInThisSection = new ArrayList<>();
+    protected volatile ArrayList<Enemy> enemiesInThisSection = new ArrayList<>();
     protected volatile ArrayList<MarioWeapon> weaponsInThisSection = new ArrayList<>();
     protected volatile ArrayList<VilgaxWeapon> vilgaxWeaponsInThisSection = new ArrayList<>();
+    protected ArrayList<EmptySpaceInGround> emptySpaceInGroundsInThisSection = new ArrayList<>();
     GameData gameData;
     public VilgaxAndScreenConnection vilgaxAndScreenConnection;
     public VilgaxAndMarioConnection vilgaxAndMarioConnection;
@@ -326,6 +329,33 @@ public class BossFightSectionScreen extends LevelScreens {
 
     public void setVilgaxWeaponsInThisSection(ArrayList<VilgaxWeapon> vilgaxWeaponsInThisSection) {
         this.vilgaxWeaponsInThisSection = vilgaxWeaponsInThisSection;
+    }
+
+    @Override
+    public ArrayList<Bomb> getBombsInThisSection() {
+        return bombsInThisSection;
+    }
+
+    public void setBombsInThisSection(ArrayList<Bomb> bombsInThisSection) {
+        this.bombsInThisSection = bombsInThisSection;
+    }
+
+    @Override
+    public ArrayList<Enemy> getEnemiesInThisSection() {
+        return enemiesInThisSection;
+    }
+
+    public void setEnemiesInThisSection(ArrayList<Enemy> enemiesInThisSection) {
+        this.enemiesInThisSection = enemiesInThisSection;
+    }
+
+    @Override
+    public ArrayList<EmptySpaceInGround> getEmptySpaceInGroundsInThisSection() {
+        return emptySpaceInGroundsInThisSection;
+    }
+
+    public void setEmptySpaceInGroundsInThisSection(ArrayList<EmptySpaceInGround> emptySpaceInGroundsInThisSection) {
+        this.emptySpaceInGroundsInThisSection = emptySpaceInGroundsInThisSection;
     }
 
     @Override

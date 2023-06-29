@@ -11,7 +11,7 @@ public class LevelOneSectionTwoScreen extends LevelScreens {
     protected ArrayList<ObjectsInGame> objectsInThisSection = new ArrayList<>();
     protected ArrayList<ItemsInGame> itemsInThisSection = new ArrayList<>();
     protected ArrayList<Enemy> enemiesInThisSection = new ArrayList<>();
-    protected ArrayList<BirdBomb> bombsInThisSection = new ArrayList<>();
+    protected ArrayList<Bomb> bombsInThisSection = new ArrayList<>();
     protected ArrayList<MarioWeapon> weaponsInThisSection = new ArrayList<>();
     protected ArrayList<EmptySpaceInGround> emptySpaceInGroundsInThisSection = new ArrayList<>();
     GameData gameData;
@@ -302,11 +302,11 @@ public class LevelOneSectionTwoScreen extends LevelScreens {
     public ArrayList<EmptySpaceInGround> getEmptySpaceInGroundsInThisSection() {
         return emptySpaceInGroundsInThisSection;
     }
-    public ArrayList<BirdBomb> getBombsInThisSection() {
+    public ArrayList<Bomb> getBombsInThisSection() {
         return bombsInThisSection;
     }
 
-    public void setBombsInThisSection(ArrayList<BirdBomb> bombsInThisSection) {
+    public void setBombsInThisSection(ArrayList<Bomb> bombsInThisSection) {
         this.bombsInThisSection = bombsInThisSection;
     }
 
