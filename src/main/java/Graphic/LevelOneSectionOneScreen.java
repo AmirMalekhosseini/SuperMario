@@ -286,7 +286,7 @@ public class LevelOneSectionOneScreen extends LevelScreens {
         enemiesInThisSection.add(fifthEnemyInSceneThree);
 
         // Scene Four:
-        this.add(castle, Integer.valueOf(1));
+        objectsInThisSection.add(castle);
         objectsInThisSection.add(pipeHorizontalSceneFour);
 
         // Add To Screen:

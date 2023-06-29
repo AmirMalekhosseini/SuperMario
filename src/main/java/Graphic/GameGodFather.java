@@ -14,6 +14,7 @@ public class GameGodFather {
     private Model modelStarter;
     protected ArrayList<LevelScreens> gameScreens = new ArrayList<>();
     public GameTimer gameTimer;
+    public ActiveLevel activeLevel;
     protected GameData gameData;
     protected PowerUp powerUp;
     protected GravityData gravityData;
@@ -56,6 +57,7 @@ public class GameGodFather {
         init(gameData);
         gameTimer = new GameTimer(gameData);
         graphicStarter.startGraphic(gameData);
+        activeLevel = new ActiveLevel(this);
         modelStarter.startModel(this);
     }
 
