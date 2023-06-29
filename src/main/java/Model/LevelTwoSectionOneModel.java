@@ -2,222 +2,56 @@ package Model;
 
 import Graphic.*;
 
-import java.util.ArrayList;
-
-public class LevelTwoSectionOneModel {
-
-    LevelTwoSectionOneScreen levelTwoSectionOneScreen;
-    IntersectInLevelTwoSectionOne intersect;
-    MarioMoverModel marioMoverModel;
-    private int swordCoolDownCounter = 10;
-    public Gravity gravity;
+public class LevelTwoSectionOneModel extends ScreenModel {
 
     public LevelTwoSectionOneModel(LevelTwoSectionOneScreen levelTwoSectionOneScreen, IntersectInLevelTwoSectionOne intersect, MarioMoverModel marioMoverModel) {
         this.marioMoverModel = marioMoverModel;
         this.intersect = intersect;
-        this.levelTwoSectionOneScreen = levelTwoSectionOneScreen;
-        gravityStarter();
-    }
+        this.screen = levelTwoSectionOneScreen;
 
-    public void gravityStarter() {
-
-        gravity = new Gravity() {
+        controller = new ScreenController(screen, intersect, marioMoverModel) {
             @Override
-            public boolean isItemOnTopOfAnObject(ObjectsInGame object) {
-
-                for (ObjectsInGame objects : levelTwoSectionOneScreen.getObjectsInThisSection()) {
-                    int firstObjectWidth = object.getWidth();
-                    int firstObjectHeight = object.getHeight() + 5;
-                    int secondObjectWidth = objects.getWidth();
-                    int secondObjectHeight = objects.getHeight();
-                    if (secondObjectWidth <= 0 || secondObjectHeight <= 0 || firstObjectWidth <= 0 || firstObjectHeight <= 0) {
-                        continue;
-                    }
-                    int firstObjectX = object.getX();
-                    int firstObjectY = object.getY();
-                    int secondObjectX = objects.getX();
-                    int secondObjectY = objects.getY();
-                    secondObjectWidth += secondObjectX;
-                    secondObjectHeight += secondObjectY;
-                    firstObjectWidth += firstObjectX;
-                    firstObjectHeight += firstObjectY;
-
-                    //      overflow || marioIntersectWithObjects
-                    if ((secondObjectWidth < secondObjectX || secondObjectWidth > firstObjectX) &&
-                            (secondObjectHeight < secondObjectY || secondObjectHeight > firstObjectY) &&
-                            (firstObjectWidth < firstObjectX || firstObjectWidth > secondObjectX) &&
-                            (firstObjectHeight < firstObjectY || firstObjectHeight > secondObjectY)) {
-
-                        if ((firstObjectWidth >= secondObjectX || secondObjectWidth >= firstObjectX) && firstObjectHeight <= secondObjectY + 10) {// Hit up of Object
-                            return false;
-                        }
-                    }
-                }
-                return true;
+            public void gravityStarter() {
+                super.gravityStarter();
             }
 
             @Override
-            public void allocateGravity() {
+            public void moveItem() {
+                super.moveItem();
+            }
 
-                for (ItemsInGame itemsInGame : levelTwoSectionOneScreen.getItemsInThisSection()) {
+            @Override
+            public void moveEnemy() {
+                super.moveEnemy();
+            }
 
-                    if (itemsInGame instanceof Star && ((Star) itemsInGame).isJumping()) {
-                        continue;
-                    }
+            @Override
+            public void moveShot() {
+                super.moveShot();
+            }
 
-                    // Object is on the Ground or On an Object:
-                    if (gravity.isItemOnTopOfAnObject(itemsInGame) &&
-                            (itemsInGame.getY() <= 920 - itemsInGame.getHeight())) {
-                        int currentY = itemsInGame.getY();
-                        itemsInGame.setY(currentY + 10);
-                        try {
-                            Thread.sleep(5);
-                        } catch (InterruptedException e) {
-                            throw new RuntimeException(e);
-                        }
-                    }
+            @Override
+            public void startThrowSword() {
+                super.startThrowSword();
+            }
 
-                }
+            @Override
+            public void setLocationAfterLoose() {
+                super.setLocationAfterLoose();
+            }
 
-                for (Enemy enemy : levelTwoSectionOneScreen.getEnemiesInThisSection()) {
+            @Override
+            public int getSwordCoolDownCounter() {
+                return super.getSwordCoolDownCounter();
+            }
 
-                    if (enemy instanceof Plant || enemy instanceof Bird) {
-                        continue;
-                    }
-                    if (gravity.isItemOnTopOfAnObject(enemy) &&
-                            (enemy.getY() <= 940 - enemy.getHeight())) {
-                        // Object is not on the Ground or On an Object:
-                        int currentY = enemy.getY();
-                        enemy.setY(currentY + 10);
-                        try {
-                            Thread.sleep(5);
-                        } catch (InterruptedException e) {
-                            throw new RuntimeException(e);
-                        }
-                    }
-                }
-
-                ArrayList<BirdBomb> bombInThisSection = levelTwoSectionOneScreen.getBombsInThisSection();
-                for (int i = 0; i < bombInThisSection.size(); i++) {
-                    BirdBomb bomb = bombInThisSection.get(i);
-
-                    if (!gravity.isItemOnTopOfAnObject(bomb) &&
-                            (bomb.getY() <= 940 - bomb.getHeight())) {
-                        // Object is not on the Ground or On an Object:
-                        int currentY = bomb.getY();
-                        bomb.setY(currentY + 10);
-                        try {
-                            Thread.sleep(5);
-                        } catch (InterruptedException e) {
-                            throw new RuntimeException(e);
-                        }
-                    }
-                }
-
+            @Override
+            public void setSwordCoolDownCounter(int swordCoolDownCounter) {
+                super.setSwordCoolDownCounter(swordCoolDownCounter);
             }
         };
-    }
-
-    public void moveItem() {
-
-        for (int i = 0; i < levelTwoSectionOneScreen.getItemsInThisSection().size(); i++) {
-
-            levelTwoSectionOneScreen.getItemsInThisSection().get(i).move();
-            // Item Changes its Direction:
-            if (intersect.intersection.isItemHitAnObject
-                    (levelTwoSectionOneScreen.getItemsInThisSection().get(i))) {
-                int velocity = levelTwoSectionOneScreen.getItemsInThisSection().get(i).getXVelocity();
-                levelTwoSectionOneScreen.getItemsInThisSection().get(i).setXVelocity(-velocity);
-
-            }
-        }
 
     }
 
-    public void moveEnemy() {
-
-        for (int i = 0; i < levelTwoSectionOneScreen.getEnemiesInThisSection().size(); i++) {
-
-            // send mario x,y,height to spiny
-            if (levelTwoSectionOneScreen.getEnemiesInThisSection().get(i) instanceof Spiny) {
-                int marioX = levelTwoSectionOneScreen.activeMario.getX();
-                int marioY = levelTwoSectionOneScreen.activeMario.getY();
-                int marioHeight = levelTwoSectionOneScreen.activeMario.getHeight();
-                ((Spiny) levelTwoSectionOneScreen.getEnemiesInThisSection().get(i)).setMarioX(marioX);
-                ((Spiny) levelTwoSectionOneScreen.getEnemiesInThisSection().get(i)).setMarioY(marioY);
-                ((Spiny) levelTwoSectionOneScreen.getEnemiesInThisSection().get(i)).setMarioHeight(marioHeight);
-            }
-
-            if (levelTwoSectionOneScreen.getEnemiesInThisSection().get(i) instanceof Bird &&
-                    ((Bird) levelTwoSectionOneScreen.getEnemiesInThisSection().get(i)).isThrowBomb()) {
-                ((Bird) levelTwoSectionOneScreen.getEnemiesInThisSection().get(i)).setThrowBomb(false);
-                int xBomb = levelTwoSectionOneScreen.getEnemiesInThisSection().get(i).getX();
-                int yBomb = levelTwoSectionOneScreen.getEnemiesInThisSection().get(i).getY() + 200;
-                BirdBomb bomb = new BirdBomb(xBomb, yBomb);
-                levelTwoSectionOneScreen.add(bomb, Integer.valueOf(1));
-                levelTwoSectionOneScreen.getBombsInThisSection().add(bomb);
-            }
-
-
-            levelTwoSectionOneScreen.getEnemiesInThisSection().get(i).move();
-            levelTwoSectionOneScreen.getEnemiesInThisSection().get(i).changeBackground();
-
-            // Enemy Changes its Direction:
-            if (intersect.intersection.isEnemyHitAnObject
-                    (levelTwoSectionOneScreen.getEnemiesInThisSection().get(i))) {
-                double velocity = levelTwoSectionOneScreen.getEnemiesInThisSection().get(i).getVelocity();
-                levelTwoSectionOneScreen.getEnemiesInThisSection().get(i).setVelocity(-velocity);
-
-            }
-        }
-
-        for (int i = 0; i < levelTwoSectionOneScreen.getBombsInThisSection().size(); i++) {
-            intersect.intersection.bombIntersection(levelTwoSectionOneScreen.getBombsInThisSection().get(i));
-        }
-
-    }
-
-    public void moveShot() {
-
-        ArrayList<MarioWeapon> weaponsInThisSection = levelTwoSectionOneScreen.getWeaponsInThisSection();
-        for (MarioWeapon marioWeapon : weaponsInThisSection) {
-            marioWeapon.move();
-        }
-
-    }
-
-    public void startThrowSword() {
-        swordCoolDownCounter++;
-        if (marioMoverModel.isUserPressedUp() && marioMoverModel.isUserPressedDown() && swordCoolDownCounter >= 200) {
-            marioMoverModel.setMarioThrowSword(true);
-            marioMoverModel.marioStartsThrowsSword();
-            marioMoverModel.setUserPressedDown(false);
-            swordCoolDownCounter = 0;
-        }
-    }
-
-    public void setLocationOfEnemies() {
-
-        for (int i = 0; i < levelTwoSectionOneScreen.getEnemiesInThisSection().size(); i++) {
-            int x = levelTwoSectionOneScreen.getEnemiesInThisSection().get(i).getX();
-            int y = levelTwoSectionOneScreen.getEnemiesInThisSection().get(i).getY();
-            levelTwoSectionOneScreen.getEnemiesInThisSection().get(i).setLocation(x, y);
-
-        }
-    }
-
-    public void setLocationAfterLoose() {
-
-        levelTwoSectionOneScreen.activeMario.setX(100);
-        levelTwoSectionOneScreen.XUserHeartImage = 1520;
-        levelTwoSectionOneScreen.userHeartImage.setX(levelTwoSectionOneScreen.XUserHeartImage);
-        levelTwoSectionOneScreen.XThisGameCoinImage = 1110;
-        levelTwoSectionOneScreen.thisGameCoinImage.setX(levelTwoSectionOneScreen.XThisGameCoinImage);
-        levelTwoSectionOneScreen.XThisGameCoin = 1080;
-        levelTwoSectionOneScreen.XUserHeartValueLabel = 1510;
-        levelTwoSectionOneScreen.XThisSectionTimeLabel = 1180;
-        levelTwoSectionOneScreen.XUserScoreLabel = 1345;
-
-    }
 
 }
