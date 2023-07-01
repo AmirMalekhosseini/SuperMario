@@ -1,31 +1,59 @@
 package Model.Vilgax;
 
+import Graphic.GameGodFather;
+import Graphic.Mario;
 import Graphic.Vilgax.Vilgax;
+import Model.GameTimer;
 
 public class VilgaxJumpAttack extends VilgaxMove {
 
 
     VilgaxJump vilgaxJump;
+    Mario activeMario;
 
-    public VilgaxJumpAttack(Vilgax vilgax) {
+    public VilgaxJumpAttack(GameGodFather godFather, Vilgax vilgax) {
+        this.godFather = godFather;
         this.vilgax = vilgax;
         this.vilgaxJump = (VilgaxJump) vilgax.vilgaxJump;
+        moveIntersection = new VilgaxMoveIntersection(godFather) {
+            @Override
+            public void intersection() {
+
+                if (isMoveDone()) {
+
+                    if (activeMario.isMarioOnGround()) {// Mario Will be Damaged:
+                        godFather.getPowerUp().decreasePowerUp(activeMario);
+                        // ToDo: Confuse Mario
+                    }
+
+                    vilgax.activeMove = vilgax.vilgaxDoNothing;
+                    setMoveDone(false);
+
+                }
+
+            }
+        };
     }
 
     @Override
     public void action() {
 
-        if (!vilgaxJump.isJumpAttackActive()) {
-            vilgaxJump.setJumpAttackActive(true);
-        }
+        if (!isMoveDone()) {
+            if (!vilgaxJump.isJumpAttackActive()) {
+                vilgaxJump.setJumpAttackActive(true);
+            }
 
-        vilgaxJump.action();
-        changeBackground();
+            vilgaxJump.action();
+            changeBackground();
 
-        // VilgaxJump is Done so JumpAttack Should Finish:
-        if (vilgaxJump.isMoveDone()) {
-            vilgaxJump.setMoveDone(false);
-            this.setMoveDone(true);
+            // VilgaxJump is Done so JumpAttack Should Finish:
+            if (vilgaxJump.isMoveDone()) {
+                vilgaxJump.setMoveDone(false);
+                this.setMoveDone(true);
+                // Active CoolDown:
+                GameTimer.getGameTimer(godFather.getGameData()).jumpAttack.counter = 2;
+
+            }
         }
 
     }

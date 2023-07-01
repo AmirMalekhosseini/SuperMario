@@ -7,7 +7,7 @@ public class GameData {
     private boolean isMarioMini = true;
     private boolean isMarioMega;
     private boolean isMarioShooter;
-    protected int userHeartValue = 3;
+    public int userHeartValue = 3;
     protected int thisGameScore = 0;
     protected int thisGameCoin = 0;
     protected String gameMode;

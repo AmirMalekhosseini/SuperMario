@@ -4,10 +4,11 @@ import Graphic.*;
 
 public class LevelOneSectionTwoModel extends ScreenModel {
 
-    public LevelOneSectionTwoModel(LevelOneSectionTwoScreen levelOneSectionTwoScreen, IntersectInLevelOneSectionTwo intersect, MarioMoverModel marioMoverModel) {
-        this.marioMoverModel = marioMoverModel;
-        this.intersect = intersect;
-        this.screen = levelOneSectionTwoScreen;
+    public LevelOneSectionTwoModel(GameGodFather godFather) {
+        this.godFather = godFather;
+        this.marioMoverModel = godFather.marioMoverModel;
+        this.intersect = godFather.intersectInLevelOneSectionTwo;
+        this.screen = godFather.getLevelOneSectionTwoScreen();
 
         controller = new ScreenController(screen, intersect, marioMoverModel) {
             @Override

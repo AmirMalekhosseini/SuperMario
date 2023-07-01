@@ -196,10 +196,9 @@ public abstract class ScreenController {
 
     public void startThrowSword() {
         swordCoolDownCounter++;
-        if (marioMoverModel.isUserPressedUp() && marioMoverModel.isUserPressedDown() && swordCoolDownCounter >= 200) {
+        if (marioMoverModel.isUserPressedUp() && marioMoverModel.isUserPressedDown()) {
             marioMoverModel.setMarioThrowSword(true);
             marioMoverModel.marioStartsThrowsSword();
-            swordCoolDownCounter = 0;
         }
     }
 

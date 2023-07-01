@@ -9,6 +9,7 @@ public abstract class VilgaxWeapon extends ObjectsInGame {
     private int vilgaxVelocity;
     private int height;
     private int width;
+    private boolean isWeaponHitsSth;
 
     public abstract void move();
 
@@ -54,5 +55,13 @@ public abstract class VilgaxWeapon extends ObjectsInGame {
 
     public void setVilgaxVelocity(int vilgaxVelocity) {
         this.vilgaxVelocity = vilgaxVelocity;
+    }
+
+    public boolean isWeaponHitsSth() {
+        return isWeaponHitsSth;
+    }
+
+    public void setWeaponHitsSth(boolean weaponHitsSth) {
+        isWeaponHitsSth = weaponHitsSth;
     }
 }

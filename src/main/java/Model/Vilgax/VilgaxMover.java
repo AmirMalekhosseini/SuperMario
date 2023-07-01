@@ -33,9 +33,10 @@ public class VilgaxMover {
 
     public void moveChooser() {
 
+
         // GrabAttack:
         if (DistanceCalculator.getDistanceCalculator().calculate(mario, vilgax) <= 120) {
-            vilgax.activeMove = vilgaxGrabAttack;
+            vilgax.activeMove = vilgaxDoNothing;
             return;
 
         // FireBallAttack:
@@ -63,17 +64,16 @@ public class VilgaxMover {
     private void vilgaxRunToMario() {
 
         // Vilgax Run To Mario:
-        while (DistanceCalculator.getDistanceCalculator().calculate(mario, vilgax) >= 200) {
+        if (DistanceCalculator.getDistanceCalculator().calculate(mario, vilgax) >= 200) {
             if (mario.getX() > vilgax.getX()) {// Mario is On Vilgax Right:
                 vilgax.setXVelocity(3);
             } else {
                 vilgax.setXVelocity(-3);
             }
             vilgax.activeMove = vilgaxRun;
+        } else {
+            vilgax.activeMove.setMoveDone(true);
         }
-
-        vilgax.setXVelocity(-1);
-        vilgax.activeMove = vilgaxDoNothing;
 
     }
 

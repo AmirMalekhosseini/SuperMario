@@ -24,8 +24,6 @@ public class Vilgax extends ObjectsInGame {
     private final BufferedImage Vilgax_Phase2_Filliped_Jump_Attack;
     private final BufferedImage Vilgax_Grab;
     private final BufferedImage Vilgax_Grab_Filliped;
-
-    public VilgaxMove[] vilgaxMoves = new VilgaxMove[7];
     public VilgaxMove activeMove;
     public VilgaxMove vilgaxDoNothing;
     public VilgaxMove vilgaxFireBallAttack;
@@ -50,8 +48,6 @@ public class Vilgax extends ObjectsInGame {
         this.x = x;
         this.y = y;
 
-        addVilgaxMoves();
-
         Vilgax_Phase1 = MyProjectData.getProjectData().getVilgax_Phase1();
         Vilgax_Phase1_Jump_Attack = MyProjectData.getProjectData().getVilgax_Phase1_Jump_Attack();
         Vilgax_Phase1_Filliped = MyProjectData.getProjectData().getVilgax_Phase1_Filliped();
@@ -69,23 +65,15 @@ public class Vilgax extends ObjectsInGame {
 
     }
 
-    private void addVilgaxMoves() {
+    public void addVilgaxMoves(VilgaxMove[] vilgaxMoves) {
 
-        vilgaxDoNothing = new VilgaxDoNothing(this);
-        vilgaxJump = new VilgaxJump(this);
-        vilgaxRun = new VilgaxRun(this);
-        vilgaxFireBallAttack = new VilgaxFireBallAttack(this);
-        vilgaxGrabAttack = new VilgaxGrabAttack(this);
-        vilgaxNukeAttack = new VilgaxNukeAttack(this);
-        vilgaxJumpAttack = new VilgaxJumpAttack(this);
-        activeMove = vilgaxDoNothing;
-        vilgaxMoves[0] = vilgaxDoNothing;
-        vilgaxMoves[1] = vilgaxFireBallAttack;
-        vilgaxMoves[2] = vilgaxGrabAttack;
-        vilgaxMoves[3] = vilgaxJump;
-        vilgaxMoves[4] = vilgaxJumpAttack;
-        vilgaxMoves[5] = vilgaxNukeAttack;
-        vilgaxMoves[6] = vilgaxRun;
+        vilgaxDoNothing = vilgaxMoves[0];
+        vilgaxFireBallAttack = vilgaxMoves[1];
+        vilgaxGrabAttack = vilgaxMoves[2];
+        vilgaxJump = vilgaxMoves[3];
+        vilgaxJumpAttack = vilgaxMoves[4];
+        vilgaxNukeAttack = vilgaxMoves[5];
+        vilgaxRun = vilgaxMoves[6];
 
     }
 

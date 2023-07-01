@@ -6,7 +6,7 @@ public class DistanceCalculator {
 
     private static DistanceCalculator distanceCalculator;
 
-    public static DistanceCalculator getDistanceCalculator() {
+    public static synchronized DistanceCalculator getDistanceCalculator() {
 
         if (distanceCalculator == null) {
             distanceCalculator = new DistanceCalculator();

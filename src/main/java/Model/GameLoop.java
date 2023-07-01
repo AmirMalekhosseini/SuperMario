@@ -34,6 +34,7 @@ public class GameLoop {
         graphicThread.start();
         enemyThread.start();
         vilgaxCalculator.start();
+        vilgaxMover.start();
 //        hiddenCoinSectionThread.start();
 //        hiddenEnemySectionThread.start();
     }
@@ -351,11 +352,8 @@ public class GameLoop {
                 if (!gameGodFather.getGameData().isGameFinish) {
                     long startTime = System.currentTimeMillis();
 
-                    gameGodFather.getBossFightScreenSection().vilgax.activeMove.action();
-                    gameGodFather.getBossFightSectionModel().vilgaxAndScreenConnection.moveVilgaxWeapon();
-                    gameGodFather.intersectInBossSection.vilgaxIntersection.marioIntersectVilgax();
-                    gameGodFather.intersectInBossSection.vilgaxIntersection.vilgaxIntersectWithObjects();
-                    gameGodFather.intersectInBossSection.vilgaxIntersection.marioWeaponIntersectsVilgax();
+                    gameGodFather.getBossFightScreenSection().vilgax.activeMove.moveIntersection.intersection();
+                    gameGodFather.intersectInBossSection.vilgaxIntersection.allIntersection();
                     gameGodFather.getBossFightScreenSection().healthBar.setValue(gameGodFather.getBossFightScreenSection().vilgax.getHealth());
                     int value = gameGodFather.getBossFightScreenSection().healthBar.getValue();
                     gameGodFather.getBossFightScreenSection().healthBar.setString(value + " / 100");
@@ -388,7 +386,8 @@ public class GameLoop {
                 if (!gameGodFather.getGameData().isGameFinish) {
                     long startTime = System.currentTimeMillis();
 
-                    gameGodFather.getBossFightScreenSection().vilgax.activeMove.action();
+                    gameGodFather.getBossFightSectionModel().vilgaxMover.moveChooser();
+                    gameGodFather.getBossFightSectionModel().vilgaxMover.move();
                     gameGodFather.getBossFightSectionModel().vilgaxAndScreenConnection.moveVilgaxWeapon();
 
 

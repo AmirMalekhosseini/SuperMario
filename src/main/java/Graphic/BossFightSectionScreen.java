@@ -134,7 +134,7 @@ public class BossFightSectionScreen extends LevelScreens {
         healthBar.setBounds(5500, 30, 800, 50);
         healthBar.setStringPainted(true);
         healthBar.setForeground(Color.red);
-        healthBar.setValue(50);
+        healthBar.setValue(100);
         healthBar.setString(healthBar.getValue()+ " / 100");
         healthBar.setFont(MyProjectData.getProjectData().getFont22());
 
@@ -296,6 +296,8 @@ public class BossFightSectionScreen extends LevelScreens {
         for (ObjectsInGame object : objectsInThisSection) {
             this.add(object, Integer.valueOf(1));
         }
+
+        objectsInThisSection.addAll(wall_BlockInAir);
 
     }
 

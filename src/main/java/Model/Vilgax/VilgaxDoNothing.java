@@ -1,12 +1,20 @@
 package Model.Vilgax;
 
+import Graphic.GameGodFather;
 import Graphic.Vilgax.Vilgax;
 
 public class VilgaxDoNothing extends VilgaxMove{
 
 
-    public VilgaxDoNothing(Vilgax vilgax) {
+    public VilgaxDoNothing(GameGodFather godFather, Vilgax vilgax) {
+        this.godFather = godFather;
         this.vilgax = vilgax;
+        moveIntersection = new VilgaxMoveIntersection(godFather) {
+            @Override
+            public void intersection() {
+
+            }
+        };
     }
 
     @Override

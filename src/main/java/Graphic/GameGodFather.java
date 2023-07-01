@@ -8,8 +8,6 @@ import java.util.ArrayList;
 
 public class GameGodFather {
 
-    // ToDo : set Active screen,Intersect,... in GodFather Class and
-    //  Add their needed method to their parents
     private Graphic graphicStarter;
     private Model modelStarter;
     protected ArrayList<LevelScreens> gameScreens = new ArrayList<>();
@@ -57,7 +55,7 @@ public class GameGodFather {
 
     public GameGodFather(GameData gameData) {
         init(gameData);
-        gameTimer = new GameTimer(gameData);
+        gameTimer = GameTimer.getGameTimer(gameData);
         graphicStarter.startGraphic(gameData);
         activeLevel = new ActiveLevel(this);
         modelStarter.startModel(this);
@@ -142,13 +140,13 @@ public class GameGodFather {
             intersectInHiddenEnemySection = new IntersectInHiddenEnemySection(godFather, powerUp);
             intersectInBossSection = new IntersectInBossSection(godFather, powerUp);
             gravityData = new GravityData();
-            hiddenEnemySectionModel = new HiddenEnemySectionModel(hiddenEnemySectionScreen, intersectInHiddenEnemySection, marioMoverModel);
-            hiddenCoinSectionModel = new HiddenCoinSectionModel(hiddenCoinSectionScreen, intersectInHiddenCoinSection, marioMoverModel);
-            levelOneSectionOneModel = new LevelOneSectionOneModel(levelOneSectionOneScreen, intersectInLevelOneSectionOne, marioMoverModel);
-            levelOneSectionTwoModel = new LevelOneSectionTwoModel(levelOneSectionTwoScreen, intersectInLevelOneSectionTwo, marioMoverModel);
-            levelTwoSectionOneModel = new LevelTwoSectionOneModel(levelTwoSectionOneScreen, intersectInLevelTwoSectionOne, marioMoverModel);
-            levelTwoSectionTwoModel = new LevelTwoSectionTwoModel(levelTwoSectionTwoScreen, intersectInLevelTwoSectionTwo, marioMoverModel);
-            bossFightSectionModel = new BossFightSectionModel(bossFightSectionScreen, intersectInBossSection, marioMoverModel);
+            hiddenEnemySectionModel = new HiddenEnemySectionModel(godFather);
+            hiddenCoinSectionModel = new HiddenCoinSectionModel(godFather);
+            levelOneSectionOneModel = new LevelOneSectionOneModel(godFather);
+            levelOneSectionTwoModel = new LevelOneSectionTwoModel(godFather);
+            levelTwoSectionOneModel = new LevelTwoSectionOneModel(godFather);
+            levelTwoSectionTwoModel = new LevelTwoSectionTwoModel(godFather);
+            bossFightSectionModel = new BossFightSectionModel(godFather);
             gameLoop = new GameLoop(godFather);
 
 

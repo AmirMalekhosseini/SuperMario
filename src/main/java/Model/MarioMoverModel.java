@@ -244,18 +244,24 @@ public class MarioMoverModel {
 
     public void marioStartShooting() {
 
-        if (!marioShooting) {
+        if (!marioShooting || GameTimer.getGameTimer(gameData).marioShot.counter > 0) {
+            // Mario Can't Shoot.
             return;
         }
+        // Active CoolDown:
+        GameTimer.getGameTimer(gameData).marioShot.counter = 3;
         addShotToScreen();
         marioShooting = false;
 
     }
 
     public void marioStartsThrowsSword() {
-        if (!marioThrowSword) {
+        if (!marioThrowSword || GameTimer.getGameTimer(gameData).marioShot.counter > 0) {
+            // Mario Can't Shoot.
             return;
         }
+        // Active CoolDown:
+        GameTimer.getGameTimer(gameData).marioShot.counter = 3;
         addSwordToScreen();
         marioThrowSword = false;
     }

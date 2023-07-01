@@ -1,24 +1,42 @@
 package Model.Vilgax;
 
+import Graphic.GameGodFather;
 import Graphic.Vilgax.Vilgax;
+import Model.DistanceCalculator;
 
 public class VilgaxRun extends VilgaxMove {
 
 
-    public VilgaxRun(Vilgax vilgax) {
+    public VilgaxRun(GameGodFather godFather, Vilgax vilgax) {
+        this.godFather = godFather;
         this.vilgax = vilgax;
+        moveIntersection = new VilgaxMoveIntersection(godFather) {
+            @Override
+            public void intersection() {
+
+                if (isMoveDone()) {
+                    vilgax.activeMove = getVilgax().vilgaxDoNothing;
+                    setMoveDone(false);
+                }
+
+            }
+        };
     }
 
     @Override
     public void action() {
 
-        vilgax.setX((int) (vilgax.getX() + vilgax.getXVelocity()));
+        if (!isMoveDone()) {
+            vilgax.setX((int) (vilgax.getX() + vilgax.getXVelocity()));
 
-        changeBackground();
+            changeBackground();
 
-        if (vilgax.getX() >= 6300 || vilgax.getX() <= 5400) {// Vilgax reaches to its move limit
-            vilgax.setXVelocity(-vilgax.getXVelocity());
+            if (vilgax.getX() >= 6300 || vilgax.getX() <= 5400) {// Vilgax reaches to its move limit
+                vilgax.setXVelocity(-vilgax.getXVelocity());
+            }
         }
+
+        // Set MoveDone in VilgaxMover.
 
     }
 

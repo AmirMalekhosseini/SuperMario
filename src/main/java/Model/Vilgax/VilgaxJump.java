@@ -1,5 +1,6 @@
 package Model.Vilgax;
 
+import Graphic.GameGodFather;
 import Graphic.Vilgax.Vilgax;
 import Model.GravityData;
 
@@ -7,8 +8,21 @@ public class VilgaxJump extends VilgaxMove {
 
 
     private boolean isJumpAttackActive;
-    public VilgaxJump(Vilgax vilgax) {
+
+    public VilgaxJump(GameGodFather godFather, Vilgax vilgax) {
+        this.godFather = godFather;
         this.vilgax = vilgax;
+        moveIntersection = new VilgaxMoveIntersection(godFather) {
+            @Override
+            public void intersection() {
+
+                if (!isJumpAttackActive && isMoveDone()) {
+                    vilgax.activeMove = vilgax.vilgaxDoNothing;
+                    setMoveDone(false);
+                }
+
+            }
+        };
     }
 
     @Override
@@ -17,7 +31,7 @@ public class VilgaxJump extends VilgaxMove {
         vilgax.setYVelocity(vilgax.getYVelocity() + (GravityData.getGravityData().gravity) * GravityData.getGravityData().vilgaxDt);
         vilgax.setY((int) (vilgax.getY() + vilgax.getYVelocity()));
 
-        if (!isJumpAttackActive) {
+        if (!isJumpAttackActive) {// only do this when active move is jump,not jumpAttack!
             changeBackground();
         }
 

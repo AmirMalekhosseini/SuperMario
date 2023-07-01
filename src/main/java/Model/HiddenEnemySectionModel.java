@@ -9,12 +9,12 @@ public class HiddenEnemySectionModel extends ScreenModel {
     private volatile boolean cannonThreeWorking;
     public volatile int enemyCounter = 0;
 
-    public HiddenEnemySectionModel(HiddenEnemySectionScreen hiddenEnemySectionScreen,IntersectInHiddenEnemySection intersect,MarioMoverModel marioMoverModel) {
-        this.marioMoverModel = marioMoverModel;
-        this.intersect = intersect;
-        this.screen = hiddenEnemySectionScreen;
-
-        controller =new ScreenController(screen, intersect, marioMoverModel) {
+    public HiddenEnemySectionModel(GameGodFather godFather) {
+        this.godFather = godFather;
+        this.marioMoverModel = godFather.marioMoverModel;
+        this.intersect = godFather.intersectInHiddenEnemySection;
+        this.screen = godFather.getHiddenEnemySectionScreen();
+        controller = new ScreenController(screen, intersect, marioMoverModel) {
             @Override
             public void gravityStarter() {
                 super.gravityStarter();

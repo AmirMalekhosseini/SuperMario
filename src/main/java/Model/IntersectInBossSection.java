@@ -17,7 +17,7 @@ public class IntersectInBossSection extends IntersectInGame {
 
     private void init() {
 
-        intersection=new Intersection(gameGodFather, powerUp, levelScreen) {
+        intersection = new Intersection(gameGodFather, powerUp, levelScreen) {
             @Override
             public void marioIntersectWithObjects() {
                 super.marioIntersectWithObjects();
@@ -179,7 +179,7 @@ public class IntersectInBossSection extends IntersectInGame {
             }
         };
 
-        vilgaxIntersection = new VilgaxIntersection(gameGodFather, powerUp, levelScreen) {
+        vilgaxIntersection = new VilgaxIntersection(gameGodFather) {
 
             @Override
             public void vilgaxIntersectWithObjects() {
@@ -192,8 +192,8 @@ public class IntersectInBossSection extends IntersectInGame {
             }
 
             @Override
-            public void fireBallIntersectObjects(VilgaxWeapon fireBall) {
-                super.fireBallIntersectObjects(fireBall);
+            public void fireBallIntersectObjects() {
+                super.fireBallIntersectObjects();
             }
 
             @Override
@@ -204,16 +204,6 @@ public class IntersectInBossSection extends IntersectInGame {
             @Override
             public void grabAttackIntersection() {
                 super.grabAttackIntersection();
-            }
-
-            @Override
-            public void jumpAttackIntersection() {
-                super.jumpAttackIntersection();
-            }
-
-            @Override
-            public void fireBallAttackIntersection() {
-                super.fireBallAttackIntersection();
             }
 
             @Override

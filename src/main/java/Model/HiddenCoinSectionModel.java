@@ -9,10 +9,11 @@ public class HiddenCoinSectionModel extends ScreenModel {
     private volatile boolean cannonThreeWorking;
     public volatile int coinCounter = 0;
 
-    public HiddenCoinSectionModel(HiddenCoinSectionScreen hiddenCoinSectionScreen, IntersectInHiddenCoinSection intersect, MarioMoverModel marioMoverModel) {
-        this.marioMoverModel = marioMoverModel;
-        this.intersect = intersect;
-        this.screen = hiddenCoinSectionScreen;
+    public HiddenCoinSectionModel(GameGodFather godFather) {
+        this.godFather = godFather;
+        this.marioMoverModel = godFather.marioMoverModel;
+        this.intersect = godFather.intersectInHiddenCoinSection;
+        this.screen = godFather.getHiddenCoinSectionScreen();
 
         controller = new ScreenController(screen, intersect, marioMoverModel) {
             @Override

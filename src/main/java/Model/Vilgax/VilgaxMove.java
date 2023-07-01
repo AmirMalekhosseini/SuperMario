@@ -1,12 +1,14 @@
 package Model.Vilgax;
 
+import Graphic.GameGodFather;
 import Graphic.Vilgax.Vilgax;
 
 public abstract class VilgaxMove {
 
+    GameGodFather godFather;
     protected Vilgax vilgax;
     private boolean isMoveDone;
-    VilgaxMoveIntersection moveIntersection;
+    public VilgaxMoveIntersection moveIntersection;
 
     public abstract void action();
 
