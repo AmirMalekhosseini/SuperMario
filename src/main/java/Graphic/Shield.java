@@ -14,6 +14,7 @@ public class Shield extends MarioWeapon {
     private int marioY;
     private int height = 120;
     private int width = 120;
+    private int damage = 10;
 
     public Shield(int x, int y) {
 
@@ -92,5 +93,15 @@ public class Shield extends MarioWeapon {
     @Override
     public void setWidth(int width) {
         this.width = width;
+    }
+
+    @Override
+    public int getDamage() {
+        return damage;
+    }
+
+    @Override
+    public void setDamage(int damage) {
+        this.damage = damage;
     }
 }

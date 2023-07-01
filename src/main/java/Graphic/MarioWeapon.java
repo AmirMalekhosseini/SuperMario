@@ -11,6 +11,8 @@ public abstract class MarioWeapon extends ObjectsInGame {
     private int marioVelocity;
     private int height;
     private int width;
+    private int damage;
+    private boolean isVilgaxDodged;
 
     public abstract void move();
 
@@ -72,5 +74,21 @@ public abstract class MarioWeapon extends ObjectsInGame {
 
     public void setMarioVelocity(int marioVelocity) {
         this.marioVelocity = marioVelocity;
+    }
+
+    public int getDamage() {
+        return damage;
+    }
+
+    public void setDamage(int damage) {
+        this.damage = damage;
+    }
+
+    public boolean isVilgaxDodged() {
+        return isVilgaxDodged;
+    }
+
+    public void setVilgaxDodged(boolean vilgaxDodged) {
+        isVilgaxDodged = vilgaxDodged;
     }
 }

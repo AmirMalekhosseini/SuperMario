@@ -11,6 +11,7 @@ public abstract class VilgaxIntersection {
     PowerUp powerUp;
     Vilgax vilgax;
     Mario activeMario;
+    private boolean marioHitsVilgax;
 
     public VilgaxIntersection(GameGodFather godFather, PowerUp powerUp, BossFightSectionScreen screen) {
 
@@ -19,6 +20,40 @@ public abstract class VilgaxIntersection {
         this.powerUp = powerUp;
         vilgax = screen.vilgax;
         activeMario = screen.activeMario;
+    }
+
+    public void marioIntersectVilgax() {
+
+        int marioWidth = activeMario.getWidth();
+        int marioHeight = activeMario.getHeight();
+        int vilgaxWidth = vilgax.getWidth();
+        int vilgaxHeight = vilgax.getHeight();
+        if (vilgaxWidth <= 0 || vilgaxHeight <= 0 || marioWidth <= 0 || marioHeight <= 0) {
+            return;
+        }
+        int marioX = activeMario.getX();
+        int marioY = activeMario.getY();
+        int vilgaxX = vilgax.getX();
+        int vilgaxY = vilgax.getY();
+        vilgaxWidth += vilgaxX;
+        vilgaxHeight += vilgaxY;
+        marioWidth += marioX;
+        marioHeight += marioY;
+
+        //      overflow || marioIntersectWithObjects
+        if ((vilgaxWidth < vilgaxX || vilgaxWidth > marioX) && (vilgaxHeight < vilgaxY || vilgaxHeight > marioY) && (marioWidth < marioX || marioWidth > vilgaxX) && (marioHeight < marioY || marioHeight > vilgaxY)) {
+            if ((marioWidth >= vilgaxX || vilgaxWidth >= marioX) && marioHeight <= vilgaxY + 30) {
+                // Hit up of Vilgax and Damage it:
+                if (marioHitsVilgax) {
+                    return;
+                }
+                vilgax.setHealth(vilgax.getHealth() - 5);
+                marioHitsVilgax = true;
+            }
+
+
+        }
+
     }
 
     public void vilgaxIntersectWithObjects() {
@@ -42,10 +77,7 @@ public abstract class VilgaxIntersection {
             vilgaxHeight += vilgaxY;
 
             //      overflow || marioIntersectWithObjects
-            if ((objectWidth < objectX || objectWidth > vilgaxX) &&
-                    (objectHeight < objectY || objectHeight > vilgaxY) &&
-                    (vilgaxWidth < vilgaxX || vilgaxWidth > objectX) &&
-                    (vilgaxHeight < vilgaxY || vilgaxHeight > objectY)) {
+            if ((objectWidth < objectX || objectWidth > vilgaxX) && (objectHeight < objectY || objectHeight > vilgaxY) && (vilgaxWidth < vilgaxX || vilgaxWidth > objectX) && (vilgaxHeight < vilgaxY || vilgaxHeight > objectY)) {
 
                 screen.remove(screen.getObjectsInThisSection().get(i));
                 screen.getObjectsInThisSection().remove(screen.getObjectsInThisSection().get(i));
@@ -76,10 +108,7 @@ public abstract class VilgaxIntersection {
             vilgaxHeight += vilgaxY;
 
             //      overflow || marioIntersectWithObjects
-            if ((objectWidth < objectX || objectWidth > vilgaxX) &&
-                    (objectHeight < objectY || objectHeight > vilgaxY) &&
-                    (vilgaxWidth < vilgaxX || vilgaxWidth > objectX) &&
-                    (vilgaxHeight < vilgaxY || vilgaxHeight > objectY)) {
+            if ((objectWidth < objectX || objectWidth > vilgaxX) && (objectHeight < objectY || objectHeight > vilgaxY) && (vilgaxWidth < vilgaxX || vilgaxWidth > objectX) && (vilgaxHeight < vilgaxY || vilgaxHeight > objectY)) {
                 screen.remove(bomb);
                 screen.getBombsInThisSection().remove(i);
                 // Bomb Hits Vilgax:
@@ -110,10 +139,7 @@ public abstract class VilgaxIntersection {
             fireBallHeight += fireBallY;
 
             //      overflow || bombIntersectWithObjects
-            if ((objectWidth < objectX || objectWidth > fireBallX) &&
-                    (objectHeight < objectY || objectHeight > fireBallY) &&
-                    (fireBallWidth < fireBallX || fireBallWidth > objectX) &&
-                    (fireBallHeight < fireBallY || fireBallHeight > objectY)) {
+            if ((objectWidth < objectX || objectWidth > fireBallX) && (objectHeight < objectY || objectHeight > fireBallY) && (fireBallWidth < fireBallX || fireBallWidth > objectX) && (fireBallHeight < fireBallY || fireBallHeight > objectY)) {
 
                 screen.remove(fireBall);
                 screen.getVilgaxWeaponsInThisSection().remove(fireBall);
@@ -145,15 +171,12 @@ public abstract class VilgaxIntersection {
             vilgaxHeight += vilgaxY;
 
             //      overflow || marioIntersectWithObjects
-            if ((objectWidth < objectX || objectWidth > vilgaxX) &&
-                    (objectHeight < objectY || objectHeight > vilgaxY) &&
-                    (vilgaxWidth < vilgaxX || vilgaxWidth > objectX) &&
-                    (vilgaxHeight < vilgaxY || vilgaxHeight > objectY)) {
+            if ((objectWidth < objectX || objectWidth > vilgaxX) && (objectHeight < objectY || objectHeight > vilgaxY) && (vilgaxWidth < vilgaxX || vilgaxWidth > objectX) && (vilgaxHeight < vilgaxY || vilgaxHeight > objectY)) {
 
                 // Mario Hits Vilgax:
+                vilgax.setHealth(vilgax.getHealth() - screen.getWeaponsInThisSection().get(i).getDamage());
                 screen.remove(screen.getWeaponsInThisSection().get(i));
                 screen.getWeaponsInThisSection().remove(screen.getWeaponsInThisSection().get(i));
-                vilgax.setHealth(vilgax.getHealth() - 5);
                 return;
             }
         }
@@ -167,6 +190,7 @@ public abstract class VilgaxIntersection {
         if time==5
           if !marioRelease
           decrease powerUp
+          marioRelease = true
           else
           time=0;
 
@@ -177,10 +201,14 @@ public abstract class VilgaxIntersection {
     // Call it When Vilgax Hits Ground After Jump Attack
     public void jumpAttackIntersection() {
 
+
         if (activeMario.isMarioOnGround()) {// Mario Will be Damaged:
             powerUp.decreasePowerUp(activeMario);
             // ToDo: Confuse Mario
         }
+
+        vilgax.activeMove.setMoveDone(false);
+        vilgax.activeMove = vilgax.vilgaxDoNothing;
 
     }
 
@@ -205,10 +233,7 @@ public abstract class VilgaxIntersection {
             marioHeight += marioY;
 
             //      overflow || marioIntersectWithObjects
-            if ((objectWidth < objectX || objectWidth > marioX) &&
-                    (objectHeight < objectY || objectHeight > marioY) &&
-                    (marioWidth < marioX || marioWidth > objectX) &&
-                    (marioHeight < marioY || marioHeight > objectY)) {
+            if ((objectWidth < objectX || objectWidth > marioX) && (objectHeight < objectY || objectHeight > marioY) && (marioWidth < marioX || marioWidth > objectX) && (marioHeight < marioY || marioHeight > objectY)) {
                 screen.remove(weapon);
                 screen.getVilgaxWeaponsInThisSection().remove(i);
                 powerUp.decreasePowerUp(activeMario);
@@ -220,4 +245,11 @@ public abstract class VilgaxIntersection {
 
     }
 
+    public boolean isMarioHitsVilgax() {
+        return marioHitsVilgax;
+    }
+
+    public void setMarioHitsVilgax(boolean marioHitsVilgax) {
+        this.marioHitsVilgax = marioHitsVilgax;
+    }
 }

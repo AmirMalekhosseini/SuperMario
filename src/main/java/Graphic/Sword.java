@@ -19,6 +19,7 @@ public class Sword extends MarioWeapon{
     private int secondCounter = 0;
     private boolean isSwordChangeDirection;
     private boolean isMarioThrowedSword;
+    private int damage = 5;
 
     public Sword(int x, int y) {
 
@@ -160,5 +161,15 @@ public class Sword extends MarioWeapon{
 
     public void setMarioThrowedSword(boolean marioThrowedSword) {
         isMarioThrowedSword = marioThrowedSword;
+    }
+
+    @Override
+    public int getDamage() {
+        return damage;
+    }
+
+    @Override
+    public void setDamage(int damage) {
+        this.damage = damage;
     }
 }

@@ -20,13 +20,12 @@ public class BossFightSectionScreen extends LevelScreens {
     protected volatile ArrayList<VilgaxWeapon> vilgaxWeaponsInThisSection = new ArrayList<>();
     protected ArrayList<EmptySpaceInGround> emptySpaceInGroundsInThisSection = new ArrayList<>();
     GameData gameData;
-    public VilgaxAndScreenConnection vilgaxAndScreenConnection;
-    public VilgaxAndMarioConnection vilgaxAndMarioConnection;
     public JLabel backgroundLabelSceneOne;
     public JLabel backgroundLabelSceneTwo;
     public JLabel backgroundLabelSceneThree;
     public JLabel backgroundLabelSceneFour;
 
+    public  JProgressBar healthBar;
     BlockInAir firstBlockInAirSceneBossFight;
     BlockInAir secondBlockInAirSceneBossFight;
     BlockInAir thirdBlockInAirSceneBossFight;
@@ -85,6 +84,7 @@ public class BossFightSectionScreen extends LevelScreens {
 
     public BossFightSectionScreen(GameData gameData) {
         init(gameData);
+        this.setScreenLock(true);
     }
 
     private void init(GameData gameData) {
@@ -130,9 +130,36 @@ public class BossFightSectionScreen extends LevelScreens {
         thisGameCoinImage = new CoinForStore(XThisGameCoinImage, 30);
         thisGameCoinImage.setLocation(thisGameCoinImage.getX(), thisGameCoinImage.getY());
 
-        vilgax = new Vilgax(6300, 720);
+        healthBar = new JProgressBar(0, 100);
+        healthBar.setBounds(5500, 30, 800, 50);
+        healthBar.setStringPainted(true);
+        healthBar.setForeground(Color.red);
+        healthBar.setValue(50);
+        healthBar.setString(healthBar.getValue()+ " / 100");
+        healthBar.setFont(MyProjectData.getProjectData().getFont22());
+
+        vilgax = new Vilgax(6300, 620);
         this.add(vilgax, Integer.valueOf(2));
-//        Add Mario:
+
+        this.add(backgroundLabelSceneOne, Integer.valueOf(0));
+        this.add(backgroundLabelSceneTwo, Integer.valueOf(0));
+        this.add(backgroundLabelSceneThree, Integer.valueOf(0));
+        this.add(backgroundLabelSceneFour, Integer.valueOf(0));
+        this.add(userHeartImage, Integer.valueOf(1));
+        this.add(userHeartValueLabel, Integer.valueOf(1));
+        this.add(userScoreLabel, Integer.valueOf(1));
+        this.add(thisSectionTimeLabel, Integer.valueOf(1));
+        this.add(thisGameCoin, Integer.valueOf(1));
+        this.add(thisGameCoinImage, Integer.valueOf(1));
+        this.add(healthBar, Integer.valueOf(1));
+
+        addMario();
+        addObject();
+
+    }
+
+    private void addMario() {
+
         if (MyProject.activeUser.get(0).isUserChooseNormal_RedMario()) {
             normalMario = new NormalMario(5200, 900);
             activeMario = normalMario;
@@ -155,9 +182,10 @@ public class BossFightSectionScreen extends LevelScreens {
             this.add(shooterMario, Integer.valueOf(2));
         }
 
-        vilgaxAndScreenConnection = new VilgaxAndScreenConnection(this);
-        vilgaxAndMarioConnection = new VilgaxAndMarioConnection(this);
-        vilgax.addConnection(vilgaxAndScreenConnection, vilgaxAndMarioConnection);
+    }
+
+    private void addObject() {
+
 
         // Scene BossFight:
         Left_Wall_1 = new EmptyBlockInAir(5100, 890);
@@ -199,7 +227,7 @@ public class BossFightSectionScreen extends LevelScreens {
         fifthBlockInAirSceneBossFight = new SimpleBlockInAir(5900, 500);
         sixthBlockInAirSceneBossFight = new SimpleBlockInAir(5970, 500);
         seventhBlockInAirSceneBossFight = new SimpleBlockInAir(6040, 500);
-        eightBlockInAirSceneBossFight = new SimpleBlockInAir(6100, 500);
+        eightBlockInAirSceneBossFight = new SimpleBlockInAir(6110, 500);
 
         firstPrizeInAirSceneBossFight = new PrizeInAir(5170, 580);
         secondPrizeInAirSceneBossFight = new PrizeInAir(5240, 580);
@@ -209,21 +237,6 @@ public class BossFightSectionScreen extends LevelScreens {
         sixthPrizeInAirSceneBossFight = new PrizeInAir(6100, 200);
         seventhPrizeInAirSceneBossFight = new PrizeInAir(6505, 580);
         eightPrizeInAirSceneBossFight = new PrizeInAir(6575, 580);
-
-
-        this.add(backgroundLabelSceneOne, Integer.valueOf(0));
-        this.add(backgroundLabelSceneTwo, Integer.valueOf(0));
-        this.add(backgroundLabelSceneThree, Integer.valueOf(0));
-        this.add(backgroundLabelSceneFour, Integer.valueOf(0));
-        this.add(userHeartImage, Integer.valueOf(1));
-        this.add(userHeartValueLabel, Integer.valueOf(1));
-        this.add(userScoreLabel, Integer.valueOf(1));
-        this.add(thisSectionTimeLabel, Integer.valueOf(1));
-        this.add(thisGameCoin, Integer.valueOf(1));
-        this.add(thisGameCoinImage, Integer.valueOf(1));
-
-
-
 
         // Add wall:
         wall_BlockInAir.add(Left_Wall_1);
@@ -283,7 +296,6 @@ public class BossFightSectionScreen extends LevelScreens {
         for (ObjectsInGame object : objectsInThisSection) {
             this.add(object, Integer.valueOf(1));
         }
-
 
     }
 

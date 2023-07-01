@@ -25,6 +25,7 @@ public class Vilgax extends ObjectsInGame {
     private final BufferedImage Vilgax_Grab;
     private final BufferedImage Vilgax_Grab_Filliped;
 
+    public VilgaxMove[] vilgaxMoves = new VilgaxMove[7];
     public VilgaxMove activeMove;
     public VilgaxMove vilgaxDoNothing;
     public VilgaxMove vilgaxFireBallAttack;
@@ -37,7 +38,7 @@ public class Vilgax extends ObjectsInGame {
     private int x;
     private int y;
     private int width = 150;
-    private int height = 240;
+    private int height = 360;
     private double XVelocity = -3;// Run: -3
     private double YVelocity = -5;
     private boolean isVilgaxPhase_2;
@@ -49,14 +50,7 @@ public class Vilgax extends ObjectsInGame {
         this.x = x;
         this.y = y;
 
-        vilgaxDoNothing = new VilgaxDoNothing(this);
-        vilgaxJump = new VilgaxJump(this);
-        vilgaxRun = new VilgaxRun(this);
-        vilgaxFireBallAttack = new VilgaxFireBallAttack(this);
-        vilgaxGrabAttack = new VilgaxGrabAttack(this);
-        vilgaxNukeAttack = new VilgaxNukeAttack(this);
-        vilgaxJumpAttack = new VilgaxJumpAttack(this);
-        activeMove = vilgaxNukeAttack;
+        addVilgaxMoves();
 
         Vilgax_Phase1 = MyProjectData.getProjectData().getVilgax_Phase1();
         Vilgax_Phase1_Jump_Attack = MyProjectData.getProjectData().getVilgax_Phase1_Jump_Attack();
@@ -75,6 +69,26 @@ public class Vilgax extends ObjectsInGame {
 
     }
 
+    private void addVilgaxMoves() {
+
+        vilgaxDoNothing = new VilgaxDoNothing(this);
+        vilgaxJump = new VilgaxJump(this);
+        vilgaxRun = new VilgaxRun(this);
+        vilgaxFireBallAttack = new VilgaxFireBallAttack(this);
+        vilgaxGrabAttack = new VilgaxGrabAttack(this);
+        vilgaxNukeAttack = new VilgaxNukeAttack(this);
+        vilgaxJumpAttack = new VilgaxJumpAttack(this);
+        activeMove = vilgaxDoNothing;
+        vilgaxMoves[0] = vilgaxDoNothing;
+        vilgaxMoves[1] = vilgaxFireBallAttack;
+        vilgaxMoves[2] = vilgaxGrabAttack;
+        vilgaxMoves[3] = vilgaxJump;
+        vilgaxMoves[4] = vilgaxJumpAttack;
+        vilgaxMoves[5] = vilgaxNukeAttack;
+        vilgaxMoves[6] = vilgaxRun;
+
+    }
+
     public void addConnection(VilgaxAndScreenConnection vilgaxAndScreenConnection, VilgaxAndMarioConnection vilgaxAndMarioConnection) {
         this.vilgaxAndMarioConnection = vilgaxAndMarioConnection;
         this.vilgaxAndScreenConnection = vilgaxAndScreenConnection;
@@ -84,7 +98,7 @@ public class Vilgax extends ObjectsInGame {
     protected void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
         Graphics2D graphics2D = (Graphics2D) graphics;
-        graphics2D.drawImage(activeBackground, 0, 0, 150, 240, null);
+        graphics2D.drawImage(activeBackground, 0, 0, 150, 360, null);
     }
 
     @Override

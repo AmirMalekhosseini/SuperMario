@@ -1,6 +1,7 @@
 package Model;
 
 import Graphic.*;
+import Graphic.Vilgax.Vilgax;
 
 import java.util.Random;
 
@@ -57,6 +58,7 @@ public abstract class Intersection {
                     (objectHeight < objectY || objectHeight > marioY) &&
                     (marioWidth < marioX || marioWidth > objectX) &&
                     (marioHeight < marioY || marioHeight > objectY)) {
+
 
                 if ((marioWidth >= objectX || objectWidth >= marioX) && marioHeight <= objectY + 30) {// Hit up of Object
 
@@ -739,10 +741,10 @@ public abstract class Intersection {
                     (arrowWidth < arrowX || arrowWidth > objectX) &&
                     (arrowHeight < arrowY || arrowHeight > objectY)) {
 
-                screen.remove(sword);
+//                screen.remove(sword);
                 screen.remove(screen.getEnemiesInThisSection().get(i));
                 screen.getEnemiesInThisSection().remove(i);
-                screen.getWeaponsInThisSection().remove(sword);
+//                screen.getWeaponsInThisSection().remove(sword);
                 return;
             }
         }

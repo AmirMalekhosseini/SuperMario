@@ -30,6 +30,7 @@ public class LevelScreens extends JLayeredPane {
     public int XThisSectionTimeLabel = 1180;
     public int XThisGameCoin = 1080;
     public int XThisGameCoinImage = 1110;
+    private boolean isScreenLock;
 
     public ArrayList<ObjectsInGame> getObjectsInThisSection() {
         return objectsInThisSection;
@@ -85,5 +86,13 @@ public class LevelScreens extends JLayeredPane {
 
     public void setGameData(GameData gameData) {
         this.gameData = gameData;
+    }
+
+    public boolean isScreenLock() {
+        return isScreenLock;
+    }
+
+    public void setScreenLock(boolean screenLock) {
+        isScreenLock = screenLock;
     }
 }

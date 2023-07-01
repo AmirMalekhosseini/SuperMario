@@ -168,6 +168,9 @@ public class MarioMoverModel {
                     activeLevel.intersect.intersection.setMarioHitsAnObject(false);
                     activeLevel.intersect.intersection.setMarioHitsFullOfCoinBlockInAir(false);
                     activeLevel.intersect.intersection.setMarioHitsTurtle(false);
+                    if (activeLevel.intersect instanceof IntersectInBossSection) {
+                        ((IntersectInBossSection) activeLevel.intersect).vilgaxIntersection.setMarioHitsVilgax(false);
+                    }
                     isUserPressedUp = false;
 
                 }
@@ -182,6 +185,9 @@ public class MarioMoverModel {
                     activeLevel.intersect.intersection.setMarioHitsAnObject(false);
                     activeLevel.intersect.intersection.setMarioHitsFullOfCoinBlockInAir(false);
                     activeLevel.intersect.intersection.setMarioHitsTurtle(false);
+                    if (activeLevel.intersect instanceof IntersectInBossSection) {
+                        ((IntersectInBossSection) activeLevel.intersect).vilgaxIntersection.setMarioHitsVilgax(false);
+                    }
                     GravityData.getGravityData().marioDt = 0.018;
 
                 }
@@ -189,7 +195,7 @@ public class MarioMoverModel {
             }
 
             if (rightMario && !leftMario && !activeLevel.intersect.intersection.isMarioHitsLeftOfTheObject()) {// Go Right
-                if (activeMario.getX() < 830 || activeMario.getX() >= 5800) {// Move Mario
+                if (activeMario.getX() < 830 || activeMario.getX() >= 5800 || activeLevel.screen.isScreenLock()) {// Move Mario
                     activeMario.setVelocityX(5);
                     activeMario.setX((int) (activeMario.getX() + activeMario.getVelocityX()));
                 } else {// Move Panel
@@ -210,8 +216,9 @@ public class MarioMoverModel {
 
                 }
             }
+            // ToDO: Move Calculation Outside.
             if (leftMario && !rightMario && !activeLevel.intersect.intersection.isMarioHitsRightOfTheObject()) {// Go Left
-                if (activeMario.getX() < 840 || activeMario.getX() >= 5800) {// Move Mario
+                if (activeMario.getX() < 840 || activeMario.getX() >= 5800 || activeLevel.screen.isScreenLock()) {// Move Mario
                     activeMario.setVelocityX(-5);
                     activeMario.setX((int) (activeMario.getX() + activeMario.getVelocityX()));
                 } else {// Move Panel

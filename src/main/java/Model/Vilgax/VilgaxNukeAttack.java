@@ -19,6 +19,7 @@ public class VilgaxNukeAttack extends VilgaxMove {
         vilgax.vilgaxAndScreenConnection.addVilgaxBombToScreen(bomb);
         changeBackground();
         vilgax.activeMove = vilgax.vilgaxRun;
+        this.setMoveDone(true);
 
     }
 

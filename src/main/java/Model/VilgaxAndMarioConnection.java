@@ -29,7 +29,7 @@ public class VilgaxAndMarioConnection {
         // Vilgax Releases Mario:
         if (mario.isMarioReleaseFromVilgax()) {
             vilgaxReleaseMario();
-            mario.setMarioReleaseFromVilgax(false);
+//            mario.setMarioReleaseFromVilgax(false);
         }
 
     }
@@ -44,7 +44,9 @@ public class VilgaxAndMarioConnection {
         }
 
         mario.setY(960 - mario.getHeight());
-
+        // GrabAttack is Done:
+        // ToDo: set Timer Off
+        vilgax.activeMove = vilgax.vilgaxDoNothing;
     }
 
 }

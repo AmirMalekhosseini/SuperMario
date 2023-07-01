@@ -23,7 +23,7 @@ public class VilgaxJump extends VilgaxMove {
 
         if (vilgax.getY() >= 960 - vilgax.getHeight()
                 && vilgax.getY() <= 980 - vilgax.getHeight()) {// Vilgax Hits Ground:
-            vilgax.activeMove = vilgax.vilgaxDoNothing;
+            this.setMoveDone(true);
         }
 
     }

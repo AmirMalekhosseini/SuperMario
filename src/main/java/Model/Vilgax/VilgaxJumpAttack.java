@@ -22,6 +22,12 @@ public class VilgaxJumpAttack extends VilgaxMove {
         vilgaxJump.action();
         changeBackground();
 
+        // VilgaxJump is Done so JumpAttack Should Finish:
+        if (vilgaxJump.isMoveDone()) {
+            vilgaxJump.setMoveDone(false);
+            this.setMoveDone(true);
+        }
+
     }
 
     @Override

@@ -25,14 +25,15 @@ public class GameLoop {
         CalculatorThread calculatorThread = new CalculatorThread();
         GraphicThread graphicThread = new GraphicThread();
         EnemyThread enemyThread = new EnemyThread();
-        VilgaxThread vilgaxThread = new VilgaxThread();
+        VilgaxCalculator vilgaxCalculator = new VilgaxCalculator();
+        VilgaxMover vilgaxMover = new VilgaxMover();
         HiddenCoinSectionThread hiddenCoinSectionThread = new HiddenCoinSectionThread();
         HiddenEnemySectionThread hiddenEnemySectionThread = new HiddenEnemySectionThread();
         marioMoverThread.start();
         calculatorThread.start();
         graphicThread.start();
         enemyThread.start();
-        vilgaxThread.start();
+        vilgaxCalculator.start();
 //        hiddenCoinSectionThread.start();
 //        hiddenEnemySectionThread.start();
     }
@@ -339,7 +340,7 @@ public class GameLoop {
 
     }
 
-    private class VilgaxThread extends Thread {
+    public class VilgaxCalculator extends Thread {
 
         public void run() {
 
@@ -351,8 +352,46 @@ public class GameLoop {
                     long startTime = System.currentTimeMillis();
 
                     gameGodFather.getBossFightScreenSection().vilgax.activeMove.action();
-                    gameGodFather.getBossFightScreenSection().vilgaxAndScreenConnection.moveVilgaxWeapon();
+                    gameGodFather.getBossFightSectionModel().vilgaxAndScreenConnection.moveVilgaxWeapon();
+                    gameGodFather.intersectInBossSection.vilgaxIntersection.marioIntersectVilgax();
                     gameGodFather.intersectInBossSection.vilgaxIntersection.vilgaxIntersectWithObjects();
+                    gameGodFather.intersectInBossSection.vilgaxIntersection.marioWeaponIntersectsVilgax();
+                    gameGodFather.getBossFightScreenSection().healthBar.setValue(gameGodFather.getBossFightScreenSection().vilgax.getHealth());
+                    int value = gameGodFather.getBossFightScreenSection().healthBar.getValue();
+                    gameGodFather.getBossFightScreenSection().healthBar.setString(value + " / 100");
+
+                    long elapsedTime = System.currentTimeMillis() - startTime;
+                    long sleepTime = targetTime - elapsedTime;
+                    if (sleepTime > 0) {
+                        try {
+                            Thread.sleep(sleepTime);
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+
+                }
+
+            }
+        }
+
+    }
+
+    private class VilgaxMover extends Thread {
+
+        public void run() {
+
+            while (!gameGodFather.getGameData().isGameFinish) {
+
+                int fps = 120;
+                long targetTime = 1000 / fps;
+                if (!gameGodFather.getGameData().isGameFinish) {
+                    long startTime = System.currentTimeMillis();
+
+                    gameGodFather.getBossFightScreenSection().vilgax.activeMove.action();
+                    gameGodFather.getBossFightSectionModel().vilgaxAndScreenConnection.moveVilgaxWeapon();
+
+
                     long elapsedTime = System.currentTimeMillis() - startTime;
                     long sleepTime = targetTime - elapsedTime;
                     if (sleepTime > 0) {

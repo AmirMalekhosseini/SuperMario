@@ -215,6 +215,16 @@ public class IntersectInBossSection extends IntersectInGame {
             public void fireBallAttackIntersection() {
                 super.fireBallAttackIntersection();
             }
+
+            @Override
+            public boolean isMarioHitsVilgax() {
+                return super.isMarioHitsVilgax();
+            }
+
+            @Override
+            public void setMarioHitsVilgax(boolean marioHitsVilgax) {
+                super.setMarioHitsVilgax(marioHitsVilgax);
+            }
         };
 
 
