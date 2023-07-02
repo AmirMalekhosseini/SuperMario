@@ -1,7 +1,8 @@
 package MyProject;
 
-import Graphic.*;
-import Model.*;
+import Model.Game.GameData;
+import Model.Game.GameGodFather;
+import Model.Game.User;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;

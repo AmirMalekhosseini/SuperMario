@@ -1,6 +1,12 @@
 package Config;
 
-import Graphic.*;
+import View.Game.LevelScreens;
+import Model.Enemy.Enemy;
+import Model.Enemy.Goompa;
+import Model.Enemy.Spiny;
+import Model.Enemy.Turtle;
+import Model.Item.Coin;
+import Model.Object.*;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 

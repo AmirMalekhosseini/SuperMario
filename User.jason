@@ -10,9 +10,9 @@
   "userChooseJumper_GreenMario" : true,
   "userChooseRunner_BlueMario" : false,
   "userChooseShooter_BlackMario" : false,
+  "userBoughtJumperMario" : true,
   "userBoughtNormalMario" : true,
   "userBoughtRunnerMario" : false,
-  "userBoughtJumperMario" : true,
   "userBoughtShooterMario" : true,
   "userBoughtCoinMario" : false
 }, {
@@ -27,9 +27,9 @@
   "userChooseJumper_GreenMario" : false,
   "userChooseRunner_BlueMario" : false,
   "userChooseShooter_BlackMario" : false,
+  "userBoughtJumperMario" : false,
   "userBoughtNormalMario" : true,
   "userBoughtRunnerMario" : false,
-  "userBoughtJumperMario" : false,
   "userBoughtShooterMario" : false,
   "userBoughtCoinMario" : false
 }, {
@@ -44,9 +44,9 @@
   "userChooseJumper_GreenMario" : false,
   "userChooseRunner_BlueMario" : false,
   "userChooseShooter_BlackMario" : false,
+  "userBoughtJumperMario" : false,
   "userBoughtNormalMario" : true,
   "userBoughtRunnerMario" : false,
-  "userBoughtJumperMario" : false,
   "userBoughtShooterMario" : false,
   "userBoughtCoinMario" : false
 }, {
@@ -61,9 +61,9 @@
   "userChooseJumper_GreenMario" : false,
   "userChooseRunner_BlueMario" : false,
   "userChooseShooter_BlackMario" : false,
+  "userBoughtJumperMario" : false,
   "userBoughtNormalMario" : true,
   "userBoughtRunnerMario" : false,
-  "userBoughtJumperMario" : false,
   "userBoughtShooterMario" : false,
   "userBoughtCoinMario" : false
 }, {
@@ -78,9 +78,9 @@
   "userChooseJumper_GreenMario" : false,
   "userChooseRunner_BlueMario" : false,
   "userChooseShooter_BlackMario" : false,
+  "userBoughtJumperMario" : false,
   "userBoughtNormalMario" : true,
   "userBoughtRunnerMario" : false,
-  "userBoughtJumperMario" : false,
   "userBoughtShooterMario" : false,
   "userBoughtCoinMario" : false
 } ]
