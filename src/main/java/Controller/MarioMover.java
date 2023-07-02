@@ -21,9 +21,9 @@ public class MarioMover {
     InputMap inputMap;
     ActionMap actionMap;
 
-    public MarioMover(GameGodFather gameGodFather, MarioMoverModel marioMoverModel) {
-        this.marioMoverModel = marioMoverModel;
+    public MarioMover(GameGodFather gameGodFather) {
         this.gameGodFather = gameGodFather;
+        this.marioMoverModel = gameGodFather.marioMoverModel;
         objectMapper = new ObjectMapper();
         objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
         objectMapper.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);

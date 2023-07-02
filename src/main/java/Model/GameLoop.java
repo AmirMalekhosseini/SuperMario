@@ -94,7 +94,7 @@ public class GameLoop {
 
                 }
                 if (gameGodFather.getGameData().isGameFinish) {// Finish the Game
-                    GameTimer.getGameTimer().stopTimer();
+                    gameGodFather.gameTimer.stopTimer();
                     gameGodFather.calculateScore.calculateScore(gameGodFather.activeLevel.screen);
                     Score thisGameScore = new Score();
                     thisGameScore.setUserScore(gameGodFather.getGameData().thisGameScore);

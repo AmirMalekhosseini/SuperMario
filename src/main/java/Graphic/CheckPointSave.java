@@ -66,17 +66,5 @@ public class CheckPointSave {
         return XLevelPanel;
     }
 
-    public void saveTime() {
-
-        saveTime = GameTimer.getGameTimer().getSectionTime();
-
-    }
-
-    public void loadTime() {
-
-        GameTimer.getGameTimer().setSectionTime(saveTime);
-
-    }
-
 
 }

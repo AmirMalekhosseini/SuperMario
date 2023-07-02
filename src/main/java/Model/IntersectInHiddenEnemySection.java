@@ -4,9 +4,9 @@ import Graphic.*;
 
 public class IntersectInHiddenEnemySection extends IntersectInGame{
 
-    public IntersectInHiddenEnemySection(GameGodFather gameGodFather, PowerUp powerUp) {
-        this.powerUp = powerUp;
+    public IntersectInHiddenEnemySection(GameGodFather gameGodFather) {
         this.gameGodFather = gameGodFather;
+        this.powerUp = gameGodFather.getPowerUp();
         this.levelScreen = gameGodFather.getHiddenEnemySectionScreen();
 
         intersection = new Intersection(gameGodFather, powerUp, levelScreen) {

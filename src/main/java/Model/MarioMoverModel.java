@@ -166,12 +166,12 @@ public class MarioMoverModel {
 
     public void marioStartShooting() {
 
-        if (!marioShooting || GameTimer.getGameTimer().marioShotCoolDown.counter > 0) {
+        if (!marioShooting || godFather.gameTimer.marioShotCoolDown.counter > 0) {
             // Mario Can't Shoot.
             return;
         }
         // Active CoolDown:
-        GameTimer.getGameTimer().marioShotCoolDown.counter = 3;
+        godFather.gameTimer.marioShotCoolDown.counter = 3;
         addShotToScreen();
         marioShooting = false;
 
@@ -179,14 +179,14 @@ public class MarioMoverModel {
 
     public void marioStartsThrowsSword() {
         if (!marioThrowSword
-                || GameTimer.getGameTimer().marioShotCoolDown.counter > 0
+                || godFather.gameTimer.marioShotCoolDown.counter > 0
                 || gameData.thisGameCoin < 3) {
 
             // Mario Can't Shoot.
             return;
         }
         // Active CoolDown:
-        GameTimer.getGameTimer().marioShotCoolDown.counter = 3;
+        godFather.gameTimer.marioShotCoolDown.counter = 3;
         gameData.thisGameCoin -= 3;
         addSwordToScreen();
         marioThrowSword = false;

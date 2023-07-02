@@ -88,7 +88,7 @@ public class VilgaxFireBallAttack extends VilgaxMove {
             vilgax.vilgaxAndScreenConnection.addVilgaxWeaponToScreen(fireBall);
             setMoveDone(true);
             // Active CoolDown:
-            GameTimer.getGameTimer().fireBallAttackCoolDown.counter = 2;
+            godFather.gameTimer.fireBallAttackCoolDown.counter = 2;
 
         }
 

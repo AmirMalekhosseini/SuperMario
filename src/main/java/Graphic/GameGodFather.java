@@ -51,7 +51,7 @@ public class GameGodFather {
 
     public GameGodFather(GameData gameData) {
         init(gameData);
-        gameTimer = GameTimer.getGameTimer();
+        gameTimer = new GameTimer();
         gameTimer.addGameData(gameData);
         gameTimer.startTimer();
         graphicStarter.startGraphic(gameData);
@@ -129,14 +129,14 @@ public class GameGodFather {
             calculateScore = new CalculateScore(godFather);
             marioMoverModel = new MarioMoverModel(godFather);
             powerUp = new PowerUp(godFather);
-            marioMover = new MarioMover(godFather, marioMoverModel);
-            intersectInLevelOneSectionOne = new IntersectInLevelOneSectionOne(godFather, powerUp);
-            intersectInLevelOneSectionTwo = new IntersectInLevelOneSectionTwo(godFather, powerUp);
-            intersectInLevelTwoSectionOne = new IntersectInLevelTwoSectionOne(godFather, powerUp);
-            intersectInLevelTwoSectionTwo = new IntersectInLevelTwoSectionTwo(godFather, powerUp);
-            intersectInHiddenCoinSection = new IntersectInHiddenCoinSection(godFather, powerUp);
-            intersectInHiddenEnemySection = new IntersectInHiddenEnemySection(godFather, powerUp);
-            intersectInBossSection = new IntersectInBossSection(godFather, powerUp);
+            marioMover = new MarioMover(godFather);
+            intersectInLevelOneSectionOne = new IntersectInLevelOneSectionOne(godFather);
+            intersectInLevelOneSectionTwo = new IntersectInLevelOneSectionTwo(godFather);
+            intersectInLevelTwoSectionOne = new IntersectInLevelTwoSectionOne(godFather);
+            intersectInLevelTwoSectionTwo = new IntersectInLevelTwoSectionTwo(godFather);
+            intersectInHiddenCoinSection = new IntersectInHiddenCoinSection(godFather);
+            intersectInHiddenEnemySection = new IntersectInHiddenEnemySection(godFather);
+            intersectInBossSection = new IntersectInBossSection(godFather);
             gravityData = new GravityData();
             hiddenEnemySectionModel = new HiddenEnemySectionModel(godFather);
             hiddenCoinSectionModel = new HiddenCoinSectionModel(godFather);

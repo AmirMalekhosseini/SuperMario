@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 public class GameTimer {
 
-    private static GameTimer gameTimer;
     private ArrayList<CoolDown> negativeCoolDownList = new ArrayList<>();
     private ArrayList<CoolDown> positiveCoolDownList = new ArrayList<>();
     public CoolDown vilgaxMoveCoolDown;
@@ -25,7 +24,7 @@ public class GameTimer {
     javax.swing.Timer timer;
     private int sectionTime = 50;
 
-    private GameTimer() {
+    public GameTimer() {
 
 
         addCoolDowns();
@@ -72,13 +71,6 @@ public class GameTimer {
 
         timer.stop();
 
-    }
-
-    public static synchronized GameTimer getGameTimer() {
-        if (gameTimer == null) {
-            gameTimer = new GameTimer();
-        }
-        return gameTimer;
     }
 
     private void addCoolDowns() {

@@ -8,9 +8,9 @@ public class IntersectInBossSection extends IntersectInGame {
     BossFightSectionScreen levelScreen;
     VilgaxIntersection vilgaxIntersection;
 
-    public IntersectInBossSection(GameGodFather godFather, PowerUp powerUp) {
+    public IntersectInBossSection(GameGodFather godFather) {
         this.gameGodFather = godFather;
-        this.powerUp = powerUp;
+        this.powerUp = godFather.getPowerUp();
         this.levelScreen = godFather.getBossFightScreenSection();
         init();
     }
