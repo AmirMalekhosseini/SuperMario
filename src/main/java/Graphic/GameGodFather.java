@@ -102,7 +102,7 @@ public class GameGodFather {
 
             levelOneGameBackgroundPanel.setBounds(0, 0, 14000, 1300);
             levelOneGameBackgroundPanel.setLayout(null);
-            levelOneGameBackgroundPanel.setVisible(true);
+            levelOneGameBackgroundPanel.setVisible(false);
             levelOneGameBackgroundPanel.add(levelOneSectionOneScreen);
             levelOneGameBackgroundPanel.add(levelOneSectionTwoScreen);
             gamePanels[2] = levelOneGameBackgroundPanel;
@@ -116,7 +116,7 @@ public class GameGodFather {
 
             levelThreeGameBackgroundPanel.setBounds(0, 0, 14000, 1300);
             levelThreeGameBackgroundPanel.setLayout(null);
-            levelThreeGameBackgroundPanel.setVisible(false);
+            levelThreeGameBackgroundPanel.setVisible(true);
             levelThreeGameBackgroundPanel.add(bossFightSectionScreen);
             gamePanels[4] = levelThreeGameBackgroundPanel;
 

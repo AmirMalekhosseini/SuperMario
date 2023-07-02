@@ -19,7 +19,7 @@ public class Turtle extends Enemy {
     private int height = 65;
     private double velocity = -5;
 
-    Turtle(int xx, int yy) {
+    public Turtle(int xx, int yy) {
         this.setSize(width, height);
 
         background = MyProjectData.getProjectData().getTurtle();

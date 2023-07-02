@@ -17,7 +17,7 @@ public class PrizeInAir extends ObjectsInGame {
 
     protected boolean itemCatch;
 
-    PrizeInAir(int x, int y) {
+    public PrizeInAir(int x, int y) {
 
         this.setSize(width, height);
 

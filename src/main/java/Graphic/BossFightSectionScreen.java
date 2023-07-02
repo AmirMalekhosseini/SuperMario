@@ -1,16 +1,24 @@
 package Graphic;
 
+import Config.CreateFromConfig;
+import Config.LevelConfig;
 import Graphic.Vilgax.Vilgax;
 import Graphic.Vilgax.VilgaxWeapon;
 import Model.*;
 import MyProject.MyProject;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class BossFightSectionScreen extends LevelScreens {
 
+    private final CreateFromConfig config;
     protected ArrayList<ObjectsInGame> objectsInThisSection = new ArrayList<>();
     protected ArrayList<BlockInAir> wall_BlockInAir = new ArrayList<>();
     protected ArrayList<ItemsInGame> itemsInThisSection = new ArrayList<>();
@@ -83,6 +91,8 @@ public class BossFightSectionScreen extends LevelScreens {
 
 
     public BossFightSectionScreen(GameData gameData) {
+        config = new CreateFromConfig(this);
+        config.readFromConfig();
         init(gameData);
         this.setScreenLock(true);
     }
@@ -116,7 +126,7 @@ public class BossFightSectionScreen extends LevelScreens {
         userHeartValueLabel.setBounds(XUserHeartValueLabel, 30, 20, 20);
         userHeartValueLabel.setFont(font1);
 
-        userScoreLabel = new JLabel("Score: " + String.valueOf(gameData.getThisGameScore()));
+        userScoreLabel = new JLabel("Score: " + gameData.getThisGameScore());
         userScoreLabel.setBounds(XUserScoreLabel, 30, 200, 20);
         userScoreLabel.setFont(font1);
 
@@ -300,6 +310,14 @@ public class BossFightSectionScreen extends LevelScreens {
 
         for (ObjectsInGame object : objectsInThisSection) {
             this.add(object, Integer.valueOf(1));
+        }
+
+        for (ItemsInGame item : itemsInThisSection) {
+            this.add(item, Integer.valueOf(1));
+        }
+
+        for (Enemy enemy : enemiesInThisSection) {
+            this.add(enemy, Integer.valueOf(1));
         }
 
         objectsInThisSection.addAll(wall_BlockInAir);

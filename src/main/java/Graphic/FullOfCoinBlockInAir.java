@@ -14,7 +14,7 @@ public class FullOfCoinBlockInAir extends BlockInAir{
     private int height = super.getHeight();
     public int hitCounter = 0;
 
-    FullOfCoinBlockInAir(int x, int y) {
+    public FullOfCoinBlockInAir(int x, int y) {
 
         this.setSize(width, height);
 

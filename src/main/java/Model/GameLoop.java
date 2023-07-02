@@ -33,8 +33,8 @@ public class GameLoop {
         calculatorThread.start();
         graphicThread.start();
         enemyThread.start();
-        vilgaxCalculator.start();
-        vilgaxMover.start();
+//        vilgaxCalculator.start();
+//        vilgaxMover.start();
 //        hiddenCoinSectionThread.start();
 //        hiddenEnemySectionThread.start();
     }

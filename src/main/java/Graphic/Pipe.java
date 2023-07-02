@@ -18,7 +18,7 @@ public class Pipe extends ObjectsInGame {
     private int width = 110;
     private int height = 200;
 
-    Pipe(int x, int y) {
+    public Pipe(int x, int y) {
 
         this.setSize(width, height);
 
