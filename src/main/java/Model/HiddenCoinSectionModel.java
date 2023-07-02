@@ -69,4 +69,8 @@ public class HiddenCoinSectionModel extends ScreenModel {
         this.cannonThreeWorking = cannonThreeWorking;
     }
 
+    @Override
+    public void goToHiddenSection() {
+
+    }
 }

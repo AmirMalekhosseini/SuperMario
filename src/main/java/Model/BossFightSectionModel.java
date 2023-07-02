@@ -4,7 +4,7 @@ import Graphic.BossFightSectionScreen;
 import Graphic.GameGodFather;
 import Model.Vilgax.*;
 
-public class BossFightSectionModel extends ScreenModel {
+public class BossFightSectionModel extends NormalScreenModel {
 
     BossFightSectionScreen screen;
     public VilgaxAndScreenConnection vilgaxAndScreenConnection;
@@ -89,4 +89,15 @@ public class BossFightSectionModel extends ScreenModel {
         };
     }
 
+    @Override
+    public void goToHiddenSection() {
+
+    }
+
+    @Override
+    public void goToNextSection() {
+
+        godFather.getGameData().isGameFinish = true;
+
+    }
 }

@@ -136,6 +136,10 @@ public class LevelTwoSectionTwoScreen extends LevelScreens {
         thisGameCoinImage = new CoinForStore(XThisGameCoinImage, 30);
         thisGameCoinImage.setLocation(thisGameCoinImage.getX(), thisGameCoinImage.getY());
 
+        marioLocationLabel = new JLabel("WORLD: 2 _ 2");
+        marioLocationLabel.setFont(font1);
+        marioLocationLabel.setBounds(XMarioLocationLabel, 25, 200, 30);
+
         //Add Mario:
         if (MyProject.activeUser.get(0).isUserChooseNormal_RedMario()) {
             normalMario = new NormalMario(100, 840);
@@ -222,7 +226,7 @@ public class LevelTwoSectionTwoScreen extends LevelScreens {
         coinOnSecondBlockInAirSceneFour = new Coin(5470, 650);
         thirdBlockInAirSceneFour = new EmptyBlockInAir(5540, 700);
         pipeHorizontalSceneFour = new PipeHorizontal(5880, 820);
-        castle = new Castle(6200, 490);
+        castle = new Castle(6220, 490);
 
         this.add(backgroundLabelSceneOne, Integer.valueOf(0));
         this.add(backgroundLabelSceneTwo, Integer.valueOf(0));
@@ -234,6 +238,7 @@ public class LevelTwoSectionTwoScreen extends LevelScreens {
         this.add(thisSectionTimeLabel, Integer.valueOf(1));
         this.add(thisGameCoin, Integer.valueOf(1));
         this.add(thisGameCoinImage, Integer.valueOf(1));
+        this.add(marioLocationLabel, Integer.valueOf(1));
 
         // Scene One:
         objectsInThisSection.add(firstBlockInAirSceneOne);

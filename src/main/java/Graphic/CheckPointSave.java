@@ -14,6 +14,7 @@ public class CheckPointSave {
     private int XUserHeartValueLabel;
     private int XThisSectionTimeLabel;
     private int XUserScoreLabel;
+    private int XMarioLocationLabel;
     private int XLevelPanel;
     private int saveTime;
 
@@ -35,7 +36,7 @@ public class CheckPointSave {
         XUserHeartValueLabel = screen.XUserHeartValueLabel;
         XThisSectionTimeLabel = screen.XThisSectionTimeLabel;
         XUserScoreLabel = screen.XUserScoreLabel;
-        System.out.println("score: " + XUserScoreLabel);
+        XMarioLocationLabel = screen.XMarioLocationLabel;
 
     }
 
@@ -51,7 +52,7 @@ public class CheckPointSave {
         screen.XUserHeartValueLabel = XUserHeartValueLabel;
         screen.XThisSectionTimeLabel = XThisSectionTimeLabel;
         screen.XUserScoreLabel = XUserScoreLabel;
-
+        screen.XMarioLocationLabel = XMarioLocationLabel;
 
     }
 

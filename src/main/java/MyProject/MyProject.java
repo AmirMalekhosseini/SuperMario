@@ -35,8 +35,8 @@ public class MyProject {
         }
         activeUser.add(new User());
         MyProjectData.getProjectData();
-//                        new LoginPageScreen();
-        new GameGodFather(new GameData());
+                        new LoginPageScreen();
+//        new GameGodFather(new GameData());
 
     }
 

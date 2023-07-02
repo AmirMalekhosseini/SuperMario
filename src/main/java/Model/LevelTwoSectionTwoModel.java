@@ -2,7 +2,7 @@ package Model;
 
 import Graphic.*;
 
-public class LevelTwoSectionTwoModel extends ScreenModel {
+public class LevelTwoSectionTwoModel extends NormalScreenModel {
 
     public LevelTwoSectionTwoModel(GameGodFather godFather) {
         this.godFather = godFather;
@@ -45,4 +45,31 @@ public class LevelTwoSectionTwoModel extends ScreenModel {
     }
 
 
+    @Override
+    public void goToHiddenSection() {
+
+    }
+
+    @Override
+    public void goToNextSection() {
+
+        if (!godFather.marioMoverModel.isMarioEnterInBossSection()) {// Mario enters in New Section:
+            godFather.getLevelTwoGameBackgroundPanel().setVisible(false);
+            godFather.activeLevel.levelPanel = godFather.getLevelThreeGameBackgroundPanel();
+            godFather.activeLevel.levelPanel.setVisible(true);
+            godFather.activeLevel.mario = godFather.getBossFightScreenSection().activeMario;
+            godFather.marioMoverModel.activeMario = godFather.activeLevel.mario;
+            godFather.activeLevel.intersect = godFather.intersectInBossSection;
+            godFather.activeLevel.screen = godFather.getBossFightScreenSection();
+            godFather.activeLevel.screenModel = godFather.getBossFightSectionModel();
+            godFather.gameTimer.setSectionTime(50);
+            // Add Score At The End Of Section
+            godFather.calculateScore.calculateScore(godFather.getLevelTwoSectionTwoScreen());
+            godFather.getPowerUp().loadPowerUp(godFather.marioMoverModel.activeMario);
+            godFather.marioMoverModel.setMarioEnterInBossSection(true);
+            CheckPointSave.getCheckPointSave().save(godFather.activeLevel.screen);
+            CheckPointSave.getCheckPointSave().saveXPanel(godFather.activeLevel.levelPanel.getX());
+        }
+
+    }
 }

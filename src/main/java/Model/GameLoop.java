@@ -428,6 +428,7 @@ public class GameLoop {
         gameGodFather.activeLevel.screen.thisSectionTimeLabel.setLocation(gameGodFather.activeLevel.screen.XThisSectionTimeLabel, 30);
         gameGodFather.activeLevel.screen.thisGameCoin.setLocation(gameGodFather.activeLevel.screen.XThisGameCoin, 27);
         gameGodFather.activeLevel.screen.thisGameCoinImage.setLocation(gameGodFather.activeLevel.screen.XThisGameCoinImage, 30);
+        gameGodFather.activeLevel.screen.marioLocationLabel.setLocation(gameGodFather.activeLevel.screen.XMarioLocationLabel, 25);
 
     }
 

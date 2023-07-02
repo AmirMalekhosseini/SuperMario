@@ -16,6 +16,7 @@ public class MarioMoverModel {
     private boolean marioEnterInLevelOneSectionTwo;
     private boolean marioEnterInLevelTwoSectionOne;
     private boolean marioEnterInLevelTwoSectionTwo;
+    private boolean marioEnterInBossSection;
     private boolean marioEnterInHiddenCoinSection;
     private boolean marioEnterInHiddenEnemySection;
     private boolean marioShooting;
@@ -35,120 +36,23 @@ public class MarioMoverModel {
 
     public void locateMarioLocation() {
 
-        if (godFather.getLevelOneGameBackgroundPanel() == godFather.activeLevel.levelPanel) {// Game is in LevelOne:
-
-            if (!marioEnterInLevelOneSectionOne) {
-                activeLevel.mario = godFather.getLevelOneSectionOneScreen().activeMario;
-                activeMario = activeLevel.mario;
-            }
-
-            if (activeMario.getX() <= 6400) {// Game is in SectionOne:
-                if (!marioEnterInLevelOneSectionOne) {
-                    godFather.getGameData().setMarioLocation("levelonesectionone");
-                    activeLevel.intersect = godFather.intersectInLevelOneSectionOne;
-                    activeLevel.screen = godFather.getLevelOneSectionOneScreen();
-                    activeLevel.screenModel = godFather.getLevelOneSectionOneModel();
-                    marioEnterInLevelOneSectionOne = true;
-                    CheckPointSave.getCheckPointSave().save(activeLevel.screen);
-                    CheckPointSave.getCheckPointSave().saveXPanel(godFather.activeLevel.levelPanel.getX());
-
-                }
-
-            } else {// Game is in SectionTwo:
-
-                if (!marioEnterInLevelOneSectionTwo) {// Mario Enter in SectionTwo:
-                    godFather.getLevelOneGameBackgroundPanel().setLocation(-6800, 0);
-                    activeLevel.mario = godFather.getLevelOneSectionTwoScreen().activeMario;
-                    activeMario = activeLevel.mario;
-                    activeLevel.intersect = godFather.intersectInLevelOneSectionTwo;
-                    activeLevel.screen = godFather.getLevelOneSectionTwoScreen();
-                    activeLevel.screenModel = godFather.getLevelOneSectionTwoModel();
-                    godFather.gameTimer.setSectionTime(50);
-                    // Add Score At The End Of SectionOne
-                    godFather.calculateScore.calculateScore(godFather.getLevelOneSectionOneScreen());
-                    godFather.getGameData().setMarioLocation("levelonesectiontwo");
-                    godFather.getPowerUp().loadPowerUp(activeMario);
-                    marioEnterInLevelOneSectionTwo = true;
-                    CheckPointSave.getCheckPointSave().save(activeLevel.screen);
-                    CheckPointSave.getCheckPointSave().saveXPanel(godFather.activeLevel.levelPanel.getX());
-                }
-            }
-
-        } else if (godFather.getLevelTwoGameBackgroundPanel() == godFather.activeLevel.levelPanel) {// Game is in LevelTwo:
-
-            if (activeMario.getX() <= 6700) {// Game is in SectionOne:
-
-                if (!marioEnterInLevelTwoSectionOne) {
-                    godFather.gameTimer.setSectionTime(50);
-                    // Add Score At The End Of LevelOneSectionTwo
-                    godFather.calculateScore.calculateScore(godFather.getLevelOneSectionTwoScreen());
-//                    godFather.getGameData().setMarioLocation("leveltwosectionone");
-                    activeLevel.mario = godFather.getLevelTwoSectionOneScreen().activeMario;
-                    activeMario = activeLevel.mario;
-                    activeLevel.intersect = godFather.intersectInLevelTwoSectionOne;
-                    activeLevel.screen = godFather.getLevelTwoSectionOneScreen();
-                    activeLevel.screenModel = godFather.getLevelTwoSectionOneModel();
-//                    godFather.getPowerUp().loadPowerUp(activeMario);
-                    marioEnterInLevelTwoSectionOne = true;
-                    CheckPointSave.getCheckPointSave().save(activeLevel.screen);
-                    CheckPointSave.getCheckPointSave().saveXPanel(godFather.activeLevel.levelPanel.getX());
-
-                }
-            } else {// Game is in SectionTwo:
-
-                if (!marioEnterInLevelTwoSectionTwo) {
-                    godFather.gameTimer.setSectionTime(50);
-                    // Add Score At The End Of SectionOne
-                    godFather.calculateScore.calculateScore(godFather.getLevelTwoSectionTwoScreen());
-                    godFather.getGameData().setMarioLocation("leveltwosectiontwo");
-                    activeLevel.mario = godFather.getLevelTwoSectionTwoScreen().activeMario;
-                    activeMario = activeLevel.mario;
-                    activeLevel.intersect = godFather.intersectInLevelTwoSectionTwo;
-                    activeLevel.screen = godFather.getLevelTwoSectionTwoScreen();
-                    activeLevel.screenModel = godFather.getLevelTwoSectionTwoModel();
-//                    godFather.getPowerUp().loadPowerUp(activeMario);
-                    marioEnterInLevelTwoSectionTwo = true;
-                    CheckPointSave.getCheckPointSave().save(activeLevel.screen);
-                    CheckPointSave.getCheckPointSave().saveXPanel(godFather.activeLevel.levelPanel.getX());
-                }
-            }
-
-        } else if (godFather.getLevelThreeGameBackgroundPanel() == godFather.activeLevel.levelPanel) {
-
-            godFather.getGameData().setMarioLocation("bossfightsection");
-            activeLevel.mario = godFather.getBossFightScreenSection().activeMario;
-            activeMario = activeLevel.mario;
-            activeLevel.intersect = godFather.intersectInBossSection;
-            activeLevel.screen = godFather.getBossFightScreenSection();
-            activeLevel.screenModel = godFather.getBossFightSectionModel();
-//            godFather.getPowerUp().loadPowerUp(activeMario);
+        if (!marioEnterInLevelOneSectionOne) {
+            godFather.activeLevel.mario = godFather.getLevelOneSectionOneScreen().activeMario;
+            activeMario = godFather.activeLevel.mario;
+            activeLevel.intersect = godFather.intersectInLevelOneSectionOne;
+            activeLevel.screen = godFather.getLevelOneSectionOneScreen();
+            activeLevel.screenModel = godFather.getLevelOneSectionOneModel();
+            marioEnterInLevelOneSectionOne = true;
             CheckPointSave.getCheckPointSave().save(activeLevel.screen);
             CheckPointSave.getCheckPointSave().saveXPanel(godFather.activeLevel.levelPanel.getX());
 
-        } else if (godFather.getHiddenCoinBackgroundPanel() == godFather.activeLevel.levelPanel) {// Game is in HiddenCoin:
+        }
 
-            godFather.getGameData().setMarioLocation("hiddencoinsection");
-            activeLevel.mario = godFather.getHiddenCoinSectionScreen().activeMario;
-            activeMario = activeLevel.mario;
-            activeLevel.intersect = godFather.intersectInHiddenCoinSection;
-            activeLevel.screen = godFather.getHiddenCoinSectionScreen();
-            activeLevel.screenModel = godFather.getHiddenCoinSectionModel();
-//            godFather.getPowerUp().loadPowerUp(activeMario);
-            CheckPointSave.getCheckPointSave().save(activeLevel.screen);
-            CheckPointSave.getCheckPointSave().saveXPanel(godFather.activeLevel.levelPanel.getX());
+        if (activeMario.getX() >= 6400) {
+            if (godFather.activeLevel.screenModel instanceof NormalScreenModel) {
+                ((NormalScreenModel) godFather.activeLevel.screenModel).goToNextSection();
 
-        } else if (godFather.getHiddenEnemyBackgroundPanel() == godFather.activeLevel.levelPanel) {// Game is in HiddenEnemy:
-
-            godFather.getGameData().setMarioLocation("hiddenenemysection");
-            activeLevel.mario = godFather.getHiddenEnemySectionScreen().activeMario;
-            activeMario = activeLevel.mario;
-            activeLevel.intersect = godFather.intersectInHiddenEnemySection;
-            activeLevel.screen = godFather.getHiddenEnemySectionScreen();
-            activeLevel.screenModel = godFather.getHiddenEnemySectionModel();
-            godFather.getPowerUp().loadPowerUp(activeMario);
-            CheckPointSave.getCheckPointSave().save(activeLevel.screen);
-            CheckPointSave.getCheckPointSave().saveXPanel(godFather.activeLevel.levelPanel.getX());
-
+            }
         }
 
 
@@ -230,6 +134,7 @@ public class MarioMoverModel {
                     activeLevel.screen.userHeartImage.setX(activeLevel.screen.XUserHeartImage);
                     activeLevel.screen.XUserScoreLabel += 5;
                     activeLevel.screen.XUserHeartValueLabel += 5;
+                    activeLevel.screen.XMarioLocationLabel += 5;
 
                 }
             }
@@ -250,6 +155,7 @@ public class MarioMoverModel {
                     activeLevel.screen.userHeartImage.setX(activeLevel.screen.XUserHeartImage);
                     activeLevel.screen.XUserScoreLabel -= 5;
                     activeLevel.screen.XUserHeartValueLabel -= 5;
+                    activeLevel.screen.XMarioLocationLabel -= 5;
                 }
             }
 
@@ -423,6 +329,14 @@ public class MarioMoverModel {
 
     public void setMarioEnterInLevelTwoSectionTwo(boolean marioEnterInLevelTwoSectionTwo) {
         this.marioEnterInLevelTwoSectionTwo = marioEnterInLevelTwoSectionTwo;
+    }
+
+    public boolean isMarioEnterInBossSection() {
+        return marioEnterInBossSection;
+    }
+
+    public void setMarioEnterInBossSection(boolean marioEnterInBossSection) {
+        this.marioEnterInBossSection = marioEnterInBossSection;
     }
 
     public boolean isMarioEnterInHiddenCoinSection() {

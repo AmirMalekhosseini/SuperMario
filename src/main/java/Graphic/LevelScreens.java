@@ -22,6 +22,7 @@ public class LevelScreens extends JLayeredPane {
     public JLabel userScoreLabel;
     public JLabel thisSectionTimeLabel;
     public JLabel thisGameCoin;
+    public JLabel marioLocationLabel;
     public CoinForStore thisGameCoinImage;
 
     public int XUserHeartImage = 1520;
@@ -30,7 +31,9 @@ public class LevelScreens extends JLayeredPane {
     public int XThisSectionTimeLabel = 1180;
     public int XThisGameCoin = 1080;
     public int XThisGameCoinImage = 1110;
+    public int XMarioLocationLabel = 880;
     private boolean isScreenLock;
+
 
     public ArrayList<ObjectsInGame> getObjectsInThisSection() {
         return objectsInThisSection;

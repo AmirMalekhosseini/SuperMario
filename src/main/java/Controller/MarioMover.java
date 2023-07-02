@@ -54,19 +54,19 @@ public class MarioMover {
         actionMap.put("pause", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-//                gameGodFather.getGameScreenFrame().dispose();
+                gameGodFather.getGameScreenFrame().dispose();
                 if (gameGodFather.getGameData().isGamePause) {
                     gameGodFather.getGameData().isGamePause = false;
                 } else {
                     gameGodFather.getGameData().isGamePause = true;
                 }
                 System.out.println(marioMoverModel.activeMario.getX());
-//                new MainMenuScreen();
-//                try {
-//                    objectMapper.writeValue(new File("User.jason"), MyProject.allUsers);
-//                } catch (IOException ex) {
-//                    throw new RuntimeException(ex);
-//                }
+                new MainMenuScreen();
+                try {
+                    objectMapper.writeValue(new File("User.jason"), MyProject.allUsers);
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
 

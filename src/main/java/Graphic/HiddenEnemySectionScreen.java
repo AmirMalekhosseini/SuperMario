@@ -94,6 +94,10 @@ public class HiddenEnemySectionScreen extends LevelScreens {
         thisGameCoinImage = new CoinForStore(XThisGameCoinImage, 30);
         thisGameCoinImage.setLocation(thisGameCoinImage.getX(), thisGameCoinImage.getY());
 
+        marioLocationLabel = new JLabel("WORLD: ? _ ?");
+        marioLocationLabel.setFont(font1);
+        marioLocationLabel.setBounds(XMarioLocationLabel, 25, 200, 30);
+
 //        Add Mario:
         if (MyProject.activeUser.get(0).isUserChooseNormal_RedMario()) {
             normalMario = new NormalMario(100, 840);
@@ -163,6 +167,7 @@ public class HiddenEnemySectionScreen extends LevelScreens {
         this.add(thisSectionTimeLabel, Integer.valueOf(1));
         this.add(thisGameCoin, Integer.valueOf(1));
         this.add(thisGameCoinImage, Integer.valueOf(1));
+        this.add(marioLocationLabel, Integer.valueOf(1));
 
         objectsInThisSection.add(cannon_1);
         objectsInThisSection.add(blockInAir1_1);

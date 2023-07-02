@@ -130,6 +130,10 @@ public class BossFightSectionScreen extends LevelScreens {
         thisGameCoinImage = new CoinForStore(XThisGameCoinImage, 30);
         thisGameCoinImage.setLocation(thisGameCoinImage.getX(), thisGameCoinImage.getY());
 
+        marioLocationLabel = new JLabel("WORLD: 3 _ 1");
+        marioLocationLabel.setFont(font1);
+        marioLocationLabel.setBounds(XMarioLocationLabel, 25, 200, 30);
+
         healthBar = new JProgressBar(0, 100);
         healthBar.setBounds(5500, 30, 800, 50);
         healthBar.setStringPainted(true);
@@ -151,6 +155,7 @@ public class BossFightSectionScreen extends LevelScreens {
         this.add(thisSectionTimeLabel, Integer.valueOf(1));
         this.add(thisGameCoin, Integer.valueOf(1));
         this.add(thisGameCoinImage, Integer.valueOf(1));
+        this.add(marioLocationLabel, Integer.valueOf(1));
         this.add(healthBar, Integer.valueOf(1));
 
         addMario();

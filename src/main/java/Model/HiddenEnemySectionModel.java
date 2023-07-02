@@ -73,4 +73,9 @@ public class HiddenEnemySectionModel extends ScreenModel {
     public void setCannonThreeWorking(boolean cannonThreeWorking) {
         this.cannonThreeWorking = cannonThreeWorking;
     }
+
+    @Override
+    public void goToHiddenSection() {
+
+    }
 }

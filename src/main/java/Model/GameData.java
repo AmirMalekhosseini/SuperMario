@@ -11,7 +11,6 @@ public class GameData {
     protected int thisGameScore = 0;
     protected int thisGameCoin = 0;
     protected String gameMode;
-    protected String marioLocation = "";
     private int level;
     private int section;
     private boolean isBossTriggered;
@@ -19,7 +18,7 @@ public class GameData {
     public GameData() {
 
     }
-    
+
 
     public int getUserHeartValue() {
         return userHeartValue;
@@ -52,15 +51,6 @@ public class GameData {
     public void setGameMode(String gameMode) {
         this.gameMode = gameMode;
     }
-
-    public String getMarioLocation() {
-        return marioLocation;
-    }
-
-    public void setMarioLocation(String marioLocation) {
-        this.marioLocation = marioLocation;
-    }
-
     public int getLevel() {
         return level;
     }
