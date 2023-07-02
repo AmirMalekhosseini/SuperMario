@@ -5,7 +5,7 @@ import Model.MyProjectData;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class Star extends ItemsInGame{
+public class Star extends MoverItemsInGame{
 
 
     private BufferedImage background;

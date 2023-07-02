@@ -58,6 +58,9 @@ public abstract class VilgaxIntersection {
                 && (marioHeight < marioY || marioHeight > vilgaxY)) {
             if ((marioWidth >= vilgaxX || vilgaxWidth >= marioX) && marioHeight <= vilgaxY + 30) {
                 // Hit up of Vilgax and Damage it:
+
+                godFather.activeLevel.intersect.intersection.setMarioHitsUpOfTheVilgax(true);
+                activeMario.setY(vilgax.getY() - activeMario.getHeight() - 2);
                 if (marioHitsVilgax) {
                     return;
                 }

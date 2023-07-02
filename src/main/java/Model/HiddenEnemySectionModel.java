@@ -14,7 +14,7 @@ public class HiddenEnemySectionModel extends ScreenModel {
         this.marioMoverModel = godFather.marioMoverModel;
         this.intersect = godFather.intersectInHiddenEnemySection;
         this.screen = godFather.getHiddenEnemySectionScreen();
-        controller = new ScreenController(screen, intersect, marioMoverModel) {
+        controller = new ScreenController(godFather,screen, intersect, marioMoverModel) {
             @Override
             public void gravityStarter() {
                 super.gravityStarter();
@@ -45,15 +45,6 @@ public class HiddenEnemySectionModel extends ScreenModel {
                 super.setLocationAfterLoose();
             }
 
-            @Override
-            public int getSwordCoolDownCounter() {
-                return super.getSwordCoolDownCounter();
-            }
-
-            @Override
-            public void setSwordCoolDownCounter(int swordCoolDownCounter) {
-                super.setSwordCoolDownCounter(swordCoolDownCounter);
-            }
         };
 
     }

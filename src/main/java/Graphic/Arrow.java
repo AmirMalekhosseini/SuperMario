@@ -15,7 +15,7 @@ public class Arrow extends MarioWeapon {
     private int width = 50;
     private int velocity = 30;
     private int secondCounter = 0;
-    private int damage = 2;
+    private int damage = 5;
 
     public Arrow(int x, int y) {
 

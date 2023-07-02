@@ -10,7 +10,7 @@ public class LevelTwoSectionTwoModel extends ScreenModel {
         this.intersect = godFather.intersectInLevelTwoSectionTwo;
         this.screen = godFather.getLevelTwoSectionTwoScreen();
 
-        controller = new ScreenController(screen, intersect, marioMoverModel) {
+        controller = new ScreenController(godFather,screen, intersect, marioMoverModel) {
             @Override
             public void gravityStarter() {
                 super.gravityStarter();
@@ -39,16 +39,6 @@ public class LevelTwoSectionTwoModel extends ScreenModel {
             @Override
             public void setLocationAfterLoose() {
                 super.setLocationAfterLoose();
-            }
-
-            @Override
-            public int getSwordCoolDownCounter() {
-                return super.getSwordCoolDownCounter();
-            }
-
-            @Override
-            public void setSwordCoolDownCounter(int swordCoolDownCounter) {
-                super.setSwordCoolDownCounter(swordCoolDownCounter);
             }
         };
 

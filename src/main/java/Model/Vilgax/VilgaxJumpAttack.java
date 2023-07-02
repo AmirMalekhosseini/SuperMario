@@ -51,7 +51,7 @@ public class VilgaxJumpAttack extends VilgaxMove {
                 vilgaxJump.setMoveDone(false);
                 this.setMoveDone(true);
                 // Active CoolDown:
-                GameTimer.getGameTimer(godFather.getGameData()).jumpAttack.counter = 2;
+                GameTimer.getGameTimer().jumpAttackCoolDown.counter = 2;
 
             }
         }

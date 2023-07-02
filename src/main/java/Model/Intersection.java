@@ -13,6 +13,7 @@ public abstract class Intersection {
     protected boolean marioHitsLeftOfTheObject;
     protected boolean marioHitsRightOfTheObject;
     protected boolean marioHitsUpOfTheObject;
+    protected boolean marioHitsUpOfTheVilgax;
     protected boolean marioHitsDownOfTheObject;
     protected boolean marioHitsAnObject;
     protected boolean marioHitsFullOfCoinBlockInAir;
@@ -187,6 +188,9 @@ public abstract class Intersection {
                 if (!screen.getItemsInThisSection().get(i).isItemCatch()) {
                     if (screen.getItemsInThisSection().get(i) instanceof Coin) {
                         screen.getGameData().thisGameCoin++;
+                    } else if (screen.getItemsInThisSection().get(i) instanceof CheckPoint) {
+                        CheckPointSave.getCheckPointSave().save(screen);
+                        CheckPointSave.getCheckPointSave().saveXPanel(gameGodFather.activeLevel.levelPanel.getX());
                     } else {
                         powerUp.allocatePowerUp(screen.activeMario);
                     }
@@ -808,6 +812,7 @@ public abstract class Intersection {
         marioHitsLeftOfTheObject = false;
         marioHitsDownOfTheObject = false;
         marioHitsUpOfTheObject = false;
+        marioHitsUpOfTheVilgax = false;
     }
 
     public boolean isMarioHitsFullOfCoinBlockInAir() {
@@ -887,5 +892,13 @@ public abstract class Intersection {
 
     public void setPowerUp(PowerUp powerUp) {
         this.powerUp = powerUp;
+    }
+
+    public boolean isMarioHitsUpOfTheVilgax() {
+        return marioHitsUpOfTheVilgax;
+    }
+
+    public void setMarioHitsUpOfTheVilgax(boolean marioHitsUpOfTheVilgax) {
+        this.marioHitsUpOfTheVilgax = marioHitsUpOfTheVilgax;
     }
 }

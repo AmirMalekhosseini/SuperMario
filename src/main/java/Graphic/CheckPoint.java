@@ -5,7 +5,7 @@ import Model.MyProjectData;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class CheckPoint extends ObjectsInGame {
+public class CheckPoint extends ItemsInGame {
 
     private BufferedImage background;
     private int x;

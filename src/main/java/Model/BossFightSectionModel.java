@@ -56,7 +56,7 @@ public class BossFightSectionModel extends ScreenModel {
     }
 
     private void addController() {
-        controller = new ScreenController(screen, intersect, marioMoverModel) {
+        controller = new ScreenController(godFather,screen, intersect, marioMoverModel) {
             @Override
             public void gravityStarter() {
                 super.gravityStarter();
@@ -85,16 +85,6 @@ public class BossFightSectionModel extends ScreenModel {
             @Override
             public void setLocationAfterLoose() {
                 super.setLocationAfterLoose();
-            }
-
-            @Override
-            public int getSwordCoolDownCounter() {
-                return super.getSwordCoolDownCounter();
-            }
-
-            @Override
-            public void setSwordCoolDownCounter(int swordCoolDownCounter) {
-                super.setSwordCoolDownCounter(swordCoolDownCounter);
             }
         };
     }

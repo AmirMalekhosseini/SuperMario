@@ -15,7 +15,6 @@ public class VilgaxFireBallAttack extends VilgaxMove {
 
     BossFightSectionScreen screen;
     Mario activeMario;
-    private boolean canThrowFireBall = true;
     private int fireBallY = 850;// High ShotY: 800
 
     public VilgaxFireBallAttack(GameGodFather godFather, Vilgax vilgax) {
@@ -89,7 +88,7 @@ public class VilgaxFireBallAttack extends VilgaxMove {
             vilgax.vilgaxAndScreenConnection.addVilgaxWeaponToScreen(fireBall);
             setMoveDone(true);
             // Active CoolDown:
-            GameTimer.getGameTimer(godFather.getGameData()).fireBallAttack.counter = 2;
+            GameTimer.getGameTimer().fireBallAttackCoolDown.counter = 2;
 
         }
 

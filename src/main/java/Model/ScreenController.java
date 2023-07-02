@@ -6,13 +6,14 @@ import java.util.ArrayList;
 
 public abstract class ScreenController {
 
+    GameGodFather godFather;
     LevelScreens screen;
     IntersectInGame intersect;
     MarioMoverModel marioMoverModel;
-    private int swordCoolDownCounter = 10;
     public Gravity gravity;
 
-    public ScreenController(LevelScreens screen, IntersectInGame intersect, MarioMoverModel marioMoverModel) {
+    public ScreenController(GameGodFather godFather, LevelScreens screen, IntersectInGame intersect, MarioMoverModel marioMoverModel) {
+        this.godFather = godFather;
         this.screen = screen;
         this.intersect = intersect;
         this.marioMoverModel = marioMoverModel;
@@ -127,7 +128,10 @@ public abstract class ScreenController {
 
         for (int i = 0; i < screen.getItemsInThisSection().size(); i++) {
 
-            screen.getItemsInThisSection().get(i).move();
+            if (screen.getItemsInThisSection().get(i) instanceof MoverItemsInGame) {
+                ((MoverItemsInGame) screen.getItemsInThisSection().get(i)).move();
+            }
+
             // Item Changes its Direction:
             if (intersect.intersection.isItemHitAnObject
                     (screen.getItemsInThisSection().get(i))) {
@@ -195,7 +199,6 @@ public abstract class ScreenController {
     }
 
     public void startThrowSword() {
-        swordCoolDownCounter++;
         if (marioMoverModel.isUserPressedUp() && marioMoverModel.isUserPressedDown()) {
             marioMoverModel.setMarioThrowSword(true);
             marioMoverModel.marioStartsThrowsSword();
@@ -204,24 +207,11 @@ public abstract class ScreenController {
 
     public void setLocationAfterLoose() {
 
-        screen.activeMario.setX(100);
-        screen.XUserHeartImage = 1520;
-        screen.userHeartImage.setX(screen.XUserHeartImage);
-        screen.XThisGameCoinImage = 1110;
-        screen.thisGameCoinImage.setX(screen.XThisGameCoinImage);
-        screen.XThisGameCoin = 1080;
-        screen.XUserHeartValueLabel = 1510;
-        screen.XThisSectionTimeLabel = 1180;
-        screen.XUserScoreLabel = 1345;
+        CheckPointSave.getCheckPointSave().load(screen);
+        godFather.activeLevel.levelPanel.setLocation(CheckPointSave.getCheckPointSave().loadXPanel(), 0);
+        // To Stand On Block:
+        godFather.marioMoverModel.setUpMario(true);
 
-    }
-
-    public int getSwordCoolDownCounter() {
-        return swordCoolDownCounter;
-    }
-
-    public void setSwordCoolDownCounter(int swordCoolDownCounter) {
-        this.swordCoolDownCounter = swordCoolDownCounter;
     }
 
 }

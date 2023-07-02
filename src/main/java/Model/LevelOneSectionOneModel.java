@@ -10,7 +10,7 @@ public class LevelOneSectionOneModel extends ScreenModel {
         this.intersect = godFather.intersectInLevelOneSectionOne;
         this.screen = godFather.getLevelOneSectionOneScreen();
 
-        controller = new ScreenController(LevelOneSectionOneModel.this.screen, intersect, marioMoverModel) {
+        controller = new ScreenController(godFather,LevelOneSectionOneModel.this.screen, intersect, marioMoverModel) {
             @Override
             public void gravityStarter() {
                 super.gravityStarter();
@@ -41,15 +41,6 @@ public class LevelOneSectionOneModel extends ScreenModel {
                 super.setLocationAfterLoose();
             }
 
-            @Override
-            public int getSwordCoolDownCounter() {
-                return super.getSwordCoolDownCounter();
-            }
-
-            @Override
-            public void setSwordCoolDownCounter(int swordCoolDownCounter) {
-                super.setSwordCoolDownCounter(swordCoolDownCounter);
-            }
         };
 
     }

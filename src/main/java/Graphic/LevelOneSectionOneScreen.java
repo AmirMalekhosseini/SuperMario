@@ -191,7 +191,7 @@ public class LevelOneSectionOneScreen extends LevelScreens {
         fifthBlockInAirSceneTwo = new SimpleBlockInAir(2500, 600);
         coinOnFifthBlockInAirSceneTwo = new Coin(2500, 550);
         sixthBlockInAirSceneTwo = new EmptyBlockInAir(2570, 600);
-        checkPointSceneTwo = new CheckPoint(2580, 490);
+        checkPointSceneTwo = new CheckPoint(2580, 470);
         seventhBlockInAirSceneTwo = new FullOfCoinBlockInAir(2640, 600);
         coinOnSeventhBlockInAirSceneTwo = new Coin(2640, 550);
         firstEnemyInSceneTwo = new Goompa(2300, 890);
@@ -269,6 +269,7 @@ public class LevelOneSectionOneScreen extends LevelScreens {
         enemiesInThisSection.add(firstEnemyInSceneTwo);
         enemiesInThisSection.add(secondEnemyInSceneTwo);
         enemiesInThisSection.add(thirdEnemyInSceneTwo);
+        itemsInThisSection.add(checkPointSceneTwo);
 
         // Scene Three:
         objectsInThisSection.add(firstPrizeInAirSceneThree);
@@ -290,8 +291,6 @@ public class LevelOneSectionOneScreen extends LevelScreens {
         objectsInThisSection.add(pipeHorizontalSceneFour);
 
         // Add To Screen:
-
-        this.add(checkPointSceneTwo, Integer.valueOf(1));
 
         for (ObjectsInGame object : objectsInThisSection) {
             this.add(object, Integer.valueOf(1));

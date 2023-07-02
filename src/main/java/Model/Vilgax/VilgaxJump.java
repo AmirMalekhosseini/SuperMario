@@ -31,7 +31,7 @@ public class VilgaxJump extends VilgaxMove {
         vilgax.setYVelocity(vilgax.getYVelocity() + (GravityData.getGravityData().gravity) * GravityData.getGravityData().vilgaxDt);
         vilgax.setY((int) (vilgax.getY() + vilgax.getYVelocity()));
 
-        if (!isJumpAttackActive) {// only do this when active move is jump,not jumpAttack!
+        if (!isJumpAttackActive) {// only do this when active move is jump,not jumpAttackCoolDown!
             changeBackground();
         }
 

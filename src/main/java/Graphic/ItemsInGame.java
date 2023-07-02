@@ -3,7 +3,7 @@ package Graphic;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public abstract class ItemsInGame extends ObjectsInGame {
+public class ItemsInGame extends ObjectsInGame {
 
     private BufferedImage background;
     private int x;
@@ -19,7 +19,6 @@ public abstract class ItemsInGame extends ObjectsInGame {
     public ItemsInGame() {
 
     }
-    public abstract void move();
 
     protected void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);

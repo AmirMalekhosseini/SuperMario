@@ -27,11 +27,6 @@ public class Coin extends ItemsInGame {
     public Coin() {
     }
 
-    @Override
-    public void move() {
-
-    }
-
     protected void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
         if (!isItemCatch()) {

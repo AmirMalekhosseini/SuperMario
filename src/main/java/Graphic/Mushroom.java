@@ -5,7 +5,7 @@ import Model.MyProjectData;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class Mushroom extends ItemsInGame{
+public class Mushroom extends MoverItemsInGame{
 
 
     private BufferedImage background;

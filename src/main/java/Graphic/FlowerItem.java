@@ -30,11 +30,6 @@ public class FlowerItem extends ItemsInGame{
     public FlowerItem() {
     }
 
-    @Override
-    public void move() {
-
-    }
-
     protected void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
         if (!isItemCatch()) {

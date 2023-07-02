@@ -34,7 +34,7 @@ public class VilgaxNukeAttack extends VilgaxMove {
             changeBackground();
             this.setMoveDone(true);
             // Active CoolDown:
-            GameTimer.getGameTimer(godFather.getGameData()).nukeAttack.counter = 1;
+            GameTimer.getGameTimer().nukeAttackCoolDown.counter = 1;
 
         }
 
