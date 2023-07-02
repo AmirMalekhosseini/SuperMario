@@ -33,7 +33,7 @@ public class Sword extends MarioWeapon{
 
     @Override
 
-    public void move() {
+    public void moveWeapon(Mario mario) {
 
         secondCounter++;
         if (secondCounter == 5) {

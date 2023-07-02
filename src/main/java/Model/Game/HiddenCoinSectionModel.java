@@ -32,6 +32,16 @@ public class HiddenCoinSectionModel extends ScreenModel {
             }
 
             @Override
+            public void checkAddShield() {
+                super.checkAddShield();
+            }
+
+            @Override
+            public void checkRemoveShield() {
+                super.checkRemoveShield();
+            }
+
+            @Override
             public void moveShot() {
                 super.moveShot();
             }
@@ -39,6 +49,11 @@ public class HiddenCoinSectionModel extends ScreenModel {
             @Override
             public void startThrowSword() {
                 super.startThrowSword();
+            }
+
+            @Override
+            public void setLocationAfterLoose() {
+                super.setLocationAfterLoose();
             }
         };
 

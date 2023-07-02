@@ -64,6 +64,8 @@ public class GameLoop {
                     gameGodFather.marioMoverController.moveMarioLeft();
                     gameGodFather.marioMoverController.moveMarioRight();
 
+                    gameGodFather.activeLevel.getScreenModel().controller.checkAddShield();
+                    gameGodFather.activeLevel.getScreenModel().controller.checkRemoveShield();
                     gameGodFather.activeLevel.getScreenModel().controller.gravity.allocateGravity();
                     gameGodFather.activeLevel.getIntersect().intersection.refreshIntersectsBooleans();
                     gameGodFather.activeLevel.getIntersect().intersection.marioIntersectWithObjects();

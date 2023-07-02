@@ -39,6 +39,11 @@ public class IntersectInHiddenEnemySection extends IntersectInGame{
             }
 
             @Override
+            public void shieldIntersection(MarioWeapon shield) {
+                super.shieldIntersection(shield);
+            }
+
+            @Override
             public void swordIntersection(MarioWeapon sword) {
                 super.swordIntersection(sword);
             }

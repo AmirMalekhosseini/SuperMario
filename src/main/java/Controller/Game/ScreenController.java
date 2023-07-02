@@ -194,15 +194,38 @@ public abstract class ScreenController {
 
     }
 
+    public void checkAddShield() {
+
+        if (screen.activeMario.isMarioGotShield()) {
+            Shield shield = new Shield(screen.activeMario.getX() - 55, screen.activeMario.getY() - 40);
+            screen.getWeaponsInThisSection().add(shield);
+            screen.add(shield, Integer.valueOf(1));
+            screen.activeMario.setMarioGotShield(false);
+            godFather.gameTimer.shieldCounter.counter = 0;
+        }
+
+    }
+
+    public void checkRemoveShield() {
+
+        // Remove Shield
+        if (godFather.gameTimer.shieldCounter.counter == 15) {
+            for (MarioWeapon weapon : screen.getWeaponsInThisSection()) {
+                if (weapon instanceof Shield) {
+                    screen.remove(weapon);
+                    screen.remove(weapon);
+                    break;
+                }
+            }
+            godFather.gameTimer.shieldCounter.counter = 18;
+        }
+
+    }
+
     public void moveShot() {
 
-        ArrayList<MarioWeapon> weaponsInThisSection = screen.getWeaponsInThisSection();
-        for (MarioWeapon marioWeapon : weaponsInThisSection) {
-            if (marioWeapon instanceof Shield) {
-                ((Shield) marioWeapon).setMarioX(screen.activeMario.getX());
-                ((Shield) marioWeapon).setMarioY(screen.activeMario.getY());
-            }
-            marioWeapon.move();
+        for (MarioWeapon marioWeapon : screen.getWeaponsInThisSection()) {
+            marioWeapon.moveWeapon(screen.activeMario);
         }
 
     }

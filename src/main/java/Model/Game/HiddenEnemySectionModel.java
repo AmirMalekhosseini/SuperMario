@@ -31,6 +31,16 @@ public class HiddenEnemySectionModel extends ScreenModel {
             }
 
             @Override
+            public void checkAddShield() {
+                super.checkAddShield();
+            }
+
+            @Override
+            public void checkRemoveShield() {
+                super.checkRemoveShield();
+            }
+
+            @Override
             public void moveShot() {
                 super.moveShot();
             }

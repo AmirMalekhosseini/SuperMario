@@ -170,7 +170,7 @@ public class MyProjectData {
 
 
         try {
-            String pathBackground = "BlockInAir.png";
+            String pathBackground = "Objects/BlockInAir.png";
             File fileBackground = new File(pathBackground);
             blockInAir = ImageIO.read(fileBackground);
 
@@ -179,7 +179,7 @@ public class MyProjectData {
         }
 
         try {
-            String pathBackground = "Slime.png";
+            String pathBackground = "Objects/Slime.png";
             File fileBackground = new File(pathBackground);
             slimeBlockInAir = ImageIO.read(fileBackground);
 
@@ -188,7 +188,7 @@ public class MyProjectData {
         }
 
         try {
-            String pathBackground = "EmptyBlockInAir.png";
+            String pathBackground = "Objects/EmptyBlockInAir.png";
             File fileBackground = new File(pathBackground);
             emptyBlockInAir = ImageIO.read(fileBackground);
 
@@ -197,7 +197,7 @@ public class MyProjectData {
         }
 
         try {
-            String pathBackground = "Castle.png";
+            String pathBackground = "Objects/Castle.png";
             File fileBackground = new File(pathBackground);
             castle = ImageIO.read(fileBackground);
 
@@ -206,7 +206,7 @@ public class MyProjectData {
         }
 
         try {
-            String pathBackground = "Checkpoint.png";
+            String pathBackground = "Item/Checkpoint.png";
             File fileBackground = new File(pathBackground);
             checkPoint = ImageIO.read(fileBackground);
 
@@ -224,7 +224,7 @@ public class MyProjectData {
         }
 
         try {
-            String pathBackground = "CoinForStore.png";
+            String pathBackground = "Item/CoinForStore.png";
             File fileBackground = new File(pathBackground);
             coinForStore = ImageIO.read(fileBackground);
 
@@ -260,7 +260,7 @@ public class MyProjectData {
         }
 
         try {
-            String pathBackground = "Pipe.png";
+            String pathBackground = "Objects/Pipe.png";
             File fileBackground = new File(pathBackground);
             pipe = ImageIO.read(fileBackground);
 
@@ -269,7 +269,7 @@ public class MyProjectData {
         }
 
         try {
-            String pathBackground = "PipeHorizontal.png";
+            String pathBackground = "Objects/PipeHorizontal.png";
             File fileBackground = new File(pathBackground);
             pipeHorizontal = ImageIO.read(fileBackground);
 
@@ -476,7 +476,7 @@ public class MyProjectData {
         }
 
         try {
-            String pathBackground = "PrizeInAir_Active.png";
+            String pathBackground = "Objects/PrizeInAir_Active.png";
             File fileBackground = new File(pathBackground);
             activePrizeInAir = ImageIO.read(fileBackground);
 
@@ -485,7 +485,7 @@ public class MyProjectData {
         }
 
         try {
-            String pathBackground = "PrizeInAir_InActive.png";
+            String pathBackground = "Objects/PrizeInAir_InActive.png";
             File fileBackground = new File(pathBackground);
             inActivePrizeInAir = ImageIO.read(fileBackground);
 
@@ -494,7 +494,7 @@ public class MyProjectData {
         }
 
         try {
-            String pathBackground = "Heart.png";
+            String pathBackground = "Game/Heart.png";
             File fileBackground = new File(pathBackground);
             userHeart = ImageIO.read(fileBackground);
 
@@ -503,7 +503,7 @@ public class MyProjectData {
         }
 
         try {
-            String pathBackground = "Cannon.png";
+            String pathBackground = "Objects/Cannon.png";
             File fileBackground = new File(pathBackground);
             cannon = ImageIO.read(fileBackground);
 
@@ -515,8 +515,8 @@ public class MyProjectData {
 
     public void importImages() {
 
-        gameIcon = new ImageIcon("GameIcon.jpeg");
-        gameMenuImage = new ImageIcon("GameMenuImage.jpg");
+        gameIcon = new ImageIcon("Game/GameIcon.jpeg");
+        gameMenuImage = new ImageIcon("Game/GameMenuImage.jpg");
         normalMarioImage = new ImageIcon("mario/Normal Mario/stand_Red_Normal.png");
         runnerMarioImage = new ImageIcon("mario/BlueMario_Runner/stand_Blue_Runner.png");
         jumperMarioImage = new ImageIcon("mario/GreenMario_Jumper/stand_Green_Jumper.png");

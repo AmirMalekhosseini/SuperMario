@@ -12,7 +12,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 
 @SuppressWarnings("deprecation")
 public class MarioMover {
-    private final ObjectMapper objectMapper;
+
     private GameGodFather gameGodFather;
     private MarioMoverController marioMoverController;
     InputMap inputMap;
@@ -21,10 +21,6 @@ public class MarioMover {
     public MarioMover(GameGodFather gameGodFather) {
         this.gameGodFather = gameGodFather;
         this.marioMoverController = gameGodFather.marioMoverController;
-        objectMapper = new ObjectMapper();
-        objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
-        objectMapper.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
-
         createKeyBindings();
     }
 
@@ -34,7 +30,6 @@ public class MarioMover {
         actionMap = gameGodFather.getGameScreenFrame().getRootPane().getActionMap();
 
         // Key Press:
-        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), "pause");
         inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_SHIFT, InputEvent.SHIFT_MASK), "shoot");
         inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_W, 0), "moveUp");
         inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_S, 0), "moveDown");
@@ -47,24 +42,6 @@ public class MarioMover {
         inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_S, 0, true), "moveDownReleased");
         inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_A, 0, true), "moveLeftReleased");
         inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_D, 0, true), "moveRightReleased");
-
-        actionMap.put("pause", new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-//                gameGodFather.getGameScreenFrame().dispose();
-                if (gameGodFather.getGameData().isGamePause) {
-                    gameGodFather.getGameData().isGamePause = false;
-                } else {
-                    gameGodFather.getGameData().isGamePause = true;
-                }
-//                new MainMenuScreen();
-//                try {
-//                    objectMapper.writeValue(new File("User.jason"), MyProject.allUsers);
-//                } catch (IOException ex) {
-//                    throw new RuntimeException(ex);
-//                }
-            }
-        });
 
         actionMap.put("shoot", new AbstractAction() {
             @Override

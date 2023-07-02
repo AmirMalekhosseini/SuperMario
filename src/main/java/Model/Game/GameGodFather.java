@@ -2,6 +2,7 @@ package Model.Game;
 
 import Controller.Game.*;
 import View.Game.*;
+import View.Listener.GameListener;
 import View.Listener.MarioMover;
 
 import javax.swing.*;
@@ -46,6 +47,7 @@ public class GameGodFather {
     public IntersectInHiddenEnemySection intersectInHiddenEnemySection;
     public IntersectInBossSection intersectInBossSection;
     public MarioMover marioMover;
+    protected GameListener gameListener;
     public MarioMoverController marioMoverController;
     public GameLoop gameLoop;
     public CalculateScore calculateScore;
@@ -131,6 +133,7 @@ public class GameGodFather {
             marioMoverController = new MarioMoverController(godFather);
             powerUp = new PowerUp(godFather);
             marioMover = new MarioMover(godFather);
+            gameListener = new GameListener(this);
             intersectInLevelOneSectionOne = new IntersectInLevelOneSectionOne(godFather);
             intersectInLevelOneSectionTwo = new IntersectInLevelOneSectionTwo(godFather);
             intersectInLevelTwoSectionOne = new IntersectInLevelTwoSectionOne(godFather);

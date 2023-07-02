@@ -17,6 +17,7 @@ public class GameTimer {
     public CoolDown marioShotCoolDown;
     public CoolDown grabAttackCounter;
     public CoolDown jumpAttackCounter;
+    public CoolDown shieldCounter;
 
     GameData gameData;
     javax.swing.Timer timer;
@@ -50,7 +51,7 @@ public class GameTimer {
                     }
 
                     for (CoolDown coolDownObject : positiveCoolDownList) {
-                        if (coolDownObject.counter != 14) {
+                        if (coolDownObject.counter != 18) {
                             // Set A Random Number For Stop Counting.
                             coolDownObject.counter++;
                         }
@@ -89,9 +90,11 @@ public class GameTimer {
 
         grabAttackCounter = new CoolDown();
         jumpAttackCounter = new CoolDown();
+        shieldCounter = new CoolDown();
 
         positiveCoolDownList.add(grabAttackCounter);
         positiveCoolDownList.add(jumpAttackCounter);
+        positiveCoolDownList.add(shieldCounter);
 
     }
 

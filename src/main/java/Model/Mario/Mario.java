@@ -21,7 +21,7 @@ public abstract class Mario extends ObjectsInGame {
     private boolean isMarioMini = true;
     private boolean isMarioMega;
     private boolean isMarioShooter;
-    private boolean isMarioEnemyProof;
+    private boolean isMarioGotShield;
     private boolean marioShouldDie;
     private boolean isMarioOnGround = true;
     private boolean isMarioReleaseFromVilgax;
@@ -140,12 +140,12 @@ public abstract class Mario extends ObjectsInGame {
         isMarioSit = marioSit;
     }
 
-    public boolean isMarioEnemyProof() {
-        return isMarioEnemyProof;
+    public boolean isMarioGotShield() {
+        return isMarioGotShield;
     }
 
-    public void setMarioEnemyProof(boolean marioEnemyProof) {
-        isMarioEnemyProof = marioEnemyProof;
+    public void setMarioGotShield(boolean marioGotShield) {
+        isMarioGotShield = marioGotShield;
     }
 
     public boolean isMarioShouldDie() {

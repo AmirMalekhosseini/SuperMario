@@ -10,10 +10,8 @@ public class Shield extends MarioWeapon {
     private final BufferedImage background;
     private int x;
     private int y;
-    private int marioX;
-    private int marioY;
-    private int height = 120;
-    private int width = 120;
+    private int height = 180;
+    private int width = 180;
     private int damage = 10;
 
     public Shield(int x, int y) {
@@ -25,18 +23,18 @@ public class Shield extends MarioWeapon {
 
     }
 
-    @Override
-    public void move() {
-
-        x = marioX;// Do The Math 
-        y = marioY;
-
-    }
-
     protected void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
         Graphics2D graphics2D = (Graphics2D) graphics;
         graphics2D.drawImage(background, -0, 0, width, height, null);
+    }
+
+    @Override
+    public void moveWeapon(Mario mario) {
+
+        setX(mario.getX() - 50);
+        setY(mario.getY() - 40);
+
     }
 
     @Override
@@ -58,23 +56,6 @@ public class Shield extends MarioWeapon {
     public void setY(int y) {
         this.y = y;
     }
-
-    public int getMarioX() {
-        return marioX;
-    }
-
-    public void setMarioX(int marioX) {
-        this.marioX = marioX;
-    }
-
-    public int getMarioY() {
-        return marioY;
-    }
-
-    public void setMarioY(int marioY) {
-        this.marioY = marioY;
-    }
-
     @Override
     public int getHeight() {
         return height;

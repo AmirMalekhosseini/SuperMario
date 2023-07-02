@@ -14,7 +14,7 @@ public abstract class MarioWeapon extends ObjectsInGame {
     private int damage;
     private boolean isVilgaxDodged;
 
-    public abstract void move();
+    public abstract void moveWeapon(Mario mario);
 
     @Override
     public int getX() {

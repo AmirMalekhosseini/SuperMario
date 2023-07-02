@@ -35,7 +35,6 @@ public class MyProject {
             throw new RuntimeException(e);
         }
         activeUser.add(new User());
-        MyProjectData.getProjectData();
 //                        new LoginPageScreen();
         new GameGodFather(new GameData());
 

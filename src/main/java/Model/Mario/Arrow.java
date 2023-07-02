@@ -27,9 +27,14 @@ public class Arrow extends MarioWeapon {
 
     }
 
-    @Override
+    protected void paintComponent(Graphics graphics) {
+        super.paintComponent(graphics);
+        Graphics2D graphics2D = (Graphics2D) graphics;
+        graphics2D.drawImage(background, -0, 0, null);
+    }
 
-    public void move() {
+    @Override
+    public void moveWeapon(Mario mario) {
 
         secondCounter++;
         if (secondCounter == 5) {
@@ -44,12 +49,6 @@ public class Arrow extends MarioWeapon {
             secondCounter = 0;
         }
 
-    }
-
-    protected void paintComponent(Graphics graphics) {
-        super.paintComponent(graphics);
-        Graphics2D graphics2D = (Graphics2D) graphics;
-        graphics2D.drawImage(background, -0, 0, null);
     }
 
     @Override

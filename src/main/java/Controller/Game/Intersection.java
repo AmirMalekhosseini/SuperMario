@@ -1,15 +1,12 @@
 package Controller.Game;
 
+import Model.Mario.*;
 import View.Game.BossFightSectionScreen;
 import View.Game.LevelScreens;
 import Model.Enemy.*;
 import Model.Game.GameGodFather;
 import Model.Game.GravityData;
 import Model.Item.*;
-import Model.Mario.Arrow;
-import Model.Mario.Mario;
-import Model.Mario.MarioWeapon;
-import Model.Mario.Sword;
 import Model.Object.*;
 
 import java.util.Random;
@@ -200,6 +197,8 @@ public abstract class Intersection {
                     } else if (screen.getItemsInThisSection().get(i) instanceof CheckPoint) {
                         CheckPointSave.getCheckPointSave().save(screen);
                         CheckPointSave.getCheckPointSave().saveXPanel(gameGodFather.activeLevel.getLevelPanel().getX());
+                    } else if (screen.getItemsInThisSection().get(i) instanceof Star) {
+                        screen.activeMario.setMarioGotShield(true);
                     } else {
                         powerUp.allocatePowerUp(screen.activeMario);
                     }
@@ -705,12 +704,49 @@ public abstract class Intersection {
 
     }
 
+    public void shieldIntersection(MarioWeapon shield) {
+
+        // Shield Hits An Enemy:
+        for (int i = 0; i < screen.getEnemiesInThisSection().size(); i++) {
+            int arrowWidth = shield.getWidth();
+            int arrowHeight = shield.getHeight();
+            int objectWidth = screen.getEnemiesInThisSection().get(i).getWidth();
+            int objectHeight = screen.getEnemiesInThisSection().get(i).getHeight();
+            if (objectWidth <= 0 || objectHeight <= 0 || arrowWidth <= 0 || arrowHeight <= 0) {
+                continue;
+            }
+            int arrowX = shield.getX();
+            int arrowY = shield.getY();
+            int objectX = screen.getEnemiesInThisSection().get(i).getX();
+            int objectY = screen.getEnemiesInThisSection().get(i).getY();
+            objectWidth += objectX;
+            objectHeight += objectY;
+            arrowWidth += arrowX;
+            arrowHeight += arrowY;
+
+            //      overflow || bombIntersectWithObjects
+            if ((objectWidth < objectX || objectWidth > arrowX) &&
+                    (objectHeight < objectY || objectHeight > arrowY) &&
+                    (arrowWidth < arrowX || arrowWidth > objectX) &&
+                    (arrowHeight < arrowY || arrowHeight > objectY)) {
+
+                screen.remove(screen.getEnemiesInThisSection().get(i));
+                screen.getGameData().thisGameScore += screen.getEnemiesInThisSection().get(i).getScoreAdd();
+                screen.getGameData().thisGameCoin += 3;
+                screen.getEnemiesInThisSection().remove(i);
+            }
+        }
+
+    }
+
     public void intersectShot() {
         for (int i = 0; i < screen.getWeaponsInThisSection().size(); i++) {
             if (screen.getWeaponsInThisSection().get(i) instanceof Arrow) {
                 arrowIntersection(screen.getWeaponsInThisSection().get(i));
             } else if (screen.getWeaponsInThisSection().get(i) instanceof Sword) {
                 swordIntersection(screen.getWeaponsInThisSection().get(i));
+            } else if (screen.getWeaponsInThisSection().get(i) instanceof Shield) {
+                shieldIntersection(screen.getWeaponsInThisSection().get(i));
             }
         }
     }

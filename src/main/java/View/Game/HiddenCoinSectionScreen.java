@@ -68,7 +68,7 @@ public class HiddenCoinSectionScreen extends LevelScreens {
     private void init(GameData gameData) {
 
         this.gameData = gameData;
-        ImageIcon backgroundImage = new ImageIcon("BackgroundSections.jpg");
+        ImageIcon backgroundImage = new ImageIcon("Game/BackgroundSections.jpg");
         activeMario = new NormalMario(0, 0);
         Font font1 = MyProjectData.getProjectData().getFont22();
 

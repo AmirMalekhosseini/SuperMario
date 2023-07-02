@@ -39,6 +39,11 @@ public class IntersectInHiddenCoinSection extends IntersectInGame {
             }
 
             @Override
+            public void shieldIntersection(MarioWeapon shield) {
+                super.shieldIntersection(shield);
+            }
+
+            @Override
             public void generateRandomItem(PrizeInAir prizeInAir) {
                 super.generateRandomItem(prizeInAir);
             }
