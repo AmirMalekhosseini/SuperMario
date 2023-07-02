@@ -21,6 +21,8 @@ public class MarioMoverModel {
     private boolean marioShooting;
     private boolean marioThrowSword;
     public Mario activeMario;
+    private volatile boolean isMarioMoveRight;
+    private volatile boolean isMarioMoveLeft;
 
 
     public MarioMoverModel(GameGodFather godFather) {
@@ -42,12 +44,13 @@ public class MarioMoverModel {
 
             if (activeMario.getX() <= 6400) {// Game is in SectionOne:
                 if (!marioEnterInLevelOneSectionOne) {
-//                    godFather.getGameData().setMarioLocation("levelonesectionone");
+                    godFather.getGameData().setMarioLocation("levelonesectionone");
                     activeLevel.intersect = godFather.intersectInLevelOneSectionOne;
                     activeLevel.screen = godFather.getLevelOneSectionOneScreen();
                     activeLevel.screenModel = godFather.getLevelOneSectionOneModel();
                     marioEnterInLevelOneSectionOne = true;
                     CheckPointSave.getCheckPointSave().save(activeLevel.screen);
+                    CheckPointSave.getCheckPointSave().saveXPanel(godFather.activeLevel.levelPanel.getX());
 
                 }
 
@@ -63,10 +66,11 @@ public class MarioMoverModel {
                     godFather.gameTimer.setSectionTime(50);
                     // Add Score At The End Of SectionOne
                     godFather.calculateScore.calculateScore(godFather.getLevelOneSectionOneScreen());
-//                    godFather.getGameData().setMarioLocation("levelonesectiontwo");
+                    godFather.getGameData().setMarioLocation("levelonesectiontwo");
                     godFather.getPowerUp().loadPowerUp(activeMario);
                     marioEnterInLevelOneSectionTwo = true;
                     CheckPointSave.getCheckPointSave().save(activeLevel.screen);
+                    CheckPointSave.getCheckPointSave().saveXPanel(godFather.activeLevel.levelPanel.getX());
                 }
             }
 
@@ -87,6 +91,7 @@ public class MarioMoverModel {
 //                    godFather.getPowerUp().loadPowerUp(activeMario);
                     marioEnterInLevelTwoSectionOne = true;
                     CheckPointSave.getCheckPointSave().save(activeLevel.screen);
+                    CheckPointSave.getCheckPointSave().saveXPanel(godFather.activeLevel.levelPanel.getX());
 
                 }
             } else {// Game is in SectionTwo:
@@ -104,6 +109,7 @@ public class MarioMoverModel {
 //                    godFather.getPowerUp().loadPowerUp(activeMario);
                     marioEnterInLevelTwoSectionTwo = true;
                     CheckPointSave.getCheckPointSave().save(activeLevel.screen);
+                    CheckPointSave.getCheckPointSave().saveXPanel(godFather.activeLevel.levelPanel.getX());
                 }
             }
 
@@ -117,6 +123,7 @@ public class MarioMoverModel {
             activeLevel.screenModel = godFather.getBossFightSectionModel();
 //            godFather.getPowerUp().loadPowerUp(activeMario);
             CheckPointSave.getCheckPointSave().save(activeLevel.screen);
+            CheckPointSave.getCheckPointSave().saveXPanel(godFather.activeLevel.levelPanel.getX());
 
         } else if (godFather.getHiddenCoinBackgroundPanel() == godFather.activeLevel.levelPanel) {// Game is in HiddenCoin:
 
@@ -128,6 +135,7 @@ public class MarioMoverModel {
             activeLevel.screenModel = godFather.getHiddenCoinSectionModel();
 //            godFather.getPowerUp().loadPowerUp(activeMario);
             CheckPointSave.getCheckPointSave().save(activeLevel.screen);
+            CheckPointSave.getCheckPointSave().saveXPanel(godFather.activeLevel.levelPanel.getX());
 
         } else if (godFather.getHiddenEnemyBackgroundPanel() == godFather.activeLevel.levelPanel) {// Game is in HiddenEnemy:
 
@@ -139,6 +147,7 @@ public class MarioMoverModel {
             activeLevel.screenModel = godFather.getHiddenEnemySectionModel();
             godFather.getPowerUp().loadPowerUp(activeMario);
             CheckPointSave.getCheckPointSave().save(activeLevel.screen);
+            CheckPointSave.getCheckPointSave().saveXPanel(godFather.activeLevel.levelPanel.getX());
 
         }
 
@@ -168,7 +177,7 @@ public class MarioMoverModel {
                     activeMario.setVelocityY(0);
                     activeMario.setY((activeMario.getY() + 2));
                 } else if (activeLevel.intersect.intersection.isMarioHitsUpOfTheObject() ||
-                activeLevel.intersect.intersection.isMarioHitsUpOfTheVilgax()) {// Mario hits up an object and stand on it
+                        activeLevel.intersect.intersection.isMarioHitsUpOfTheVilgax()) {// Mario hits up an object and stand on it
                     activeMario.setVelocityY(0);
                     activeMario.setY((activeMario.getY() - 2));
                     activeMario.setMarioJumping(false);// Mario stop jumping
@@ -176,7 +185,7 @@ public class MarioMoverModel {
                     activeLevel.intersect.intersection.setMarioHitsFullOfCoinBlockInAir(false);
                     activeLevel.intersect.intersection.setMarioHitsTurtle(false);
                     if (activeLevel.intersect.intersection.isMarioHitsUpOfTheObject()
-                            && activeLevel.levelPanel == godFather.getLevelThreeGameBackgroundPanel() ) {
+                            && activeLevel.levelPanel == godFather.getLevelThreeGameBackgroundPanel()) {
                         ((IntersectInBossSection) activeLevel.intersect).vilgaxIntersection.setMarioHitsVilgax(false);
                     }
                     isUserPressedUp = false;
@@ -203,7 +212,7 @@ public class MarioMoverModel {
             }
 
             if (rightMario && !leftMario && !activeLevel.intersect.intersection.isMarioHitsLeftOfTheObject()) {// Go Right
-                if (activeMario.getX() < 830 || activeMario.getX() >= 5800 || activeLevel.screen.isScreenLock()) {// Move Mario
+                if (isMarioMoveRight) {// Move Mario
                     activeMario.setVelocityX(5);
                     activeMario.setX((int) (activeMario.getX() + activeMario.getVelocityX()));
                 } else {// Move Panel
@@ -224,9 +233,8 @@ public class MarioMoverModel {
 
                 }
             }
-            // ToDO: Move Calculation Outside.
             if (leftMario && !rightMario && !activeLevel.intersect.intersection.isMarioHitsRightOfTheObject()) {// Go Left
-                if (activeMario.getX() < 840 || activeMario.getX() >= 5800 || activeLevel.screen.isScreenLock()) {// Move Mario
+                if (isMarioMoveLeft) {// Move Mario
                     activeMario.setVelocityX(-5);
                     activeMario.setX((int) (activeMario.getX() + activeMario.getVelocityX()));
                 } else {// Move Panel
@@ -323,6 +331,24 @@ public class MarioMoverModel {
             }
 
         }
+
+    }
+
+    public void moveMarioRight() {
+
+
+        // Move Mario:
+        isMarioMoveRight = activeMario.getX() < 830
+                || activeMario.getX() >= 5800
+                || activeLevel.screen.isScreenLock();
+
+    }
+
+    public void moveMarioLeft() {
+
+        isMarioMoveLeft = activeMario.getX() < 840
+                || activeMario.getX() >= 5800
+                || activeLevel.screen.isScreenLock();
 
     }
 

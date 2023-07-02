@@ -54,21 +54,27 @@ public class MarioMover {
         actionMap.put("pause", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                gameGodFather.getGameScreenFrame().dispose();
-                gameGodFather.getGameData().setGamePause(true);
-                new MainMenuScreen();
-                try {
-                    objectMapper.writeValue(new File("User.jason"), MyProject.allUsers);
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
+//                gameGodFather.getGameScreenFrame().dispose();
+                if (gameGodFather.getGameData().isGamePause) {
+                    gameGodFather.getGameData().isGamePause = false;
+                } else {
+                    gameGodFather.getGameData().isGamePause = true;
                 }
+                System.out.println(marioMoverModel.activeMario.getX());
+//                new MainMenuScreen();
+//                try {
+//                    objectMapper.writeValue(new File("User.jason"), MyProject.allUsers);
+//                } catch (IOException ex) {
+//                    throw new RuntimeException(ex);
+//                }
             }
         });
 
         actionMap.put("shoot", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (!marioMoverModel.activeMario.isMarioShooter()) {
+                if (!marioMoverModel.activeMario.isMarioShooter()
+                || gameGodFather.getGameData().isGamePause) {
                     return;
                 }
                 marioMoverModel.setMarioShooting(true);
@@ -79,6 +85,9 @@ public class MarioMover {
         actionMap.put("moveUp", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if (gameGodFather.getGameData().isGamePause) {
+                    return;
+                }
                 if (!marioMoverModel.isUserPressedUp()) {
                     marioMoverModel.setUpMario(true);
                     marioMoverModel.activeMario.setVelocityY(-10);
@@ -101,6 +110,9 @@ public class MarioMover {
         actionMap.put("moveLeft", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if (gameGodFather.getGameData().isGamePause) {
+                    return;
+                }
                 marioMoverModel.setLeftMario(true);
                 marioMoverModel.activeMario.setMarioRight(false);
                 marioMoverModel.activeMario.setMarioLeft(true);
@@ -110,6 +122,9 @@ public class MarioMover {
         actionMap.put("moveRight", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if (gameGodFather.getGameData().isGamePause) {
+                    return;
+                }
                 marioMoverModel.setRightMario(true);
                 marioMoverModel.activeMario.setMarioRight(true);
                 marioMoverModel.activeMario.setMarioLeft(false);

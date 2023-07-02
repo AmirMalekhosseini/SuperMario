@@ -101,7 +101,7 @@ public class ContinueGameScreen extends JFrame implements ActionListener {
             if (MyProject.activeUser.get(0).getGameSaves().get(0) != null) {
                 Game game1 = new Game(MyProject.activeUser.get(0).getGameSaves().get(0).getGameScreenFrame());
                 game1.getGameScreenFrame().getGameScreenFrame().setVisible(true);
-                game1.getGameScreenFrame().gameData.setGamePause(false);
+                game1.getGameScreenFrame().gameData.isGamePause = false;
                 this.dispose();
             }
         }
@@ -110,7 +110,7 @@ public class ContinueGameScreen extends JFrame implements ActionListener {
             if (MyProject.activeUser.get(0).getGameSaves().get(1) != null) {
                 Game game2 = new Game(MyProject.activeUser.get(0).getGameSaves().get(1).getGameScreenFrame());
                 game2.getGameScreenFrame().getGameScreenFrame().setVisible(true);
-                game2.getGameScreenFrame().gameData.setGamePause(false);
+                game2.getGameScreenFrame().gameData.isGamePause = false;
                 this.dispose();
             }
         }
@@ -119,7 +119,7 @@ public class ContinueGameScreen extends JFrame implements ActionListener {
             if (MyProject.activeUser.get(0).getGameSaves().get(2) != null) {
                 Game game3 = new Game(MyProject.activeUser.get(0).getGameSaves().get(2).getGameScreenFrame());
                 game3.getGameScreenFrame().getGameScreenFrame().setVisible(true);
-                game3.getGameScreenFrame().gameData.setGamePause(false);
+                game3.getGameScreenFrame().gameData.isGamePause = false;
                 this.dispose();
             }
         }

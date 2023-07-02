@@ -68,6 +68,12 @@ public class GameTimer {
 
     }
 
+    public void stopTimer() {
+
+        timer.stop();
+
+    }
+
     public static synchronized GameTimer getGameTimer() {
         if (gameTimer == null) {
             gameTimer = new GameTimer();

@@ -49,10 +49,6 @@ public class GameGodFather {
     public GameLoop gameLoop;
     public CalculateScore calculateScore;
 
-    private int xLevelOneBackgroundPanel = 0;
-    private int xLevelTwoBackgroundPanel = 0;
-    private int xLevelThreeBackgroundPanel = 0;
-
     public GameGodFather(GameData gameData) {
         init(gameData);
         gameTimer = GameTimer.getGameTimer();
@@ -104,21 +100,21 @@ public class GameGodFather {
             hiddenCoinBackgroundPanel.add(hiddenCoinSectionScreen);
             gamePanels[1] = hiddenCoinBackgroundPanel;
 
-            levelOneGameBackgroundPanel.setBounds(xLevelOneBackgroundPanel, 0, 14000, 1300);
+            levelOneGameBackgroundPanel.setBounds(0, 0, 14000, 1300);
             levelOneGameBackgroundPanel.setLayout(null);
             levelOneGameBackgroundPanel.setVisible(true);
             levelOneGameBackgroundPanel.add(levelOneSectionOneScreen);
             levelOneGameBackgroundPanel.add(levelOneSectionTwoScreen);
             gamePanels[2] = levelOneGameBackgroundPanel;
 
-            levelTwoGameBackgroundPanel.setBounds(xLevelTwoBackgroundPanel, 0, 14000, 1300);
+            levelTwoGameBackgroundPanel.setBounds(0, 0, 14000, 1300);
             levelTwoGameBackgroundPanel.setLayout(null);
             levelTwoGameBackgroundPanel.setVisible(false);
             levelTwoGameBackgroundPanel.add(levelTwoSectionOneScreen);
             levelTwoGameBackgroundPanel.add(levelTwoSectionTwoScreen);
             gamePanels[3] = levelTwoGameBackgroundPanel;
 
-            levelThreeGameBackgroundPanel.setBounds(xLevelThreeBackgroundPanel, 0, 14000, 1300);
+            levelThreeGameBackgroundPanel.setBounds(0, 0, 14000, 1300);
             levelThreeGameBackgroundPanel.setLayout(null);
             levelThreeGameBackgroundPanel.setVisible(false);
             levelThreeGameBackgroundPanel.add(bossFightSectionScreen);
@@ -356,22 +352,6 @@ public class GameGodFather {
         this.calculateScore = calculateScore;
     }
 
-    public int getXLevelOneBackgroundPanel() {
-        return xLevelOneBackgroundPanel;
-    }
-
-    public void setXLevelOneBackgroundPanel(int xLevelOneBackgroundPanel) {
-        this.xLevelOneBackgroundPanel = xLevelOneBackgroundPanel;
-    }
-
-    public int getXLevelTwoBackgroundPanel() {
-        return xLevelTwoBackgroundPanel;
-    }
-
-    public void setXLevelTwoBackgroundPanel(int xLevelTwoBackgroundPanel) {
-        this.xLevelTwoBackgroundPanel = xLevelTwoBackgroundPanel;
-    }
-
     public GravityData getGravity() {
         return gravityData;
     }
@@ -402,14 +382,6 @@ public class GameGodFather {
 
     public void setHiddenCoinBackgroundPanel(JPanel hiddenCoinBackgroundPanel) {
         this.hiddenCoinBackgroundPanel = hiddenCoinBackgroundPanel;
-    }
-
-    public int getxLevelThreeBackgroundPanel() {
-        return xLevelThreeBackgroundPanel;
-    }
-
-    public void setxLevelThreeBackgroundPanel(int xLevelThreeBackgroundPanel) {
-        this.xLevelThreeBackgroundPanel = xLevelThreeBackgroundPanel;
     }
 
 

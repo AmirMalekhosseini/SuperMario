@@ -35,6 +35,7 @@ public class CheckPointSave {
         XUserHeartValueLabel = screen.XUserHeartValueLabel;
         XThisSectionTimeLabel = screen.XThisSectionTimeLabel;
         XUserScoreLabel = screen.XUserScoreLabel;
+        System.out.println("score: " + XUserScoreLabel);
 
     }
 

@@ -51,9 +51,12 @@ public class GameLoop {
 
                 int fps = 120;
                 long targetTime = 1000 / fps;
-                if (!gameGodFather.getGameData().isGameFinish) {
+                if (!gameGodFather.getGameData().isGameFinish
+                        && !gameGodFather.getGameData().isGamePause) {
                     long startTime = System.currentTimeMillis();
-                    gameGodFather.marioMover.getMarioMoverModel().locateMarioLocation();
+                    gameGodFather.marioMoverModel.locateMarioLocation();
+                    gameGodFather.marioMoverModel.moveMarioLeft();
+                    gameGodFather.marioMoverModel.moveMarioRight();
 
                     gameGodFather.activeLevel.screenModel.controller.gravity.allocateGravity();
                     gameGodFather.activeLevel.intersect.intersection.refreshIntersectsBooleans();
@@ -91,6 +94,7 @@ public class GameLoop {
 
                 }
                 if (gameGodFather.getGameData().isGameFinish) {// Finish the Game
+                    GameTimer.getGameTimer().stopTimer();
                     gameGodFather.calculateScore.calculateScore(gameGodFather.activeLevel.screen);
                     Score thisGameScore = new Score();
                     thisGameScore.setUserScore(gameGodFather.getGameData().thisGameScore);
@@ -121,7 +125,8 @@ public class GameLoop {
 
                 int fps = 120;
                 long targetTime = 1000 / fps;
-                if (!gameGodFather.getGameData().isGameFinish) {
+                if (!gameGodFather.getGameData().isGameFinish
+                        && !gameGodFather.getGameData().isGamePause) {
                     long startTime = System.currentTimeMillis();
 
                     gameGodFather.getGameScreenFrame().repaint();
@@ -155,7 +160,8 @@ public class GameLoop {
 
                 int fps = 120;
                 long targetTime = 1000 / fps;
-                if (!gameGodFather.getGameData().isGameFinish) {
+                if (!gameGodFather.getGameData().isGameFinish
+                        && !gameGodFather.getGameData().isGamePause) {
                     long startTime = System.currentTimeMillis();
 
                     gameGodFather.marioMover.getMarioMoverModel().move();
@@ -316,7 +322,8 @@ public class GameLoop {
 
                 int fps = 120;
                 long targetTime = 1000 / fps;
-                if (!gameGodFather.getGameData().isGameFinish) {
+                if (!gameGodFather.getGameData().isGameFinish
+                        && !gameGodFather.getGameData().isGamePause) {
                     long startTime = System.currentTimeMillis();
 
                     gameGodFather.activeLevel.screenModel.controller.moveEnemy();
@@ -349,7 +356,8 @@ public class GameLoop {
 
                 int fps = 120;
                 long targetTime = 1000 / fps;
-                if (!gameGodFather.getGameData().isGameFinish) {
+                if (!gameGodFather.getGameData().isGameFinish
+                        && !gameGodFather.getGameData().isGamePause) {
                     long startTime = System.currentTimeMillis();
 
                     gameGodFather.getBossFightScreenSection().vilgax.activeMove.moveIntersection.intersection();
@@ -383,7 +391,8 @@ public class GameLoop {
 
                 int fps = 120;
                 long targetTime = 1000 / fps;
-                if (!gameGodFather.getGameData().isGameFinish) {
+                if (!gameGodFather.getGameData().isGameFinish
+                        && !gameGodFather.getGameData().isGamePause) {
                     long startTime = System.currentTimeMillis();
 
                     gameGodFather.getBossFightSectionModel().vilgaxMover.moveChooser();
@@ -413,12 +422,12 @@ public class GameLoop {
         gameGodFather.activeLevel.screen.userHeartValueLabel.setText(String.valueOf(gameGodFather.getGameData().userHeartValue));
         gameGodFather.activeLevel.screen.thisGameCoin.setText(String.valueOf(gameGodFather.getGameData().thisGameCoin));
         gameGodFather.activeLevel.screen.userScoreLabel.setText("Score: " + gameGodFather.getGameData().thisGameScore);
-        gameGodFather.activeLevel.screen.userHeartValueLabel.setLocation(gameGodFather.getLevelOneSectionOneScreen().XUserHeartValueLabel, 30);
-        gameGodFather.activeLevel.screen.userHeartImage.setLocation(gameGodFather.getLevelOneSectionOneScreen().XUserHeartImage, 30);
-        gameGodFather.activeLevel.screen.userScoreLabel.setLocation(gameGodFather.getLevelOneSectionOneScreen().XUserScoreLabel, 30);
-        gameGodFather.activeLevel.screen.thisSectionTimeLabel.setLocation(gameGodFather.getLevelOneSectionOneScreen().XThisSectionTimeLabel, 30);
-        gameGodFather.activeLevel.screen.thisGameCoin.setLocation(gameGodFather.getLevelOneSectionOneScreen().XThisGameCoin, 27);
-        gameGodFather.activeLevel.screen.thisGameCoinImage.setLocation(gameGodFather.getLevelOneSectionOneScreen().XThisGameCoinImage, 30);
+        gameGodFather.activeLevel.screen.userHeartValueLabel.setLocation(gameGodFather.activeLevel.screen.XUserHeartValueLabel, 30);
+        gameGodFather.activeLevel.screen.userHeartImage.setLocation(gameGodFather.activeLevel.screen.XUserHeartImage, 30);
+        gameGodFather.activeLevel.screen.userScoreLabel.setLocation(gameGodFather.activeLevel.screen.XUserScoreLabel, 30);
+        gameGodFather.activeLevel.screen.thisSectionTimeLabel.setLocation(gameGodFather.activeLevel.screen.XThisSectionTimeLabel, 30);
+        gameGodFather.activeLevel.screen.thisGameCoin.setLocation(gameGodFather.activeLevel.screen.XThisGameCoin, 27);
+        gameGodFather.activeLevel.screen.thisGameCoinImage.setLocation(gameGodFather.activeLevel.screen.XThisGameCoinImage, 30);
 
     }
 

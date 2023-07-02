@@ -19,22 +19,7 @@ public class GameData {
     public GameData() {
 
     }
-
-    public boolean isGameFinish() {
-        return !isGameFinish;
-    }
-
-    public void setGameFinish(boolean gameFinish) {
-        isGameFinish = gameFinish;
-    }
-
-    public boolean isGamePause() {
-        return !isGamePause;
-    }
-
-    public void setGamePause(boolean gamePause) {
-        isGamePause = gamePause;
-    }
+    
 
     public int getUserHeartValue() {
         return userHeartValue;
