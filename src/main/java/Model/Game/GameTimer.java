@@ -50,11 +50,8 @@ public class GameTimer {
 
                     sectionTime--;
 
-                    if (gameData.isBossTriggered()) {
-                        grabAttackCounter();
-                        jumpAttackCounter();
-                    }
-
+                    grabAttackCounter();
+                    jumpAttackCounter();
 
                     for (CoolDown coolDownObject : negativeCoolDownList) {
                         if (coolDownObject.counter > 0) {
@@ -110,10 +107,12 @@ public class GameTimer {
 
     private void jumpAttackCounter() {
 
-        if (godFather.activeLevel.getMario().isMarioOnGround()) {
-            jumpAttackCounter.counter++;
-        } else {
-            jumpAttackCounter.counter = 0;
+        if (godFather.activeLevel.getScreen() instanceof BossFightSectionScreen) {
+            if (godFather.activeLevel.getMario().isMarioOnGround()) {
+                jumpAttackCounter.counter++;
+            } else {
+                jumpAttackCounter.counter = 0;
+            }
         }
 
     }

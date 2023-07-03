@@ -1,40 +1,55 @@
 package Controller.Vilgax;
 
+import Model.Game.GameGodFather;
 import Model.Game.WaitObject;
 import Model.Object.ObjectsInGame;
 import Music.MusicPlayer;
 import View.Game.BossFightSectionScreen;
 
+import javax.swing.*;
+
 public class VilgaxTrigger {
 
+    JPanel levelPanel;
     BossFightSectionScreen screen;
     protected MusicPlayer musicPlayer;
 
 
-    public VilgaxTrigger(BossFightSectionScreen screen, MusicPlayer musicPlayer) {
+
+    public VilgaxTrigger(BossFightSectionScreen screen, MusicPlayer musicPlayer, JPanel levelPanel) {
         this.musicPlayer = musicPlayer;
         this.screen = screen;
+        this.levelPanel = levelPanel;
     }
 
-    public void triggerBoss(WaitObject waitObject) {
-        screen.getGameData().setBossTriggered(true);
+    public void triggerBoss(GameGodFather godFather) {
 
-        // Add HealthBar
-        screen.add(screen.healthBar, Integer.valueOf(1));
+        if (screen.activeMario.getX() >= 5840) {
+            screen.getGameData().setBossTriggered(true);
 
-        // Add Wall
-        for (ObjectsInGame wall : screen.getWall_BlockInAir()) {
-            screen.add(wall, Integer.valueOf(1));
+            // Add HealthBar
+            screen.add(screen.healthBar, Integer.valueOf(1));
+
+            // Add Wall
+            for (ObjectsInGame wall : screen.getWall_BlockInAir()) {
+                screen.add(wall, Integer.valueOf(1));
+            }
+            screen.getObjectsInThisSection().addAll(screen.getWall_BlockInAir());
+            screen.setScreenLock(true);
+            levelPanel.setLocation(-5100,0);
+
+
+            // play boss music
+            musicPlayer.stopMusic();
+            musicPlayer.playMusic("Music/Pirate-Of-Caribbean.wav");
+
+            // Trigger Boss
+            synchronized (godFather.waitObject) {
+                godFather.waitObject.notifyAll();
+            }
+
         }
-        screen.getObjectsInThisSection().addAll(screen.getWall_BlockInAir());
-        screen.setScreenLock(true);
 
-        // play boss music
-        musicPlayer.stopMusic();
-        musicPlayer.playMusic("Music/Pirate-Of-Caribbean.wav");
-
-        // Trigger Boss
-        waitObject.notifyAll();
 
     }
 

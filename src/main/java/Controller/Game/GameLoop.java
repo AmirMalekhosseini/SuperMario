@@ -1,5 +1,6 @@
 package Controller.Game;
 
+import Model.Game.BossFightSectionModel;
 import View.Game.LevelScreens;
 import View.Menu.MainMenuScreen;
 import Model.Enemy.Enemy;
@@ -37,8 +38,8 @@ public class GameLoop {
         calculatorThread.start();
         graphicThread.start();
         enemyThread.start();
-//        vilgaxCalculator.start();
-//        vilgaxMover.start();
+        vilgaxCalculator.start();
+        vilgaxMover.start();
 
     }
 
@@ -57,6 +58,18 @@ public class GameLoop {
                 if (!gameGodFather.getGameData().isGameFinish
                         && !gameGodFather.getGameData().isGamePause) {
                     long startTime = System.currentTimeMillis();
+                    // Check is boss trigger
+                    if (gameGodFather.activeLevel.getScreenModel() instanceof BossFightSectionModel) {
+                        // trigger boss
+                        if (!gameGodFather.getGameData().isBossTriggered()) {
+                            synchronized (gameGodFather.waitObject) {
+                                ((BossFightSectionModel) gameGodFather.activeLevel.getScreenModel()).vilgaxTrigger.triggerBoss(gameGodFather);
+
+                            }
+                        }
+                        // check boss in phase_2
+                        ((BossFightSectionModel) gameGodFather.activeLevel.getScreenModel()).vilgaxTrigger.activePhase_2();
+                    }
                     gameGodFather.marioMoverController.locateMarioLocation();
                     gameGodFather.marioMoverController.moveMarioLeft();
                     gameGodFather.marioMoverController.moveMarioRight();
@@ -237,7 +250,10 @@ public class GameLoop {
                 // Wait until boss trigger
                 while (!gameGodFather.getGameData().isBossTriggered()) {
                     try {
-                        gameGodFather.waitObject.wait();
+                        synchronized (gameGodFather.waitObject) {
+                            gameGodFather.waitObject.wait();
+                        }
+
                     } catch (InterruptedException e) {
                         throw new RuntimeException(e);
                     }
@@ -250,6 +266,9 @@ public class GameLoop {
                     long startTime = System.currentTimeMillis();
 
                     gameGodFather.getBossFightScreenSection().vilgax.activeMove.moveIntersection.intersection();
+                    if (gameGodFather.activeLevel.getMario().isMarioShouldDie()) {
+                        gameGodFather.getBossFightSectionModel().controller.setLocationAfterLoose();
+                    }
                     gameGodFather.intersectInBossSection.vilgaxIntersection.allIntersection();
                     gameGodFather.getBossFightScreenSection().healthBar.setValue(gameGodFather.getBossFightScreenSection().vilgax.getHealth());
                     int value = gameGodFather.getBossFightScreenSection().healthBar.getValue();
@@ -282,7 +301,10 @@ public class GameLoop {
                 // Wait until boss trigger
                 while (!gameGodFather.getGameData().isBossTriggered()) {
                     try {
-                        gameGodFather.waitObject.wait();
+                        synchronized (gameGodFather.waitObject) {
+                            gameGodFather.waitObject.wait();
+                        }
+
                     } catch (InterruptedException e) {
                         throw new RuntimeException(e);
                     }

@@ -53,7 +53,7 @@ public class GameGodFather {
     public MarioMoverController marioMoverController;
     public GameLoop gameLoop;
     public CalculateScore calculateScore;
-    public WaitObject waitObject;
+    public final WaitObject waitObject = new WaitObject();
 
     public GameGodFather(GameData gameData) {
         init(gameData);
@@ -132,7 +132,6 @@ public class GameGodFather {
 
         modelStarter = godFather -> {
 
-            waitObject = new WaitObject();
             musicPlayer = new MusicPlayer();
             calculateScore = new CalculateScore(godFather);
             marioMoverController = new MarioMoverController(godFather);

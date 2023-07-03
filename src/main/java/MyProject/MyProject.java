@@ -3,6 +3,7 @@ package MyProject;
 import Model.Game.GameData;
 import Model.Game.GameGodFather;
 import Model.Game.User;
+import View.Menu.LoginPageScreen;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -35,8 +36,8 @@ public class MyProject {
             throw new RuntimeException(e);
         }
         activeUser.add(new User());
-//                        new LoginPageScreen();
-        new GameGodFather(new GameData());
+        new LoginPageScreen();
+//        new GameGodFather(new GameData());
 
     }
 

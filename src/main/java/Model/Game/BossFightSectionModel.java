@@ -32,7 +32,7 @@ public class BossFightSectionModel extends NormalScreenModel {
         vilgaxMover = new VilgaxMover(godFather.gameTimer, screen.vilgax, screen.activeMario, vilgaxMoves);
         vilgaxAndScreenConnection = new VilgaxAndScreenConnection(screen);
         vilgaxAndMarioConnection = new VilgaxAndMarioConnection(screen);
-        vilgaxTrigger = new VilgaxTrigger(screen, godFather.getMusicPlayer());
+        vilgaxTrigger = new VilgaxTrigger(screen, godFather.getMusicPlayer(),godFather.activeLevel.getLevelPanel());
         screen.vilgax.addConnection(vilgaxAndScreenConnection, vilgaxAndMarioConnection);
         addController();
 
@@ -99,6 +99,7 @@ public class BossFightSectionModel extends NormalScreenModel {
             @Override
             public void setLocationAfterLoose() {
                 super.setLocationAfterLoose();
+                vilgaxTrigger.shutDownBoss();
             }
 
         };

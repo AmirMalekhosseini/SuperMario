@@ -96,7 +96,7 @@ public class BossFightSectionScreen extends LevelScreens {
         config = new CreateFromConfig(this);
         config.readFromConfig();
         init(gameData);
-        this.setScreenLock(true);
+
     }
 
     private void init(GameData gameData) {
@@ -108,7 +108,7 @@ public class BossFightSectionScreen extends LevelScreens {
 
         this.setSize(6800, 1100);
         this.setVisible(true);
-        this.setLocation(-5100, 0);
+        this.setLocation(-0, 0);
 
         backgroundLabelSceneOne = new JLabel(backgroundImage);
         backgroundLabelSceneOne.setBounds(0, 0, 1700, 1100);
@@ -147,7 +147,7 @@ public class BossFightSectionScreen extends LevelScreens {
         marioLocationLabel.setBounds(XMarioLocationLabel, 25, 200, 30);
 
         healthBar = new JProgressBar(0, 100);
-        healthBar.setBounds(5500, 30, 800, 50);
+        healthBar.setBounds(5500, 100, 800, 50);
         healthBar.setStringPainted(true);
         healthBar.setForeground(Color.red);
         healthBar.setValue(100);
@@ -168,7 +168,7 @@ public class BossFightSectionScreen extends LevelScreens {
         this.add(thisGameCoin, Integer.valueOf(1));
         this.add(thisGameCoinImage, Integer.valueOf(1));
         this.add(marioLocationLabel, Integer.valueOf(1));
-        this.add(healthBar, Integer.valueOf(1));
+//        this.add(healthBar, Integer.valueOf(1));
 
         addMario();
         addObject();
@@ -178,7 +178,7 @@ public class BossFightSectionScreen extends LevelScreens {
     private void addMario() {
 
         if (MyProject.activeUser.get(0).isUserChooseNormal_RedMario()) {
-            normalMario = new NormalMario(5200, 900);
+            normalMario = new NormalMario(100, 900);
             activeMario = normalMario;
             this.add(normalMario, Integer.valueOf(2));
         } else if (MyProject.activeUser.get(0).isUserChooseCoin_YellowMario()) {
