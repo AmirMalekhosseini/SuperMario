@@ -28,7 +28,7 @@ public class BossFightSectionModel extends NormalScreenModel {
         screen = godFather.getBossFightScreenSection();
         createVilgaxMoves(godFather, screen);
         screen.vilgax.addVilgaxMoves(vilgaxMoves);
-        vilgaxMover = new VilgaxMover(screen.vilgax, screen.activeMario, vilgaxMoves);
+        vilgaxMover = new VilgaxMover(godFather.gameTimer, screen.vilgax, screen.activeMario, vilgaxMoves);
         vilgaxAndScreenConnection = new VilgaxAndScreenConnection(screen);
         vilgaxAndMarioConnection = new VilgaxAndMarioConnection(screen);
         screen.vilgax.addConnection(vilgaxAndScreenConnection, vilgaxAndMarioConnection);
@@ -52,7 +52,7 @@ public class BossFightSectionModel extends NormalScreenModel {
         vilgaxMoves[4] = vilgaxJumpAttack;
         vilgaxMoves[5] = vilgaxNukeAttack;
         vilgaxMoves[6] = vilgaxRun;
-        screen.vilgax.activeMove = vilgaxDoNothing;
+        screen.vilgax.activeMove = vilgaxFireBallAttack;
 
 
     }
@@ -98,6 +98,7 @@ public class BossFightSectionModel extends NormalScreenModel {
             public void setLocationAfterLoose() {
                 super.setLocationAfterLoose();
             }
+
         };
     }
 

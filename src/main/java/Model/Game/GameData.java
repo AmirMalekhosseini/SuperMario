@@ -11,9 +11,9 @@ public class GameData {
     public int thisGameScore = 0;
     public int thisGameCoin = 0;
     protected String gameMode;
-    private int level;
-    private int section;
     private boolean isBossTriggered;
+    private boolean isGameInHiddenEnemy;
+    private boolean isGameInHiddenCoin = true;
 
     public GameData() {
 
@@ -51,22 +51,6 @@ public class GameData {
     public void setGameMode(String gameMode) {
         this.gameMode = gameMode;
     }
-    public int getLevel() {
-        return level;
-    }
-
-    public void setLevel(int level) {
-        this.level = level;
-    }
-
-    public int getSection() {
-        return section;
-    }
-
-    public void setSection(int section) {
-        this.section = section;
-    }
-
     public boolean isMarioMini() {
         return isMarioMini;
     }
@@ -97,5 +81,21 @@ public class GameData {
 
     public void setBossTriggered(boolean bossTriggered) {
         isBossTriggered = bossTriggered;
+    }
+
+    public boolean isGameInHiddenEnemy() {
+        return isGameInHiddenEnemy;
+    }
+
+    public void setGameInHiddenEnemy(boolean gameInHiddenEnemy) {
+        isGameInHiddenEnemy = gameInHiddenEnemy;
+    }
+
+    public boolean isGameInHiddenCoin() {
+        return isGameInHiddenCoin;
+    }
+
+    public void setGameInHiddenCoin(boolean gameInHiddenCoin) {
+        isGameInHiddenCoin = gameInHiddenCoin;
     }
 }

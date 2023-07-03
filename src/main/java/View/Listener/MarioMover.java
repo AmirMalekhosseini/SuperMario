@@ -51,6 +51,7 @@ public class MarioMover {
                     return;
                 }
                 marioMoverController.setMarioShooting(true);
+                marioMoverController.activeMario.setMarioShooting(true);
                 marioMoverController.marioStartShooting();
             }
         });
@@ -109,6 +110,7 @@ public class MarioMover {
             @Override
             public void actionPerformed(ActionEvent e) {
                 marioMoverController.setMarioShooting(false);
+                marioMoverController.activeMario.setMarioShooting(false);
             }
         });
 

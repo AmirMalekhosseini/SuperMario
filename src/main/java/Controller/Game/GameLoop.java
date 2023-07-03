@@ -33,16 +33,13 @@ public class GameLoop {
         EnemyThread enemyThread = new EnemyThread();
         VilgaxCalculator vilgaxCalculator = new VilgaxCalculator();
         VilgaxMover vilgaxMover = new VilgaxMover();
-        HiddenCoinSectionThread hiddenCoinSectionThread = new HiddenCoinSectionThread();
-        HiddenEnemySectionThread hiddenEnemySectionThread = new HiddenEnemySectionThread();
         marioMoverThread.start();
         calculatorThread.start();
         graphicThread.start();
         enemyThread.start();
 //        vilgaxCalculator.start();
 //        vilgaxMover.start();
-//        hiddenCoinSectionThread.start();
-//        hiddenEnemySectionThread.start();
+
     }
 
     public GameLoop() {
@@ -194,133 +191,6 @@ public class GameLoop {
         }
 
     }
-
-
-    private class HiddenEnemySectionThread extends Thread {
-
-        public void run() {
-
-            try {
-                Thread.sleep(5000);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-
-            while (true) {
-
-                synchronized (this) {
-
-                    if (gameGodFather.getHiddenEnemySectionModel().enemyCounter <= 25) {
-
-                        if (gameGodFather.getHiddenEnemySectionModel().isCannonOneWorking()) {
-                            Enemy newEnemy = new Goompa(1250, 275);
-                            gameGodFather.getHiddenEnemySectionScreen().getEnemiesInThisSection().add(newEnemy);
-                            gameGodFather.getHiddenEnemySectionScreen().add(newEnemy, Integer.valueOf(1));
-                            gameGodFather.getHiddenEnemySectionModel().setCannonOneWorking(false);
-                            gameGodFather.getHiddenEnemySectionModel().setCannonTwoWorking(true);
-                            gameGodFather.getHiddenEnemySectionModel().setCannonThreeWorking(false);
-                            gameGodFather.getHiddenEnemySectionModel().enemyCounter++;
-                        } else if (gameGodFather.getHiddenEnemySectionModel().isCannonTwoWorking()) {
-                            Enemy newEnemy = new Goompa(1200, 475);
-                            gameGodFather.getHiddenEnemySectionScreen().getEnemiesInThisSection().add(newEnemy);
-                            gameGodFather.getHiddenEnemySectionScreen().add(newEnemy, Integer.valueOf(1));
-                            gameGodFather.getHiddenEnemySectionModel().setCannonOneWorking(false);
-                            gameGodFather.getHiddenEnemySectionModel().setCannonTwoWorking(false);
-                            gameGodFather.getHiddenEnemySectionModel().setCannonThreeWorking(true);
-                            gameGodFather.getHiddenEnemySectionModel().enemyCounter++;
-                        } else if (gameGodFather.getHiddenEnemySectionModel().isCannonThreeWorking()) {
-                            Enemy newEnemy = new Goompa(1150, 675);
-                            gameGodFather.getHiddenEnemySectionScreen().getEnemiesInThisSection().add(newEnemy);
-                            gameGodFather.getHiddenEnemySectionScreen().add(newEnemy, Integer.valueOf(1));
-                            gameGodFather.getHiddenEnemySectionModel().setCannonOneWorking(true);
-                            gameGodFather.getHiddenEnemySectionModel().setCannonTwoWorking(false);
-                            gameGodFather.getHiddenEnemySectionModel().setCannonThreeWorking(false);
-                            gameGodFather.getHiddenEnemySectionModel().enemyCounter++;
-                        }
-                    }
-                }
-
-                try {
-                    Thread.sleep(100);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
-
-                synchronized (this) {
-
-                    gameGodFather.getHiddenEnemySectionModel().controller.gravity.allocateGravity();
-
-                }
-
-            }
-
-        }
-
-    }
-
-
-    private class HiddenCoinSectionThread extends Thread {
-
-        public void run() {
-
-            try {
-                Thread.sleep(5000);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-
-            while (true) {
-
-                synchronized (this) {
-
-                    if (gameGodFather.getHiddenCoinSectionModel().coinCounter <= 25) {
-
-                        if (gameGodFather.getHiddenCoinSectionModel().isCannonOneWorking()) {
-                            Coin newCoin = new Coin(1250, 300);
-                            gameGodFather.getHiddenCoinSectionScreen().getItemsInThisSection().add(newCoin);
-                            gameGodFather.getHiddenCoinSectionScreen().add(newCoin, Integer.valueOf(1));
-                            gameGodFather.getHiddenCoinSectionModel().setCannonOneWorking(false);
-                            gameGodFather.getHiddenCoinSectionModel().setCannonTwoWorking(true);
-                            gameGodFather.getHiddenCoinSectionModel().setCannonThreeWorking(false);
-                            gameGodFather.getHiddenCoinSectionModel().coinCounter++;
-                        } else if (gameGodFather.getHiddenCoinSectionModel().isCannonTwoWorking()) {
-                            Coin newCoin = new Coin(1200, 500);
-                            gameGodFather.getHiddenCoinSectionScreen().getItemsInThisSection().add(newCoin);
-                            gameGodFather.getHiddenCoinSectionScreen().add(newCoin, Integer.valueOf(1));
-                            gameGodFather.getHiddenCoinSectionModel().setCannonOneWorking(false);
-                            gameGodFather.getHiddenCoinSectionModel().setCannonTwoWorking(false);
-                            gameGodFather.getHiddenCoinSectionModel().setCannonThreeWorking(true);
-                            gameGodFather.getHiddenCoinSectionModel().coinCounter++;
-                        } else if (gameGodFather.getHiddenCoinSectionModel().isCannonThreeWorking()) {
-                            Coin newCoin = new Coin(1150, 700);
-                            gameGodFather.getHiddenCoinSectionScreen().getItemsInThisSection().add(newCoin);
-                            gameGodFather.getHiddenCoinSectionScreen().add(newCoin, Integer.valueOf(1));
-                            gameGodFather.getHiddenCoinSectionModel().setCannonOneWorking(true);
-                            gameGodFather.getHiddenCoinSectionModel().setCannonTwoWorking(false);
-                            gameGodFather.getHiddenCoinSectionModel().setCannonThreeWorking(false);
-                            gameGodFather.getHiddenCoinSectionModel().coinCounter++;
-                        }
-                    }
-                }
-
-                try {
-                    Thread.sleep(100);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
-
-                synchronized (this) {
-
-                    gameGodFather.getHiddenCoinSectionModel().controller.gravity.allocateGravity();
-
-                }
-
-            }
-
-        }
-
-    }
-
 
     private class EnemyThread extends Thread {
 

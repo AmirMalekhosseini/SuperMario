@@ -1,5 +1,9 @@
 package Model.Game;
 
+import Controller.Vilgax.VilgaxMover;
+import Model.Vilgax.Vilgax;
+import View.Game.BossFightSectionScreen;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,13 +23,15 @@ public class GameTimer {
     public CoolDown jumpAttackCounter;
     public CoolDown shieldCounter;
 
-    GameData gameData;
+    protected GameGodFather godFather;
+    private GameData gameData;
     javax.swing.Timer timer;
     private int sectionTime = 50;
+    private int saveTime;
 
-    public GameTimer() {
+    public GameTimer(GameGodFather godFather) {
 
-
+        this.godFather = godFather;
         addCoolDowns();
 
     }
@@ -43,6 +49,12 @@ public class GameTimer {
                 if (!gameData.isGamePause && !gameData.isGameFinish) {
 
                     sectionTime--;
+
+                    if (gameData.isBossTriggered()) {
+                        grabAttackCounter();
+                        jumpAttackCounter();
+                    }
+
 
                     for (CoolDown coolDownObject : negativeCoolDownList) {
                         if (coolDownObject.counter > 0) {
@@ -92,9 +104,33 @@ public class GameTimer {
         jumpAttackCounter = new CoolDown();
         shieldCounter = new CoolDown();
 
-        positiveCoolDownList.add(grabAttackCounter);
-        positiveCoolDownList.add(jumpAttackCounter);
         positiveCoolDownList.add(shieldCounter);
+
+    }
+
+    private void jumpAttackCounter() {
+
+        if (godFather.activeLevel.getMario().isMarioOnGround()) {
+            jumpAttackCounter.counter++;
+        } else {
+            jumpAttackCounter.counter = 0;
+        }
+
+    }
+
+    private void grabAttackCounter() {
+
+        if (godFather.activeLevel.getScreen() instanceof BossFightSectionScreen) {
+
+            Vilgax vilgax = ((BossFightSectionScreen) godFather.activeLevel.getScreen()).vilgax;
+            // Active move is GrabAttack
+            if (vilgax.activeMove == vilgax.vilgaxGrabAttack) {
+                grabAttackCounter.counter++;
+            } else {
+                grabAttackCounter.counter = 0;
+            }
+
+        }
 
     }
 
@@ -120,5 +156,13 @@ public class GameTimer {
 
     public void setPositiveCoolDownList(ArrayList<CoolDown> positiveCoolDownList) {
         this.positiveCoolDownList = positiveCoolDownList;
+    }
+
+    public int getSaveTime() {
+        return saveTime;
+    }
+
+    public void setSaveTime(int saveTime) {
+        this.saveTime = saveTime;
     }
 }

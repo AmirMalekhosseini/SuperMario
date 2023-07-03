@@ -1,5 +1,6 @@
 package Model.Game;
 
+import Controller.Game.CheckPointSave;
 import Controller.Game.ScreenController;
 
 public class HiddenCoinSectionModel extends ScreenModel {
@@ -15,7 +16,7 @@ public class HiddenCoinSectionModel extends ScreenModel {
         this.intersect = godFather.intersectInHiddenCoinSection;
         this.screen = godFather.getHiddenCoinSectionScreen();
 
-        controller = new ScreenController(godFather,screen, intersect, marioMoverController) {
+        controller = new ScreenController(godFather, screen, intersect, marioMoverController) {
             @Override
             public void gravityStarter() {
                 super.gravityStarter();
@@ -87,5 +88,22 @@ public class HiddenCoinSectionModel extends ScreenModel {
     @Override
     public void goToHiddenSection() {
 
+        godFather.activeLevel.getLevelPanel().setVisible(false);
+        godFather.activeLevel.setLevelPanel(godFather.levelOneGameBackgroundPanel);
+        godFather.activeLevel.getLevelPanel().setVisible(true);
+        godFather.activeLevel.setMario(godFather.getLevelOneSectionOneScreen().activeMario);
+        godFather.marioMoverController.activeMario = godFather.activeLevel.getMario();
+        godFather.activeLevel.setIntersect(godFather.intersectInLevelOneSectionOne);
+        godFather.activeLevel.setScreen(godFather.getLevelOneSectionOneScreen());
+        godFather.activeLevel.setScreenModel(godFather.getLevelOneSectionOneModel());
+
+        // Load time
+        godFather.gameTimer.setSectionTime(godFather.gameTimer.getSaveTime());
+        godFather.getPowerUp().loadPowerUp(godFather.marioMoverController.activeMario);
+        godFather.marioMoverController.setMarioEnterInLevelOneSectionOne(true);
+        CheckPointSave.getCheckPointSave().save(godFather.activeLevel.getScreen());
+        CheckPointSave.getCheckPointSave().saveXPanel(godFather.activeLevel.getLevelPanel().getX());
+
     }
+
 }

@@ -12,7 +12,9 @@ public abstract class ScreenModel {
     IntersectInGame intersect;
     MarioMoverController marioMoverController;
     public ScreenController controller;
+    public boolean isHitPipe;
 
     public abstract void goToHiddenSection();
+
 
 }

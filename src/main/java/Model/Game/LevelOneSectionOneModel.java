@@ -59,6 +59,26 @@ public class LevelOneSectionOneModel extends NormalScreenModel {
     @Override
     public void goToHiddenSection() {
 
+        if (!godFather.marioMoverController.isMarioEnterInHiddenCoinSection()) {// Mario Enter in hiddenSection:
+            godFather.activeLevel.getLevelPanel().setVisible(false);
+            godFather.activeLevel.setLevelPanel(godFather.hiddenCoinBackgroundPanel);
+            godFather.activeLevel.getLevelPanel().setVisible(true);
+            godFather.activeLevel.setMario(godFather.getHiddenCoinSectionScreen().activeMario);
+            godFather.marioMoverController.activeMario = godFather.activeLevel.getMario();
+            godFather.activeLevel.setIntersect(godFather.intersectInHiddenCoinSection);
+            godFather.activeLevel.setScreen(godFather.getHiddenCoinSectionScreen());
+            godFather.activeLevel.setScreenModel(godFather.getHiddenCoinSectionModel());
+
+            // Save time
+            godFather.gameTimer.setSaveTime(godFather.gameTimer.getSectionTime());
+            godFather.gameTimer.setSectionTime(50);
+            godFather.getPowerUp().loadPowerUp(godFather.marioMoverController.activeMario);
+            godFather.marioMoverController.setMarioEnterInHiddenCoinSection(true);
+            CheckPointSave.getCheckPointSave().save(godFather.activeLevel.getScreen());
+            CheckPointSave.getCheckPointSave().saveXPanel(godFather.activeLevel.getLevelPanel().getX());
+
+        }
+
     }
 
     @Override

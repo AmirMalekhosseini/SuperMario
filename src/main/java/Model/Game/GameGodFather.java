@@ -1,6 +1,7 @@
 package Model.Game;
 
 import Controller.Game.*;
+import Music.MusicPlayer;
 import View.Game.*;
 import View.Listener.GameListener;
 import View.Listener.MarioMover;
@@ -48,13 +49,15 @@ public class GameGodFather {
     public IntersectInBossSection intersectInBossSection;
     public MarioMover marioMover;
     protected GameListener gameListener;
+    protected MusicPlayer musicPlayer;
     public MarioMoverController marioMoverController;
     public GameLoop gameLoop;
     public CalculateScore calculateScore;
+    public WaitObject waitObject;
 
     public GameGodFather(GameData gameData) {
         init(gameData);
-        gameTimer = new GameTimer();
+        gameTimer = new GameTimer(this);
         gameTimer.addGameData(gameData);
         gameTimer.startTimer();
         graphicStarter.startGraphic(gameData);
@@ -129,6 +132,8 @@ public class GameGodFather {
 
         modelStarter = godFather -> {
 
+            waitObject = new WaitObject();
+            musicPlayer = new MusicPlayer();
             calculateScore = new CalculateScore(godFather);
             marioMoverController = new MarioMoverController(godFather);
             powerUp = new PowerUp(godFather);
@@ -388,5 +393,11 @@ public class GameGodFather {
         this.hiddenCoinBackgroundPanel = hiddenCoinBackgroundPanel;
     }
 
+    public MusicPlayer getMusicPlayer() {
+        return musicPlayer;
+    }
 
+    public void setMusicPlayer(MusicPlayer musicPlayer) {
+        this.musicPlayer = musicPlayer;
+    }
 }

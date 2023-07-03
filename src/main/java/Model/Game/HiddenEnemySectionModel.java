@@ -1,5 +1,6 @@
 package Model.Game;
 
+import Controller.Game.CheckPointSave;
 import Controller.Game.ScreenController;
 
 public class HiddenEnemySectionModel extends ScreenModel {
@@ -86,6 +87,22 @@ public class HiddenEnemySectionModel extends ScreenModel {
 
     @Override
     public void goToHiddenSection() {
+
+        godFather.activeLevel.getLevelPanel().setVisible(false);
+        godFather.activeLevel.setLevelPanel(godFather.levelTwoGameBackgroundPanel);
+        godFather.activeLevel.getLevelPanel().setVisible(true);
+        godFather.activeLevel.setMario(godFather.getLevelTwoSectionTwoScreen().activeMario);
+        godFather.marioMoverController.activeMario = godFather.activeLevel.getMario();
+        godFather.activeLevel.setIntersect(godFather.intersectInLevelTwoSectionTwo);
+        godFather.activeLevel.setScreen(godFather.getLevelTwoSectionTwoScreen());
+        godFather.activeLevel.setScreenModel(godFather.getLevelTwoSectionTwoModel());
+
+        // Load time
+        godFather.gameTimer.setSectionTime(godFather.gameTimer.getSaveTime());
+        godFather.getPowerUp().loadPowerUp(godFather.marioMoverController.activeMario);
+        godFather.marioMoverController.setMarioEnterInLevelTwoSectionTwo(true);
+        CheckPointSave.getCheckPointSave().save(godFather.activeLevel.getScreen());
+        CheckPointSave.getCheckPointSave().saveXPanel(godFather.activeLevel.getLevelPanel().getX());
 
     }
 }

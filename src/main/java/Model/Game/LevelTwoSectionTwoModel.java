@@ -59,6 +59,25 @@ public class LevelTwoSectionTwoModel extends NormalScreenModel {
     @Override
     public void goToHiddenSection() {
 
+        if (!godFather.marioMoverController.isMarioEnterInHiddenEnemySection()) {// Mario Enter in hiddenSection:
+            godFather.activeLevel.getLevelPanel().setVisible(false);
+            godFather.activeLevel.setLevelPanel(godFather.hiddenEnemyBackgroundPanel);
+            godFather.activeLevel.getLevelPanel().setVisible(true);
+            godFather.activeLevel.setMario(godFather.getHiddenEnemySectionScreen().activeMario);
+            godFather.marioMoverController.activeMario = godFather.activeLevel.getMario();
+            godFather.activeLevel.setIntersect(godFather.intersectInHiddenEnemySection);
+            godFather.activeLevel.setScreen(godFather.getHiddenEnemySectionScreen());
+            godFather.activeLevel.setScreenModel(godFather.getHiddenEnemySectionModel());
+
+            // Save time
+            godFather.gameTimer.setSaveTime(godFather.gameTimer.getSectionTime());
+            godFather.gameTimer.setSectionTime(50);
+            godFather.getPowerUp().loadPowerUp(godFather.marioMoverController.activeMario);
+            godFather.marioMoverController.setMarioEnterInHiddenEnemySection(true);
+            CheckPointSave.getCheckPointSave().save(godFather.activeLevel.getScreen());
+            CheckPointSave.getCheckPointSave().saveXPanel(godFather.activeLevel.getLevelPanel().getX());
+        }
+
     }
 
     @Override

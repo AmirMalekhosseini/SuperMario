@@ -22,6 +22,7 @@ public abstract class Mario extends ObjectsInGame {
     private boolean isMarioMega;
     private boolean isMarioShooter;
     private boolean isMarioGotShield;
+    private boolean isMarioShooting;
     private boolean marioShouldDie;
     private boolean isMarioOnGround = true;
     private boolean isMarioReleaseFromVilgax;
@@ -170,5 +171,13 @@ public abstract class Mario extends ObjectsInGame {
 
     public void setMarioOnGround(boolean marioOnGround) {
         isMarioOnGround = marioOnGround;
+    }
+
+    public boolean isMarioShooting() {
+        return isMarioShooting;
+    }
+
+    public void setMarioShooting(boolean marioShooting) {
+        isMarioShooting = marioShooting;
     }
 }

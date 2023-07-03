@@ -1,8 +1,12 @@
 package View.Game;
 
 import Model.Enemy.Enemy;
+import Model.Enemy.Goompa;
+import Model.Enemy.Spiny;
+import Model.Enemy.Turtle;
 import Model.Game.GameData;
 import Model.Game.UserHeart;
+import Model.Item.Coin;
 import Model.Item.CoinForStore;
 import Model.Item.ItemsInGame;
 import Model.Mario.*;
@@ -69,6 +73,7 @@ public class HiddenEnemySectionScreen extends LevelScreens {
 
     private void init(GameData gameData) {
 
+        this.setScreenLock(true);
         this.gameData = gameData;
         ImageIcon backgroundImage = new ImageIcon("Game/BackgroundSections.jpg");
         activeMario = new NormalMario(0, 0);
@@ -126,7 +131,6 @@ public class HiddenEnemySectionScreen extends LevelScreens {
             this.add(shooterMario, Integer.valueOf(2));
         }
 
-        cannon_1 = new Cannon(1260, 270);
         blockInAir1_1 = new SimpleBlockInAir(470, 750);
         blockInAir1_2 = new SimpleBlockInAir(540, 750);
         blockInAir1_3 = new SimpleBlockInAir(610, 750);
@@ -141,7 +145,6 @@ public class HiddenEnemySectionScreen extends LevelScreens {
         blockInAir1_12 = new SimpleBlockInAir(1240, 750);
         blockInAir1_13 = new SimpleBlockInAir(1310, 750);
 
-        cannon_2 = new Cannon(1260, 470);
         blockInAir2_1 = new SimpleBlockInAir(680, 550);
         blockInAir2_2 = new SimpleBlockInAir(750, 550);
         blockInAir2_3 = new SimpleBlockInAir(820, 550);
@@ -153,7 +156,6 @@ public class HiddenEnemySectionScreen extends LevelScreens {
         blockInAir2_9 = new SimpleBlockInAir(1240, 550);
         blockInAir2_10 = new SimpleBlockInAir(1310, 550);
 
-        cannon_3 = new Cannon(1260, 670);
         blockInAir3_1 = new SimpleBlockInAir(820, 350);
         blockInAir3_2 = new SimpleBlockInAir(890, 350);
         blockInAir3_3 = new SimpleBlockInAir(960, 350);
@@ -162,6 +164,7 @@ public class HiddenEnemySectionScreen extends LevelScreens {
         blockInAir3_6 = new SimpleBlockInAir(1170, 350);
         blockInAir3_7 = new SimpleBlockInAir(1240, 350);
         blockInAir3_8 = new SimpleBlockInAir(1310, 350);
+
 
         pipeHorizontal = new PipeHorizontal(1300, 820);
 
@@ -174,7 +177,6 @@ public class HiddenEnemySectionScreen extends LevelScreens {
         this.add(thisGameCoinImage, Integer.valueOf(1));
         this.add(marioLocationLabel, Integer.valueOf(1));
 
-        objectsInThisSection.add(cannon_1);
         objectsInThisSection.add(blockInAir1_1);
         objectsInThisSection.add(blockInAir1_2);
         objectsInThisSection.add(blockInAir1_3);
@@ -189,7 +191,6 @@ public class HiddenEnemySectionScreen extends LevelScreens {
         objectsInThisSection.add(blockInAir1_12);
         objectsInThisSection.add(blockInAir1_13);
 
-        objectsInThisSection.add(cannon_2);
         objectsInThisSection.add(blockInAir2_1);
         objectsInThisSection.add(blockInAir2_2);
         objectsInThisSection.add(blockInAir2_3);
@@ -201,7 +202,6 @@ public class HiddenEnemySectionScreen extends LevelScreens {
         objectsInThisSection.add(blockInAir2_9);
         objectsInThisSection.add(blockInAir2_10);
 
-        objectsInThisSection.add(cannon_3);
         objectsInThisSection.add(blockInAir3_1);
         objectsInThisSection.add(blockInAir3_2);
         objectsInThisSection.add(blockInAir3_3);
@@ -212,8 +212,26 @@ public class HiddenEnemySectionScreen extends LevelScreens {
         objectsInThisSection.add(blockInAir3_8);
         objectsInThisSection.add(pipeHorizontal);
 
+        int x = 800;
+        int y = 270;
+        for (int i = 0; i <5 ; i++) {
+            enemiesInThisSection.add(new Turtle(x, y));
+            x += 100;
+        }
+
+        x = 400;
+        y = 890;
+        for (int i = 0; i < 5; i++) {
+            enemiesInThisSection.add(new Spiny(x, y));
+            x += 100;
+        }
+
         for (ObjectsInGame object : objectsInThisSection) {
             this.add(object, Integer.valueOf(1));
+        }
+
+        for (Enemy enemy : enemiesInThisSection) {
+            this.add(enemy, Integer.valueOf(1));
         }
 
     }

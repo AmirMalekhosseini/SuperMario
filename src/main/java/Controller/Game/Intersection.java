@@ -100,6 +100,16 @@ public abstract class Intersection {
 
                 }
 
+                if (screen.getObjectsInThisSection().get(i) instanceof PipeHorizontal
+                        && marioHitsLeftOfTheObject
+                        && !marioHitsAnObject
+                        && !gameGodFather.activeLevel.getScreenModel().isHitPipe) {
+
+                    gameGodFather.activeLevel.getScreenModel().isHitPipe = true;
+                    gameGodFather.activeLevel.getScreenModel().goToHiddenSection();
+                    return;
+                }
+
                 if (screen.getObjectsInThisSection().get(i) instanceof PrizeInAir && marioHitsDownOfTheObject && !marioHitsAnObject) {
                     if (((PrizeInAir) screen.getObjectsInThisSection().get(i)).isItemCatch()) {
                         ((PrizeInAir) screen.getObjectsInThisSection().get(i)).setItemCatch(true);
@@ -839,8 +849,7 @@ public abstract class Intersection {
 
     public void generateRandomItem(PrizeInAir prizeInAir) {
 
-        Random random = new Random();
-        int itemChooseNumber = random.nextInt(11);
+        int itemChooseNumber = GenerateRandomNumber.getRandomNumber().generateNumber(10);
         int x = prizeInAir.getX() + 10;
         int y = prizeInAir.getY() - 150;
         if (itemChooseNumber <= 5) {

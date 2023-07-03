@@ -25,7 +25,7 @@ public class GameListener {
         objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
         objectMapper.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
 
-        musicPlayer = new MusicPlayer();
+        musicPlayer = godFather.getMusicPlayer();
 
         createKeyBindings();
 

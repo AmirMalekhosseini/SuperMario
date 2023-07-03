@@ -2,6 +2,7 @@ package View.Game;
 
 import Model.Game.GameData;
 import Model.Game.UserHeart;
+import Model.Item.Coin;
 import Model.Item.CoinForStore;
 import Model.Item.ItemsInGame;
 import Model.Mario.*;
@@ -13,6 +14,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class HiddenCoinSectionScreen extends LevelScreens {
+
 
     protected ArrayList<ObjectsInGame> objectsInThisSection = new ArrayList<>();
     protected volatile ArrayList<ItemsInGame> itemsInThisSection = new ArrayList<>();
@@ -66,6 +68,8 @@ public class HiddenCoinSectionScreen extends LevelScreens {
     }
 
     private void init(GameData gameData) {
+
+        this.setScreenLock(true);
 
         this.gameData = gameData;
         ImageIcon backgroundImage = new ImageIcon("Game/BackgroundSections.jpg");
@@ -124,7 +128,6 @@ public class HiddenCoinSectionScreen extends LevelScreens {
             this.add(shooterMario, Integer.valueOf(2));
         }
 
-        cannon_1 = new Cannon(1260, 270);
         blockInAir1_1 = new SimpleBlockInAir(470, 750);
         blockInAir1_2 = new SimpleBlockInAir(540, 750);
         blockInAir1_3 = new SimpleBlockInAir(610, 750);
@@ -138,8 +141,14 @@ public class HiddenCoinSectionScreen extends LevelScreens {
         blockInAir1_11 = new SimpleBlockInAir(1170, 750);
         blockInAir1_12 = new SimpleBlockInAir(1240, 750);
         blockInAir1_13 = new SimpleBlockInAir(1310, 750);
+        int  x = 470;
+        int  y = 700;
+        for (int i = 0; i < 13; i++) {
+            Coin coin = new Coin(x, y);
+            itemsInThisSection.add(coin);
+            x += 70;
+        }
 
-        cannon_2 = new Cannon(1260, 470);
         blockInAir2_1 = new SimpleBlockInAir(680, 550);
         blockInAir2_2 = new SimpleBlockInAir(750, 550);
         blockInAir2_3 = new SimpleBlockInAir(820, 550);
@@ -151,7 +160,6 @@ public class HiddenCoinSectionScreen extends LevelScreens {
         blockInAir2_9 = new SimpleBlockInAir(1240, 550);
         blockInAir2_10 = new SimpleBlockInAir(1310, 550);
 
-        cannon_3 = new Cannon(1260, 670);
         blockInAir3_1 = new SimpleBlockInAir(820, 350);
         blockInAir3_2 = new SimpleBlockInAir(890, 350);
         blockInAir3_3 = new SimpleBlockInAir(960, 350);
@@ -160,6 +168,13 @@ public class HiddenCoinSectionScreen extends LevelScreens {
         blockInAir3_6 = new SimpleBlockInAir(1170, 350);
         blockInAir3_7 = new SimpleBlockInAir(1240, 350);
         blockInAir3_8 = new SimpleBlockInAir(1310, 350);
+         x = 820;
+         y = 300;
+        for (int i = 0; i < 8; i++) {
+            Coin coin = new Coin(x, y);
+            itemsInThisSection.add(coin);
+            x += 70;
+        }
 
         pipeHorizontal = new PipeHorizontal(1300, 820);
 
@@ -172,7 +187,6 @@ public class HiddenCoinSectionScreen extends LevelScreens {
         this.add(thisGameCoinImage, Integer.valueOf(1));
         this.add(marioLocationLabel, Integer.valueOf(1));
 
-        objectsInThisSection.add(cannon_1);
         objectsInThisSection.add(blockInAir1_1);
         objectsInThisSection.add(blockInAir1_2);
         objectsInThisSection.add(blockInAir1_3);
@@ -187,7 +201,6 @@ public class HiddenCoinSectionScreen extends LevelScreens {
         objectsInThisSection.add(blockInAir1_12);
         objectsInThisSection.add(blockInAir1_13);
 
-        objectsInThisSection.add(cannon_2);
         objectsInThisSection.add(blockInAir2_1);
         objectsInThisSection.add(blockInAir2_2);
         objectsInThisSection.add(blockInAir2_3);
@@ -199,7 +212,6 @@ public class HiddenCoinSectionScreen extends LevelScreens {
         objectsInThisSection.add(blockInAir2_9);
         objectsInThisSection.add(blockInAir2_10);
 
-        objectsInThisSection.add(cannon_3);
         objectsInThisSection.add(blockInAir3_1);
         objectsInThisSection.add(blockInAir3_2);
         objectsInThisSection.add(blockInAir3_3);
@@ -212,6 +224,10 @@ public class HiddenCoinSectionScreen extends LevelScreens {
 
         for (ObjectsInGame object : objectsInThisSection) {
             this.add(object, Integer.valueOf(1));
+        }
+
+        for (ItemsInGame items : itemsInThisSection) {
+            this.add(items, Integer.valueOf(1));
         }
 
     }
