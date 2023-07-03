@@ -228,9 +228,20 @@ public class GameLoop {
 
     public class VilgaxCalculator extends Thread {
 
+
         public void run() {
 
+
             while (!gameGodFather.getGameData().isGameFinish) {
+
+                // Wait until boss trigger
+                while (!gameGodFather.getGameData().isBossTriggered()) {
+                    try {
+                        gameGodFather.waitObject.wait();
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
 
                 int fps = 120;
                 long targetTime = 1000 / fps;
@@ -265,7 +276,17 @@ public class GameLoop {
 
         public void run() {
 
+
             while (!gameGodFather.getGameData().isGameFinish) {
+
+                // Wait until boss trigger
+                while (!gameGodFather.getGameData().isBossTriggered()) {
+                    try {
+                        gameGodFather.waitObject.wait();
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
 
                 int fps = 120;
                 long targetTime = 1000 / fps;

@@ -287,10 +287,6 @@ public class BossFightSectionScreen extends LevelScreens {
         wall_BlockInAir.add(Right_Wall_14);
         wall_BlockInAir.add(Right_Wall_15);
 
-        for (BlockInAir block : wall_BlockInAir) {
-            this.add(block, Integer.valueOf(1));
-        }
-
         // Scene BossFight:
         objectsInThisSection.add(firstBlockInAirSceneBossFight);
         objectsInThisSection.add(secondBlockInAirSceneBossFight);
@@ -321,8 +317,6 @@ public class BossFightSectionScreen extends LevelScreens {
         for (Enemy enemy : enemiesInThisSection) {
             this.add(enemy, Integer.valueOf(1));
         }
-
-        objectsInThisSection.addAll(wall_BlockInAir);
 
     }
 

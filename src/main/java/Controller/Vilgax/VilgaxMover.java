@@ -53,7 +53,7 @@ public class VilgaxMover {
 
         // Choose move only when Vilgax is not preform any move:
         if (vilgax.activeMove != vilgaxDoNothing) {
-            System.out.println("nothing");
+//            System.out.println("nothing");
             return;
         }
 
@@ -101,6 +101,7 @@ public class VilgaxMover {
 
         // GrabAttack:
         if (DistanceCalculator.getDistanceCalculator().calculate(mario, vilgax) <= 140) {
+
             vilgax.activeMove = vilgaxGrabAttack;
             System.out.println("Grab");
             return;

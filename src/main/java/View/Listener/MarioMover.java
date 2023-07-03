@@ -15,6 +15,8 @@ public class MarioMover {
 
     private GameGodFather gameGodFather;
     private MarioMoverController marioMoverController;
+    private boolean isLeftPress;
+    private boolean isRightPress;
     InputMap inputMap;
     ActionMap actionMap;
 
@@ -87,9 +89,21 @@ public class MarioMover {
                 if (gameGodFather.getGameData().isGamePause) {
                     return;
                 }
-                marioMoverController.setLeftMario(true);
-                marioMoverController.activeMario.setMarioRight(false);
-                marioMoverController.activeMario.setMarioLeft(true);
+                if (!isLeftPress) {
+                    gameGodFather.activeLevel.getMario().buttonPressCounter++;
+                    isLeftPress = true;
+                }
+
+                // mario act unusual
+                if (gameGodFather.activeLevel.getMario().isMarioDrunk()) {
+                    marioMoverController.setRightMario(true);
+                    marioMoverController.activeMario.setMarioRight(true);
+                    marioMoverController.activeMario.setMarioLeft(false);
+                } else {
+                    marioMoverController.setLeftMario(true);
+                    marioMoverController.activeMario.setMarioRight(false);
+                    marioMoverController.activeMario.setMarioLeft(true);
+                }
             }
         });
 
@@ -99,9 +113,21 @@ public class MarioMover {
                 if (gameGodFather.getGameData().isGamePause) {
                     return;
                 }
-                marioMoverController.setRightMario(true);
-                marioMoverController.activeMario.setMarioRight(true);
-                marioMoverController.activeMario.setMarioLeft(false);
+                if (!isRightPress) {
+                    gameGodFather.activeLevel.getMario().buttonPressCounter++;
+                    isRightPress = true;
+                }
+
+                // mario act unusual
+                if (gameGodFather.activeLevel.getMario().isMarioDrunk()) {
+                    marioMoverController.setLeftMario(true);
+                    marioMoverController.activeMario.setMarioRight(false);
+                    marioMoverController.activeMario.setMarioLeft(true);
+                } else {
+                    marioMoverController.setRightMario(true);
+                    marioMoverController.activeMario.setMarioRight(true);
+                    marioMoverController.activeMario.setMarioLeft(false);
+                }
             }
         });
 
@@ -125,16 +151,32 @@ public class MarioMover {
         actionMap.put("moveLeftReleased", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                marioMoverController.setLeftMario(false);
-                marioMoverController.activeMario.setMarioLeft(false);
+
+                // mario act unusual
+                if (gameGodFather.activeLevel.getMario().isMarioDrunk()) {
+                    marioMoverController.setRightMario(false);
+                    marioMoverController.activeMario.setMarioRight(false);
+                } else {
+                    marioMoverController.setLeftMario(false);
+                    marioMoverController.activeMario.setMarioLeft(false);
+                }
+                isLeftPress = false;
             }
         });
 
         actionMap.put("moveRightReleased", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                marioMoverController.setRightMario(false);
-                marioMoverController.activeMario.setMarioRight(false);
+
+                // mario act unusual
+                if (gameGodFather.activeLevel.getMario().isMarioDrunk()) {
+                    marioMoverController.setLeftMario(false);
+                    marioMoverController.activeMario.setMarioLeft(false);
+                } else {
+                    marioMoverController.setRightMario(false);
+                    marioMoverController.activeMario.setMarioRight(false);
+                }
+                isRightPress = false;
             }
         });
     }

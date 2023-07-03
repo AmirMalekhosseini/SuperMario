@@ -11,6 +11,7 @@ public class BossFightSectionModel extends NormalScreenModel {
     BossFightSectionScreen screen;
     public VilgaxAndScreenConnection vilgaxAndScreenConnection;
     public VilgaxAndMarioConnection vilgaxAndMarioConnection;
+    public VilgaxTrigger vilgaxTrigger;
     public VilgaxMover vilgaxMover;
     protected VilgaxMove[] vilgaxMoves = new VilgaxMove[7];
     public VilgaxMove vilgaxDoNothing;
@@ -31,6 +32,7 @@ public class BossFightSectionModel extends NormalScreenModel {
         vilgaxMover = new VilgaxMover(godFather.gameTimer, screen.vilgax, screen.activeMario, vilgaxMoves);
         vilgaxAndScreenConnection = new VilgaxAndScreenConnection(screen);
         vilgaxAndMarioConnection = new VilgaxAndMarioConnection(screen);
+        vilgaxTrigger = new VilgaxTrigger(screen, godFather.getMusicPlayer());
         screen.vilgax.addConnection(vilgaxAndScreenConnection, vilgaxAndMarioConnection);
         addController();
 
@@ -58,7 +60,7 @@ public class BossFightSectionModel extends NormalScreenModel {
     }
 
     private void addController() {
-        controller = new ScreenController(godFather,screen, intersect, marioMoverController) {
+        controller = new ScreenController(godFather, screen, intersect, marioMoverController) {
             @Override
             public void gravityStarter() {
                 super.gravityStarter();

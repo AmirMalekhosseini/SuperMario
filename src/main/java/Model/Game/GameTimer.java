@@ -130,6 +130,7 @@ public class GameTimer {
                 grabAttackCounter.counter = 0;
             }
 
+            System.out.println(grabAttackCounter.counter);
         }
 
     }

@@ -12,8 +12,6 @@ public class GameData {
     public int thisGameCoin = 0;
     protected String gameMode;
     private boolean isBossTriggered;
-    private boolean isGameInHiddenEnemy;
-    private boolean isGameInHiddenCoin = true;
 
     public GameData() {
 
@@ -83,19 +81,4 @@ public class GameData {
         isBossTriggered = bossTriggered;
     }
 
-    public boolean isGameInHiddenEnemy() {
-        return isGameInHiddenEnemy;
-    }
-
-    public void setGameInHiddenEnemy(boolean gameInHiddenEnemy) {
-        isGameInHiddenEnemy = gameInHiddenEnemy;
-    }
-
-    public boolean isGameInHiddenCoin() {
-        return isGameInHiddenCoin;
-    }
-
-    public void setGameInHiddenCoin(boolean gameInHiddenCoin) {
-        isGameInHiddenCoin = gameInHiddenCoin;
-    }
 }

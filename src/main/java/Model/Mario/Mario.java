@@ -26,6 +26,8 @@ public abstract class Mario extends ObjectsInGame {
     private boolean marioShouldDie;
     private boolean isMarioOnGround = true;
     private boolean isMarioReleaseFromVilgax;
+    private boolean isMarioDrunk;
+    public long buttonPressCounter = 0;
 
     public Mario() {
 
@@ -179,5 +181,13 @@ public abstract class Mario extends ObjectsInGame {
 
     public void setMarioShooting(boolean marioShooting) {
         isMarioShooting = marioShooting;
+    }
+
+    public boolean isMarioDrunk() {
+        return isMarioDrunk;
+    }
+
+    public void setMarioDrunk(boolean marioDrunk) {
+        isMarioDrunk = marioDrunk;
     }
 }

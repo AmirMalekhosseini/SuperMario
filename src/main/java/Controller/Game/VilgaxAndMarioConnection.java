@@ -44,6 +44,7 @@ public class VilgaxAndMarioConnection {
         }
 
         mario.setY(960 - mario.getHeight());
+        mario.setMarioReleaseFromVilgax(false);
         // GrabAttack is Done:
         // ToDo: set Timer Off
         vilgax.activeMove = vilgax.vilgaxDoNothing;
