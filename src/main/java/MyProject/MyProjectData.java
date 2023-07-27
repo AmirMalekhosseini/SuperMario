@@ -114,6 +114,15 @@ public class MyProjectData {
     protected BufferedImage coinMario_Stand_Flipped;
     protected BufferedImage coinMario_Stand_Flipped_Mini;
 
+    protected BufferedImage diamond;
+    protected BufferedImage healPotion;
+    protected BufferedImage speedPotion;
+    protected BufferedImage invisiblePotion;
+    protected BufferedImage hammer;
+    protected BufferedImage hammerFilliped;
+    protected BufferedImage speedBomb;
+    protected BufferedImage damageBomb;
+
     protected BufferedImage blockInAir;
     protected BufferedImage slimeBlockInAir;
     protected BufferedImage emptyBlockInAir;
@@ -254,6 +263,42 @@ public class MyProjectData {
             String pathBackground = "Item/Star.png";
             File fileBackground = new File(pathBackground);
             star = ImageIO.read(fileBackground);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            String pathBackground = "Item/Online/Diamond.png";
+            File fileBackground = new File(pathBackground);
+            diamond = ImageIO.read(fileBackground);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            String pathBackground = "Item/Online/HealPotion.png";
+            File fileBackground = new File(pathBackground);
+            healPotion = ImageIO.read(fileBackground);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            String pathBackground = "Item/Online/SpeedPotion.png";
+            File fileBackground = new File(pathBackground);
+            speedPotion = ImageIO.read(fileBackground);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            String pathBackground = "Item/Online/InvisiblePotion.png";
+            File fileBackground = new File(pathBackground);
+            invisiblePotion = ImageIO.read(fileBackground);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -553,7 +598,6 @@ public class MyProjectData {
             String pathBackground = "MarioWeapon/Fireball.png";
             File fileBackground = new File(pathBackground);
             fireBall = ImageIO.read(fileBackground);
-
         }
         catch (IOException e) {
             e.printStackTrace();
@@ -563,7 +607,6 @@ public class MyProjectData {
             String pathBackground = "MarioWeapon/Sword.png";
             File fileBackground = new File(pathBackground);
             sword = ImageIO.read(fileBackground);
-
         }
         catch (IOException e) {
             e.printStackTrace();
@@ -573,7 +616,6 @@ public class MyProjectData {
             String pathBackground = "MarioWeapon/SwordFilliped.png";
             File fileBackground = new File(pathBackground);
             swordFilliped = ImageIO.read(fileBackground);
-
         }
         catch (IOException e) {
             e.printStackTrace();
@@ -583,7 +625,42 @@ public class MyProjectData {
             String pathBackground = "MarioWeapon/Shield.png";
             File fileBackground = new File(pathBackground);
             shield = ImageIO.read(fileBackground);
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
 
+        try {
+            String pathBackground = "MarioWeapon/Online/Hammer.png";
+            File fileBackground = new File(pathBackground);
+            hammer = ImageIO.read(fileBackground);
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            String pathBackground = "MarioWeapon/Online/HammerFilliped.png";
+            File fileBackground = new File(pathBackground);
+            hammerFilliped = ImageIO.read(fileBackground);
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            String pathBackground = "MarioWeapon/Online/DamageBomb.png";
+            File fileBackground = new File(pathBackground);
+            damageBomb = ImageIO.read(fileBackground);
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            String pathBackground = "MarioWeapon/Online/SpeedBomb.png";
+            File fileBackground = new File(pathBackground);
+            speedBomb = ImageIO.read(fileBackground);
         }
         catch (IOException e) {
             e.printStackTrace();
@@ -1553,6 +1630,22 @@ public class MyProjectData {
         return checkPoint;
     }
 
+    public BufferedImage getDiamond() {
+        return diamond;
+    }
+
+    public BufferedImage getHealPotion() {
+        return healPotion;
+    }
+
+    public BufferedImage getSpeedPotion() {
+        return speedPotion;
+    }
+
+    public BufferedImage getInvisiblePotion() {
+        return invisiblePotion;
+    }
+
     public BufferedImage getCoin() {
         return coin;
     }
@@ -1732,6 +1825,22 @@ public class MyProjectData {
 
     public BufferedImage getSwordFilliped() {
         return swordFilliped;
+    }
+
+    public BufferedImage getHammer() {
+        return hammer;
+    }
+
+    public BufferedImage getHammerFilliped() {
+        return hammerFilliped;
+    }
+
+    public BufferedImage getSpeedBomb() {
+        return speedBomb;
+    }
+
+    public BufferedImage getDamageBomb() {
+        return damageBomb;
     }
 
     public BufferedImage getVilgax_Phase1() {

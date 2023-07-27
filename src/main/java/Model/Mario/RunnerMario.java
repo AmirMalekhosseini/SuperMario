@@ -26,6 +26,7 @@ public class RunnerMario extends Mario {
     private volatile int y;
     private double velocityY;
     private double velocityX;
+    private int price = 20;
 
     public RunnerMario(int x, int y) {
 
@@ -46,6 +47,19 @@ public class RunnerMario extends Mario {
         jump_Flipped = projectData.getRunnerMario_jump_Flipped();
         stand_Flipped = projectData.getRunnerMario_Stand_Flipped();
         activeBackground = stand_Mini;
+
+        this.x = x;
+        this.y = y;
+
+    }
+
+    public RunnerMario(int x, int y, boolean isForStore) {
+
+        this.setSize(super.getWidth(), super.getHeight());
+
+        MyProjectData projectData = MyProjectData.getProjectData();
+        stand = projectData.getRunnerMario_Stand();
+        activeBackground = stand;
 
         this.x = x;
         this.y = y;
@@ -156,6 +170,15 @@ public class RunnerMario extends Mario {
         this.velocityX = velocityX;
     }
 
+    @Override
+    public int getPrice() {
+        return price;
+    }
+
+    @Override
+    public void setPrice(int price) {
+        this.price = price;
+    }
 }
 
 

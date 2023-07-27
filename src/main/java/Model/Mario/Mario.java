@@ -14,6 +14,7 @@ public abstract class Mario extends ObjectsInGame {
     private final BufferedImage fireMario_Filliped_Mini;
     private int width = 70;
     private int height = 120;
+    private int price = 0;
     private boolean isMarioJumping;
     private boolean isMarioLeft;
     private boolean isMarioRight;
@@ -189,5 +190,13 @@ public abstract class Mario extends ObjectsInGame {
 
     public void setMarioDrunk(boolean marioDrunk) {
         isMarioDrunk = marioDrunk;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 }

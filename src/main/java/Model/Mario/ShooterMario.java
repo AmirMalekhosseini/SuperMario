@@ -26,6 +26,7 @@ public class ShooterMario extends Mario {
     private volatile int y;
     private double velocityY;
     private double velocityX;
+    private int price = 40;
 
     public ShooterMario(int x, int y) {
 
@@ -45,6 +46,19 @@ public class ShooterMario extends Mario {
         jump_Flipped = projectData.getShooterMario_jump_Flipped();
         stand_Flipped = projectData.getShooterMario_Stand_Flipped();
         activeBackground = stand_Mini;
+
+        this.x = x;
+        this.y = y;
+
+    }
+
+    public ShooterMario(int x, int y, boolean isForStore) {
+
+        this.setSize(super.getWidth(), super.getHeight());
+
+        MyProjectData projectData = MyProjectData.getProjectData();
+        stand = projectData.getShooterMario_Stand();
+        activeBackground = stand;
 
         this.x = x;
         this.y = y;
@@ -152,4 +166,13 @@ public class ShooterMario extends Mario {
         this.velocityX = velocityX;
     }
 
+    @Override
+    public int getPrice() {
+        return price;
+    }
+
+    @Override
+    public void setPrice(int price) {
+        this.price = price;
+    }
 }

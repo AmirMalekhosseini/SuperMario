@@ -53,6 +53,19 @@ public class NormalMario extends Mario {
         this.y = y;
     }
 
+    public NormalMario(int x, int y, boolean isForStore) {
+
+        this.setSize(super.getWidth(), super.getHeight());
+
+        MyProjectData projectData = MyProjectData.getProjectData();
+        stand = projectData.getNormalMario_Stand();
+        activeBackground = stand;
+
+        this.x = x;
+        this.y = y;
+
+    }
+
     public NormalMario() {
 
     }

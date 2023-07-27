@@ -3,6 +3,8 @@ package View.Menu;
 import Controller.Menu.StoreBuyLogic;
 import Model.Game.StoreBuyButton;
 import Model.Item.CoinForStore;
+import Model.Item.Online.Diamond;
+import Model.Mario.*;
 import MyProject.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -19,27 +21,27 @@ public class StoreScreen extends JFrame implements ActionListener {
     ObjectMapper objectMapper;
     JLayeredPane backgroundPanel;
     JLabel backgroundImageLabel;
-    JLabel normalMario;
+    Mario normalMario;
     JLabel normalMarioName;
     CoinForStore normalMarioCoin;
     StoreBuyButton normalMarioBuyButton;
     JLabel normalMarioPriceTag;
-    JLabel coinMario;
+    Mario coinMario;
     JLabel coinMarioName;
     CoinForStore coinMarioCoin;
     StoreBuyButton coinMarioBuyButton;
     JLabel coinMarioPriceTag;
-    JLabel runnerMario;
+    Mario runnerMario;
     JLabel runnerMarioName;
     CoinForStore runnerMarioCoin;
     StoreBuyButton runnerMarioBuyButton;
     JLabel runnerMarioPriceTag;
-    JLabel jumperMario;
+    Mario jumperMario;
     JLabel jumperMarioName;
     CoinForStore jumperMarioCoin;
     StoreBuyButton jumperMarioBuyButton;
     JLabel jumperMarioPriceTag;
-    JLabel shooterMario;
+    Mario shooterMario;
     JLabel shooterMarioName;
     CoinForStore shooterMarioCoin;
     StoreBuyButton shooterMarioBuyButton;
@@ -48,6 +50,8 @@ public class StoreScreen extends JFrame implements ActionListener {
     JButton backButton;
     CoinForStore userCoin;
     public JLabel userCoinValue;
+    public JLabel userDiamondValue;
+    Diamond userDiamond;
 
 
     StoreScreen() {
@@ -61,11 +65,7 @@ public class StoreScreen extends JFrame implements ActionListener {
         objectMapper.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
         ImageIcon backgroundImage = MyProjectData.getProjectData().getGameMenuImage();
         ImageIcon gameIcon = MyProjectData.getProjectData().getGameIcon();
-        ImageIcon normalMarioImage = MyProjectData.getProjectData().getNormalMarioImage();
-        ImageIcon coinMarioImage = MyProjectData.getProjectData().getCoinMarioImage();
-        ImageIcon runnerMarioImage = MyProjectData.getProjectData().getRunnerMarioImage();
-        ImageIcon shooterMarioImage = MyProjectData.getProjectData().getShooterMarioImage();
-        ImageIcon jumperMarioImage = MyProjectData.getProjectData().getJumperMarioImage();
+
 
         Font font10 = MyProjectData.getProjectData().getFont10();
         Font font12 = MyProjectData.getProjectData().getFont12();
@@ -85,8 +85,7 @@ public class StoreScreen extends JFrame implements ActionListener {
         backgroundImageLabel = new JLabel(backgroundImage);
         backgroundImageLabel.setBounds(0, 0, 670, 700);
 
-        normalMario = new JLabel(normalMarioImage);
-        normalMario.setBounds(30, 250, 70, 120);
+        normalMario = new NormalMario(30, 250, true);
         normalMarioName = new JLabel("Normal Mario");
         normalMarioName.setBounds(30, 200, 80, 50);
         normalMarioName.setFont(font12);
@@ -95,7 +94,7 @@ public class StoreScreen extends JFrame implements ActionListener {
         normalMarioPriceTag.setFont(font22);
         normalMarioCoin = new CoinForStore(70, 380);
         normalMarioCoin.setLocation(normalMarioCoin.getX(), normalMarioCoin.getY());
-        normalMarioBuyButton = new StoreBuyButton();
+        normalMarioBuyButton = new StoreBuyButton(normalMario);
         normalMarioBuyButton.setBounds(33, 420, 70, 35);
         normalMarioBuyButton.setForeground(Color.BLACK);
         normalMarioBuyButton.setFocusable(false);
@@ -109,8 +108,7 @@ public class StoreScreen extends JFrame implements ActionListener {
             normalMarioBuyButton.setText("Buy");
         }
 
-        runnerMario = new JLabel(runnerMarioImage);
-        runnerMario.setBounds(160, 250, 70, 120);
+        runnerMario = new RunnerMario(160, 250, true);
         runnerMarioName = new JLabel("Runner Mario");
         runnerMarioName.setBounds(160, 200, 80, 50);
         runnerMarioName.setFont(font12);
@@ -119,7 +117,7 @@ public class StoreScreen extends JFrame implements ActionListener {
         runnerMarioPriceTag.setFont(font22);
         runnerMarioCoin = new CoinForStore(200, 383);
         runnerMarioCoin.setLocation(normalMarioCoin.getX(), normalMarioCoin.getY());
-        runnerMarioBuyButton = new StoreBuyButton();
+        runnerMarioBuyButton = new StoreBuyButton(runnerMario);
         runnerMarioBuyButton.setBounds(158, 420, 70, 35);
         runnerMarioBuyButton.setForeground(Color.BLACK);
         runnerMarioBuyButton.setFocusable(false);
@@ -133,8 +131,7 @@ public class StoreScreen extends JFrame implements ActionListener {
             runnerMarioBuyButton.setText("Buy");
         }
 
-        jumperMario = new JLabel(jumperMarioImage);
-        jumperMario.setBounds(290, 250, 70, 120);
+        jumperMario = new JumperMario(290, 250, true);
         jumperMarioName = new JLabel("Jumper Mario");
         jumperMarioName.setBounds(290, 200, 80, 50);
         jumperMarioName.setFont(font12);
@@ -143,7 +140,7 @@ public class StoreScreen extends JFrame implements ActionListener {
         jumperMarioPriceTag.setFont(font22);
         jumperMarioCoin = new CoinForStore(330, 383);
         jumperMarioCoin.setLocation(jumperMarioCoin.getX(), jumperMarioCoin.getY());
-        jumperMarioBuyButton = new StoreBuyButton();
+        jumperMarioBuyButton = new StoreBuyButton(jumperMario);
         jumperMarioBuyButton.setBounds(288, 420, 70, 35);
         jumperMarioBuyButton.setForeground(Color.BLACK);
         jumperMarioBuyButton.setFocusable(false);
@@ -157,8 +154,7 @@ public class StoreScreen extends JFrame implements ActionListener {
             jumperMarioBuyButton.setText("Buy");
         }
 
-        shooterMario = new JLabel(shooterMarioImage);
-        shooterMario.setBounds(420, 250, 70, 120);
+        shooterMario = new ShooterMario(420, 250, true);
         shooterMarioName = new JLabel("Shooter Mario");
         shooterMarioName.setBounds(420, 200, 85, 50);
         shooterMarioName.setFont(font12);
@@ -167,7 +163,7 @@ public class StoreScreen extends JFrame implements ActionListener {
         shooterMarioPriceTag.setFont(font22);
         shooterMarioCoin = new CoinForStore(460, 383);
         shooterMarioCoin.setLocation(shooterMarioCoin.getX(), shooterMarioCoin.getY());
-        shooterMarioBuyButton = new StoreBuyButton();
+        shooterMarioBuyButton = new StoreBuyButton(shooterMario);
         shooterMarioBuyButton.setBounds(418, 420, 70, 35);
         shooterMarioBuyButton.setForeground(Color.BLACK);
         shooterMarioBuyButton.setFocusable(false);
@@ -181,8 +177,7 @@ public class StoreScreen extends JFrame implements ActionListener {
             shooterMarioBuyButton.setText("Buy");
         }
 
-        coinMario = new JLabel(coinMarioImage);
-        coinMario.setBounds(550, 250, 70, 120);
+        coinMario = new CoinMario(550, 250, true);
         coinMarioName = new JLabel("Coin Mario");
         coinMarioName.setBounds(550, 200, 80, 50);
         coinMarioName.setFont(font12);
@@ -191,7 +186,7 @@ public class StoreScreen extends JFrame implements ActionListener {
         coinMarioPriceTag.setFont(font22);
         coinMarioCoin = new CoinForStore(590, 383);
         coinMarioCoin.setLocation(coinMarioCoin.getX(), coinMarioCoin.getY());
-        coinMarioBuyButton = new StoreBuyButton();
+        coinMarioBuyButton = new StoreBuyButton(coinMario);
         coinMarioBuyButton.setBounds(548, 420, 70, 35);
         coinMarioBuyButton.setForeground(Color.BLACK);
         coinMarioBuyButton.setFocusable(false);
@@ -211,6 +206,14 @@ public class StoreScreen extends JFrame implements ActionListener {
 
         userCoin = new CoinForStore(5, 10);
         userCoin.setLocation(userCoin.getX(), userCoin.getY());
+
+        userDiamondValue = new JLabel(String.valueOf(MyProject.activeUser.get(0).getUserDiamondValue()));
+        userDiamondValue.setBounds(140, 0, 55, 40);
+        userDiamondValue.setFont(font22);
+        backgroundPanel.add(userDiamondValue, Integer.valueOf(1));
+
+        userDiamond = new Diamond(90, -3);
+        backgroundPanel.add(userDiamond, Integer.valueOf(1));
 
         backButton = new JButton("Back");
         backButton.setBounds(555, 0, 85, 50);
@@ -274,8 +277,8 @@ public class StoreScreen extends JFrame implements ActionListener {
 
         if (e.getSource() == runnerMarioBuyButton) {
 
-            if(runnerMarioBuyButton.isButtonChoose()) {
-                StoreBuyLogic buyLogic = new StoreBuyLogic("runner mario",this);
+            if (runnerMarioBuyButton.isButtonChoose()) {
+                StoreBuyLogic buyLogic = new StoreBuyLogic(runnerMarioBuyButton, this);
                 if (buyLogic.canUserBuyMario()) {
                     userCoinValue.setText(String.valueOf(MyProject.activeUser.get(0).getUserCoinValue()));
                     runnerMarioBuyButton.setBackground(Color.GRAY);
@@ -289,8 +292,8 @@ public class StoreScreen extends JFrame implements ActionListener {
 
         if (e.getSource() == jumperMarioBuyButton) {
 
-            if(jumperMarioBuyButton.isButtonChoose()) {
-                StoreBuyLogic buyLogic = new StoreBuyLogic("jumper mario",this);
+            if (jumperMarioBuyButton.isButtonChoose()) {
+                StoreBuyLogic buyLogic = new StoreBuyLogic(jumperMarioBuyButton, this);
                 if (buyLogic.canUserBuyMario()) {
                     userCoinValue.setText(String.valueOf(MyProject.activeUser.get(0).getUserCoinValue()));
                     jumperMarioBuyButton.setBackground(Color.GRAY);
@@ -304,8 +307,8 @@ public class StoreScreen extends JFrame implements ActionListener {
 
         if (e.getSource() == shooterMarioBuyButton) {
 
-            if(shooterMarioBuyButton.isButtonChoose()) {
-                StoreBuyLogic buyLogic = new StoreBuyLogic("shooter mario",this);
+            if (shooterMarioBuyButton.isButtonChoose()) {
+                StoreBuyLogic buyLogic = new StoreBuyLogic(shooterMarioBuyButton, this);
                 if (buyLogic.canUserBuyMario()) {
                     userCoinValue.setText(String.valueOf(MyProject.activeUser.get(0).getUserCoinValue()));
                     shooterMarioBuyButton.setBackground(Color.GRAY);
@@ -319,8 +322,8 @@ public class StoreScreen extends JFrame implements ActionListener {
 
         if (e.getSource() == coinMarioBuyButton) {
 
-            if(coinMarioBuyButton.isButtonChoose()) {
-                StoreBuyLogic buyLogic = new StoreBuyLogic("coin mario",this);
+            if (coinMarioBuyButton.isButtonChoose()) {
+                StoreBuyLogic buyLogic = new StoreBuyLogic(coinMarioBuyButton, this);
                 if (buyLogic.canUserBuyMario()) {
                     userCoinValue.setText(String.valueOf(MyProject.activeUser.get(0).getUserCoinValue()));
                     coinMarioBuyButton.setBackground(Color.GRAY);

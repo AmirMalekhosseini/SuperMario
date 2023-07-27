@@ -5,7 +5,7 @@ import MyProject.MyProjectData;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class Coin extends ItemsInGame {
+public class Coin extends ItemsInGame implements Currency {
 
 
     private BufferedImage background;

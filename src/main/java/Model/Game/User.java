@@ -14,6 +14,7 @@ public class User {
     protected String username;
     private String password;
     private int userCoinValue = 0;
+    private int userDiamondValue = 0;
     private boolean userChooseNormal_RedMario = true;
     private boolean userChooseCoin_YellowMario;
     private boolean userChooseJumper_GreenMario;
@@ -158,6 +159,14 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public int getUserDiamondValue() {
+        return userDiamondValue;
+    }
+
+    public void setUserDiamondValue(int userDiamondValue) {
+        this.userDiamondValue = userDiamondValue;
     }
 }
 
