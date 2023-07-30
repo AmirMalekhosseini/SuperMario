@@ -4,7 +4,6 @@ import Model.Item.CoinForStore;
 import Model.Item.Online.*;
 import Model.Mario.Online.DamageBomb;
 import Model.Mario.Online.Hammer;
-import Model.Mario.Online.OnlineWeapon;
 import Model.Mario.Online.SpeedBomb;
 import Model.Object.PackItems;
 import Model.OnlineStorePack.Pack;
@@ -13,7 +12,6 @@ import MyProject.MyProject;
 import MyProject.MyProjectData;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
@@ -99,6 +97,7 @@ public class OnlineStoreScreen extends JFrame {
         backgroundPanel.add(backButton, Integer.valueOf(1));
 
         // Test:
+        // ToDo: Receive Packs from server and add Them to StorePacks.
         ArrayList<PackItems> packItems = new ArrayList<>();
         packItems.add(new Hammer(0, 0, true));
         Pack hammer = new Pack(packItems, 100);

@@ -13,6 +13,7 @@ public class MyProjectData {
 
     protected ImageIcon gameIcon;
     protected ImageIcon gameMenuImage;
+    protected ImageIcon gameLobbyImage;
     protected ImageIcon normalMarioImage;
     protected ImageIcon runnerMarioImage;
     protected ImageIcon jumperMarioImage;
@@ -562,6 +563,7 @@ public class MyProjectData {
 
         gameIcon = new ImageIcon("Game/GameIcon.jpeg");
         gameMenuImage = new ImageIcon("Game/GameMenuImage.jpg");
+        gameLobbyImage = new ImageIcon("Game/GameLobbyImage.jpg");
         normalMarioImage = new ImageIcon("mario/Normal Mario/stand_Red_Normal.png");
         runnerMarioImage = new ImageIcon("mario/BlueMario_Runner/stand_Blue_Runner.png");
         jumperMarioImage = new ImageIcon("mario/GreenMario_Jumper/stand_Green_Jumper.png");
@@ -1364,6 +1366,10 @@ public class MyProjectData {
 
     public ImageIcon getGameMenuImage() {
         return gameMenuImage;
+    }
+
+    public ImageIcon getGameLobbyImage() {
+        return gameLobbyImage;
     }
 
     public ImageIcon getNormalMarioImage() {

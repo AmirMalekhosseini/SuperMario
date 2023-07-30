@@ -4,11 +4,13 @@ import Model.Game.GameData;
 import Model.Game.GameGodFather;
 import Model.Game.User;
 import View.Menu.LoginPageScreen;
+import View.Menu.OnlineLobby.OnlineLobbyScreen;
 import View.Menu.OnlineStoreScreen;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
+import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -39,7 +41,7 @@ public class MyProject {
         activeUser.add(new User());
 //        new LoginPageScreen();
 //        new GameGodFather(new GameData());
-        new OnlineStoreScreen();
+        SwingUtilities.invokeLater(() -> new OnlineLobbyScreen(MyProject.activeUser.get(0)));
 
     }
 

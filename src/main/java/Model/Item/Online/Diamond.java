@@ -9,7 +9,7 @@ import java.awt.image.BufferedImage;
 
 public class Diamond extends ObjectsInGame implements Currency {
 
-    private final BufferedImage background;
+    private BufferedImage background;
     private int x;
     private int y;
     private int width = 50;
@@ -20,6 +20,9 @@ public class Diamond extends ObjectsInGame implements Currency {
         this.x = x;
         this.y = y;
         setSize(width, height);
+    }
+
+    public Diamond() {
     }
 
     protected void paintComponent(Graphics graphics) {
