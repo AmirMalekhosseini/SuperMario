@@ -3,11 +3,8 @@ package Controller.Game;
 import Model.Game.BossFightSectionModel;
 import View.Game.LevelScreens;
 import View.Menu.MainMenuScreen;
-import Model.Enemy.Enemy;
-import Model.Enemy.Goompa;
 import Model.Game.GameGodFather;
 import Model.Game.Score;
-import Model.Item.Coin;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import MyProject.MyProject;
@@ -116,17 +113,17 @@ public class GameLoop {
                     gameGodFather.calculateScore.calculateScore(gameGodFather.activeLevel.getScreen());
                     Score thisGameScore = new Score();
                     thisGameScore.setUserScore(gameGodFather.getGameData().thisGameScore);
-                    MyProject.activeUser.get(0).setUserCoinValue(MyProject.activeUser.get(0).getUserCoinValue() + gameGodFather.getGameData().getThisGameCoin());
-                    MyProject.activeUser.get(0).getUserScore().add(thisGameScore);
-                    if (MyProject.activeUser.get(0).getUserHighScore().getUserScore() <= thisGameScore.getUserScore()) {
-                        MyProject.activeUser.get(0).setUserHighScore(thisGameScore);
+                    MyProject.activeOfflineUser.getUserData().setUserCoinValue(MyProject.activeOfflineUser.getUserData().getUserCoinValue() + gameGodFather.getGameData().getThisGameCoin());
+                    MyProject.activeOfflineUser.getUserData().getUserScore().add(thisGameScore);
+                    if (MyProject.activeOfflineUser.getUserData().getUserHighScore().getUserScore() <= thisGameScore.getUserScore()) {
+                        MyProject.activeOfflineUser.getUserData().setUserHighScore(thisGameScore);
                     }
 
                     gameGodFather.getGameScreenFrame().dispose();
                     new MainMenuScreen();
 
                     try {
-                        objectMapper.writeValue(new File("User.jason"), MyProject.allUsers);
+                        objectMapper.writeValue(new File("OfflineUser.jason"), MyProject.allOfflineUsers);
                     } catch (IOException ex) {
                         throw new RuntimeException(ex);
                     }

@@ -105,19 +105,19 @@ public class NewGameScreen extends JFrame implements ActionListener {
 
         if (e.getSource() == firstSaveButton) {
             Game newGame = new Game( new GameGodFather(gameData));
-            MyProject.activeUser.get(0).getGameSaves().set(0, newGame);
+            MyProject.activeOfflineUser.getGameSaves().set(0, newGame);
             this.dispose();
         }
 
         if (e.getSource() == secondSaveButton) {
             Game newGame = new Game(new GameGodFather(gameData));
-            MyProject.activeUser.get(0).getGameSaves().set(1, newGame);
+            MyProject.activeOfflineUser.getGameSaves().set(1, newGame);
             this.dispose();
         }
 
         if (e.getSource() == thirdSaveButton) {
             Game newGame = new Game( new GameGodFather(gameData));
-            MyProject.activeUser.get(0).getGameSaves().set(2, newGame);
+            MyProject.activeOfflineUser.getGameSaves().set(2, newGame);
             this.dispose();
         }
 

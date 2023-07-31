@@ -1,12 +1,10 @@
 package View.Game;
 
 import Model.Enemy.Enemy;
-import Model.Enemy.Goompa;
 import Model.Enemy.Spiny;
 import Model.Enemy.Turtle;
 import Model.Game.GameData;
 import Model.Game.UserHeart;
-import Model.Item.Coin;
 import Model.Item.CoinForStore;
 import Model.Item.ItemsInGame;
 import Model.Mario.*;
@@ -109,23 +107,23 @@ public class HiddenEnemySectionScreen extends LevelScreens {
         marioLocationLabel.setBounds(XMarioLocationLabel, 25, 200, 30);
 
 //        Add Mario:
-        if (MyProject.activeUser.get(0).isUserChooseNormal_RedMario()) {
+        if (MyProject.activeOfflineUser.getUserData().isUserChooseNormal_RedMario()) {
             normalMario = new NormalMario(100, 840);
             activeMario = normalMario;
             this.add(normalMario, Integer.valueOf(2));
-        } else if (MyProject.activeUser.get(0).isUserChooseCoin_YellowMario()) {
+        } else if (MyProject.activeOfflineUser.getUserData().isUserChooseCoin_YellowMario()) {
             coinMario = new CoinMario(100, 840);
             activeMario = coinMario;
             this.add(coinMario, Integer.valueOf(2));
-        } else if (MyProject.activeUser.get(0).isUserChooseJumper_GreenMario()) {
+        } else if (MyProject.activeOfflineUser.getUserData().isUserChooseJumper_GreenMario()) {
             jumperMario = new JumperMario(100, 840);
             activeMario = jumperMario;
             this.add(jumperMario, Integer.valueOf(2));
-        } else if (MyProject.activeUser.get(0).isUserChooseRunner_BlueMario()) {
+        } else if (MyProject.activeOfflineUser.getUserData().isUserChooseRunner_BlueMario()) {
             runnerMario = new RunnerMario(100, 840);
             activeMario = runnerMario;
             this.add(runnerMario, Integer.valueOf(2));
-        } else if (MyProject.activeUser.get(0).isUserChooseShooter_BlackMario()) {
+        } else if (MyProject.activeOfflineUser.getUserData().isUserChooseShooter_BlackMario()) {
             shooterMario = new ShooterMario(100, 840);
             activeMario = shooterMario;
             this.add(shooterMario, Integer.valueOf(2));

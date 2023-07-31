@@ -1,7 +1,6 @@
 package View.Menu.OnlineLobby;
 
-import Controller.Menu.OnlineLobby.LobbyButtonCreator;
-import Model.Game.User;
+import Model.Game.OfflineUser;
 import Model.OnlineLobby.LobbyMemberButton;
 import Model.OnlineLobby.LobbyModel;
 import MyProject.MyProjectData;
@@ -27,9 +26,9 @@ public class OnlineLobbyScreen extends JFrame {
     public JTextField messageField;
     protected JList friendList;
 
-    public OnlineLobbyScreen(User adminUser) {
+    public OnlineLobbyScreen(OfflineUser adminOfflineUser) {
         ImageIcon gameIcon = MyProjectData.getProjectData().getGameIcon();
-        model = new LobbyModel(adminUser);
+        model = new LobbyModel(adminOfflineUser);
         setTitle("Lobby");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(835, 830);

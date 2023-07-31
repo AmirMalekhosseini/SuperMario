@@ -1,6 +1,6 @@
 package Controller.Menu;
 
-import Model.Game.User;
+import Model.Game.OfflineUser;
 import MyProject.MyProject;
 
 import java.util.Objects;
@@ -13,16 +13,16 @@ public class UsernameLogic {
 
     private int usernameIndex;
 
-    public  boolean addUser(User user) {
+    public boolean addUser(OfflineUser offlineUser) {
 
             int usernameCounter = 0;
             for (int i = 0; i < 100000000; i++) {
-                if (MyProject.allUsers.size() == 0) {
+                if (MyProject.allOfflineUsers.size() == 0) {
                     return true;
                 }
-                if (!Objects.equals(MyProject.allUsers.get(i).getUsername(), user.getUsername())) {
+                if (!Objects.equals(MyProject.allOfflineUsers.get(i).getUserData().getUsername(), offlineUser.getUserData().getUsername())) {
                     usernameCounter++;
-                    if (usernameCounter == MyProject.allUsers.size()) {
+                    if (usernameCounter == MyProject.allOfflineUsers.size()) {
                         isUsernameOK = true;
                         break;
                     }
@@ -37,8 +37,8 @@ public class UsernameLogic {
 
     public boolean signInUser(String username) {
 
-        for (int i = 0; i < MyProject.allUsers.size(); i++) {
-            if (Objects.equals(MyProject.allUsers.get(i).getUsername(), username)) {
+        for (int i = 0; i < MyProject.allOfflineUsers.size(); i++) {
+            if (Objects.equals(MyProject.allOfflineUsers.get(i).getUserData().getUsername(), username)) {
                 isUsernameOKForSignIn = true;
                 usernameIndex = i;
                 break;
@@ -52,8 +52,8 @@ public class UsernameLogic {
 
     public boolean checkPassword(String password) {
 
-            if (Objects.equals(MyProject.allUsers.get(usernameIndex).getPassword(), password)) {
-                MyProject.activeUser.set(0, MyProject.allUsers.get(usernameIndex));
+            if (Objects.equals(MyProject.allOfflineUsers.get(usernameIndex).getUserData().getPassword(), password)) {
+                MyProject.activeOfflineUser = MyProject.allOfflineUsers.get(usernameIndex);
                 isPasswordOK = true;
             } else {
                 isPasswordOK = false;

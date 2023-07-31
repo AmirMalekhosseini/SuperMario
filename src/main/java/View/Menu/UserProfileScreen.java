@@ -90,7 +90,7 @@ public class UserProfileScreen extends JFrame implements ActionListener {
         normalMarioChooseButton.setFont(font10);
         normalMarioChooseButton.addActionListener(this);
         normalMarioChooseButton.setButtonChoose(true);
-        if (MyProject.activeUser.get(0).isUserChooseNormal_RedMario()) {
+        if (MyProject.activeOfflineUser.getUserData().isUserChooseNormal_RedMario()) {
             normalMarioChooseButton.setBackground(Color.GRAY);
             normalMarioChooseButton.setText("Chosen");
         } else {
@@ -109,7 +109,7 @@ public class UserProfileScreen extends JFrame implements ActionListener {
         runnerMarioChooseButton.setFocusable(false);
         runnerMarioChooseButton.setFont(font10);
         runnerMarioChooseButton.addActionListener(this);
-        if (MyProject.activeUser.get(0).isUserChooseRunner_BlueMario()) {
+        if (MyProject.activeOfflineUser.getUserData().isUserChooseRunner_BlueMario()) {
             runnerMarioChooseButton.setBackground(Color.GRAY);
             runnerMarioChooseButton.setText("Chosen");
         } else {
@@ -128,7 +128,7 @@ public class UserProfileScreen extends JFrame implements ActionListener {
         jumperMarioChooseButton.setFocusable(false);
         jumperMarioChooseButton.setFont(font10);
         jumperMarioChooseButton.addActionListener(this);
-        if (MyProject.activeUser.get(0).isUserChooseJumper_GreenMario()) {
+        if (MyProject.activeOfflineUser.getUserData().isUserChooseJumper_GreenMario()) {
             jumperMarioChooseButton.setBackground(Color.GRAY);
             jumperMarioChooseButton.setText("Chosen");
         } else {
@@ -147,7 +147,7 @@ public class UserProfileScreen extends JFrame implements ActionListener {
         shooterMarioChooseButton.setFocusable(false);
         shooterMarioChooseButton.setFont(font10);
         shooterMarioChooseButton.addActionListener(this);
-        if (MyProject.activeUser.get(0).isUserChooseShooter_BlackMario()) {
+        if (MyProject.activeOfflineUser.getUserData().isUserChooseShooter_BlackMario()) {
             shooterMarioChooseButton.setBackground(Color.GRAY);
             shooterMarioChooseButton.setText("Chosen");
         } else {
@@ -166,7 +166,7 @@ public class UserProfileScreen extends JFrame implements ActionListener {
         coinMarioChooseButton.setFocusable(false);
         coinMarioChooseButton.setFont(font10);
         coinMarioChooseButton.addActionListener(this);
-        if (MyProject.activeUser.get(0).isUserChooseCoin_YellowMario()) {
+        if (MyProject.activeOfflineUser.getUserData().isUserChooseCoin_YellowMario()) {
             coinMarioChooseButton.setBackground(Color.GRAY);
             coinMarioChooseButton.setText("Chosen");
         } else {
@@ -174,18 +174,18 @@ public class UserProfileScreen extends JFrame implements ActionListener {
             coinMarioChooseButton.setText("Choose");
         }
 
-        userCoinValue = new JLabel(String.valueOf(MyProject.activeUser.get(0).getUserCoinValue()));
+        userCoinValue = new JLabel(String.valueOf(MyProject.activeOfflineUser.getUserData().getUserCoinValue()));
         userCoinValue.setBounds(40, 85, 55, 40);
         userCoinValue.setFont(font22);
 
         userCoin = new CoinForStore(5, 94);
         userCoin.setLocation(userCoin.getX(), userCoin.getY());
 
-        userName = new JLabel(String.valueOf(MyProject.activeUser.get(0).getUsername()));
+        userName = new JLabel(String.valueOf(MyProject.activeOfflineUser.getUserData().getUsername()));
         userName.setBounds(10, 0, 200, 40);
         userName.setFont(font22);
 
-        userHighScore = new JLabel("HighScore: " + String.valueOf(MyProject.activeUser.get(0).getUserHighScore().getUserScore()));
+        userHighScore = new JLabel("HighScore: " + String.valueOf(MyProject.activeOfflineUser.getUserData().getUserHighScore().getUserScore()));
         userHighScore.setBounds(10, 40, 200, 40);
         userHighScore.setFont(font22);
 
@@ -235,24 +235,24 @@ public class UserProfileScreen extends JFrame implements ActionListener {
             new MainMenuScreen();
             this.dispose();
             try {
-                objectMapper.writeValue(new File("User.jason"), MyProject.allUsers);
+                objectMapper.writeValue(new File("OfflineUser.jason"), MyProject.allOfflineUsers);
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
         }
 
-        if (e.getSource() == normalMarioChooseButton) {// User choose normal mario
+        if (e.getSource() == normalMarioChooseButton) {// OfflineUser choose normal mario
 
             if(normalMarioChooseButton.isButtonChoose()) {
-                if (MyProject.activeUser.get(0).isUserBoughtNormalMario()) {
+                if (MyProject.activeOfflineUser.getUserData().isUserBoughtNormalMario()) {
                     normalMarioChooseButton.setBackground(Color.GRAY);
                     normalMarioChooseButton.setText("Chosen");
                     normalMarioChooseButton.setButtonChoose(true);
-                    MyProject.activeUser.get(0).setUserChooseNormal_RedMario(true);
-                    MyProject.activeUser.get(0).setUserChooseRunner_BlueMario(false);
-                    MyProject.activeUser.get(0).setUserChooseJumper_GreenMario(false);
-                    MyProject.activeUser.get(0).setUserChooseShooter_BlackMario(false);
-                    MyProject.activeUser.get(0).setUserChooseCoin_YellowMario(false);
+                    MyProject.activeOfflineUser.getUserData().setUserChooseNormal_RedMario(true);
+                    MyProject.activeOfflineUser.getUserData().setUserChooseRunner_BlueMario(false);
+                    MyProject.activeOfflineUser.getUserData().setUserChooseJumper_GreenMario(false);
+                    MyProject.activeOfflineUser.getUserData().setUserChooseShooter_BlackMario(false);
+                    MyProject.activeOfflineUser.getUserData().setUserChooseCoin_YellowMario(false);
                     runnerMarioChooseButton.setBackground(Color.GREEN);
                     runnerMarioChooseButton.setText("Choose");
                     runnerMarioChooseButton.setButtonChoose(false);
@@ -270,27 +270,27 @@ public class UserProfileScreen extends JFrame implements ActionListener {
                 normalMarioChooseButton.setBackground(Color.GREEN);
                 normalMarioChooseButton.setText("Choose");
                 normalMarioChooseButton.setButtonChoose(false);
-                MyProject.activeUser.get(0).setUserChooseNormal_RedMario(false);
-                MyProject.activeUser.get(0).setUserChooseRunner_BlueMario(false);
-                MyProject.activeUser.get(0).setUserChooseJumper_GreenMario(false);
-                MyProject.activeUser.get(0).setUserChooseShooter_BlackMario(false);
-                MyProject.activeUser.get(0).setUserChooseCoin_YellowMario(false);
+                MyProject.activeOfflineUser.getUserData().setUserChooseNormal_RedMario(false);
+                MyProject.activeOfflineUser.getUserData().setUserChooseRunner_BlueMario(false);
+                MyProject.activeOfflineUser.getUserData().setUserChooseJumper_GreenMario(false);
+                MyProject.activeOfflineUser.getUserData().setUserChooseShooter_BlackMario(false);
+                MyProject.activeOfflineUser.getUserData().setUserChooseCoin_YellowMario(false);
             }
 
         }
 
-        if (e.getSource() == runnerMarioChooseButton) {// User choose runner mario
+        if (e.getSource() == runnerMarioChooseButton) {// OfflineUser choose runner mario
 
             if(runnerMarioChooseButton.isButtonChoose()) {// Choose Mario
-                if (MyProject.activeUser.get(0).isUserBoughtRunnerMario()) {
+                if (MyProject.activeOfflineUser.getUserData().isUserBoughtRunnerMario()) {
                     runnerMarioChooseButton.setBackground(Color.GRAY);
                     runnerMarioChooseButton.setText("Chosen");
                     runnerMarioChooseButton.setButtonChoose(true);
-                    MyProject.activeUser.get(0).setUserChooseNormal_RedMario(false);
-                    MyProject.activeUser.get(0).setUserChooseRunner_BlueMario(true);
-                    MyProject.activeUser.get(0).setUserChooseJumper_GreenMario(false);
-                    MyProject.activeUser.get(0).setUserChooseShooter_BlackMario(false);
-                    MyProject.activeUser.get(0).setUserChooseCoin_YellowMario(false);
+                    MyProject.activeOfflineUser.getUserData().setUserChooseNormal_RedMario(false);
+                    MyProject.activeOfflineUser.getUserData().setUserChooseRunner_BlueMario(true);
+                    MyProject.activeOfflineUser.getUserData().setUserChooseJumper_GreenMario(false);
+                    MyProject.activeOfflineUser.getUserData().setUserChooseShooter_BlackMario(false);
+                    MyProject.activeOfflineUser.getUserData().setUserChooseCoin_YellowMario(false);
                     normalMarioChooseButton.setBackground(Color.GREEN);
                     normalMarioChooseButton.setText("Choose");
                     normalMarioChooseButton.setButtonChoose(false);
@@ -305,15 +305,15 @@ public class UserProfileScreen extends JFrame implements ActionListener {
                     coinMarioChooseButton.setButtonChoose(false);
                 }
             }else {
-                MyProject.activeUser.get(0).setUserChooseRunner_BlueMario(false);
+                MyProject.activeOfflineUser.getUserData().setUserChooseRunner_BlueMario(false);
                 runnerMarioChooseButton.setBackground(Color.GREEN);
                 runnerMarioChooseButton.setText("Choose");
                 runnerMarioChooseButton.setButtonChoose(false);
-                MyProject.activeUser.get(0).setUserChooseNormal_RedMario(false);
-                MyProject.activeUser.get(0).setUserChooseRunner_BlueMario(false);
-                MyProject.activeUser.get(0).setUserChooseJumper_GreenMario(false);
-                MyProject.activeUser.get(0).setUserChooseShooter_BlackMario(false);
-                MyProject.activeUser.get(0).setUserChooseCoin_YellowMario(false);
+                MyProject.activeOfflineUser.getUserData().setUserChooseNormal_RedMario(false);
+                MyProject.activeOfflineUser.getUserData().setUserChooseRunner_BlueMario(false);
+                MyProject.activeOfflineUser.getUserData().setUserChooseJumper_GreenMario(false);
+                MyProject.activeOfflineUser.getUserData().setUserChooseShooter_BlackMario(false);
+                MyProject.activeOfflineUser.getUserData().setUserChooseCoin_YellowMario(false);
 
             }
 
@@ -321,16 +321,16 @@ public class UserProfileScreen extends JFrame implements ActionListener {
 
         if (e.getSource() == jumperMarioChooseButton) {
 
-            if(jumperMarioChooseButton.isButtonChoose()) {// User choose jumper mario
-                if (MyProject.activeUser.get(0).isUserBoughtJumperMario()) {
+            if(jumperMarioChooseButton.isButtonChoose()) {// OfflineUser choose jumper mario
+                if (MyProject.activeOfflineUser.getUserData().isUserBoughtJumperMario()) {
                     jumperMarioChooseButton.setBackground(Color.GRAY);
                     jumperMarioChooseButton.setText("Chosen");
                     jumperMarioChooseButton.setButtonChoose(true);
-                    MyProject.activeUser.get(0).setUserChooseNormal_RedMario(false);
-                    MyProject.activeUser.get(0).setUserChooseRunner_BlueMario(false);
-                    MyProject.activeUser.get(0).setUserChooseJumper_GreenMario(true);
-                    MyProject.activeUser.get(0).setUserChooseShooter_BlackMario(false);
-                    MyProject.activeUser.get(0).setUserChooseCoin_YellowMario(false);
+                    MyProject.activeOfflineUser.getUserData().setUserChooseNormal_RedMario(false);
+                    MyProject.activeOfflineUser.getUserData().setUserChooseRunner_BlueMario(false);
+                    MyProject.activeOfflineUser.getUserData().setUserChooseJumper_GreenMario(true);
+                    MyProject.activeOfflineUser.getUserData().setUserChooseShooter_BlackMario(false);
+                    MyProject.activeOfflineUser.getUserData().setUserChooseCoin_YellowMario(false);
                     normalMarioChooseButton.setBackground(Color.GREEN);
                     normalMarioChooseButton.setText("Choose");
                     normalMarioChooseButton.setButtonChoose(false);
@@ -345,31 +345,31 @@ public class UserProfileScreen extends JFrame implements ActionListener {
                     coinMarioChooseButton.setButtonChoose(false);
                 }
             }else {
-                MyProject.activeUser.get(0).setUserChooseJumper_GreenMario(false);
+                MyProject.activeOfflineUser.getUserData().setUserChooseJumper_GreenMario(false);
                 jumperMarioChooseButton.setBackground(Color.GREEN);
                 jumperMarioChooseButton.setText("Choose");
                 jumperMarioChooseButton.setButtonChoose(false);
-                MyProject.activeUser.get(0).setUserChooseNormal_RedMario(false);
-                MyProject.activeUser.get(0).setUserChooseRunner_BlueMario(false);
-                MyProject.activeUser.get(0).setUserChooseJumper_GreenMario(false);
-                MyProject.activeUser.get(0).setUserChooseShooter_BlackMario(false);
-                MyProject.activeUser.get(0).setUserChooseCoin_YellowMario(false);
+                MyProject.activeOfflineUser.getUserData().setUserChooseNormal_RedMario(false);
+                MyProject.activeOfflineUser.getUserData().setUserChooseRunner_BlueMario(false);
+                MyProject.activeOfflineUser.getUserData().setUserChooseJumper_GreenMario(false);
+                MyProject.activeOfflineUser.getUserData().setUserChooseShooter_BlackMario(false);
+                MyProject.activeOfflineUser.getUserData().setUserChooseCoin_YellowMario(false);
             }
 
         }
 
         if (e.getSource() == shooterMarioChooseButton) {
 
-            if(shooterMarioChooseButton.isButtonChoose()) {// User choose shooter mario
-                if (MyProject.activeUser.get(0).isUserBoughtShooterMario()) {
+            if(shooterMarioChooseButton.isButtonChoose()) {// OfflineUser choose shooter mario
+                if (MyProject.activeOfflineUser.getUserData().isUserBoughtShooterMario()) {
                     shooterMarioChooseButton.setBackground(Color.GRAY);
                     shooterMarioChooseButton.setText("Chosen");
                     shooterMarioChooseButton.setButtonChoose(true);
-                    MyProject.activeUser.get(0).setUserChooseNormal_RedMario(false);
-                    MyProject.activeUser.get(0).setUserChooseRunner_BlueMario(false);
-                    MyProject.activeUser.get(0).setUserChooseJumper_GreenMario(false);
-                    MyProject.activeUser.get(0).setUserChooseShooter_BlackMario(true);
-                    MyProject.activeUser.get(0).setUserChooseCoin_YellowMario(false);
+                    MyProject.activeOfflineUser.getUserData().setUserChooseNormal_RedMario(false);
+                    MyProject.activeOfflineUser.getUserData().setUserChooseRunner_BlueMario(false);
+                    MyProject.activeOfflineUser.getUserData().setUserChooseJumper_GreenMario(false);
+                    MyProject.activeOfflineUser.getUserData().setUserChooseShooter_BlackMario(true);
+                    MyProject.activeOfflineUser.getUserData().setUserChooseCoin_YellowMario(false);
                     normalMarioChooseButton.setBackground(Color.GREEN);
                     normalMarioChooseButton.setText("Choose");
                     normalMarioChooseButton.setButtonChoose(false);
@@ -384,31 +384,31 @@ public class UserProfileScreen extends JFrame implements ActionListener {
                     coinMarioChooseButton.setButtonChoose(false);
                 }
             }else {
-                MyProject.activeUser.get(0).setUserChooseShooter_BlackMario(false);
+                MyProject.activeOfflineUser.getUserData().setUserChooseShooter_BlackMario(false);
                 shooterMarioChooseButton.setBackground(Color.GREEN);
                 shooterMarioChooseButton.setText("Choose");
                 shooterMarioChooseButton.setButtonChoose(false);
-                MyProject.activeUser.get(0).setUserChooseNormal_RedMario(false);
-                MyProject.activeUser.get(0).setUserChooseRunner_BlueMario(false);
-                MyProject.activeUser.get(0).setUserChooseJumper_GreenMario(false);
-                MyProject.activeUser.get(0).setUserChooseShooter_BlackMario(false);
-                MyProject.activeUser.get(0).setUserChooseCoin_YellowMario(false);
+                MyProject.activeOfflineUser.getUserData().setUserChooseNormal_RedMario(false);
+                MyProject.activeOfflineUser.getUserData().setUserChooseRunner_BlueMario(false);
+                MyProject.activeOfflineUser.getUserData().setUserChooseJumper_GreenMario(false);
+                MyProject.activeOfflineUser.getUserData().setUserChooseShooter_BlackMario(false);
+                MyProject.activeOfflineUser.getUserData().setUserChooseCoin_YellowMario(false);
             }
 
         }
 
         if (e.getSource() == coinMarioChooseButton) {
 
-            if (coinMarioChooseButton.isButtonChoose()) {// User choose coin mario
-                if (MyProject.activeUser.get(0).isUserBoughtCoinMario()) {
+            if (coinMarioChooseButton.isButtonChoose()) {// OfflineUser choose coin mario
+                if (MyProject.activeOfflineUser.getUserData().isUserBoughtCoinMario()) {
                     coinMarioChooseButton.setBackground(Color.GRAY);
                     coinMarioChooseButton.setText("Chosen");
                     coinMarioChooseButton.setButtonChoose(true);
-                    MyProject.activeUser.get(0).setUserChooseNormal_RedMario(false);
-                    MyProject.activeUser.get(0).setUserChooseRunner_BlueMario(false);
-                    MyProject.activeUser.get(0).setUserChooseJumper_GreenMario(false);
-                    MyProject.activeUser.get(0).setUserChooseShooter_BlackMario(false);
-                    MyProject.activeUser.get(0).setUserChooseCoin_YellowMario(true);
+                    MyProject.activeOfflineUser.getUserData().setUserChooseNormal_RedMario(false);
+                    MyProject.activeOfflineUser.getUserData().setUserChooseRunner_BlueMario(false);
+                    MyProject.activeOfflineUser.getUserData().setUserChooseJumper_GreenMario(false);
+                    MyProject.activeOfflineUser.getUserData().setUserChooseShooter_BlackMario(false);
+                    MyProject.activeOfflineUser.getUserData().setUserChooseCoin_YellowMario(true);
                     normalMarioChooseButton.setBackground(Color.GREEN);
                     normalMarioChooseButton.setText("Choose");
                     normalMarioChooseButton.setButtonChoose(false);
@@ -423,15 +423,15 @@ public class UserProfileScreen extends JFrame implements ActionListener {
                     shooterMarioChooseButton.setButtonChoose(false);
                 }
             } else {
-                MyProject.activeUser.get(0).setUserChooseCoin_YellowMario(false);
+                MyProject.activeOfflineUser.getUserData().setUserChooseCoin_YellowMario(false);
                 coinMarioChooseButton.setBackground(Color.GREEN);
                 coinMarioChooseButton.setText("Choose");
                 coinMarioChooseButton.setButtonChoose(false);
-                MyProject.activeUser.get(0).setUserChooseNormal_RedMario(false);
-                MyProject.activeUser.get(0).setUserChooseRunner_BlueMario(false);
-                MyProject.activeUser.get(0).setUserChooseJumper_GreenMario(false);
-                MyProject.activeUser.get(0).setUserChooseShooter_BlackMario(false);
-                MyProject.activeUser.get(0).setUserChooseCoin_YellowMario(false);
+                MyProject.activeOfflineUser.getUserData().setUserChooseNormal_RedMario(false);
+                MyProject.activeOfflineUser.getUserData().setUserChooseRunner_BlueMario(false);
+                MyProject.activeOfflineUser.getUserData().setUserChooseJumper_GreenMario(false);
+                MyProject.activeOfflineUser.getUserData().setUserChooseShooter_BlackMario(false);
+                MyProject.activeOfflineUser.getUserData().setUserChooseCoin_YellowMario(false);
             }
 
         }

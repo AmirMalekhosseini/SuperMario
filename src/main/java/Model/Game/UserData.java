@@ -1,13 +1,10 @@
 package Model.Game;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import java.util.ArrayList;
 
-public class User {
+public class UserData {
 
-    @JsonIgnore
-    protected ArrayList<Game> gameSaves = new ArrayList<>();
     @JsonIgnore
     protected ArrayList<Score> userScore = new ArrayList<>();
     protected Score userHighScore = new Score();
@@ -15,6 +12,7 @@ public class User {
     private String password;
     private int userCoinValue = 0;
     private int userDiamondValue = 0;
+    private boolean isUserOnline;
     private boolean userChooseNormal_RedMario = true;
     private boolean userChooseCoin_YellowMario;
     private boolean userChooseJumper_GreenMario;
@@ -27,10 +25,28 @@ public class User {
     private boolean isUserBoughtShooterMario;
     private boolean isUserBoughtCoinMario;
 
-    public User() {
-        gameSaves.add(null);
-        gameSaves.add(null);
-        gameSaves.add(null);
+    public ArrayList<Score> getUserScore() {
+        return userScore;
+    }
+
+    public void setUserScore(ArrayList<Score> userScore) {
+        this.userScore = userScore;
+    }
+
+    public Score getUserHighScore() {
+        return userHighScore;
+    }
+
+    public void setUserHighScore(Score userHighScore) {
+        this.userHighScore = userHighScore;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -47,6 +63,22 @@ public class User {
 
     public void setUserCoinValue(int userCoinValue) {
         this.userCoinValue = userCoinValue;
+    }
+
+    public int getUserDiamondValue() {
+        return userDiamondValue;
+    }
+
+    public void setUserDiamondValue(int userDiamondValue) {
+        this.userDiamondValue = userDiamondValue;
+    }
+
+    public boolean isUserOnline() {
+        return isUserOnline;
+    }
+
+    public void setUserOnline(boolean userOnline) {
+        isUserOnline = userOnline;
     }
 
     public boolean isUserChooseNormal_RedMario() {
@@ -128,45 +160,4 @@ public class User {
     public void setUserBoughtCoinMario(boolean userBoughtCoinMario) {
         isUserBoughtCoinMario = userBoughtCoinMario;
     }
-
-    public ArrayList<Game> getGameSaves() {
-        return gameSaves;
-    }
-
-    public void setGameSaves(ArrayList<Game> gameSaves) {
-        this.gameSaves = gameSaves;
-    }
-
-    public ArrayList<Score> getUserScore() {
-        return userScore;
-    }
-
-    public void setUserScore(ArrayList<Score> userScore) {
-        this.userScore = userScore;
-    }
-
-    public Score getUserHighScore() {
-        return userHighScore;
-    }
-
-    public void setUserHighScore(Score userHighScore) {
-        this.userHighScore = userHighScore;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public int getUserDiamondValue() {
-        return userDiamondValue;
-    }
-
-    public void setUserDiamondValue(int userDiamondValue) {
-        this.userDiamondValue = userDiamondValue;
-    }
 }
-

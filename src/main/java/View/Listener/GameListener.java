@@ -60,7 +60,7 @@ public class GameListener {
                     godFather.getGameScreenFrame().dispose();
                     new MainMenuScreen();
                     try {
-                        objectMapper.writeValue(new File("User.jason"), MyProject.allUsers);
+                        objectMapper.writeValue(new File("OfflineUser.jason"), MyProject.allOfflineUsers);
                     } catch (IOException ex) {
                         throw new RuntimeException(ex);
                     }

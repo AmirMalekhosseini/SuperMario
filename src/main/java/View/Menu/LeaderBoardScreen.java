@@ -96,8 +96,8 @@ public class LeaderBoardScreen extends JFrame implements ActionListener {
     }
 
     public void calculateHighestScore() {
-        for (int i = 0; i < MyProject.allUsers.size(); i++) {
-            scores.add(MyProject.allUsers.get(i).getUserHighScore().getUserScore());
+        for (int i = 0; i < MyProject.allOfflineUsers.size(); i++) {
+            scores.add(MyProject.allOfflineUsers.get(i).getUserData().getUserHighScore().getUserScore());
         }
         Collections.sort(scores);
         int scoresSize = scores.size();
@@ -117,17 +117,17 @@ public class LeaderBoardScreen extends JFrame implements ActionListener {
     }
 
     public void calculateUsername() {
-        for (int i = 0; i < MyProject.allUsers.size(); i++) {
-            if (MyProject.allUsers.get(i).getUserHighScore().getUserScore() == scores.get(scores.size() - 1)) {
-                firstUsername = MyProject.allUsers.get(i).getUsername();
+        for (int i = 0; i < MyProject.allOfflineUsers.size(); i++) {
+            if (MyProject.allOfflineUsers.get(i).getUserData().getUserHighScore().getUserScore() == scores.get(scores.size() - 1)) {
+                firstUsername = MyProject.allOfflineUsers.get(i).getUserData().getUsername();
                 continue;
             }
-            if (MyProject.allUsers.get(i).getUserHighScore().getUserScore() == scores.get(scores.size() - 2)) {
-                secondUsername = MyProject.allUsers.get(i).getUsername();
+            if (MyProject.allOfflineUsers.get(i).getUserData().getUserHighScore().getUserScore() == scores.get(scores.size() - 2)) {
+                secondUsername = MyProject.allOfflineUsers.get(i).getUserData().getUsername();
                 continue;
             }
-            if (MyProject.allUsers.get(i).getUserHighScore().getUserScore() == scores.get(scores.size() - 3)) {
-                thirdUsername = MyProject.allUsers.get(i).getUsername();
+            if (MyProject.allOfflineUsers.get(i).getUserData().getUserHighScore().getUserScore() == scores.get(scores.size() - 3)) {
+                thirdUsername = MyProject.allOfflineUsers.get(i).getUserData().getUsername();
             }
         }
     }

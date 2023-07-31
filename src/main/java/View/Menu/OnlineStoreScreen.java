@@ -60,7 +60,7 @@ public class OnlineStoreScreen extends JFrame {
         backgroundImageLabel.setBounds(0, 0, 670, 700);
         backgroundPanel.add(backgroundImageLabel, Integer.valueOf(0));
 
-        userCoinValue = new JLabel(String.valueOf(MyProject.activeUser.get(0).getUserCoinValue()));
+        userCoinValue = new JLabel(String.valueOf(MyProject.activeOfflineUser.getUserData().getUserCoinValue()));
         userCoinValue.setBounds(40, 0, 55, 40);
         userCoinValue.setFont(font22);
         backgroundPanel.add(userCoinValue, Integer.valueOf(1));
@@ -68,7 +68,7 @@ public class OnlineStoreScreen extends JFrame {
         userCoin = new CoinForStore(5, 10);
         backgroundPanel.add(userCoin, Integer.valueOf(1));
 
-        userDiamondValue = new JLabel(String.valueOf(MyProject.activeUser.get(0).getUserDiamondValue()));
+        userDiamondValue = new JLabel(String.valueOf(MyProject.activeOfflineUser.getUserData().getUserDiamondValue()));
         userDiamondValue.setBounds(140, 0, 55, 40);
         userDiamondValue.setFont(font22);
         backgroundPanel.add(userDiamondValue, Integer.valueOf(1));

@@ -1,7 +1,7 @@
 package View.Menu;
 
 import Controller.Menu.UsernameLogic;
-import Model.Game.User;
+import Model.Game.OfflineUser;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import MyProject.*;
@@ -79,7 +79,7 @@ public class LoginPageScreen extends JFrame implements ActionListener {
 
     }
 
-    public void signInUser() {
+    public void signInOfflineUser() {
         String username = JOptionPane.showInputDialog("Enter Username");
         String password;
 
@@ -91,7 +91,7 @@ public class LoginPageScreen extends JFrame implements ActionListener {
                     new MainMenuScreen();
                     this.dispose();
                     try {
-                        objectMapper.writeValue(new File("User.jason"), MyProject.allUsers);
+                        objectMapper.writeValue(new File("OfflineUser.jason"), MyProject.allOfflineUsers);
                     } catch (IOException ex) {
                         throw new RuntimeException(ex);
                     }
@@ -108,14 +108,17 @@ public class LoginPageScreen extends JFrame implements ActionListener {
 
     }
 
+    public void signInOnlineUser() {
+
+    }
+
     public void signUpUser() {
-        User newUser = new User();
-        newUser.setUsername(JOptionPane.showInputDialog("Enter Username"));
-        if (usernameLogic.addUser(newUser)) {
-            newUser.setPassword(JOptionPane.showInputDialog("Enter Password"));
+        OfflineUser newOfflineUser = new OfflineUser();
+        newOfflineUser.getUserData().setUsername(JOptionPane.showInputDialog("Enter Username"));
+        if (usernameLogic.addUser(newOfflineUser)) {
+            newOfflineUser.getUserData().setPassword(JOptionPane.showInputDialog("Enter Password"));
             JOptionPane.showMessageDialog(null, "Account has been created Successfully", "Sign up", JOptionPane.INFORMATION_MESSAGE);
-//            int allUsersSize = MyProject.allUsers.size();
-            MyProject.allUsers.add( newUser);
+            MyProject.allOfflineUsers.add(newOfflineUser);
         } else {
             JOptionPane.showMessageDialog(null, "Username is not available", "Sign Up Problem", JOptionPane.WARNING_MESSAGE);
         }
@@ -129,7 +132,7 @@ public class LoginPageScreen extends JFrame implements ActionListener {
         }
 
         if (e.getSource() == signInButton) {
-            signInUser();
+            signInOfflineUser();
         }
 
         if (e.getSource() == signUpButton) {

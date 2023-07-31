@@ -100,7 +100,7 @@ public class StoreScreen extends JFrame implements ActionListener {
         normalMarioBuyButton.setFocusable(false);
         normalMarioBuyButton.setFont(font10);
         normalMarioBuyButton.addActionListener(this);
-        if (MyProject.activeUser.get(0).isUserBoughtNormalMario()) {
+        if (MyProject.activeOfflineUser.getUserData().isUserBoughtNormalMario()) {
             normalMarioBuyButton.setBackground(Color.GRAY);
             normalMarioBuyButton.setText("Bought");
         } else {
@@ -123,7 +123,7 @@ public class StoreScreen extends JFrame implements ActionListener {
         runnerMarioBuyButton.setFocusable(false);
         runnerMarioBuyButton.setFont(font10);
         runnerMarioBuyButton.addActionListener(this);
-        if (MyProject.activeUser.get(0).isUserBoughtRunnerMario()) {
+        if (MyProject.activeOfflineUser.getUserData().isUserBoughtRunnerMario()) {
             runnerMarioBuyButton.setBackground(Color.GRAY);
             runnerMarioBuyButton.setText("Bought");
         } else {
@@ -146,7 +146,7 @@ public class StoreScreen extends JFrame implements ActionListener {
         jumperMarioBuyButton.setFocusable(false);
         jumperMarioBuyButton.setFont(font10);
         jumperMarioBuyButton.addActionListener(this);
-        if (MyProject.activeUser.get(0).isUserBoughtJumperMario()) {
+        if (MyProject.activeOfflineUser.getUserData().isUserBoughtJumperMario()) {
             jumperMarioBuyButton.setBackground(Color.GRAY);
             jumperMarioBuyButton.setText("Bought");
         } else {
@@ -169,7 +169,7 @@ public class StoreScreen extends JFrame implements ActionListener {
         shooterMarioBuyButton.setFocusable(false);
         shooterMarioBuyButton.setFont(font10);
         shooterMarioBuyButton.addActionListener(this);
-        if (MyProject.activeUser.get(0).isUserBoughtShooterMario()) {
+        if (MyProject.activeOfflineUser.getUserData().isUserBoughtShooterMario()) {
             shooterMarioBuyButton.setBackground(Color.GRAY);
             shooterMarioBuyButton.setText("Bought");
         } else {
@@ -192,7 +192,7 @@ public class StoreScreen extends JFrame implements ActionListener {
         coinMarioBuyButton.setFocusable(false);
         coinMarioBuyButton.setFont(font10);
         coinMarioBuyButton.addActionListener(this);
-        if (MyProject.activeUser.get(0).isUserBoughtCoinMario()) {
+        if (MyProject.activeOfflineUser.getUserData().isUserBoughtCoinMario()) {
             coinMarioBuyButton.setBackground(Color.GRAY);
             coinMarioBuyButton.setText("Bought");
         } else {
@@ -200,14 +200,14 @@ public class StoreScreen extends JFrame implements ActionListener {
             coinMarioBuyButton.setText("Buy");
         }
 
-        userCoinValue = new JLabel(String.valueOf(MyProject.activeUser.get(0).getUserCoinValue()));
+        userCoinValue = new JLabel(String.valueOf(MyProject.activeOfflineUser.getUserData().getUserCoinValue()));
         userCoinValue.setBounds(40, 0, 55, 40);
         userCoinValue.setFont(font22);
 
         userCoin = new CoinForStore(5, 10);
         userCoin.setLocation(userCoin.getX(), userCoin.getY());
 
-        userDiamondValue = new JLabel(String.valueOf(MyProject.activeUser.get(0).getUserDiamondValue()));
+        userDiamondValue = new JLabel(String.valueOf(MyProject.activeOfflineUser.getUserData().getUserDiamondValue()));
         userDiamondValue.setBounds(140, 0, 55, 40);
         userDiamondValue.setFont(font22);
         backgroundPanel.add(userDiamondValue, Integer.valueOf(1));
@@ -269,7 +269,7 @@ public class StoreScreen extends JFrame implements ActionListener {
             new MainMenuScreen();
             this.dispose();
             try {
-                objectMapper.writeValue(new File("User.jason"), MyProject.allUsers);
+                objectMapper.writeValue(new File("OfflineUser.jason"), MyProject.allOfflineUsers);
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
@@ -280,11 +280,11 @@ public class StoreScreen extends JFrame implements ActionListener {
             if (runnerMarioBuyButton.isButtonChoose()) {
                 StoreBuyLogic buyLogic = new StoreBuyLogic(runnerMarioBuyButton, this);
                 if (buyLogic.canUserBuyMario()) {
-                    userCoinValue.setText(String.valueOf(MyProject.activeUser.get(0).getUserCoinValue()));
+                    userCoinValue.setText(String.valueOf(MyProject.activeOfflineUser.getUserData().getUserCoinValue()));
                     runnerMarioBuyButton.setBackground(Color.GRAY);
                     runnerMarioBuyButton.setText("Bought");
                     runnerMarioBuyButton.setButtonChoose(true);
-                    MyProject.activeUser.get(0).setUserBoughtRunnerMario(true);
+                    MyProject.activeOfflineUser.getUserData().setUserBoughtRunnerMario(true);
                 }
             }
 
@@ -295,11 +295,11 @@ public class StoreScreen extends JFrame implements ActionListener {
             if (jumperMarioBuyButton.isButtonChoose()) {
                 StoreBuyLogic buyLogic = new StoreBuyLogic(jumperMarioBuyButton, this);
                 if (buyLogic.canUserBuyMario()) {
-                    userCoinValue.setText(String.valueOf(MyProject.activeUser.get(0).getUserCoinValue()));
+                    userCoinValue.setText(String.valueOf(MyProject.activeOfflineUser.getUserData().getUserCoinValue()));
                     jumperMarioBuyButton.setBackground(Color.GRAY);
                     jumperMarioBuyButton.setText("Bought");
                     jumperMarioBuyButton.setButtonChoose(true);
-                    MyProject.activeUser.get(0).setUserBoughtJumperMario(true);
+                    MyProject.activeOfflineUser.getUserData().setUserBoughtJumperMario(true);
                 }
             }
 
@@ -310,11 +310,11 @@ public class StoreScreen extends JFrame implements ActionListener {
             if (shooterMarioBuyButton.isButtonChoose()) {
                 StoreBuyLogic buyLogic = new StoreBuyLogic(shooterMarioBuyButton, this);
                 if (buyLogic.canUserBuyMario()) {
-                    userCoinValue.setText(String.valueOf(MyProject.activeUser.get(0).getUserCoinValue()));
+                    userCoinValue.setText(String.valueOf(MyProject.activeOfflineUser.getUserData().getUserCoinValue()));
                     shooterMarioBuyButton.setBackground(Color.GRAY);
                     shooterMarioBuyButton.setText("Bought");
                     shooterMarioBuyButton.setButtonChoose(true);
-                    MyProject.activeUser.get(0).setUserBoughtShooterMario(true);
+                    MyProject.activeOfflineUser.getUserData().setUserBoughtShooterMario(true);
                 }
             }
 
@@ -325,11 +325,11 @@ public class StoreScreen extends JFrame implements ActionListener {
             if (coinMarioBuyButton.isButtonChoose()) {
                 StoreBuyLogic buyLogic = new StoreBuyLogic(coinMarioBuyButton, this);
                 if (buyLogic.canUserBuyMario()) {
-                    userCoinValue.setText(String.valueOf(MyProject.activeUser.get(0).getUserCoinValue()));
+                    userCoinValue.setText(String.valueOf(MyProject.activeOfflineUser.getUserData().getUserCoinValue()));
                     coinMarioBuyButton.setBackground(Color.GRAY);
                     coinMarioBuyButton.setText("Bought");
                     coinMarioBuyButton.setButtonChoose(true);
-                    MyProject.activeUser.get(0).setUserBoughtCoinMario(true);
+                    MyProject.activeOfflineUser.getUserData().setUserBoughtCoinMario(true);
                 }
             }
 

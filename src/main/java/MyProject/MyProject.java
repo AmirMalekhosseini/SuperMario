@@ -1,11 +1,10 @@
 package MyProject;
 
-import Model.Game.GameData;
-import Model.Game.GameGodFather;
-import Model.Game.User;
+import Model.Game.OfflineUser;
+import Model.Game.OnlineUser;
+import Model.NetworkCommunication.Client;
 import View.Menu.LoginPageScreen;
 import View.Menu.OnlineLobby.OnlineLobbyScreen;
-import View.Menu.OnlineStoreScreen;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -18,8 +17,11 @@ import java.util.ArrayList;
 public class MyProject {
 
     ObjectMapper objectMapper;
-    public static ArrayList<User> allUsers = new ArrayList<>();
-    public static ArrayList<User> activeUser = new ArrayList<>();
+    public static ArrayList<OfflineUser> allOfflineUsers = new ArrayList<>();
+    public static OfflineUser activeOfflineUser;
+    public static OnlineUser activeOnlineUser;
+    public static Client activeClient;
+    public static boolean isProjectOnline;
 
     public MyProject() {
         init();
@@ -32,16 +34,16 @@ public class MyProject {
         objectMapper.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
 
         try {
-            allUsers = objectMapper.readValue(new File("User.jason"), new TypeReference<ArrayList<User>>() {
+            allOfflineUsers = objectMapper.readValue(new File("OfflineUser.jason"), new TypeReference<>() {
             });
 
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        activeUser.add(new User());
-//        new LoginPageScreen();
+        activeOfflineUser = new OfflineUser();
+        new LoginPageScreen();
 //        new GameGodFather(new GameData());
-        SwingUtilities.invokeLater(() -> new OnlineLobbyScreen(MyProject.activeUser.get(0)));
+//        SwingUtilities.invokeLater(() -> new OnlineLobbyScreen(MyProject.activeOfflineUser));
 
     }
 

@@ -99,8 +99,8 @@ public class ContinueGameScreen extends JFrame implements ActionListener {
         }
 
         if (e.getSource() == firstSaveButton) {
-            if (MyProject.activeUser.get(0).getGameSaves().get(0) != null) {
-                Game game1 = new Game(MyProject.activeUser.get(0).getGameSaves().get(0).getGameScreenFrame());
+            if (MyProject.activeOfflineUser.getGameSaves().get(0) != null) {
+                Game game1 = new Game(MyProject.activeOfflineUser.getGameSaves().get(0).getGameScreenFrame());
                 game1.getGameScreenFrame().getGameScreenFrame().setVisible(true);
                 game1.getGameScreenFrame().getGameData().isGamePause = false;
                 this.dispose();
@@ -108,8 +108,8 @@ public class ContinueGameScreen extends JFrame implements ActionListener {
         }
 
         if (e.getSource() == secondSaveButton) {
-            if (MyProject.activeUser.get(0).getGameSaves().get(1) != null) {
-                Game game2 = new Game(MyProject.activeUser.get(0).getGameSaves().get(1).getGameScreenFrame());
+            if (MyProject.activeOfflineUser.getGameSaves().get(1) != null) {
+                Game game2 = new Game(MyProject.activeOfflineUser.getGameSaves().get(1).getGameScreenFrame());
                 game2.getGameScreenFrame().getGameScreenFrame().setVisible(true);
                 game2.getGameScreenFrame().getGameData().isGamePause = false;
                 this.dispose();
@@ -117,8 +117,8 @@ public class ContinueGameScreen extends JFrame implements ActionListener {
         }
 
         if (e.getSource() == thirdSaveButton) {
-            if (MyProject.activeUser.get(0).getGameSaves().get(2) != null) {
-                Game game3 = new Game(MyProject.activeUser.get(0).getGameSaves().get(2).getGameScreenFrame());
+            if (MyProject.activeOfflineUser.getGameSaves().get(2) != null) {
+                Game game3 = new Game(MyProject.activeOfflineUser.getGameSaves().get(2).getGameScreenFrame());
                 game3.getGameScreenFrame().getGameScreenFrame().setVisible(true);
                 game3.getGameScreenFrame().getGameData().isGamePause = false;
                 this.dispose();

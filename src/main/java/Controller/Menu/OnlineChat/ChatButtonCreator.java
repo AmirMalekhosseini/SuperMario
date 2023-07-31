@@ -1,6 +1,6 @@
 package Controller.Menu.OnlineChat;
 
-import Model.Game.User;
+import Model.Game.OfflineUser;
 import MyProject.MyProject;
 import View.Menu.OnlineChat.ChatChooseButton;
 import View.Menu.OnlineChat.ChatScreen;
@@ -14,15 +14,15 @@ public class ChatButtonCreator {
     public ArrayList<ChatChooseButton> createButton(JTextField chatArea) {
         ArrayList<ChatChooseButton> buttons = new ArrayList<>();
 
-        for (User user : MyProject.allUsers) {
-            if (user.getUsername().equals(MyProject.activeUser.get(0).getUsername())) {
+        for (OfflineUser offlineUser : MyProject.allOfflineUsers) {
+            if (offlineUser.getUserData().getUsername().equals(MyProject.activeOfflineUser.getUserData().getUsername())) {
                 continue;
             }
-            ChatScreen chatScreen = new ChatScreen(MyProject.activeUser.get(0).getUsername(), user.getUsername(), chatArea);
+            ChatScreen chatScreen = new ChatScreen(MyProject.activeOfflineUser.getUserData().getUsername(), offlineUser.getUserData().getUsername(), chatArea);
             chatScreen.setLocation(200, 0);
             chatScreen.setOpaque(false);
             chatScreen.setBackground(new Color(0, 0, 0, 0));
-            ChatChooseButton button = new ChatChooseButton(chatScreen, user.getUsername());
+            ChatChooseButton button = new ChatChooseButton(chatScreen, offlineUser.getUserData().getUsername());
             buttons.add(button);
         }
 

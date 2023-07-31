@@ -114,7 +114,7 @@ public class MainMenuScreen extends JFrame implements ActionListener {
             new LoginPageScreen();
             this.dispose();
             try {
-                objectMapper.writeValue(new File("User.jason"), MyProject.allUsers);
+                objectMapper.writeValue(new File("OfflineUser.jason"), MyProject.allOfflineUsers);
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }

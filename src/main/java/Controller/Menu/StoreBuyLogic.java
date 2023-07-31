@@ -21,8 +21,8 @@ public class StoreBuyLogic {
 
     public boolean canUserBuyMario() {
 
-        if (MyProject.activeUser.get(0).getUserCoinValue() >= buyButton.getMario().getPrice()) {
-            MyProject.activeUser.get(0).setUserCoinValue(MyProject.activeUser.get(0).getUserCoinValue() - buyButton.getMario().getPrice());
+        if (MyProject.activeOfflineUser.getUserData().getUserCoinValue() >= buyButton.getMario().getPrice()) {
+            MyProject.activeOfflineUser.getUserData().setUserCoinValue(MyProject.activeOfflineUser.getUserData().getUserCoinValue() - buyButton.getMario().getPrice());
             return true;
         } else {
             return false;

@@ -1,20 +1,20 @@
 package Model.OnlineLobby;
 
 import Controller.Menu.OnlineLobby.LobbyButtonCreator;
-import Model.Game.User;
+import Model.Game.OfflineUser;
 import View.Menu.OnlineLobby.OnlineLobbyScreen;
 
 import java.util.ArrayList;
 
 public class LobbyModel {
 
-    private User adminUser;
-    private ArrayList<User> coAdmins;
-    private ArrayList<User> members;
+    private OfflineUser adminOfflineUser;
+    private ArrayList<OfflineUser> coAdmins;
+    private ArrayList<OfflineUser> members;
     public LobbyButtonCreator buttonCreator;
 
-    public LobbyModel(User adminUser) {
-        this.adminUser = adminUser;
+    public LobbyModel(OfflineUser adminOfflineUser) {
+        this.adminOfflineUser = adminOfflineUser;
         coAdmins = new ArrayList<>();
         members = new ArrayList<>();
     }
@@ -46,27 +46,27 @@ public class LobbyModel {
 
     }
 
-    public User getAdminUser() {
-        return adminUser;
+    public OfflineUser getAdminUser() {
+        return adminOfflineUser;
     }
 
-    public void setAdminUser(User adminUser) {
-        this.adminUser = adminUser;
+    public void setAdminUser(OfflineUser adminOfflineUser) {
+        this.adminOfflineUser = adminOfflineUser;
     }
 
-    public ArrayList<User> getCoAdmins() {
+    public ArrayList<OfflineUser> getCoAdmins() {
         return coAdmins;
     }
 
-    public void setCoAdmins(ArrayList<User> coAdmins) {
+    public void setCoAdmins(ArrayList<OfflineUser> coAdmins) {
         this.coAdmins = coAdmins;
     }
 
-    public ArrayList<User> getMembers() {
+    public ArrayList<OfflineUser> getMembers() {
         return members;
     }
 
-    public void setMembers(ArrayList<User> members) {
+    public void setMembers(ArrayList<OfflineUser> members) {
         this.members = members;
     }
 }
