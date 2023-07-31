@@ -9,31 +9,7 @@ public class UsernameLogic {
 
     private boolean isUsernameOK;
     private boolean isUsernameOKForSignIn;
-    private boolean isPasswordOK;
-
     private int usernameIndex;
-
-    public boolean addUser(OfflineUser offlineUser) {
-
-            int usernameCounter = 0;
-            for (int i = 0; i < 100000000; i++) {
-                if (MyProject.allOfflineUsers.size() == 0) {
-                    return true;
-                }
-                if (!Objects.equals(MyProject.allOfflineUsers.get(i).getUserData().getUsername(), offlineUser.getUserData().getUsername())) {
-                    usernameCounter++;
-                    if (usernameCounter == MyProject.allOfflineUsers.size()) {
-                        isUsernameOK = true;
-                        break;
-                    }
-                } else {
-                    isUsernameOK = false;
-                    break;
-                }
-            }
-
-        return isUsernameOK;
-    }
 
     public boolean signInUser(String username) {
 
@@ -52,7 +28,8 @@ public class UsernameLogic {
 
     public boolean checkPassword(String password) {
 
-            if (Objects.equals(MyProject.allOfflineUsers.get(usernameIndex).getUserData().getPassword(), password)) {
+        boolean isPasswordOK;
+        if (Objects.equals(MyProject.allOfflineUsers.get(usernameIndex).getUserData().getPassword(), password)) {
                 MyProject.activeOfflineUser = MyProject.allOfflineUsers.get(usernameIndex);
                 isPasswordOK = true;
             } else {

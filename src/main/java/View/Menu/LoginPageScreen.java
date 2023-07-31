@@ -1,10 +1,14 @@
 package View.Menu;
 
 import Controller.Menu.UsernameLogic;
-import Model.Game.OfflineUser;
+import Controller.Online.ServerConnection;
+import Model.NetworkCommunication.Message.MessageType;
+import Model.NetworkCommunication.Message.SignInMessage;
+import Model.NetworkCommunication.Message.SignUpMessage;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import MyProject.*;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -22,6 +26,8 @@ public class LoginPageScreen extends JFrame implements ActionListener {
     JButton signInButton;
     JButton signUpButton;
     JButton exitButton;
+    JButton onlineButton;
+
     public LoginPageScreen() {
         objectMapper = new ObjectMapper();
         objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
@@ -67,19 +73,28 @@ public class LoginPageScreen extends JFrame implements ActionListener {
         exitButton.setFocusable(false);
         exitButton.setFont(font20);
 
+        onlineButton = new JButton("Offline");
+        onlineButton.setBounds(0, 0, 150, 70);
+        onlineButton.setBackground(Color.RED);
+        onlineButton.setForeground(Color.WHITE);
+        onlineButton.setFocusable(false);
+        onlineButton.setFont(font20);
+
         signInButton.addActionListener(this);
         signUpButton.addActionListener(this);
         exitButton.addActionListener(this);
+        onlineButton.addActionListener(this);
 
         backgroundPanel.add(backgroundImageLabel, Integer.valueOf(0));
         backgroundPanel.add(signInButton, Integer.valueOf(1));
         backgroundPanel.add(signUpButton, Integer.valueOf(1));
         backgroundPanel.add(exitButton, Integer.valueOf(1));
+        backgroundPanel.add(onlineButton, Integer.valueOf(1));
         this.add(backgroundPanel);
 
     }
 
-    public void signInOfflineUser() {
+    private void signInOfflineUser() {
         String username = JOptionPane.showInputDialog("Enter Username");
         String password;
 
@@ -108,20 +123,28 @@ public class LoginPageScreen extends JFrame implements ActionListener {
 
     }
 
-    public void signInOnlineUser() {
+    private void signInOnlineUser() {
+
+        String username = JOptionPane.showInputDialog("Enter Username");
+        String password = JOptionPane.showInputDialog("Enter Password");
+        SignInMessage signInMessage = new SignInMessage(username, password);
+        signInMessage.setMessageType(MessageType.SIGN_IN);
+
+        // Send SIGN_IN to Server
+        MyProject.activeClient.sendToServer(signInMessage);
 
     }
 
-    public void signUpUser() {
-        OfflineUser newOfflineUser = new OfflineUser();
-        newOfflineUser.getUserData().setUsername(JOptionPane.showInputDialog("Enter Username"));
-        if (usernameLogic.addUser(newOfflineUser)) {
-            newOfflineUser.getUserData().setPassword(JOptionPane.showInputDialog("Enter Password"));
-            JOptionPane.showMessageDialog(null, "Account has been created Successfully", "Sign up", JOptionPane.INFORMATION_MESSAGE);
-            MyProject.allOfflineUsers.add(newOfflineUser);
-        } else {
-            JOptionPane.showMessageDialog(null, "Username is not available", "Sign Up Problem", JOptionPane.WARNING_MESSAGE);
-        }
+    private void signUpUser() {
+
+        String username = JOptionPane.showInputDialog("Enter Username");
+        String password = JOptionPane.showInputDialog("Enter Password");
+        SignUpMessage signUpMessage = new SignUpMessage(username, password);
+        signUpMessage.setMessageType(MessageType.SIGN_UP);
+
+        // Send SIGN_UP to Server
+        MyProject.activeClient.sendToServer(signUpMessage);
+
     }
 
     @Override
@@ -132,11 +155,37 @@ public class LoginPageScreen extends JFrame implements ActionListener {
         }
 
         if (e.getSource() == signInButton) {
-            signInOfflineUser();
+            if (MyProject.isProjectOnline) {// Online
+                signInOnlineUser();
+            } else {// Offline
+                signInOfflineUser();
+            }
         }
 
         if (e.getSource() == signUpButton) {
+            if (!MyProject.isProjectOnline) {
+                return; // Project is Offline.
+            }
             signUpUser();
         }
+
+        if (e.getSource() == onlineButton) {
+            if (MyProject.isProjectOnline) {// It is Online
+                MyProject.isProjectOnline = false;
+                onlineButton.setText("Offline");
+                onlineButton.setBackground(Color.RED);
+                ServerConnection.disconnectFromServer();
+            } else {// It is Offline
+                MyProject.isProjectOnline = true;
+                onlineButton.setText("Online");
+                onlineButton.setBackground(Color.GREEN);
+                try {
+                    ServerConnection.connectToServer("localhost",12345);
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        }
+
     }
 }
