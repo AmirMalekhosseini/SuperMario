@@ -1,6 +1,6 @@
 package Controller.Menu;
 
-import Model.Game.StoreBuyButton;
+import View.Button.StoreBuyButton;
 import View.Menu.OfflineStoreScreen;
 import MyProject.MyProject;
 

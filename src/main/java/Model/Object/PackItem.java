@@ -1,6 +1,6 @@
 package Model.Object;
 
-public interface PackItems {
+public interface PackItem {
 
     int getX();
     void setX(int x);

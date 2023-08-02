@@ -1,6 +1,6 @@
 package View.Menu;
 
-import Model.Game.UserProfileChooseMarioButton;
+import View.Button.UserProfileChooseMarioButton;
 import Model.Item.CoinForStore;
 import MyProject.*;
 import com.fasterxml.jackson.databind.ObjectMapper;

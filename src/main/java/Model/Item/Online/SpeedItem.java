@@ -6,7 +6,7 @@ import MyProject.MyProjectData;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class SpeedItem extends OnlineItems {
+public class SpeedItem extends OnlineItem {
 
     private BufferedImage background;
 

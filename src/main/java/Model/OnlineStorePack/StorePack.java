@@ -3,7 +3,7 @@ package Model.OnlineStorePack;
 import Model.Item.CoinForStore;
 import Model.Item.Online.Diamond;
 import Model.Object.ObjectsInGame;
-import Model.Object.PackItems;
+import Model.Object.PackItem;
 import MyProject.MyProjectData;
 
 import javax.swing.*;
@@ -18,9 +18,11 @@ public class StorePack {
     protected JButton buyButton;
     private int x;
     private int y;
+    private final boolean isForMulti;
 
-    public StorePack(int x, int y, Pack pack) {
+    public StorePack(int x, int y, Pack pack, boolean isForMulti) {
 
+        this.isForMulti = isForMulti;
         this.x = x;
         this.y = y;
         this.pack = pack;
@@ -39,17 +41,28 @@ public class StorePack {
         Font font22 = MyProjectData.getProjectData().getFont22();
 
         priceTag = new JLabel(String.valueOf(pack.getPrice()));
-        priceTag.setBounds(x, y + 70, 50, 30);
         priceTag.setFont(font22);
 
-        if (pack.getCurrency() instanceof Diamond) {
-            currency = new Diamond(x + 30, y + 60);
-        } else {
-            currency = new CoinForStore(x + 50, y + 75);
-        }
 
         buyButton = new JButton("Buy");
-        buyButton.setBounds(x, y + 120, 70, 35);
+        if (isForMulti) {
+            if (pack.getCurrency() instanceof Diamond) {
+                currency = new Diamond(x + 30, 350 + 60);
+            } else {
+                currency = new CoinForStore(x + 50, 350 + 75);
+            }
+            buyButton.setBounds(x, 470, 70, 35);
+            priceTag.setBounds(x, 420, 50, 30);
+        } else {
+            if (pack.getCurrency() instanceof Diamond) {
+                currency = new Diamond(x + 30, y + 60);
+            } else {
+                currency = new CoinForStore(x + 50, y + 75);
+            }
+            buyButton.setBounds(x, y + 120, 70, 35);
+            priceTag.setBounds(x, y + 70, 50, 30);
+        }
+
         buyButton.setForeground(Color.BLACK);
         buyButton.setBackground(Color.GREEN);
         buyButton.setFocusable(false);
@@ -59,7 +72,7 @@ public class StorePack {
 
     private void addPack() {
 
-        for (PackItems packItem : pack.packItems) {
+        for (PackItem packItem : pack.packItems) {
             backgroundLabel.add((ObjectsInGame) packItem);
         }
 

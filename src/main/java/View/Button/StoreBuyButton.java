@@ -1,4 +1,4 @@
-package Model.Game;
+package View.Button;
 
 import Model.Mario.Mario;
 

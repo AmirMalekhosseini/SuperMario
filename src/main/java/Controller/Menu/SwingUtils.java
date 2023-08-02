@@ -11,6 +11,8 @@ public class SwingUtils {
             if (window instanceof JFrame) {
                 JFrame frame = (JFrame) window;
                 if (frame.isActive()) {
+                    frame.revalidate();
+                    frame.repaint();
                     return frame;
                 }
             }
@@ -18,4 +20,3 @@ public class SwingUtils {
         return null; // No active JFrame found
     }
 }
-

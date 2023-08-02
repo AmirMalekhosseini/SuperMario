@@ -1,16 +1,17 @@
 package MyProject;
 
+import Controller.Online.PackCreator;
 import Model.Game.OfflineUser;
 import Model.Game.OnlineUser;
 import Model.NetworkCommunication.Client;
-import Model.OnlineStorePack.Pack;
 import Model.OnlineStorePack.StorePack;
+import View.Menu.BagScreen;
 import View.Menu.LoginPageScreen;
-import View.Menu.OfflineGameScreen;
-import View.Menu.OnlineGameScreen;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+
+import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -19,7 +20,7 @@ public class MyProject {
 
     ObjectMapper objectMapper;
     public static ArrayList<OfflineUser> allOfflineUsers = new ArrayList<>();
-    public static ArrayList<Pack> packs = new ArrayList<>();
+    public static ArrayList<StorePack> StorePacks = new ArrayList<>();
     public static OfflineUser activeOfflineUser;
     public static OnlineUser activeOnlineUser;
     public static Client activeClient;
@@ -43,9 +44,10 @@ public class MyProject {
             throw new RuntimeException(e);
         }
         activeOfflineUser = new OfflineUser();
-        new LoginPageScreen();
+//        StorePacks = PackCreator.getInstance().createInitPack();
+//        new LoginPageScreen();
 //        new GameGodFather(new GameData());
-//        SwingUtilities.invokeLater(() -> new OnlineLobbyScreen(MyProject.activeOfflineUser));
+        SwingUtilities.invokeLater(() -> new BagScreen());
 
     }
 

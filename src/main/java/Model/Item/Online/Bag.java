@@ -1,57 +1,49 @@
 package Model.Item.Online;
 
-import Model.Mario.Mario;
+import Model.Mario.Online.Hammer;
+import Model.Object.ObjectsInGame;
 import MyProject.MyProjectData;
+import View.Button.BagAddButton;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
-public class HealItem extends OnlineItem{
+public class Bag extends ObjectsInGame {
 
-    private BufferedImage background;
+    private final BufferedImage background;
+    private ArrayList<String> bagItems = new ArrayList<>();
 
     private int x;
     private int y;
 
-    private int height = 60;
-    private int width = 60;
+    private int height = 80;
+    private int width = 80;
 
-    public HealItem(int x, int y) {
+    public Bag(int x, int y) {
 
         this.setSize(width, height);
 
-        background = MyProjectData.getProjectData().getHealPotion();
+        background = MyProjectData.getProjectData().getBag();
 
         this.x = x;
         this.y = y;
 
     }
 
-    public HealItem() {
-
-        this.setSize(width, height);
-
-        background = MyProjectData.getProjectData().getHealPotion();
-
-    }
-
-    @Override
-    public void action(Mario mario) {
-
-    }
-
-    @Override
-    public void removeAction(Mario mario) {
-
-    }
 
     protected void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
-        if (!isItemCatch()) {
-            Graphics2D graphics2D = (Graphics2D) graphics;
-            graphics2D.drawImage(background, -0, -0,width,height, null);
-        }
+        Graphics2D graphics2D = (Graphics2D) graphics;
+        graphics2D.drawImage(background, -0, -0, width, height, null);
+    }
 
+    public ArrayList<String> getBagItems() {
+        return bagItems;
+    }
+
+    public void setBagItems(ArrayList<String> bagItems) {
+        this.bagItems = bagItems;
     }
 
     @Override

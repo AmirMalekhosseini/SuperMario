@@ -6,7 +6,7 @@ import MyProject.MyProjectData;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class InvisibleItem extends OnlineItems {
+public class InvisibleItem extends OnlineItem {
 
     private BufferedImage background;
 

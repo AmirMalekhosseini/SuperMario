@@ -1,7 +1,7 @@
 package View.Menu;
 
 import Model.Game.GameData;
-import Model.Game.UserProfileChooseMarioButton;
+import View.Button.UserProfileChooseMarioButton;
 import MyProject.*;
 
 import javax.swing.*;

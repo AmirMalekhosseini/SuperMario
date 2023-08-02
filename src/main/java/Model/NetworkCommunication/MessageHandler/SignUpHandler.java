@@ -11,7 +11,6 @@ public class SignUpHandler implements MessageHandler {
 
         if (message instanceof SignUpMessage) {
 
-            System.out.println("fknadklfnsd");
             SignUpMessage signUpMessage = (SignUpMessage) message;
             if (signUpMessage.isPasswordOK()) {// Successful
                 JOptionPane.showMessageDialog(null, "Account has been created Successfully", "Sign up", JOptionPane.INFORMATION_MESSAGE);

@@ -1,7 +1,7 @@
 package View.Menu;
 
 import Controller.Menu.StoreBuyLogic;
-import Model.Game.StoreBuyButton;
+import View.Button.StoreBuyButton;
 import Model.Item.CoinForStore;
 import Model.Item.Online.Diamond;
 import Model.Mario.*;
