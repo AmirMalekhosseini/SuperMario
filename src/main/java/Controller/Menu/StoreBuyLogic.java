@@ -1,7 +1,7 @@
 package Controller.Menu;
 
 import Model.Game.StoreBuyButton;
-import View.Menu.StoreScreen;
+import View.Menu.OfflineStoreScreen;
 import MyProject.MyProject;
 
 public class StoreBuyLogic {
@@ -12,10 +12,10 @@ public class StoreBuyLogic {
     public static int coinMarioPrice = 50;
     protected StoreBuyButton buyButton;
 
-    StoreScreen storeScreen;
+    OfflineStoreScreen offlineStoreScreen;
 
-    public StoreBuyLogic(StoreBuyButton buyButton, StoreScreen storeScreen) {
-        this.storeScreen = storeScreen;
+    public StoreBuyLogic(StoreBuyButton buyButton, OfflineStoreScreen offlineStoreScreen) {
+        this.offlineStoreScreen = offlineStoreScreen;
         this.buyButton = buyButton;
     }
 

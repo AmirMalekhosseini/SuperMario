@@ -18,6 +18,8 @@ import java.util.ArrayList;
 
 public class OnlineStoreScreen extends JFrame {
 
+
+    private ArrayList<StorePack> storePacks = new ArrayList<>();
     ObjectMapper objectMapper;
     JLayeredPane backgroundPanel;
     JLabel backgroundImageLabel;
@@ -33,6 +35,7 @@ public class OnlineStoreScreen extends JFrame {
     public JLabel userCoinValue;
     public JLabel userDiamondValue;
     Diamond userDiamond;
+    JButton offlineStoreButton;
 
     public OnlineStoreScreen() {
 
@@ -79,6 +82,7 @@ public class OnlineStoreScreen extends JFrame {
         init();
         add(backgroundPanel);
 
+        addButtonAction();
         revalidate();
         repaint();
     }
@@ -96,62 +100,79 @@ public class OnlineStoreScreen extends JFrame {
         backButton.setFont(font22);
         backgroundPanel.add(backButton, Integer.valueOf(1));
 
+        offlineStoreButton = new JButton("Offline Store");
+        offlineStoreButton.setBounds(460, 550, 150, 60);
+        offlineStoreButton.setBackground(Color.BLACK);
+        offlineStoreButton.setForeground(Color.WHITE);
+        offlineStoreButton.setFocusable(false);
+        offlineStoreButton.setFont(MyProjectData.getProjectData().getFont15());
+        backgroundPanel.add(offlineStoreButton, Integer.valueOf(1));
+
         // Test:
         // ToDo: Receive Packs from server and add Them to StorePacks.
-        ArrayList<PackItems> packItems = new ArrayList<>();
-        packItems.add(new Hammer(0, 0, true));
-        Pack hammer = new Pack(packItems, 100);
-        hammerPack = new StorePack(50, 150, hammer);
+        hammerPack = new StorePack(50, 150, MyProject.packs.get(0));
         backgroundPanel.add(hammerPack.getBackgroundLabel(), Integer.valueOf(1));
         backgroundPanel.add(hammerPack.getCurrency(), Integer.valueOf(1));
         backgroundPanel.add(hammerPack.getBuyButton(), Integer.valueOf(1));
         backgroundPanel.add(hammerPack.getPriceTag(), Integer.valueOf(1));
+        storePacks.add(hammerPack);
 
-        packItems = new ArrayList<>();
-        packItems.add(new DamageBomb(0, 0));
-        Pack damageBomb = new Pack(packItems, 100);
-        damageBombPack = new StorePack(200, 150, damageBomb);
+        damageBombPack = new StorePack(200, 150, MyProject.packs.get(1));
         backgroundPanel.add(damageBombPack.getBackgroundLabel(), Integer.valueOf(1));
         backgroundPanel.add(damageBombPack.getCurrency(), Integer.valueOf(1));
         backgroundPanel.add(damageBombPack.getBuyButton(), Integer.valueOf(1));
         backgroundPanel.add(damageBombPack.getPriceTag(), Integer.valueOf(1));
+        storePacks.add(damageBombPack);
 
-        packItems = new ArrayList<>();
-        packItems.add(new SpeedBomb(0, 0));
-        Pack speedBomb = new Pack(packItems, 100);
-        speedBombPack = new StorePack(350, 150, speedBomb);
+        speedBombPack = new StorePack(350, 150, MyProject.packs.get(2));
         backgroundPanel.add(speedBombPack.getBackgroundLabel(), Integer.valueOf(1));
         backgroundPanel.add(speedBombPack.getCurrency(), Integer.valueOf(1));
         backgroundPanel.add(speedBombPack.getBuyButton(), Integer.valueOf(1));
         backgroundPanel.add(speedBombPack.getPriceTag(), Integer.valueOf(1));
+        storePacks.add(speedBombPack);
 
-        packItems = new ArrayList<>();
-        packItems.add(new HealItem(0, 0));
-        Pack healPotion = new Pack(packItems, 100);
-        healPotionPack = new StorePack(50, 350, healPotion);
+        healPotionPack = new StorePack(50, 350, MyProject.packs.get(3));
         backgroundPanel.add(healPotionPack.getBackgroundLabel(), Integer.valueOf(1));
         backgroundPanel.add(healPotionPack.getCurrency(), Integer.valueOf(1));
         backgroundPanel.add(healPotionPack.getBuyButton(), Integer.valueOf(1));
         backgroundPanel.add(healPotionPack.getPriceTag(), Integer.valueOf(1));
+        storePacks.add(healPotionPack);
 
-        packItems = new ArrayList<>();
-        packItems.add(new InvisibleItem(0, 0));
-        Pack invisiblePotion = new Pack(packItems, 100);
-        invisiblePotionPack = new StorePack(200, 350, invisiblePotion);
+        invisiblePotionPack = new StorePack(200, 350, MyProject.packs.get(4));
         backgroundPanel.add(invisiblePotionPack.getBackgroundLabel(), Integer.valueOf(1));
         backgroundPanel.add(invisiblePotionPack.getCurrency(), Integer.valueOf(1));
         backgroundPanel.add(invisiblePotionPack.getBuyButton(), Integer.valueOf(1));
         backgroundPanel.add(invisiblePotionPack.getPriceTag(), Integer.valueOf(1));
+        storePacks.add(invisiblePotionPack);
 
-        packItems = new ArrayList<>();
-        packItems.add(new SpeedItem(0, 0));
-        Pack speedPotion = new Pack(packItems, 100);
-        speedPotionPack = new StorePack(350, 350, speedPotion);
+        speedPotionPack = new StorePack(350, 350, MyProject.packs.get(5));
         backgroundPanel.add(speedPotionPack.getBackgroundLabel(), Integer.valueOf(1));
         backgroundPanel.add(speedPotionPack.getCurrency(), Integer.valueOf(1));
         backgroundPanel.add(speedPotionPack.getBuyButton(), Integer.valueOf(1));
         backgroundPanel.add(speedPotionPack.getPriceTag(), Integer.valueOf(1));
+        storePacks.add(speedPotionPack);
 
     }
 
+    private void addButtonAction() {
+
+        backButton.addActionListener(e -> {
+            new MainMenuScreen();
+            dispose();
+        });
+
+        offlineStoreButton.addActionListener(e ->{
+            new OfflineStoreScreen();
+            dispose();
+        });
+
+    }
+
+    public ArrayList<StorePack> getStorePacks() {
+        return storePacks;
+    }
+
+    public void setStorePacks(ArrayList<StorePack> storePacks) {
+        this.storePacks = storePacks;
+    }
 }

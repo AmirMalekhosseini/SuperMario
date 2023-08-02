@@ -99,7 +99,7 @@ public class NewGameScreen extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == backButton) {
-            new MainMenuScreen();
+            new OfflineGameScreen();
             this.dispose();
         }
 

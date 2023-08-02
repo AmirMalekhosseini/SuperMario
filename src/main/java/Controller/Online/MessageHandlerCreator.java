@@ -25,6 +25,7 @@ public class MessageHandlerCreator {
         Map<MessageType, MessageHandler> messageHandlerMap = new ConcurrentHashMap<>();
         messageHandlerMap.put(MessageType.SIGN_IN, new SignInHandler());
         messageHandlerMap.put(MessageType.SIGN_UP, new SignUpHandler());
+        messageHandlerMap.put(MessageType.PACK_MESSAGE, new PackMessageHandler());
 //        messageHandlerMap.put(MessageType.SHOP_MESSAGE, new ShopMessageHandler());
 //        messageHandlerMap.put(MessageType.CHAT_MESSAGE, new ChatMessageHandler());
 //        messageHandlerMap.put(MessageType.FRIEND_REQUEST, new FriendRequestHandler());

@@ -16,7 +16,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 
-public class StoreScreen extends JFrame implements ActionListener {
+public class OfflineStoreScreen extends JFrame implements ActionListener {
 
     ObjectMapper objectMapper;
     JLayeredPane backgroundPanel;
@@ -47,6 +47,7 @@ public class StoreScreen extends JFrame implements ActionListener {
     StoreBuyButton shooterMarioBuyButton;
     JLabel shooterMarioPriceTag;
 
+    JButton onlineStoreButton;
     JButton backButton;
     CoinForStore userCoin;
     public JLabel userCoinValue;
@@ -54,7 +55,7 @@ public class StoreScreen extends JFrame implements ActionListener {
     Diamond userDiamond;
 
 
-    StoreScreen() {
+    OfflineStoreScreen() {
         init();
     }
 
@@ -215,6 +216,14 @@ public class StoreScreen extends JFrame implements ActionListener {
         userDiamond = new Diamond(90, -3);
         backgroundPanel.add(userDiamond, Integer.valueOf(1));
 
+        onlineStoreButton = new JButton("Online Store");
+        onlineStoreButton.setBounds(460, 550, 150, 60);
+        onlineStoreButton.setBackground(Color.BLACK);
+        onlineStoreButton.setForeground(Color.WHITE);
+        onlineStoreButton.setFocusable(false);
+        onlineStoreButton.setFont(MyProjectData.getProjectData().getFont15());
+        onlineStoreButton.addActionListener(this);
+
         backButton = new JButton("Back");
         backButton.setBounds(555, 0, 85, 50);
         backButton.setBackground(Color.BLACK);
@@ -257,6 +266,7 @@ public class StoreScreen extends JFrame implements ActionListener {
         backgroundPanel.add(userCoinValue, Integer.valueOf(1));
         backgroundPanel.add(userCoin, Integer.valueOf(1));
         backgroundPanel.add(backButton, Integer.valueOf(1));
+        backgroundPanel.add(onlineStoreButton, Integer.valueOf(1));
 
         this.add(backgroundPanel);
 
@@ -273,6 +283,11 @@ public class StoreScreen extends JFrame implements ActionListener {
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
+        }
+
+        if (e.getSource() == onlineStoreButton) {
+            new OnlineStoreScreen();
+            dispose();
         }
 
         if (e.getSource() == runnerMarioBuyButton) {

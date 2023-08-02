@@ -53,7 +53,7 @@ public class PowerUp {
 
     }
 
-    public void savePowerUp(Mario activeMario) {// Get Mario powerUp Info and save it
+    public void savePowerUp(Mario activeMario) {// Get Mario powerUp Info and saveUserData it
 
         gameGodFather.getGameData().setMarioMini(activeMario.isMarioMini());
         gameGodFather.getGameData().setMarioMega(activeMario.isMarioMega());

@@ -10,9 +10,9 @@ public class Pack {
     public ArrayList<PackItems> packItems;
     private int price;
     private Currency currency;
-    private int count;
-    private int countPerUser;
-    private int level;
+    private int count = -1;
+    private int countPerUser = -1;
+    private int level = 0;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     private int packIndex;

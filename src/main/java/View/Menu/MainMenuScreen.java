@@ -1,5 +1,6 @@
 package View.Menu;
 
+import Controller.Online.ServerConnection;
 import MyProject.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -17,13 +18,14 @@ public class MainMenuScreen extends JFrame implements ActionListener {
     ObjectMapper objectMapper;
     JLayeredPane backgroundPanel;
     JLabel backgroundImageLabel;
-    JButton continueButton;
-    JButton newGameButton;
+    JButton onlineGameButton;
+    JButton offlineGameButton;
     JButton LeaderBoardButton;
     JButton storeButton;
     JButton profileButton;
     JButton backButton;
     public MainMenuScreen() {
+
         objectMapper = new ObjectMapper();
         objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
         objectMapper.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
@@ -55,21 +57,21 @@ public class MainMenuScreen extends JFrame implements ActionListener {
         backButton.setFont(font20);
         backButton.addActionListener(this);
 
-        continueButton = new JButton("Continue");
-        continueButton.setBounds(250, 130, 150, 60);
-        continueButton.setBackground(Color.BLACK);
-        continueButton.setForeground(Color.WHITE);
-        continueButton.setFocusable(false);
-        continueButton.setFont(font20);
-        continueButton.addActionListener(this);
+        onlineGameButton = new JButton("Online Game");
+        onlineGameButton.setBounds(250, 130, 150, 60);
+        onlineGameButton.setBackground(Color.BLACK);
+        onlineGameButton.setForeground(Color.WHITE);
+        onlineGameButton.setFocusable(false);
+        onlineGameButton.setFont(font20);
+        onlineGameButton.addActionListener(this);
 
-        newGameButton = new JButton("New Game");
-        newGameButton.setBounds(250, 210, 150, 60);
-        newGameButton.setBackground(Color.BLACK);
-        newGameButton.setForeground(Color.WHITE);
-        newGameButton.setFocusable(false);
-        newGameButton.setFont(font20);
-        newGameButton.addActionListener(this);
+        offlineGameButton = new JButton("Offline Game");
+        offlineGameButton.setBounds(250, 210, 150, 60);
+        offlineGameButton.setBackground(Color.BLACK);
+        offlineGameButton.setForeground(Color.WHITE);
+        offlineGameButton.setFocusable(false);
+        offlineGameButton.setFont(font15);
+        offlineGameButton.addActionListener(this);
 
         LeaderBoardButton = new JButton("Leaderboard");
         LeaderBoardButton.setBounds(250, 290, 150, 60);
@@ -96,8 +98,8 @@ public class MainMenuScreen extends JFrame implements ActionListener {
         profileButton.addActionListener(this);
 
         backgroundPanel.add(backgroundImageLabel, Integer.valueOf(0));
-        backgroundPanel.add(continueButton, Integer.valueOf(1));
-        backgroundPanel.add(newGameButton, Integer.valueOf(1));
+        backgroundPanel.add(onlineGameButton, Integer.valueOf(1));
+        backgroundPanel.add(offlineGameButton, Integer.valueOf(1));
         backgroundPanel.add(LeaderBoardButton, Integer.valueOf(1));
         backgroundPanel.add(storeButton, Integer.valueOf(1));
         backgroundPanel.add(profileButton, Integer.valueOf(1));
@@ -111,6 +113,7 @@ public class MainMenuScreen extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == backButton) {
+            ServerConnection.logOut();
             new LoginPageScreen();
             this.dispose();
             try {
@@ -120,13 +123,13 @@ public class MainMenuScreen extends JFrame implements ActionListener {
             }
         }
 
-        if (e.getSource() == continueButton) {
-            new ContinueGameScreen();
+        if (e.getSource() == onlineGameButton) {
+            new OnlineGameScreen();
             this.dispose();
         }
 
-        if (e.getSource() == newGameButton) {
-            new ChooseCharacterForStartNewGame();
+        if (e.getSource() == offlineGameButton) {
+            new OfflineGameScreen();
             this.dispose();
         }
 
@@ -136,7 +139,7 @@ public class MainMenuScreen extends JFrame implements ActionListener {
         }
 
         if (e.getSource() == storeButton) {
-            new StoreScreen();
+            new OfflineStoreScreen();
             this.dispose();
         }
 

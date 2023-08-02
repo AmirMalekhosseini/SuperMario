@@ -73,9 +73,14 @@ public class LoginPageScreen extends JFrame implements ActionListener {
         exitButton.setFocusable(false);
         exitButton.setFont(font20);
 
-        onlineButton = new JButton("Offline");
+        if (MyProject.isProjectOnline) {
+            onlineButton = new JButton("Online");
+            onlineButton.setBackground(Color.GREEN);
+        } else {
+            onlineButton = new JButton("Offline");
+            onlineButton.setBackground(Color.RED);
+        }
         onlineButton.setBounds(0, 0, 150, 70);
-        onlineButton.setBackground(Color.RED);
         onlineButton.setForeground(Color.WHITE);
         onlineButton.setFocusable(false);
         onlineButton.setFont(font20);

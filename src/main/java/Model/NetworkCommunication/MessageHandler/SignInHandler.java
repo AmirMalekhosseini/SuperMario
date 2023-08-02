@@ -20,6 +20,7 @@ public class SignInHandler implements MessageHandler {
             if (signInMessage.isPasswordOK() && signInMessage.isUsernameOK()) {
                 JOptionPane.showMessageDialog(null, "Signed In Successfully", "Sign In", JOptionPane.INFORMATION_MESSAGE);
                 MyProject.activeOnlineUser = signInMessage.getSignedInUser();
+                MyProject.activeClient.setUsername(MyProject.activeOnlineUser.getUserData().getUsername());
                 Objects.requireNonNull(SwingUtils.getActiveFrame()).dispose();
                 new MainMenuScreen();
             } else {
