@@ -1,8 +1,11 @@
 package View.Button;
 
 import Model.Mario.Sword;
+import Model.NetworkCommunication.Message.BagItemMessage;
+import Model.NetworkCommunication.Message.MessageType;
 import Model.Object.ObjectsInGame;
 import Model.Object.PackItem;
+import MyProject.MyProject;
 import MyProject.MyProjectData;
 
 import javax.swing.*;
@@ -15,8 +18,11 @@ public class BagAddButton extends JButton {
     private PackItem packItem;
     private Sword sword;
     private boolean isItemChoose;
+    private int bagIndex;
+    private boolean isItemSword = false;
 
-    public BagAddButton(int x, int y, PackItem packItem, JLayeredPane panel) {
+    public BagAddButton(int x, int y, PackItem packItem, JLayeredPane panel, int bagIndex) {
+        this.bagIndex = bagIndex;
         this.x = x;
         this.y = y;
         setBounds(x, y, 70, 40);
@@ -32,7 +38,9 @@ public class BagAddButton extends JButton {
 
     }
 
-    public BagAddButton(int x, int y, Sword sword, JLayeredPane panel) {
+    public BagAddButton(int x, int y, Sword sword, JLayeredPane panel, int bagIndex) {
+        isItemSword = true;
+        this.bagIndex = bagIndex;
         this.x = x;
         this.y = y;
         setBounds(x, y, 70, 40);
@@ -52,19 +60,41 @@ public class BagAddButton extends JButton {
 
         addActionListener(e -> {
 
+            // If Client doesn't Have Item, Can't Choose it
+            if (isItemSword) {
+                if (!MyProject.activeClient.getClientItems().contains(sword.getClass().getName())) {
+                    return;
+                }
+            } else {
+                if (!MyProject.activeClient.getClientItems().contains(packItem.getClass().getName())) {
+                    return;
+                }
+            }
+
+            BagItemMessage bagItemMessage = new BagItemMessage();
+            bagItemMessage.setBagIndex(bagIndex);
+            bagItemMessage.setMessageType(MessageType.BAG_ITEM_MESSAGE);
+            if (isItemSword) {
+                bagItemMessage.setItem(sword.getClass().getName());
+            } else {
+                bagItemMessage.setItem(packItem.getClass().getName());
+            }
+
             if (isItemChoose) {// Button is Red and User Removes Item:
                 setBackground(Color.green);
                 setText("add");
                 setFont(MyProjectData.getProjectData().getFont15());
-//                storeSubmitButton.packItems.remove(packItem);
+                bagItemMessage.setItemAdded(true);
                 isItemChoose = false;
             } else {
                 setBackground(Color.red);
                 setText("remove");
                 setFont(MyProjectData.getProjectData().getFont10());
-//                storeSubmitButton.packItems.add(packItem);
+                bagItemMessage.setItemAdded(false);
                 isItemChoose = true;
             }
+
+            MyProject.activeClient.sendToServer(bagItemMessage);
 
         });
 
@@ -110,5 +140,21 @@ public class BagAddButton extends JButton {
 
     public void setSword(Sword sword) {
         this.sword = sword;
+    }
+
+    public int getBagIndex() {
+        return bagIndex;
+    }
+
+    public void setBagIndex(int bagIndex) {
+        this.bagIndex = bagIndex;
+    }
+
+    public boolean isItemSword() {
+        return isItemSword;
+    }
+
+    public void setItemSword(boolean itemSword) {
+        isItemSword = itemSword;
     }
 }

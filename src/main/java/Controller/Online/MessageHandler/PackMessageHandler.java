@@ -1,4 +1,4 @@
-package Model.NetworkCommunication.MessageHandler;
+package Controller.Online.MessageHandler;
 
 import Controller.Menu.SwingUtils;
 import Controller.Online.ClassUtils;
@@ -15,8 +15,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class PackMessageHandler implements MessageHandler {
+
     @Override
-    public void handleMessage(Message message) {
+    public void handlerMessage(Message message) {
         if (message instanceof PackMessage) {
             PackMessage packMessage = (PackMessage) message;
             Pack newPack = createPack(packMessage);
@@ -65,4 +66,5 @@ public class PackMessageHandler implements MessageHandler {
 
         return newPack;
     }
+
 }

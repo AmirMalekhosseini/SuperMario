@@ -7,6 +7,8 @@ public enum MessageType {
     SIGN_UP,
     LOG_OUT,
     PACK_MESSAGE,
+    BAG_ITEM_MESSAGE,
+    CHOOSE_BAG_MESSAGE,
     SHOP_MESSAGE,
     CHAT_MESSAGE,
     FRIEND_REQUEST,

@@ -1,10 +1,7 @@
 package Model.Item.Online;
 
-import Model.Mario.Online.Hammer;
 import Model.Object.ObjectsInGame;
 import MyProject.MyProjectData;
-import View.Button.BagAddButton;
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -31,6 +28,9 @@ public class Bag extends ObjectsInGame {
 
     }
 
+    public Bag() {
+        background = MyProjectData.getProjectData().getBag();
+    }
 
     protected void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);

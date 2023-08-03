@@ -22,7 +22,6 @@ public class MyProject {
     public static ArrayList<OfflineUser> allOfflineUsers = new ArrayList<>();
     public static ArrayList<StorePack> StorePacks = new ArrayList<>();
     public static OfflineUser activeOfflineUser;
-    public static OnlineUser activeOnlineUser;
     public static Client activeClient;
     public static boolean isProjectOnline;
 

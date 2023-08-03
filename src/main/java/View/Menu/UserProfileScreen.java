@@ -39,6 +39,7 @@ public class UserProfileScreen extends JFrame implements ActionListener {
     JLabel userCoinValue;
     JLabel userName;
     JLabel userHighScore;
+    JButton bagScreenButton;
 
 
     UserProfileScreen() {
@@ -197,6 +198,15 @@ public class UserProfileScreen extends JFrame implements ActionListener {
         backButton.setFont(font22);
         backButton.addActionListener(this);
 
+        bagScreenButton = new JButton("Bag");
+        bagScreenButton.setBounds(460, 550, 150, 60);
+        bagScreenButton.setBackground(Color.BLACK);
+        bagScreenButton.setForeground(Color.WHITE);
+        bagScreenButton.setFocusable(false);
+        bagScreenButton.setFont(MyProjectData.getProjectData().getFont22());
+        bagScreenButton.addActionListener(this);
+        backgroundPanel.add(bagScreenButton, Integer.valueOf(1));
+
         backgroundPanel.add(backgroundImageLabel, Integer.valueOf(0));
         backgroundPanel.add(normalMario, Integer.valueOf(1));
         backgroundPanel.add(normalMarioName, Integer.valueOf(1));
@@ -239,6 +249,11 @@ public class UserProfileScreen extends JFrame implements ActionListener {
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
+        }
+
+        if (e.getSource() == bagScreenButton && MyProject.isProjectOnline) {
+            new BagScreen();
+            dispose();
         }
 
         if (e.getSource() == normalMarioChooseButton) {// OfflineUser choose normal mario

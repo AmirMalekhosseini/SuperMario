@@ -1,4 +1,4 @@
-package Model.NetworkCommunication.MessageHandler;
+package Controller.Online.MessageHandler;
 
 import Model.NetworkCommunication.Message.Message;
 import Model.NetworkCommunication.Message.SignUpMessage;
@@ -6,8 +6,9 @@ import Model.NetworkCommunication.Message.SignUpMessage;
 import javax.swing.*;
 
 public class SignUpHandler implements MessageHandler {
+
     @Override
-    public void handleMessage(Message message) {
+    public void handlerMessage(Message message) {
 
         if (message instanceof SignUpMessage) {
 

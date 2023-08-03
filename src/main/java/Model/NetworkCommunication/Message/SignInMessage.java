@@ -1,10 +1,10 @@
 package Model.NetworkCommunication.Message;
 
 import Model.Game.OnlineUser;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class SignInMessage extends Message {
 
-    private OnlineUser signedInUser;
     private String username;
     private String password;
     private boolean isUsernameOK;
@@ -51,11 +51,4 @@ public class SignInMessage extends Message {
         this.username = username;
     }
 
-    public OnlineUser getSignedInUser() {
-        return signedInUser;
-    }
-
-    public void setSignedInUser(OnlineUser signedInUser) {
-        this.signedInUser = signedInUser;
-    }
 }

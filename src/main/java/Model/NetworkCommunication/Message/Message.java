@@ -9,6 +9,8 @@ import com.fasterxml.jackson.annotation.*;
         @JsonSubTypes.Type(value = SignInMessage.class, name = "SIGN_IN"),
         @JsonSubTypes.Type(value = LogOutMessage.class, name = "LOG_OUT"),
         @JsonSubTypes.Type(value = PackMessage.class, name = "PACK_MESSAGE"),
+        @JsonSubTypes.Type(value = BagItemMessage.class, name = "BAG_ITEM_MESSAGE"),
+        @JsonSubTypes.Type(value = ChooseBagMessage.class, name = "CHOOSE_BAG_MESSAGE"),
         // Add other subclasses with corresponding discriminator names
 })
 public class Message {

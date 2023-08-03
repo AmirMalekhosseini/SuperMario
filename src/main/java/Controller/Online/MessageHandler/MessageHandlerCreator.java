@@ -1,8 +1,6 @@
-package Controller.Online;
+package Controller.Online.MessageHandler;
 
 import Model.NetworkCommunication.Message.MessageType;
-import Model.NetworkCommunication.MessageHandler.*;
-
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -26,6 +24,7 @@ public class MessageHandlerCreator {
         messageHandlerMap.put(MessageType.SIGN_IN, new SignInHandler());
         messageHandlerMap.put(MessageType.SIGN_UP, new SignUpHandler());
         messageHandlerMap.put(MessageType.PACK_MESSAGE, new PackMessageHandler());
+        messageHandlerMap.put(MessageType.CHOOSE_BAG_MESSAGE, new ChooseBagHandler());
 //        messageHandlerMap.put(MessageType.SHOP_MESSAGE, new ShopMessageHandler());
 //        messageHandlerMap.put(MessageType.CHAT_MESSAGE, new ChatMessageHandler());
 //        messageHandlerMap.put(MessageType.FRIEND_REQUEST, new FriendRequestHandler());

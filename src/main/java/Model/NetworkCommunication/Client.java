@@ -1,16 +1,18 @@
 package Model.NetworkCommunication;
 
 import Controller.Online.JsonUtils;
-import Controller.Online.MessageHandlerCreator;
+import Controller.Online.MessageHandler.MessageHandler;
+import Controller.Online.MessageHandler.MessageHandlerCreator;
 import Model.NetworkCommunication.Message.Message;
 import Model.NetworkCommunication.Message.MessageType;
-import Model.NetworkCommunication.MessageHandler.MessageHandler;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -18,6 +20,8 @@ public class Client {
 
 
     private Map<MessageType, MessageHandler> messageHandlerMap;
+    private ArrayList<String> clientItems;
+    private int activeBagIndex;
     private volatile boolean isClientOnline;
     private final Socket socket;
     private String username;
@@ -27,10 +31,11 @@ public class Client {
 
     public Client(String serverAddress, int serverPort) throws IOException {
 
-         socket = new Socket(serverAddress, serverPort);
+        socket = new Socket(serverAddress, serverPort);
         isClientOnline = true;
         messageHandlerMap = MessageHandlerCreator.getInstance().createMessageHandler();
         System.out.println("Connected to server.");
+        clientItems = new ArrayList<>();
 
         sender = new PrintWriter(socket.getOutputStream(), true);
         receiver = new Scanner(socket.getInputStream());
@@ -58,7 +63,7 @@ public class Client {
                 try {
                     Message receivedMessage = JsonUtils.deserializeFromJson(receivedJson, Message.class);
                     MessageHandler handler = messageHandlerMap.get(receivedMessage.getMessageType());
-                    handler.handleMessage(receivedMessage);
+                    handler.handlerMessage(receivedMessage);
                 } catch (JsonProcessingException e) {
                     throw new RuntimeException(e);
                 }
@@ -113,5 +118,21 @@ public class Client {
 
     public void setMessageHandlerMap(Map<MessageType, MessageHandler> messageHandlerMap) {
         this.messageHandlerMap = messageHandlerMap;
+    }
+
+    public int getActiveBagIndex() {
+        return activeBagIndex;
+    }
+
+    public void setActiveBagIndex(int activeBagIndex) {
+        this.activeBagIndex = activeBagIndex;
+    }
+
+    public ArrayList<String> getClientItems() {
+        return clientItems;
+    }
+
+    public void setClientItems(ArrayList<String> clientItems) {
+        this.clientItems = clientItems;
     }
 }

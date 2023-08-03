@@ -27,6 +27,15 @@ public class ServerConnection {
                 e.printStackTrace();
             }
             logOut();
+
+            // Save Data in Log Out Method
+            for (OfflineUser user : MyProject.allOfflineUsers) {
+                if (user.getUserData().getUsername().equals(MyProject.activeClient.getUsername())) {
+                    MyProject.activeOfflineUser = user;
+                    MyProject.activeClient = null;
+                    break;
+                }
+            }
         }
     }
 
@@ -40,17 +49,9 @@ public class ServerConnection {
 
         LogOutMessage logOutMessage = new LogOutMessage();
         logOutMessage.setMessageType(MessageType.LOG_OUT);
-        logOutMessage.setTargetUser(MyProject.activeOnlineUser.getUserData().getUsername());
+        logOutMessage.setTargetUser(MyProject.activeClient.getUsername());
         MyProject.activeClient.sendToServer(logOutMessage);
 
-        for (OfflineUser user : MyProject.allOfflineUsers) {
-            if (user.getUserData().getUsername().equals(MyProject.activeOnlineUser.getUserData().getUsername())) {
-                MyProject.activeOfflineUser = user;
-                MyProject.activeOnlineUser = null;
-                MyProject.activeClient = null;
-                break;
-            }
-        }
     }
 
 }
