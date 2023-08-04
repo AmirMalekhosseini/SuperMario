@@ -1,18 +1,16 @@
 package Controller.Online.MessageHandler;
 
-import Model.NetworkCommunication.Message.FriendRequestMessage;
 import Model.NetworkCommunication.Message.Message;
-import Model.NetworkCommunication.Message.RemoveLobbyMessage;
-import View.Notification.FriendRequestNotification;
+import Model.NetworkCommunication.Message.RemoveLobbyMemberMessage;
 import View.Notification.RemoveLobbyNotification;
 
-public class RemoveLobbyHandler implements MessageHandler{
+public class RemoveLobbyMemberHandler implements MessageHandler{
 
     @Override
     public void handlerMessage(Message message) {
 
-        if (message instanceof RemoveLobbyMessage) {
-            RemoveLobbyMessage removeMessage = (RemoveLobbyMessage) message;
+        if (message instanceof RemoveLobbyMemberMessage) {
+            RemoveLobbyMemberMessage removeMessage = (RemoveLobbyMemberMessage) message;
             String messageContext = "You Have been Removed from Lobby";
             String title = removeMessage.getSenderUser();
             new RemoveLobbyNotification(title, messageContext);

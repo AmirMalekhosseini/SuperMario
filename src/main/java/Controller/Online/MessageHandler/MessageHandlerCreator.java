@@ -29,7 +29,9 @@ public class MessageHandlerCreator {
         messageHandlerMap.put(MessageType.FRIEND_REQUEST, new FriendRequestHandler());
         messageHandlerMap.put(MessageType.GAME_REQUEST, new GameRequestHandler());
         messageHandlerMap.put(MessageType.NEW_ITEM_MESSAGE, new NewItemHandler());
-        messageHandlerMap.put(MessageType.REMOVE_LOBBY_MESSAGE, new RemoveLobbyHandler());
+        messageHandlerMap.put(MessageType.New_Lobby_Member, new NewLobbyMemberHandler());
+        messageHandlerMap.put(MessageType.REMOVE_LOBBY_MEMBER, new RemoveLobbyMemberHandler());
+
 
         // TO be Continued...
 

@@ -5,6 +5,7 @@ import Controller.Online.MessageHandler.MessageHandler;
 import Controller.Online.MessageHandler.MessageHandlerCreator;
 import Model.NetworkCommunication.Message.Message;
 import Model.NetworkCommunication.Message.MessageType;
+import View.Menu.OnlineLobby.OnlineLobbyScreen;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -22,6 +23,7 @@ public class Client {
     private Map<MessageType, MessageHandler> messageHandlerMap;
     private ArrayList<String> clientItems;
     private int activeBagIndex;
+    private OnlineLobbyScreen activeLobbyScreen;
     private volatile boolean isClientOnline;
     private final Socket socket;
     private String username;
@@ -134,5 +136,13 @@ public class Client {
 
     public void setClientItems(ArrayList<String> clientItems) {
         this.clientItems = clientItems;
+    }
+
+    public OnlineLobbyScreen getActiveLobbyScreen() {
+        return activeLobbyScreen;
+    }
+
+    public void setActiveLobbyScreen(OnlineLobbyScreen activeLobbyScreen) {
+        this.activeLobbyScreen = activeLobbyScreen;
     }
 }

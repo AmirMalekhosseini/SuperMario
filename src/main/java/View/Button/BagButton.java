@@ -1,6 +1,7 @@
 package View.Button;
 
 import Model.NetworkCommunication.Message.ChooseBagMessage;
+import Model.NetworkCommunication.Message.MessageType;
 import MyProject.MyProject;
 import MyProject.MyProjectData;
 
@@ -52,6 +53,7 @@ public class BagButton extends JButton {
         setText("Chosen");
         isButtonChoose = true;
         ChooseBagMessage chooseBagMessage = new ChooseBagMessage();
+        chooseBagMessage.setMessageType(MessageType.CHOOSE_BAG_MESSAGE);
         chooseBagMessage.setBagIndex(bagIndex);
         chooseBagMessage.setChoose(true);
         MyProject.activeClient.sendToServer(chooseBagMessage);
@@ -65,6 +67,7 @@ public class BagButton extends JButton {
         isButtonChoose = false;
         MyProject.activeClient.setActiveBagIndex(-1);
         ChooseBagMessage chooseBagMessage = new ChooseBagMessage();
+        chooseBagMessage.setMessageType(MessageType.CHOOSE_BAG_MESSAGE);
         chooseBagMessage.setBagIndex(bagIndex);
         chooseBagMessage.setChoose(false);
         MyProject.activeClient.sendToServer(chooseBagMessage);

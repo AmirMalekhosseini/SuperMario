@@ -1,8 +1,14 @@
 package View.Menu.OnlineLobby;
 
+import Model.NetworkCommunication.Message.GameRequestMessage;
+import Model.NetworkCommunication.Message.MessageType;
+import MyProject.MyProject;
 import MyProject.MyProjectData;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 public class LobbyPanel extends JLayeredPane {
@@ -15,7 +21,7 @@ public class LobbyPanel extends JLayeredPane {
     protected JButton startButton;
     protected JButton readyButton;
     protected JScrollPane inviteListScrollPane;
-    private JList<String> inviteList;
+    private FriendJList friendJList;
 
     public LobbyPanel(OnlineLobbyScreen screen) {
         setLayout(null);
@@ -24,17 +30,20 @@ public class LobbyPanel extends JLayeredPane {
         ImageIcon backgroundImage = MyProjectData.getProjectData().getGameLobbyImage();
 
         backgroundImageLabel = new JLabel(backgroundImage);
-        backgroundImageLabel.setBounds(0,0, backgroundImage.getIconWidth(), backgroundImage.getIconHeight());
+        backgroundImageLabel.setBounds(0, 0, backgroundImage.getIconWidth(), backgroundImage.getIconHeight());
         backgroundImageLabel.setOpaque(true);
 
         add(backgroundImageLabel, Integer.valueOf(0));
         addJList();
 
+        addMouseListener();
         addButtons();
         addButtonAction(screen);
     }
 
     private void addJList() {
+        //ToDo: Create List from Client Friends.
+
         // Initialize the JList and JScrollPane
         ArrayList<String> inviteeList = new ArrayList<>();
         inviteeList.add("Invitee 1");
@@ -44,27 +53,47 @@ public class LobbyPanel extends JLayeredPane {
 
         // Convert the ArrayList to an array and use it to initialize the JList
         String[] inviteItems = inviteeList.toArray(new String[0]);
-        inviteList = new JList<>(inviteItems);
-        inviteList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        inviteListScrollPane = new JScrollPane(inviteList);
+        friendJList = new FriendJList(inviteItems);
+        inviteListScrollPane = new JScrollPane(friendJList);
         inviteListScrollPane.setBounds(25, 280, 200, 100);
         inviteListScrollPane.setVisible(false); // Initially, hide the JList
 
         add(inviteListScrollPane, Integer.valueOf(1));
 
+
         // Add ListSelectionListener to the JList to perform action on selection
-        inviteList.addListSelectionListener(e -> {
+        friendJList.addListSelectionListener(e -> {
             if (!e.getValueIsAdjusting()) {
-                String selectedInvitee = inviteList.getSelectedValue();
+                String selectedInvitee = friendJList.getSelectedValue();
                 if (selectedInvitee != null) {
-                    // ToDO:Perform an action based on the selected invitee.
                     System.out.println("Inviting: " + selectedInvitee);
+                    GameRequestMessage requestMessage = new GameRequestMessage();
+                    requestMessage.setMessageType(MessageType.GAME_REQUEST);
+                    requestMessage.setTargetUser(selectedInvitee);
+                    requestMessage.setLobbyName(MyProject.activeClient.getActiveLobbyScreen().getModel().getLobbyName());
+                    MyProject.activeClient.sendToServer(requestMessage);
 
                     // Hide the JList after selection
                     inviteListScrollPane.setVisible(false);
                 }
             }
         });
+    }
+
+    private void addMouseListener() {
+
+        addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+
+                if (!inviteListScrollPane.getBounds().contains(e.getPoint())) {
+                    friendJList.clearSelection();
+                    inviteListScrollPane.setVisible(false);
+                }
+
+            }
+        });
+
     }
 
     private void addButtons() {
@@ -125,8 +154,8 @@ public class LobbyPanel extends JLayeredPane {
 
         inviteButton.addActionListener(e -> {
 
+            addJList();
             inviteListScrollPane.setVisible(true); // Show the JList
-
         });
     }
 

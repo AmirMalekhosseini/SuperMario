@@ -8,22 +8,29 @@ import java.util.ArrayList;
 
 public class LobbyModel {
 
-    private OfflineUser adminOfflineUser;
-    private ArrayList<OfflineUser> coAdmins;
-    private ArrayList<OfflineUser> members;
+    private String lobbyName;
+    private String adminUser;
     public LobbyButtonCreator buttonCreator;
 
-    public LobbyModel(OfflineUser adminOfflineUser) {
-        this.adminOfflineUser = adminOfflineUser;
-        coAdmins = new ArrayList<>();
-        members = new ArrayList<>();
+    // Admin Constructor:
+    public LobbyModel(String adminUser) {
+        this.adminUser = adminUser;
+        lobbyName = adminUser;
+        buttonCreator = new LobbyButtonCreator();
     }
 
-    public void addButtons(OnlineLobbyScreen screen) {
 
-        for (LobbyMemberButton button : screen.getMemberButtons()) {
-            screen.choosePanel.add(button);
-        }
+    // Members Constructor:
+    public LobbyModel(ArrayList<String> members, String adminUser) {
+        this.adminUser = adminUser;
+        buttonCreator = new LobbyButtonCreator();
+    }
+
+    public void addButton(OnlineLobbyScreen screen, String newUser) {
+        LobbyMemberButton newMemberButton = buttonCreator.createButton(newUser);
+        screen.choosePanel.add(newMemberButton);
+        screen.choosePanel.revalidate();
+        screen.revalidate();
     }
 
     public void goToLobby(OnlineLobbyScreen screen) {
@@ -46,27 +53,20 @@ public class LobbyModel {
 
     }
 
-    public OfflineUser getAdminUser() {
-        return adminOfflineUser;
+    public String getAdminUser() {
+        return adminUser;
     }
 
-    public void setAdminUser(OfflineUser adminOfflineUser) {
-        this.adminOfflineUser = adminOfflineUser;
+    public void setAdminUser(String adminUser) {
+        this.adminUser = adminUser;
     }
 
-    public ArrayList<OfflineUser> getCoAdmins() {
-        return coAdmins;
+
+    public String getLobbyName() {
+        return lobbyName;
     }
 
-    public void setCoAdmins(ArrayList<OfflineUser> coAdmins) {
-        this.coAdmins = coAdmins;
-    }
-
-    public ArrayList<OfflineUser> getMembers() {
-        return members;
-    }
-
-    public void setMembers(ArrayList<OfflineUser> members) {
-        this.members = members;
+    public void setLobbyName(String lobbyName) {
+        this.lobbyName = lobbyName;
     }
 }

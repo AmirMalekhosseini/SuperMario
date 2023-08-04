@@ -1,14 +1,17 @@
 package MyProject;
 
+import Controller.Menu.SwingUtils;
 import Model.Game.OfflineUser;
 import Model.NetworkCommunication.Client;
 import Model.OnlineStorePack.StorePack;
+import View.Menu.OnlineLobby.OnlineLobbyScreen;
 import View.Notification.FriendRequestNotification;
 import View.Notification.Notification;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
+import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -43,7 +46,7 @@ public class MyProject {
 //        StorePacks = PackCreator.getInstance().createInitPack();
 //        new LoginPageScreen();
 //        new GameGodFather(new GameData());
-        Notification notification = new FriendRequestNotification("test","this is a test");
+        SwingUtilities.invokeLater(() -> new OnlineLobbyScreen("amir").setVisible(true));
     }
 
 

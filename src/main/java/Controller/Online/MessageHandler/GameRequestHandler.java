@@ -17,6 +17,8 @@ public class GameRequestHandler implements MessageHandler{
             String title = "Game Request";
             new GameRequestNotification(title, messageContext);
 
+            //ToDo : get Client answer and create a game request answer and sends it to server.
+
         }
 
     }
