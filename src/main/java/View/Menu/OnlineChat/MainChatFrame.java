@@ -23,7 +23,7 @@ public class MainChatFrame extends JFrame {
     protected JScrollPane chooseScroll;
     protected JPanel inputPanel;
     protected JLabel backgroundImage;
-    private ChatFrameModel model;
+    private final ChatFrameModel model;
 
     public MainChatFrame() {
         // Main Chat Frame
@@ -94,6 +94,7 @@ public class MainChatFrame extends JFrame {
         model.chatButtonCreator = new ChatButtonCreator();
         buttons = model.chatButtonCreator.createButton(messageField);
         model.addButtons(this);
+        model.addMessageFieldAction(this);
         model.addButtonAction(this);
         model.addChatScreens(this);
 

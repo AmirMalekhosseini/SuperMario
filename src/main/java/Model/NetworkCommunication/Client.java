@@ -5,25 +5,30 @@ import Controller.Online.MessageHandler.MessageHandler;
 import Controller.Online.MessageHandler.MessageHandlerCreator;
 import Model.NetworkCommunication.Message.Message;
 import Model.NetworkCommunication.Message.MessageType;
+import Model.OnlineChat.UserChat;
+import View.Menu.OnlineChat.MainChatFrame;
 import View.Menu.OnlineLobby.OnlineLobbyScreen;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class Client {
 
 
     private Map<MessageType, MessageHandler> messageHandlerMap;
+    private Map<String, ArrayList<UserChat>> userChatScreens;
+    private ArrayList<String> userFriends;
     private ArrayList<String> clientItems;
     private int activeBagIndex;
     private OnlineLobbyScreen activeLobbyScreen;
+    private MainChatFrame activeChatFrame;
     private volatile boolean isClientOnline;
     private final Socket socket;
     private String username;
@@ -38,6 +43,8 @@ public class Client {
         messageHandlerMap = MessageHandlerCreator.getInstance().createMessageHandler();
         System.out.println("Connected to server.");
         clientItems = new ArrayList<>();
+        userFriends = new ArrayList<>();
+        userChatScreens = new ConcurrentHashMap<>();
 
         sender = new PrintWriter(socket.getOutputStream(), true);
         receiver = new Scanner(socket.getInputStream());
@@ -144,5 +151,29 @@ public class Client {
 
     public void setActiveLobbyScreen(OnlineLobbyScreen activeLobbyScreen) {
         this.activeLobbyScreen = activeLobbyScreen;
+    }
+
+    public MainChatFrame getActiveChatFrame() {
+        return activeChatFrame;
+    }
+
+    public void setActiveChatFrame(MainChatFrame activeChatFrame) {
+        this.activeChatFrame = activeChatFrame;
+    }
+
+    public Map<String, ArrayList<UserChat>> getUserChatScreens() {
+        return userChatScreens;
+    }
+
+    public void setUserChatScreens(Map<String, ArrayList<UserChat>> userChatScreens) {
+        this.userChatScreens = userChatScreens;
+    }
+
+    public ArrayList<String> getUserFriends() {
+        return userFriends;
+    }
+
+    public void setUserFriends(ArrayList<String> userFriends) {
+        this.userFriends = userFriends;
     }
 }

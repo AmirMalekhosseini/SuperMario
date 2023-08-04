@@ -12,7 +12,6 @@ import com.fasterxml.jackson.annotation.*;
         @JsonSubTypes.Type(value = BagItemMessage.class, name = "BAG_ITEM_MESSAGE"),
         @JsonSubTypes.Type(value = ChooseBagMessage.class, name = "CHOOSE_BAG_MESSAGE"),
         @JsonSubTypes.Type(value = ChatMessage.class, name = "CHAT_MESSAGE"),
-        @JsonSubTypes.Type(value = ChatNotificationMessage.class, name = "CHAT_NOTIFICATION"),
         @JsonSubTypes.Type(value = FriendRequestMessage.class, name = "FRIEND_REQUEST"),
         @JsonSubTypes.Type(value = GameRequestMessage.class, name = "GAME_REQUEST"),
         @JsonSubTypes.Type(value = GameRequestAnswer.class, name = "GAME_REQUEST_ANSWER"),

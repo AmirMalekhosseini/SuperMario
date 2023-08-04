@@ -25,7 +25,6 @@ public class MessageHandlerCreator {
         messageHandlerMap.put(MessageType.SIGN_UP, new SignUpHandler());
         messageHandlerMap.put(MessageType.PACK_MESSAGE, new PackMessageHandler());
         messageHandlerMap.put(MessageType.CHAT_MESSAGE, new ChatMessageHandler());
-        messageHandlerMap.put(MessageType.CHAT_NOTIFICATION, new ChatNotificationHandler());
         messageHandlerMap.put(MessageType.FRIEND_REQUEST, new FriendRequestHandler());
         messageHandlerMap.put(MessageType.GAME_REQUEST, new GameRequestHandler());
         messageHandlerMap.put(MessageType.NEW_ITEM_MESSAGE, new NewItemHandler());
