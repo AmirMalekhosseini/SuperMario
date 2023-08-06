@@ -1,14 +1,27 @@
 package View.Notification;
 
+import Controller.Menu.SwingUtils;
+import Model.NetworkCommunication.Message.FriendRequestAnswer;
+import Model.NetworkCommunication.Message.GameRequestAnswer;
+import Model.NetworkCommunication.Message.GameRequestMessage;
+import Model.NetworkCommunication.Message.MessageType;
+import MyProject.MyProject;
+import View.Menu.OnlineLobby.OnlineLobbyScreen;
+
 import javax.swing.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Objects;
 
 public class GameRequestNotification extends Notification{
 
 
-    public GameRequestNotification(String title, String message) {
+    GameRequestMessage requestMessage;
+    String sender;
+    public GameRequestNotification(String title, String message, GameRequestMessage gameRequestMessage) {
         super(title, message);
+        this.requestMessage = gameRequestMessage;
+        this.sender = gameRequestMessage.getSenderUser();
         addButtonListener();
     }
 
@@ -30,6 +43,16 @@ public class GameRequestNotification extends Notification{
 
     private void handleLeftClick() {
         // Handle left-click behavior here
+        GameRequestAnswer requestAnswer = new GameRequestAnswer();
+        requestAnswer.setMessageType(MessageType.GAME_REQUEST_ANSWER);
+        requestAnswer.setAnswer(true);
+        requestAnswer.setTargetUser(sender);
+        requestAnswer.setLobbyName(requestMessage.getLobbyName());
+        MyProject.activeClient.sendToServer(requestAnswer);
+        dispose();
+        SwingUtils.closeAllFrames();
+        OnlineLobbyScreen lobbyScreen = new OnlineLobbyScreen(requestMessage.getMembers(), requestMessage.getLobbyName());
+        MyProject.activeClient.setActiveLobbyScreen(lobbyScreen);
     }
 
     private void handleRightClick() {

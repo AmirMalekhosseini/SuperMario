@@ -2,6 +2,8 @@ package View.Menu;
 
 import Controller.Online.ServerConnection;
 import MyProject.*;
+import View.Button.AddFriendButton;
+import View.Menu.OnlineChat.MainChatFrame;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
@@ -24,6 +26,8 @@ public class MainMenuScreen extends JFrame implements ActionListener {
     JButton storeButton;
     JButton profileButton;
     JButton backButton;
+    JButton chatButton;
+    AddFriendButton friendButton;
     public MainMenuScreen() {
 
         objectMapper = new ObjectMapper();
@@ -56,6 +60,16 @@ public class MainMenuScreen extends JFrame implements ActionListener {
         backButton.setFocusable(false);
         backButton.setFont(font20);
         backButton.addActionListener(this);
+
+        chatButton = new JButton("Chat");
+        chatButton.setBounds(0, 0, 85, 50);
+        chatButton.setBackground(Color.BLACK);
+        chatButton.setForeground(Color.WHITE);
+        chatButton.setFocusable(false);
+        chatButton.setFont(font20);
+        chatButton.addActionListener(this);
+
+        friendButton = new AddFriendButton(85, 0);
 
         onlineGameButton = new JButton("Online Game");
         onlineGameButton.setBounds(250, 130, 150, 60);
@@ -104,6 +118,8 @@ public class MainMenuScreen extends JFrame implements ActionListener {
         backgroundPanel.add(storeButton, Integer.valueOf(1));
         backgroundPanel.add(profileButton, Integer.valueOf(1));
         backgroundPanel.add(backButton, Integer.valueOf(1));
+        backgroundPanel.add(chatButton, Integer.valueOf(1));
+        backgroundPanel.add(friendButton, Integer.valueOf(1));
 
         this.add(backgroundPanel);
 
@@ -121,6 +137,11 @@ public class MainMenuScreen extends JFrame implements ActionListener {
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
+        }
+
+        if (e.getSource() == chatButton) {
+            new MainChatFrame();
+            dispose();
         }
 
         if (e.getSource() == onlineGameButton) {

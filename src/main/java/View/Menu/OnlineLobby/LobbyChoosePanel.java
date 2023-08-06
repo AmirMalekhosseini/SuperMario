@@ -8,8 +8,6 @@ public class LobbyChoosePanel extends JPanel {
 
     public LobbyChoosePanel() {
         setSize(200, 800);
-//        setBackground(Color.BLACK);
-//        setOpaque(true);
     }
 
 }

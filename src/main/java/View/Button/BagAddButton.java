@@ -62,11 +62,11 @@ public class BagAddButton extends JButton {
 
             // If Client doesn't Have Item, Can't Choose it
             if (isItemSword) {
-                if (!MyProject.activeClient.getClientItems().contains(sword.getClass().getName())) {
+                if (!MyProject.activeClient.getClientItems().containsKey(sword.getClass().getName())) {
                     return;
                 }
             } else {
-                if (!MyProject.activeClient.getClientItems().contains(packItem.getClass().getName())) {
+                if (!MyProject.activeClient.getClientItems().containsKey(packItem.getClass().getName())) {
                     return;
                 }
             }

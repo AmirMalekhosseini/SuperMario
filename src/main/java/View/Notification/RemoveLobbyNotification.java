@@ -1,8 +1,12 @@
 package View.Notification;
 
+import Controller.Menu.SwingUtils;
+import View.Menu.MainMenuScreen;
+
 import javax.swing.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Objects;
 
 public class RemoveLobbyNotification extends Notification {
 
@@ -30,6 +34,9 @@ public class RemoveLobbyNotification extends Notification {
 
     private void handleLeftClick() {
         // Handle left-click behavior here
+        dispose();
+        Objects.requireNonNull(SwingUtils.getActiveFrame()).dispose();
+        new MainMenuScreen();
     }
 
     private void handleRightClick() {

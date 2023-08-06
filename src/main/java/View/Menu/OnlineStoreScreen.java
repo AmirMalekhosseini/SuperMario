@@ -107,6 +107,7 @@ public class OnlineStoreScreen extends JFrame {
         backgroundPanel.add(hammerPack.getCurrency(), Integer.valueOf(1));
         backgroundPanel.add(hammerPack.getBuyButton(), Integer.valueOf(1));
         backgroundPanel.add(hammerPack.getPriceTag(), Integer.valueOf(1));
+        backgroundPanel.add(hammerPack.getCountLabel(), Integer.valueOf(1));
         storePacks.add(hammerPack);
 
         damageBombPack = new StorePack(200, 150, MyProject.StorePacks.get(1).getPack(), false);
@@ -114,6 +115,7 @@ public class OnlineStoreScreen extends JFrame {
         backgroundPanel.add(damageBombPack.getCurrency(), Integer.valueOf(1));
         backgroundPanel.add(damageBombPack.getBuyButton(), Integer.valueOf(1));
         backgroundPanel.add(damageBombPack.getPriceTag(), Integer.valueOf(1));
+        backgroundPanel.add(damageBombPack.getCountLabel(), Integer.valueOf(1));
         storePacks.add(damageBombPack);
 
         speedBombPack = new StorePack(350, 150, MyProject.StorePacks.get(2).getPack(), false);
@@ -121,6 +123,7 @@ public class OnlineStoreScreen extends JFrame {
         backgroundPanel.add(speedBombPack.getCurrency(), Integer.valueOf(1));
         backgroundPanel.add(speedBombPack.getBuyButton(), Integer.valueOf(1));
         backgroundPanel.add(speedBombPack.getPriceTag(), Integer.valueOf(1));
+        backgroundPanel.add(speedBombPack.getCountLabel(), Integer.valueOf(1));
         storePacks.add(speedBombPack);
 
         healPotionPack = new StorePack(50, 350, MyProject.StorePacks.get(3).getPack(), false);
@@ -128,6 +131,7 @@ public class OnlineStoreScreen extends JFrame {
         backgroundPanel.add(healPotionPack.getCurrency(), Integer.valueOf(1));
         backgroundPanel.add(healPotionPack.getBuyButton(), Integer.valueOf(1));
         backgroundPanel.add(healPotionPack.getPriceTag(), Integer.valueOf(1));
+        backgroundPanel.add(healPotionPack.getCountLabel(), Integer.valueOf(1));
         storePacks.add(healPotionPack);
 
         invisiblePotionPack = new StorePack(200, 350, MyProject.StorePacks.get(4).getPack(), false);
@@ -135,6 +139,7 @@ public class OnlineStoreScreen extends JFrame {
         backgroundPanel.add(invisiblePotionPack.getCurrency(), Integer.valueOf(1));
         backgroundPanel.add(invisiblePotionPack.getBuyButton(), Integer.valueOf(1));
         backgroundPanel.add(invisiblePotionPack.getPriceTag(), Integer.valueOf(1));
+        backgroundPanel.add(invisiblePotionPack.getCountLabel(), Integer.valueOf(1));
         storePacks.add(invisiblePotionPack);
 
         speedPotionPack = new StorePack(350, 350, MyProject.StorePacks.get(5).getPack(), false);
@@ -142,6 +147,7 @@ public class OnlineStoreScreen extends JFrame {
         backgroundPanel.add(speedPotionPack.getCurrency(), Integer.valueOf(1));
         backgroundPanel.add(speedPotionPack.getBuyButton(), Integer.valueOf(1));
         backgroundPanel.add(speedPotionPack.getPriceTag(), Integer.valueOf(1));
+        backgroundPanel.add(speedPotionPack.getCountLabel(), Integer.valueOf(1));
         storePacks.add(speedPotionPack);
 
         multiplePack = new StorePack(500, 150, MyProject.StorePacks.get(6).getPack(), true);
@@ -149,6 +155,7 @@ public class OnlineStoreScreen extends JFrame {
         backgroundPanel.add(multiplePack.getCurrency(), Integer.valueOf(1));
         backgroundPanel.add(multiplePack.getBuyButton(), Integer.valueOf(1));
         backgroundPanel.add(multiplePack.getPriceTag(), Integer.valueOf(1));
+        backgroundPanel.add(multiplePack.getCountLabel(), Integer.valueOf(1));
         storePacks.add(multiplePack);
 
     }

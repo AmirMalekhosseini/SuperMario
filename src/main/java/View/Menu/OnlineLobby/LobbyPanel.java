@@ -52,7 +52,7 @@ public class LobbyPanel extends JLayeredPane {
         inviteeList.add("Invitee 4");
 
         // Convert the ArrayList to an array and use it to initialize the JList
-        String[] inviteItems = inviteeList.toArray(new String[0]);
+        String[] inviteItems = MyProject.activeClient.getUserFriends().toArray(new String[0]);
         friendJList = new FriendJList(inviteItems);
         inviteListScrollPane = new JScrollPane(friendJList);
         inviteListScrollPane.setBounds(25, 280, 200, 100);

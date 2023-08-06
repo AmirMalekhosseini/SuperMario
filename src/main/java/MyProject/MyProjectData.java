@@ -20,6 +20,7 @@ public class MyProjectData {
     protected ImageIcon shooterMarioImage;
     protected ImageIcon coinMarioImage;
 
+    protected BufferedImage addFriend;
     protected BufferedImage Vilgax_FireBall;
     protected BufferedImage Vilgax_Button;
     protected BufferedImage Vilgax_Phase1;
@@ -579,6 +580,15 @@ public class MyProjectData {
         jumperMarioImage = new ImageIcon("mario/GreenMario_Jumper/stand_Green_Jumper.png");
         shooterMarioImage = new ImageIcon("mario/BlackMario_Shooter/stand_Black_Shooter.png");
         coinMarioImage = new ImageIcon("mario/YellowMario_Coin/stand_Yellow_Coin.png");
+
+        try {
+            String pathBackground = "Chat/AddFriend.png";
+            File fileBackground = new File(pathBackground);
+            addFriend = ImageIO.read(fileBackground);
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -1909,5 +1919,9 @@ public class MyProjectData {
 
     public BufferedImage getVilgax_Button() {
         return Vilgax_Button;
+    }
+
+    public BufferedImage getAddFriend() {
+        return addFriend;
     }
 }

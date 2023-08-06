@@ -1,11 +1,14 @@
 package View.Menu.OnlineChat;
 
 import Controller.Menu.OnlineChat.ChatButtonCreator;
+import Model.NetworkCommunication.Client;
 import Model.OnlineChat.ChatFrameModel;
+import MyProject.MyProject;
 import MyProject.MyProjectData;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -14,6 +17,8 @@ public class MainChatFrame extends JFrame {
 
     protected ArrayList<ChatChooseButton> buttons;
     protected HashMap<String, ChatScreen> chatScreens = new HashMap<>();
+    protected JPanel backPanel;
+    public JButton backButton;
     public ChatChoosePanel choosePanel;
     public ChatScrollPane chatScroll;
     public JPanel panel;
@@ -26,6 +31,7 @@ public class MainChatFrame extends JFrame {
     private final ChatFrameModel model;
 
     public MainChatFrame() {
+        MyProject.activeClient.setActiveChatFrame(this);
         // Main Chat Frame
         ImageIcon gameIcon = MyProjectData.getProjectData().getGameIcon();
         model = new ChatFrameModel();
@@ -85,6 +91,19 @@ public class MainChatFrame extends JFrame {
         chooseScroll.getViewport().setOpaque(false);
         chooseScroll.getViewport().setViewPosition(new Point(0, 0));
 
+        backButton = new JButton("Back");
+        backButton.setBounds(535, 0, 70, 50);
+        backButton.setBackground(Color.BLACK);
+        backButton.setForeground(Color.WHITE);
+        backButton.setFocusable(false);
+        backButton.setFont(MyProjectData.getProjectData().getFont15());
+
+        backPanel = new JPanel();
+        backPanel.setBounds(0, 0, 620, 50);
+        backPanel.add(backButton);
+        backPanel.setLayout(null);
+        backPanel.setVisible(true);
+
         inputPanel.add(messageField, BorderLayout.CENTER);
         panel.add(inputPanel);
         panel.add(chatScroll);
@@ -99,6 +118,7 @@ public class MainChatFrame extends JFrame {
         model.addChatScreens(this);
 
         panel.add(chooseScroll);
+        chatPanel.add(backPanel);
 
     }
 

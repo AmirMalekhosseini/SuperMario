@@ -19,4 +19,15 @@ public class SwingUtils {
         }
         return null; // No active JFrame found
     }
+
+    public static void closeAllFrames() {
+        Window[] windows = Window.getWindows();
+        for (Window window : windows) {
+            if (window instanceof JFrame) {
+                JFrame frame = (JFrame) window;
+                frame.dispose();
+            }
+        }
+    }
+
 }

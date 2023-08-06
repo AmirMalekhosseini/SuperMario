@@ -1,6 +1,11 @@
 package View.Menu;
 
+import Model.NetworkCommunication.Message.JoinLobbyMessage;
+import Model.NetworkCommunication.Message.MessageType;
+import Model.NetworkCommunication.Message.NewLobbyMessage;
+import MyProject.MyProject;
 import MyProject.MyProjectData;
+import View.Menu.OnlineLobby.OnlineLobbyScreen;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
@@ -16,7 +21,7 @@ public class OnlineGameScreen extends JFrame {
     JButton backButton;
     JButton scoreGameButton;
     JButton createLobbyButton;
-    JButton enterLobbyButton;
+    JButton joinLobbyButton;
 
     public OnlineGameScreen() {
 
@@ -64,17 +69,17 @@ public class OnlineGameScreen extends JFrame {
         createLobbyButton.setFocusable(false);
         createLobbyButton.setFont(font15);
 
-        enterLobbyButton = new JButton("Join Lobby");
-        enterLobbyButton.setBounds(250, 360, 150, 60);
-        enterLobbyButton.setBackground(Color.BLACK);
-        enterLobbyButton.setForeground(Color.WHITE);
-        enterLobbyButton.setFocusable(false);
-        enterLobbyButton.setFont(font20);
+        joinLobbyButton = new JButton("Join Lobby");
+        joinLobbyButton.setBounds(250, 360, 150, 60);
+        joinLobbyButton.setBackground(Color.BLACK);
+        joinLobbyButton.setForeground(Color.WHITE);
+        joinLobbyButton.setFocusable(false);
+        joinLobbyButton.setFont(font20);
 
         backgroundPanel.add(backgroundImageLabel, Integer.valueOf(0));
         backgroundPanel.add(createLobbyButton, Integer.valueOf(1));
         backgroundPanel.add(scoreGameButton, Integer.valueOf(1));
-        backgroundPanel.add(enterLobbyButton, Integer.valueOf(1));
+        backgroundPanel.add(joinLobbyButton, Integer.valueOf(1));
         backgroundPanel.add(backButton, Integer.valueOf(1));
 
         add(backgroundPanel);
@@ -87,6 +92,27 @@ public class OnlineGameScreen extends JFrame {
         backButton.addActionListener(e -> {
             new MainMenuScreen();
             dispose();
+        });
+
+        createLobbyButton.addActionListener(e->{
+            String password = JOptionPane.showInputDialog("Enter Password");
+            NewLobbyMessage newLobby = new NewLobbyMessage();
+            newLobby.setMessageType(MessageType.NEW_LOBBY_MESSAGE);
+            newLobby.setPassword(password);
+            MyProject.activeClient.sendToServer(newLobby);
+            OnlineLobbyScreen lobbyScreen = new OnlineLobbyScreen(MyProject.activeClient.getUsername(), password);
+            MyProject.activeClient.setActiveLobbyScreen(lobbyScreen);
+            dispose();
+        });
+
+        joinLobbyButton.addActionListener(e->{
+            String lobbyName = JOptionPane.showInputDialog("Enter LobbyName");
+            String lobbyPassword = JOptionPane.showInputDialog("Enter LobbyPassword");
+            JoinLobbyMessage lobbyMessage = new JoinLobbyMessage();
+            lobbyMessage.setMessageType(MessageType.JOIN_LOBBY_MESSAGE);
+            lobbyMessage.setLobbyPassword(lobbyPassword);
+            lobbyMessage.setLobbyName(lobbyName);
+            MyProject.activeClient.sendToServer(lobbyMessage);
         });
 
     }

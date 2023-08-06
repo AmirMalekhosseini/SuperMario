@@ -49,17 +49,20 @@ public class LobbyMemberButton extends JButton {
             AddAdminMessage addAdminMessage = new AddAdminMessage();
             addAdminMessage.setMessageType(MessageType.ADD_ADMIN_MESSAGE);
             addAdminMessage.setTargetUser(targetUser);
+            addAdminMessage.setLobbyName(MyProject.activeClient.getActiveLobbyScreen().getModel().getLobbyName());
             MyProject.activeClient.sendToServer(addAdminMessage);
         } else if (choice == 1) {// Remove Admin
-            RemoveAdminMessage addAdminMessage = new RemoveAdminMessage();
-            addAdminMessage.setMessageType(MessageType.REMOVE_ADMIN_MESSAGE);
-            addAdminMessage.setTargetUser(targetUser);
-            MyProject.activeClient.sendToServer(addAdminMessage);
+            RemoveAdminMessage removeAdminMessage = new RemoveAdminMessage();
+            removeAdminMessage.setMessageType(MessageType.REMOVE_ADMIN_MESSAGE);
+            removeAdminMessage.setTargetUser(targetUser);
+            removeAdminMessage.setLobbyName(MyProject.activeClient.getActiveLobbyScreen().getModel().getLobbyName());
+            MyProject.activeClient.sendToServer(removeAdminMessage);
         } else if (choice == 2) {// Remove
-            RemoveLobbyMemberMessage addAdminMessage = new RemoveLobbyMemberMessage();
-            addAdminMessage.setMessageType(MessageType.REMOVE_LOBBY_MEMBER);
-            addAdminMessage.setTargetUser(targetUser);
-            MyProject.activeClient.sendToServer(addAdminMessage);
+            RemoveLobbyMemberMessage removeMemberMessage = new RemoveLobbyMemberMessage();
+            removeMemberMessage.setMessageType(MessageType.REMOVE_LOBBY_MEMBER);
+            removeMemberMessage.setTargetUser(targetUser);
+            removeMemberMessage.setLobbyName(MyProject.activeClient.getActiveLobbyScreen().getModel().getLobbyName());
+            MyProject.activeClient.sendToServer(removeMemberMessage);
         }
     }
 

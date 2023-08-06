@@ -1,9 +1,12 @@
 package MyProject;
 
 import Controller.Menu.SwingUtils;
+import Controller.Online.PackCreator;
 import Model.Game.OfflineUser;
 import Model.NetworkCommunication.Client;
 import Model.OnlineStorePack.StorePack;
+import View.Menu.LoginPageScreen;
+import View.Menu.OnlineChat.MainChatFrame;
 import View.Menu.OnlineLobby.OnlineLobbyScreen;
 import View.Notification.FriendRequestNotification;
 import View.Notification.Notification;
@@ -43,10 +46,11 @@ public class MyProject {
             throw new RuntimeException(e);
         }
         activeOfflineUser = new OfflineUser();
-//        StorePacks = PackCreator.getInstance().createInitPack();
-//        new LoginPageScreen();
+        StorePacks = PackCreator.getInstance().createInitPack();
+        new LoginPageScreen();
 //        new GameGodFather(new GameData());
-        SwingUtilities.invokeLater(() -> new OnlineLobbyScreen("amir").setVisible(true));
+//        SwingUtilities.invokeLater(() -> new OnlineLobbyScreen("amir").setVisible(true));
+
     }
 
 

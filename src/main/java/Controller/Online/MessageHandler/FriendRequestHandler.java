@@ -4,7 +4,7 @@ import Model.NetworkCommunication.Message.FriendRequestMessage;
 import Model.NetworkCommunication.Message.Message;
 import View.Notification.FriendRequestNotification;
 
-public class FriendRequestHandler implements MessageHandler{
+public class FriendRequestHandler implements MessageHandler {
 
     @Override
     public void handlerMessage(Message message) {
@@ -14,7 +14,7 @@ public class FriendRequestHandler implements MessageHandler{
             String sender = requestMessage.getSenderUser();
             String messageContext = "You Have a Friend Request From " + sender;
             String title = "Friend Request";
-            new FriendRequestNotification(title, messageContext);
+            new FriendRequestNotification(title, messageContext, sender);
 
         }
 

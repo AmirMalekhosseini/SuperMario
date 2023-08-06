@@ -3,6 +3,7 @@ package Model.NetworkCommunication;
 import Controller.Online.JsonUtils;
 import Controller.Online.MessageHandler.MessageHandler;
 import Controller.Online.MessageHandler.MessageHandlerCreator;
+import Model.Game.UserData;
 import Model.NetworkCommunication.Message.Message;
 import Model.NetworkCommunication.Message.MessageType;
 import Model.OnlineChat.UserChat;
@@ -22,10 +23,11 @@ import java.util.concurrent.ConcurrentHashMap;
 public class Client {
 
 
+    private UserData userData;
     private Map<MessageType, MessageHandler> messageHandlerMap;
     private Map<String, ArrayList<UserChat>> userChatScreens;
     private ArrayList<String> userFriends;
-    private ArrayList<String> clientItems;
+    private Map<String, Integer> clientItems;
     private int activeBagIndex;
     private OnlineLobbyScreen activeLobbyScreen;
     private MainChatFrame activeChatFrame;
@@ -42,7 +44,7 @@ public class Client {
         isClientOnline = true;
         messageHandlerMap = MessageHandlerCreator.getInstance().createMessageHandler();
         System.out.println("Connected to server.");
-        clientItems = new ArrayList<>();
+        clientItems = new ConcurrentHashMap<>();
         userFriends = new ArrayList<>();
         userChatScreens = new ConcurrentHashMap<>();
 
@@ -137,13 +139,6 @@ public class Client {
         this.activeBagIndex = activeBagIndex;
     }
 
-    public ArrayList<String> getClientItems() {
-        return clientItems;
-    }
-
-    public void setClientItems(ArrayList<String> clientItems) {
-        this.clientItems = clientItems;
-    }
 
     public OnlineLobbyScreen getActiveLobbyScreen() {
         return activeLobbyScreen;
@@ -175,5 +170,21 @@ public class Client {
 
     public void setUserFriends(ArrayList<String> userFriends) {
         this.userFriends = userFriends;
+    }
+
+    public Map<String, Integer> getClientItems() {
+        return clientItems;
+    }
+
+    public void setClientItems(Map<String, Integer> clientItems) {
+        this.clientItems = clientItems;
+    }
+
+    public UserData getUserData() {
+        return userData;
+    }
+
+    public void setUserData(UserData userData) {
+        this.userData = userData;
     }
 }

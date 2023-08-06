@@ -9,12 +9,15 @@ import View.Menu.OnlineChat.ChatScreen;
 import View.Menu.OnlineChat.MainChatFrame;
 import View.Notification.ChatNotification;
 
+import java.util.ArrayList;
+
 public class ChatMessageHandler implements MessageHandler{
 
-    MainChatFrame chatFrame = MyProject.activeClient.getActiveChatFrame();
+
     @Override
     public void handlerMessage(Message message) {
 
+        MainChatFrame chatFrame = MyProject.activeClient.getActiveChatFrame();
         if (message instanceof ChatMessage) {
             ChatMessage chatMessage = (ChatMessage) message;
             String sender = chatMessage.getSenderUser();
@@ -27,7 +30,7 @@ public class ChatMessageHandler implements MessageHandler{
                 UserChat userChat = new UserChat();
                 userChat.setContext(messageContext);
                 userChat.setUserMessage(false);
-                MyProject.activeClient.getUserChatScreens().get(sender).add(userChat);
+                addUserChat(userChat, sender);
                 new ChatNotification(sender, trimMessage(messageContext));
             }
 
@@ -35,7 +38,15 @@ public class ChatMessageHandler implements MessageHandler{
 
     }
 
+    private void addUserChat(UserChat userChat, String sender) {
+        if (!MyProject.activeClient.getUserChatScreens().containsKey(sender)) {
+            MyProject.activeClient.getUserChatScreens().put(sender, new ArrayList<>());
+        }
+        MyProject.activeClient.getUserChatScreens().get(sender).add(userChat);
+    }
+
     private ChatChooseButton findButton(String username) {
+        MainChatFrame chatFrame = MyProject.activeClient.getActiveChatFrame();
         for (ChatChooseButton button : chatFrame.getButtons()) {
             if (button.getChatScreen().getModel().getMyUsername().equals(username)
                     || button.getChatScreen().getModel().getOtherUsername().equals(username)) {
@@ -46,6 +57,7 @@ public class ChatMessageHandler implements MessageHandler{
     }
 
     private ChatScreen getChatScreen(ChatMessage message) {
+        MainChatFrame chatFrame = MyProject.activeClient.getActiveChatFrame();
         return chatFrame.getChatScreens().get(message.getSenderUser());
     }
 

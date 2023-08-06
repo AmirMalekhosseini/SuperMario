@@ -1,15 +1,23 @@
 package View.Notification;
 
+import Controller.Menu.SwingUtils;
+import MyProject.MyProject;
+import View.Menu.OnlineChat.ChatChooseButton;
+import View.Menu.OnlineChat.MainChatFrame;
+
 import javax.swing.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Objects;
 
 public class ChatNotification extends Notification{
 
+    String sender;
 
     public ChatNotification(String title, String message) {
 
         super(title, message);
+        sender = title;
         addButtonListener();
 
     }
@@ -32,6 +40,22 @@ public class ChatNotification extends Notification{
 
     private void handleLeftClick() {
         // Handle left-click behavior here
+        dispose();
+        SwingUtils.closeAllFrames();
+        MainChatFrame chatFrame = new MainChatFrame();
+        MyProject.activeClient.setActiveChatFrame(chatFrame);
+        for (ChatChooseButton button : chatFrame.getButtons()) {
+            // Find button
+            if (button.getRecipientUsername().equals(sender)) {
+                chatFrame.getActiveChatScreen().setVisible(false);
+                chatFrame.setActiveChatScreen(button.getChatScreen());
+                button.getChatScreen().setVisible(true);
+                chatFrame.chatScroll.setViewportView(button.getChatScreen()); // Update the JScrollPane view
+                chatFrame.panel.revalidate();
+                chatFrame.revalidate();
+                chatFrame.messageField.requestFocus();
+            }
+        }
     }
 
     private void handleRightClick() {

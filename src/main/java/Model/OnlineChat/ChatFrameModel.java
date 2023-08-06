@@ -3,7 +3,9 @@ package Model.OnlineChat;
 
 import Controller.Menu.OnlineChat.ChatButtonCreator;
 import Model.NetworkCommunication.Message.ChatMessage;
+import Model.NetworkCommunication.Message.MessageType;
 import MyProject.MyProject;
+import View.Menu.MainMenuScreen;
 import View.Menu.OnlineChat.ChatChooseButton;
 import View.Menu.OnlineChat.MainChatFrame;
 
@@ -14,6 +16,7 @@ public class ChatFrameModel {
 
 
     public ChatButtonCreator chatButtonCreator;
+    private boolean isLobbyChat;
 
     public void addButtons(MainChatFrame frame) {
 
@@ -35,6 +38,12 @@ public class ChatFrameModel {
             });
         }
 
+        frame.backButton.addActionListener(e->{
+            new MainMenuScreen();
+            frame.dispose();
+            MyProject.activeClient.setActiveChatFrame(null);
+        });
+
     }
 
     public void addMessageFieldAction(MainChatFrame frame) {
@@ -47,6 +56,7 @@ public class ChatFrameModel {
         if (!messageText.isEmpty()) {
 
             ChatMessage newMessage = new ChatMessage();
+            newMessage.setMessageType(MessageType.CHAT_MESSAGE);
             newMessage.setContext(messageText);
             newMessage.setTargetUser(frame.getActiveChatScreen().getModel().getOtherUsername());
             MyProject.activeClient.sendToServer(newMessage);

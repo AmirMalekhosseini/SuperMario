@@ -2,8 +2,11 @@ package Model.OnlineStorePack;
 
 import Model.Item.CoinForStore;
 import Model.Item.Online.Diamond;
+import Model.NetworkCommunication.Message.MessageType;
+import Model.NetworkCommunication.Message.OnlineShopMessage;
 import Model.Object.ObjectsInGame;
 import Model.Object.PackItem;
+import MyProject.MyProject;
 import MyProject.MyProjectData;
 
 import javax.swing.*;
@@ -16,6 +19,7 @@ public class StorePack {
     protected JLabel priceTag;
     protected JLabel currency;
     protected JButton buyButton;
+    protected JLabel countLabel;
     private int x;
     private int y;
     private final boolean isForMulti;
@@ -33,6 +37,7 @@ public class StorePack {
         backgroundLabel.setLayout(null);
         addPack();
         init(x, y);
+        addButtonAction();
     }
 
     private void init(int x, int y) {
@@ -63,6 +68,15 @@ public class StorePack {
             priceTag.setBounds(x, y + 70, 50, 30);
         }
 
+        countLabel = new JLabel();
+        countLabel.setBounds(x + 80, y + 120, 50, 50);
+        countLabel.setFont(font22);
+        if (pack.getCount() != -1) {// Count is Active
+            countLabel.setText(pack.getCount() + " X");
+        } else {// Count per Person is Active
+            countLabel.setText(pack.getCountPerUser() + " X");
+        }
+
         buyButton.setForeground(Color.BLACK);
         buyButton.setBackground(Color.GREEN);
         buyButton.setFocusable(false);
@@ -80,7 +94,12 @@ public class StorePack {
 
     private void addButtonAction() {
 
-        // ToDo
+        buyButton.addActionListener(e->{
+            OnlineShopMessage shopMessage = new OnlineShopMessage();
+            shopMessage.setMessageType(MessageType.ONLINE_SHOP_MESSAGE);
+            shopMessage.setPackIndex(pack.getPackIndex());
+            MyProject.activeClient.sendToServer(shopMessage);
+        });
 
     }
 
@@ -123,4 +142,9 @@ public class StorePack {
     public JButton getBuyButton() {
         return buyButton;
     }
+
+    public JLabel getCountLabel() {
+        return countLabel;
+    }
+
 }

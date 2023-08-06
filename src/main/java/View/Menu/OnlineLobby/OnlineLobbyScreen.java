@@ -16,6 +16,8 @@ import java.util.ArrayList;
 public class OnlineLobbyScreen extends JFrame {
 
     private LobbyModel model;
+    protected JPanel backPanel;
+    public JButton backButton;
     public LobbyChoosePanel choosePanel;
     public ChatPanel chatPanel;
     protected ChatScreen chatScreen;
@@ -29,9 +31,9 @@ public class OnlineLobbyScreen extends JFrame {
 
 
     // Admin Constructor:
-    public OnlineLobbyScreen(String adminUser) {
+    public OnlineLobbyScreen(String adminUser, String password) {
         ImageIcon gameIcon = MyProjectData.getProjectData().getGameIcon();
-        model = new LobbyModel(adminUser);
+        model = new LobbyModel(adminUser, password);
         setTitle("Lobby");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(835, 830);
@@ -76,10 +78,6 @@ public class OnlineLobbyScreen extends JFrame {
         choosePanel.setLocation(0, 0);
         choosePanel.setLayout(new BoxLayout(choosePanel, BoxLayout.Y_AXIS));
 
-        // test
-        LobbyMemberButton button = new LobbyMemberButton("amir");
-        choosePanel.add(button);
-
         chatScroll = new ChatScrollPane(chatScreen);
         chatScroll.setVisible(false);
 
@@ -92,19 +90,30 @@ public class OnlineLobbyScreen extends JFrame {
         chooseScroll.getViewport().setOpaque(false);
         chooseScroll.getViewport().setViewPosition(new Point(0, 0));
 
+        backButton = new JButton("Back");
+        backButton.setBounds(535, 0, 70, 50);
+        backButton.setBackground(Color.BLACK);
+        backButton.setForeground(Color.WHITE);
+        backButton.setFocusable(false);
+        backButton.setFont(MyProjectData.getProjectData().getFont15());
+
+        backPanel = new JPanel();
+        backPanel.setBounds(0, 0, 620, 50);
+        backPanel.add(backButton);
+        backPanel.setLayout(null);
+        backPanel.setVisible(true);
+
         inputPanel.add(messageField, BorderLayout.CENTER);
 
+        model.addButtonAction(this);
+        model.addMessageFieldAction(this);
+        chatPanel.add(backPanel);
         panel.add(chooseScroll);
         panel.add(inputPanel);
         panel.add(chatScroll);
         panel.add(chatPanel);
         panel.add(lobbyPanel);
         messageField.requestFocus();
-
-        // Send a Message to Server for Creating a New Lobby:
-//        NewLobbyMessage newLobbyMessage = new NewLobbyMessage();
-//        newLobbyMessage.setMessageType(MessageType.NEW_LOBBY_MESSAGE);
-//        MyProject.activeClient.sendToServer(newLobbyMessage);
 
     }
 
@@ -168,8 +177,30 @@ public class OnlineLobbyScreen extends JFrame {
         chooseScroll.getViewport().setOpaque(false);
         chooseScroll.getViewport().setViewPosition(new Point(0, 0));
 
+        backButton = new JButton("Back");
+        backButton.setBounds(535, 0, 70, 50);
+        backButton.setBackground(Color.BLACK);
+        backButton.setForeground(Color.WHITE);
+        backButton.setFocusable(false);
+        backButton.setFont(MyProjectData.getProjectData().getFont15());
+
+        backPanel = new JPanel();
+        backPanel.setBounds(0, 0, 620, 50);
+        backPanel.add(backButton);
+        backPanel.setLayout(null);
+        backPanel.setVisible(true);
+
         inputPanel.add(messageField, BorderLayout.CENTER);
 
+        // Add Members Button:
+        for (String member : members) {
+            model.addButton(this, member);
+        }
+
+        model.addButtonAction(this);
+        model.addMessageFieldAction(this);
+
+        chatPanel.add(backPanel);
         panel.add(chooseScroll);
         panel.add(inputPanel);
         panel.add(chatScroll);
@@ -187,5 +218,7 @@ public class OnlineLobbyScreen extends JFrame {
         this.model = model;
     }
 
-
+    public ChatScreen getChatScreen() {
+        return chatScreen;
+    }
 }

@@ -9,13 +9,14 @@ import View.Menu.OnlineChat.ChatScreen;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class ChatButtonCreator {
 
     public ArrayList<ChatChooseButton> createButton(JTextField chatArea) {
         ArrayList<ChatChooseButton> buttons = new ArrayList<>();
 
-        for (String username: MyProject.activeClient.getUserFriends()) {
+        for (String username : MyProject.activeClient.getUserFriends()) {
             if (username.equals(MyProject.activeClient.getUsername())) {
                 continue;
             }
@@ -32,7 +33,11 @@ public class ChatButtonCreator {
     }
 
     private void loadChatScreen(ChatScreen chatScreen, String otherUsername) {
+        if (MyProject.activeClient.getUserChatScreens().get(otherUsername) == null) {
+            return;
+        }
         for (UserChat chat : MyProject.activeClient.getUserChatScreens().get(otherUsername)) {
+            System.out.println(chat.getContext() + "  " + chat.isUserMessage());
             if (chat.isUserMessage()) {
                 chatScreen.addUserMessage(chat.getContext());
             } else {
