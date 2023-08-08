@@ -37,7 +37,7 @@ public class FriendRequestNotification extends Notification {
 
 
     private void handleLeftClick() {
-        // Handle left-click behavior here
+        // Handle left-click behavior
         FriendRequestAnswer requestAnswer = new FriendRequestAnswer();
         requestAnswer.setMessageType(MessageType.FRIEND_REQUEST_ANSWER);
         requestAnswer.setAnswer(true);
@@ -49,7 +49,7 @@ public class FriendRequestNotification extends Notification {
     }
 
     private void handleRightClick() {
-        // Handle right-click behavior here
+        // Handle right-click behavior
         dispose();
 
     }

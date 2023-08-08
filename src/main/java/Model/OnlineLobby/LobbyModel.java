@@ -1,15 +1,12 @@
 package Model.OnlineLobby;
 
 import Controller.Menu.OnlineLobby.LobbyButtonCreator;
-import Model.Game.OfflineUser;
-import Model.NetworkCommunication.Message.ChatMessage;
 import Model.NetworkCommunication.Message.LobbyChatMessage;
 import Model.NetworkCommunication.Message.MessageType;
 import MyProject.MyProject;
-import View.Menu.OnlineChat.ChatChooseButton;
+import View.Button.LobbyMemberButton;
 import View.Menu.OnlineLobby.OnlineLobbyScreen;
 
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;

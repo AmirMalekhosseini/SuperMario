@@ -1,10 +1,6 @@
 package View.Menu.OnlineLobby;
 
-import Model.NetworkCommunication.Message.MessageType;
-import Model.NetworkCommunication.Message.NewLobbyMessage;
-import Model.OnlineLobby.LobbyMemberButton;
 import Model.OnlineLobby.LobbyModel;
-import MyProject.MyProject;
 import MyProject.MyProjectData;
 import View.Menu.OnlineChat.*;
 import View.Menu.OnlineChat.ChatScrollPane;
@@ -27,7 +23,6 @@ public class OnlineLobbyScreen extends JFrame {
     public JPanel inputPanel;
     public LobbyPanel lobbyPanel;
     public JTextField messageField;
-    protected JList friendList;
 
 
     // Admin Constructor:

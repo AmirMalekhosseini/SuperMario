@@ -7,6 +7,14 @@ public class SaveData {
 
     public static void saveUserData() {
 
+        if (MyProject.allOfflineUsers.size() == 0) {
+
+            OfflineUser newUser = new OfflineUser();
+            newUser.setUserData(MyProject.activeClient.getUserData());
+            MyProject.allOfflineUsers.add(newUser);
+            return;
+
+        }
 
         for (int i = 0; i < MyProject.allOfflineUsers.size(); i++) {
             if (MyProject.allOfflineUsers.get(i).getUserData().getUsername().equals

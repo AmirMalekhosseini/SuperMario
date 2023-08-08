@@ -4,7 +4,7 @@ import Model.NetworkCommunication.Message.ChatMessage;
 import Model.NetworkCommunication.Message.Message;
 import Model.OnlineChat.UserChat;
 import MyProject.MyProject;
-import View.Menu.OnlineChat.ChatChooseButton;
+import View.Button.ChatChooseButton;
 import View.Menu.OnlineChat.ChatScreen;
 import View.Menu.OnlineChat.MainChatFrame;
 import View.Notification.ChatNotification;

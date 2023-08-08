@@ -16,6 +16,7 @@ public class PackMessage extends Message {
     private String startTime;
     private String endTime;
     private int packIndex;
+    private boolean isInitPack;
     public PackMessage() {
         packItems = new ArrayList<>();
     }
@@ -90,5 +91,13 @@ public class PackMessage extends Message {
 
     public void setPackItems(ArrayList<String> packItems) {
         this.packItems = packItems;
+    }
+
+    public boolean isInitPack() {
+        return isInitPack;
+    }
+
+    public void setInitPack(boolean initPack) {
+        isInitPack = initPack;
     }
 }

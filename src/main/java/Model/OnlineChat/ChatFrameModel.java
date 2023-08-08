@@ -2,21 +2,21 @@ package Model.OnlineChat;
 
 
 import Controller.Menu.OnlineChat.ChatButtonCreator;
-import Model.NetworkCommunication.Message.ChatMessage;
-import Model.NetworkCommunication.Message.MessageType;
+import Model.NetworkCommunication.Message.*;
 import MyProject.MyProject;
 import View.Menu.MainMenuScreen;
-import View.Menu.OnlineChat.ChatChooseButton;
+import View.Button.ChatChooseButton;
 import View.Menu.OnlineChat.MainChatFrame;
 
-import java.io.IOException;
+import javax.swing.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 public class ChatFrameModel {
 
 
     public ChatButtonCreator chatButtonCreator;
-    private boolean isLobbyChat;
 
     public void addButtons(MainChatFrame frame) {
 
@@ -36,9 +36,19 @@ public class ChatFrameModel {
                 frame.panel.revalidate();
                 frame.messageField.requestFocus();
             });
+
+            button.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    if (SwingUtilities.isRightMouseButton(e)) {
+                        showOptions(button.getRecipientUsername());
+                    }
+                }
+            });
+
         }
 
-        frame.backButton.addActionListener(e->{
+        frame.backButton.addActionListener(e -> {
             new MainMenuScreen();
             frame.dispose();
             MyProject.activeClient.setActiveChatFrame(null);
@@ -46,8 +56,37 @@ public class ChatFrameModel {
 
     }
 
+    private void showOptions(String targetUser) {
+        Object[] options = {"Block", "UnBlock"};
+        int choice = JOptionPane.showOptionDialog(
+                null,
+                "Choose an Option:",
+                "Block",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.PLAIN_MESSAGE,
+                null,
+                options,
+                options[0]
+        );
+
+        BlockMessage blockMessage = new BlockMessage();
+        blockMessage.setMessageType(MessageType.BLOCK_MESSAGE);
+        blockMessage.setTargetUser(targetUser);
+
+        // Handle the User's Choice:
+        if (choice == 0) {// Block
+            blockMessage.setBlock(true);
+        } else if (choice == 1) {// UnBlock
+            blockMessage.setBlock(false);
+        }
+
+        MyProject.activeClient.sendToServer(blockMessage);
+
+    }
+
     public void addMessageFieldAction(MainChatFrame frame) {
         frame.messageField.addActionListener(e -> sendMessage(frame));
+        frame.searchField.addActionListener(e -> searchUser(frame));
     }
 
     private void sendMessage(MainChatFrame frame) {
@@ -73,6 +112,22 @@ public class ChatFrameModel {
             ChatChooseButton button = findButton(newMessage.getTargetUser(), frame);
             frame.getModel().moveButtonToTop(frame, button);
 
+        }
+    }
+
+    private void searchUser(MainChatFrame frame) {
+        String messageText = frame.searchField.getText().trim();
+        if (!messageText.isEmpty()) {
+            ChatChooseButton chooseButton = findButton(messageText, frame);
+            if (chooseButton != null) {
+                frame.getActiveChatScreen().setVisible(false);
+                frame.setActiveChatScreen(chooseButton.getChatScreen());
+                chooseButton.getChatScreen().setVisible(true);
+                frame.chatScroll.setViewportView(chooseButton.getChatScreen()); // Update the JScrollPane view
+                frame.panel.revalidate();
+                frame.messageField.requestFocus();
+                frame.searchField.setText("");
+            }
         }
     }
 

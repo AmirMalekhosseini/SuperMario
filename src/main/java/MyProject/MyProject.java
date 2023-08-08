@@ -37,6 +37,7 @@ public class MyProject {
         objectMapper = new ObjectMapper();
         objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
         objectMapper.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
+        allOfflineUsers = new ArrayList<>();
 
         try {
             allOfflineUsers = objectMapper.readValue(new File("OfflineUser.jason"), new TypeReference<>() {
@@ -49,8 +50,6 @@ public class MyProject {
         StorePacks = PackCreator.getInstance().createInitPack();
         new LoginPageScreen();
 //        new GameGodFather(new GameData());
-//        SwingUtilities.invokeLater(() -> new OnlineLobbyScreen("amir").setVisible(true));
-
     }
 
 

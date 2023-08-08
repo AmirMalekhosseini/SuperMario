@@ -3,6 +3,7 @@ package Model.NetworkCommunication.Message;
 public class NewLobbyMemberMessage extends Message {
 
     String newMemberName;
+    boolean isMemberBlock;
 
     public NewLobbyMemberMessage() {
 
@@ -16,4 +17,11 @@ public class NewLobbyMemberMessage extends Message {
         this.newMemberName = newMemberName;
     }
 
+    public boolean isMemberBlock() {
+        return isMemberBlock;
+    }
+
+    public void setMemberBlock(boolean memberBlock) {
+        isMemberBlock = memberBlock;
+    }
 }

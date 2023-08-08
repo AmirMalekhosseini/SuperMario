@@ -33,14 +33,13 @@ public class RemoveLobbyNotification extends Notification {
 
 
     private void handleLeftClick() {
-        // Handle left-click behavior here
+        // Handle left-click behavior
         dispose();
-        Objects.requireNonNull(SwingUtils.getActiveFrame()).dispose();
-        new MainMenuScreen();
+
     }
 
     private void handleRightClick() {
-        // Handle right-click behavior here
+        // Handle right-click behavior
         dispose();
 
     }

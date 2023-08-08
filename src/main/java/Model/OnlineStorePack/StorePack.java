@@ -75,6 +75,7 @@ public class StorePack {
             countLabel.setText(pack.getCount() + " X");
         } else {// Count per Person is Active
             countLabel.setText(pack.getCountPerUser() + " X");
+            countLabel.setForeground(Color.GREEN);
         }
 
         buyButton.setForeground(Color.BLACK);

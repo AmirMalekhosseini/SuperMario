@@ -1,4 +1,4 @@
-package Model.OnlineLobby;
+package View.Button;
 
 import Model.NetworkCommunication.Message.AddAdminMessage;
 import Model.NetworkCommunication.Message.MessageType;

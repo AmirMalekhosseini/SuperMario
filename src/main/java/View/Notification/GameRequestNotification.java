@@ -42,7 +42,7 @@ public class GameRequestNotification extends Notification{
 
 
     private void handleLeftClick() {
-        // Handle left-click behavior here
+        // Handle left-click behavior
         GameRequestAnswer requestAnswer = new GameRequestAnswer();
         requestAnswer.setMessageType(MessageType.GAME_REQUEST_ANSWER);
         requestAnswer.setAnswer(true);
@@ -56,7 +56,7 @@ public class GameRequestNotification extends Notification{
     }
 
     private void handleRightClick() {
-        // Handle right-click behavior here
+        // Handle right-click behavior
         dispose();
 
     }

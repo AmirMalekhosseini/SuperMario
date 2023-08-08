@@ -29,11 +29,11 @@ public class MessageHandlerCreator {
         messageHandlerMap.put(MessageType.FRIEND_REQUEST, new FriendRequestHandler());
         messageHandlerMap.put(MessageType.FRIEND_REQUEST_ANSWER, new FriendAnswerHandler());
         messageHandlerMap.put(MessageType.GAME_REQUEST, new GameRequestHandler());
-        messageHandlerMap.put(MessageType.NEW_ITEM_MESSAGE, new NewItemHandler());
         messageHandlerMap.put(MessageType.LOBBY_CHAT_MESSAGE, new LobbyChatHandler());
         messageHandlerMap.put(MessageType.ONLINE_SHOP_MESSAGE, new OnlineShopMessageHandler());
         messageHandlerMap.put(MessageType.UPDATE_SHOP_MESSAGE, new UpdateShopHandler());
         messageHandlerMap.put(MessageType.NEW_LOBBY_MEMBER, new NewLobbyMemberHandler());
+        messageHandlerMap.put(MessageType.REMOVE_LOBBY_MESSAGE, new RemoveLobbyMessageHandler());
         messageHandlerMap.put(MessageType.JOIN_LOBBY_MESSAGE, new JoinLobbyHandler());
         messageHandlerMap.put(MessageType.REMOVE_LOBBY_MEMBER, new RemoveLobbyMemberHandler());
 

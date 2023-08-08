@@ -12,7 +12,7 @@ public class ChatChoosePanel extends JPanel {
 
     public ChatChoosePanel() {
         model = new ChatChooseModel();
-        setSize(200, 800);
+        setSize(200, 750);
         setBackground(Color.BLACK);
         setOpaque(true);
     }

@@ -1,15 +1,13 @@
 package Controller.Menu.OnlineChat;
 
-import Model.Game.OfflineUser;
 import Model.OnlineChat.UserChat;
 import MyProject.MyProject;
-import View.Menu.OnlineChat.ChatChooseButton;
+import View.Button.ChatChooseButton;
 import View.Menu.OnlineChat.ChatScreen;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class ChatButtonCreator {
 
@@ -37,7 +35,6 @@ public class ChatButtonCreator {
             return;
         }
         for (UserChat chat : MyProject.activeClient.getUserChatScreens().get(otherUsername)) {
-            System.out.println(chat.getContext() + "  " + chat.isUserMessage());
             if (chat.isUserMessage()) {
                 chatScreen.addUserMessage(chat.getContext());
             } else {

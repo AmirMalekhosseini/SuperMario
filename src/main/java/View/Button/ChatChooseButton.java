@@ -1,4 +1,6 @@
-package View.Menu.OnlineChat;
+package View.Button;
+
+import View.Menu.OnlineChat.ChatScreen;
 
 import javax.swing.*;
 import java.awt.*;

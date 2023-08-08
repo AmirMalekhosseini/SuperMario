@@ -1,5 +1,6 @@
 package View.Menu;
 
+import Model.Item.Online.Diamond;
 import View.Button.UserProfileChooseMarioButton;
 import Model.Item.CoinForStore;
 import MyProject.*;
@@ -37,6 +38,8 @@ public class UserProfileScreen extends JFrame implements ActionListener {
     JButton backButton;
     CoinForStore userCoin;
     JLabel userCoinValue;
+    JLabel userDiamondValue;
+    Diamond userDiamond;
     JLabel userName;
     JLabel userHighScore;
     JButton bagScreenButton;
@@ -182,11 +185,25 @@ public class UserProfileScreen extends JFrame implements ActionListener {
         userCoin = new CoinForStore(5, 94);
         userCoin.setLocation(userCoin.getX(), userCoin.getY());
 
-        userName = new JLabel(String.valueOf(MyProject.activeOfflineUser.getUserData().getUsername()));
+        if (MyProject.isProjectOnline) {
+            userDiamondValue = new JLabel(String.valueOf(MyProject.activeClient.getUserData().getUserCoinValue()));
+        } else {
+            userDiamondValue = new JLabel(String.valueOf(MyProject.activeOfflineUser.getUserData().getUserCoinValue()));
+        }
+        userDiamondValue.setBounds(40, 135, 55, 40);
+        userDiamondValue.setFont(font22);
+
+        userDiamond = new Diamond(-10, 140);
+
+        if (MyProject.isProjectOnline) {
+            userName = new JLabel(String.valueOf(MyProject.activeClient.getUsername()));
+        } else {
+            userName = new JLabel(String.valueOf(MyProject.activeOfflineUser.getUserData().getUsername()));
+        }
         userName.setBounds(10, 0, 200, 40);
         userName.setFont(font22);
 
-        userHighScore = new JLabel("HighScore: " + String.valueOf(MyProject.activeOfflineUser.getUserData().getUserHighScore().getUserScore()));
+        userHighScore = new JLabel("HighScore: " + MyProject.activeOfflineUser.getUserData().getUserHighScore().getUserScore());
         userHighScore.setBounds(10, 40, 200, 40);
         userHighScore.setFont(font22);
 
@@ -233,6 +250,8 @@ public class UserProfileScreen extends JFrame implements ActionListener {
         backgroundPanel.add(backButton, Integer.valueOf(1));
         backgroundPanel.add(userName, Integer.valueOf(1));
         backgroundPanel.add(userHighScore, Integer.valueOf(1));
+        backgroundPanel.add(userDiamond, Integer.valueOf(1));
+        backgroundPanel.add(userDiamondValue, Integer.valueOf(1));
 
         this.add(backgroundPanel);
 
@@ -258,7 +277,7 @@ public class UserProfileScreen extends JFrame implements ActionListener {
 
         if (e.getSource() == normalMarioChooseButton) {// OfflineUser choose normal mario
 
-            if(normalMarioChooseButton.isButtonChoose()) {
+            if (normalMarioChooseButton.isButtonChoose()) {
                 if (MyProject.activeOfflineUser.getUserData().isUserBoughtNormalMario()) {
                     normalMarioChooseButton.setBackground(Color.GRAY);
                     normalMarioChooseButton.setText("Chosen");
@@ -281,7 +300,7 @@ public class UserProfileScreen extends JFrame implements ActionListener {
                     coinMarioChooseButton.setText("Choose");
                     coinMarioChooseButton.setButtonChoose(false);
                 }
-            }else {
+            } else {
                 normalMarioChooseButton.setBackground(Color.GREEN);
                 normalMarioChooseButton.setText("Choose");
                 normalMarioChooseButton.setButtonChoose(false);
@@ -296,7 +315,7 @@ public class UserProfileScreen extends JFrame implements ActionListener {
 
         if (e.getSource() == runnerMarioChooseButton) {// OfflineUser choose runner mario
 
-            if(runnerMarioChooseButton.isButtonChoose()) {// Choose Mario
+            if (runnerMarioChooseButton.isButtonChoose()) {// Choose Mario
                 if (MyProject.activeOfflineUser.getUserData().isUserBoughtRunnerMario()) {
                     runnerMarioChooseButton.setBackground(Color.GRAY);
                     runnerMarioChooseButton.setText("Chosen");
@@ -319,7 +338,7 @@ public class UserProfileScreen extends JFrame implements ActionListener {
                     coinMarioChooseButton.setText("Choose");
                     coinMarioChooseButton.setButtonChoose(false);
                 }
-            }else {
+            } else {
                 MyProject.activeOfflineUser.getUserData().setUserChooseRunner_BlueMario(false);
                 runnerMarioChooseButton.setBackground(Color.GREEN);
                 runnerMarioChooseButton.setText("Choose");
@@ -336,7 +355,7 @@ public class UserProfileScreen extends JFrame implements ActionListener {
 
         if (e.getSource() == jumperMarioChooseButton) {
 
-            if(jumperMarioChooseButton.isButtonChoose()) {// OfflineUser choose jumper mario
+            if (jumperMarioChooseButton.isButtonChoose()) {// OfflineUser choose jumper mario
                 if (MyProject.activeOfflineUser.getUserData().isUserBoughtJumperMario()) {
                     jumperMarioChooseButton.setBackground(Color.GRAY);
                     jumperMarioChooseButton.setText("Chosen");
@@ -359,7 +378,7 @@ public class UserProfileScreen extends JFrame implements ActionListener {
                     coinMarioChooseButton.setText("Choose");
                     coinMarioChooseButton.setButtonChoose(false);
                 }
-            }else {
+            } else {
                 MyProject.activeOfflineUser.getUserData().setUserChooseJumper_GreenMario(false);
                 jumperMarioChooseButton.setBackground(Color.GREEN);
                 jumperMarioChooseButton.setText("Choose");
@@ -375,7 +394,7 @@ public class UserProfileScreen extends JFrame implements ActionListener {
 
         if (e.getSource() == shooterMarioChooseButton) {
 
-            if(shooterMarioChooseButton.isButtonChoose()) {// OfflineUser choose shooter mario
+            if (shooterMarioChooseButton.isButtonChoose()) {// OfflineUser choose shooter mario
                 if (MyProject.activeOfflineUser.getUserData().isUserBoughtShooterMario()) {
                     shooterMarioChooseButton.setBackground(Color.GRAY);
                     shooterMarioChooseButton.setText("Chosen");
@@ -398,7 +417,7 @@ public class UserProfileScreen extends JFrame implements ActionListener {
                     coinMarioChooseButton.setText("Choose");
                     coinMarioChooseButton.setButtonChoose(false);
                 }
-            }else {
+            } else {
                 MyProject.activeOfflineUser.getUserData().setUserChooseShooter_BlackMario(false);
                 shooterMarioChooseButton.setBackground(Color.GREEN);
                 shooterMarioChooseButton.setText("Choose");

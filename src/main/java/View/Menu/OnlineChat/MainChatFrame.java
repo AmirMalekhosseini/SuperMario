@@ -1,14 +1,13 @@
 package View.Menu.OnlineChat;
 
 import Controller.Menu.OnlineChat.ChatButtonCreator;
-import Model.NetworkCommunication.Client;
 import Model.OnlineChat.ChatFrameModel;
 import MyProject.MyProject;
 import MyProject.MyProjectData;
+import View.Button.ChatChooseButton;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -28,6 +27,8 @@ public class MainChatFrame extends JFrame {
     protected JScrollPane chooseScroll;
     protected JPanel inputPanel;
     protected JLabel backgroundImage;
+    protected JPanel searchPanel;
+    public JTextField searchField;
     private final ChatFrameModel model;
 
     public MainChatFrame() {
@@ -77,15 +78,27 @@ public class MainChatFrame extends JFrame {
         activeChatScreen.setBackground(new Color(0, 0, 0, 0));
 
         choosePanel = new ChatChoosePanel();
-        choosePanel.setLocation(0, 0);
+        choosePanel.setLocation(0, 50);
         choosePanel.setLayout(new BoxLayout(choosePanel, BoxLayout.Y_AXIS));
+
+        searchPanel = new JPanel();
+        searchPanel.setBounds(0, 0, 200, 50);
+        searchPanel.setLayout(null);
+
+        searchField = new JTextField();
+        searchField.setBounds(0, 0, 200, 50);
+        searchField.setBackground(Color.DARK_GRAY);
+        searchField.setForeground(Color.WHITE);
+        searchField.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
+
+        searchPanel.add(searchField);
 
         chatScroll = new ChatScrollPane(activeChatScreen);
 
         chooseScroll = new JScrollPane(choosePanel);
         chooseScroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         chooseScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        chooseScroll.setBounds(0, 0, 200, 800); // Set the bounds of the scroll pane
+        chooseScroll.setBounds(0, 50, 200, 750); // Set the bounds of the scroll pane
         chooseScroll.getViewport().setBackground(new Color(0, 0, 0, 0));
         chooseScroll.setOpaque(false);
         chooseScroll.getViewport().setOpaque(false);
@@ -108,6 +121,7 @@ public class MainChatFrame extends JFrame {
         panel.add(inputPanel);
         panel.add(chatScroll);
         panel.add(chatPanel);
+        panel.add(searchPanel);
         messageField.requestFocus();
 
         model.chatButtonCreator = new ChatButtonCreator();

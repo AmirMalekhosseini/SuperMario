@@ -1,6 +1,6 @@
 package Model.OnlineChat;
 
-import View.Menu.OnlineChat.ChatChooseButton;
+import View.Button.ChatChooseButton;
 import java.util.ArrayList;
 
 public class ChatChooseModel {

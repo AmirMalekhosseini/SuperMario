@@ -201,14 +201,22 @@ public class OfflineStoreScreen extends JFrame implements ActionListener {
             coinMarioBuyButton.setText("Buy");
         }
 
-        userCoinValue = new JLabel(String.valueOf(MyProject.activeOfflineUser.getUserData().getUserCoinValue()));
+        if (MyProject.isProjectOnline) {
+            userCoinValue = new JLabel(String.valueOf(MyProject.activeClient.getUserData().getUserCoinValue()));
+        } else {
+            userCoinValue = new JLabel(String.valueOf(MyProject.activeOfflineUser.getUserData().getUserCoinValue()));
+        }
         userCoinValue.setBounds(40, 0, 55, 40);
         userCoinValue.setFont(font22);
 
         userCoin = new CoinForStore(5, 10);
         userCoin.setLocation(userCoin.getX(), userCoin.getY());
 
-        userDiamondValue = new JLabel(String.valueOf(MyProject.activeOfflineUser.getUserData().getUserDiamondValue()));
+        if (MyProject.isProjectOnline) {
+            userDiamondValue = new JLabel(String.valueOf(MyProject.activeClient.getUserData().getUserCoinValue()));
+        } else {
+            userDiamondValue = new JLabel(String.valueOf(MyProject.activeOfflineUser.getUserData().getUserCoinValue()));
+        }
         userDiamondValue.setBounds(140, 0, 55, 40);
         userDiamondValue.setFont(font22);
         backgroundPanel.add(userDiamondValue, Integer.valueOf(1));

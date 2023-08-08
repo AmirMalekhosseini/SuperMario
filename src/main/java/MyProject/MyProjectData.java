@@ -19,6 +19,7 @@ public class MyProjectData {
     protected ImageIcon jumperMarioImage;
     protected ImageIcon shooterMarioImage;
     protected ImageIcon coinMarioImage;
+    protected BufferedImage refreshImage;
 
     protected BufferedImage addFriend;
     protected BufferedImage Vilgax_FireBall;
@@ -585,6 +586,15 @@ public class MyProjectData {
             String pathBackground = "Chat/AddFriend.png";
             File fileBackground = new File(pathBackground);
             addFriend = ImageIO.read(fileBackground);
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            String pathBackground = "Game/RefreshButton.png";
+            File fileBackground = new File(pathBackground);
+            refreshImage = ImageIO.read(fileBackground);
         }
         catch (IOException e) {
             e.printStackTrace();
@@ -1410,6 +1420,10 @@ public class MyProjectData {
 
     public ImageIcon getCoinMarioImage() {
         return coinMarioImage;
+    }
+
+    public BufferedImage getRefreshImage() {
+        return refreshImage;
     }
 
     public Font getFont10() {

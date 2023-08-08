@@ -9,6 +9,7 @@ import Model.Object.PackItem;
 import Model.OnlineStorePack.Pack;
 import MyProject.MyProject;
 import View.Menu.OnlineStoreScreen;
+import View.Notification.StoreItemNotification;
 
 import java.awt.*;
 import java.time.LocalDateTime;
@@ -26,6 +27,10 @@ public class PackMessageHandler implements MessageHandler {
                 ((OnlineStoreScreen) SwingUtils.getActiveFrame()).getStorePacks().get
                         (packMessage.getPackIndex()).setPack(newPack);
                 ((OnlineStoreScreen) SwingUtils.getActiveFrame()).addStorePacks();
+            } else if (!packMessage.isInitPack()) {
+                String title = "New Item";
+                String messageContext = "New Pack is Available";
+                new StoreItemNotification(title, messageContext);
             }
 
         }
@@ -57,7 +62,7 @@ public class PackMessageHandler implements MessageHandler {
         newPack.setLevel(packMessage.getLevel());
 
         try {
-            newPack.setCurrency((Currency) ClassUtils.createInstanceFromClassName(packMessage.getCurrency(),0,0 ));
+            newPack.setCurrency((Currency) ClassUtils.createInstanceFromClassName(packMessage.getCurrency(), 0, 0));
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
             throw new RuntimeException(e);
         }

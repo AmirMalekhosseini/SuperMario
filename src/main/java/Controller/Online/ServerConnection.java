@@ -44,7 +44,7 @@ public class ServerConnection {
             return;
         }
         // Save Online User Data to Offline Database
-//        SaveData.saveUserData();
+        SaveData.saveUserData();
         // Send LogOut Message to Server:
 
         LogOutMessage logOutMessage = new LogOutMessage();

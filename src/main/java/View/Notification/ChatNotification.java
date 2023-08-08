@@ -2,13 +2,12 @@ package View.Notification;
 
 import Controller.Menu.SwingUtils;
 import MyProject.MyProject;
-import View.Menu.OnlineChat.ChatChooseButton;
+import View.Button.ChatChooseButton;
 import View.Menu.OnlineChat.MainChatFrame;
 
 import javax.swing.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.Objects;
 
 public class ChatNotification extends Notification{
 

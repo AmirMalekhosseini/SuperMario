@@ -1,10 +1,6 @@
 package Controller.Menu.OnlineLobby;
 
-import Model.Game.OfflineUser;
-import Model.OnlineLobby.LobbyMemberButton;
-import MyProject.MyProject;
-
-import java.util.ArrayList;
+import View.Button.LobbyMemberButton;
 
 public class LobbyButtonCreator {
 

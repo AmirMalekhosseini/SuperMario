@@ -2,6 +2,7 @@ package View.Menu.OnlineLobby;
 
 import Model.NetworkCommunication.Message.GameRequestMessage;
 import Model.NetworkCommunication.Message.MessageType;
+import Model.NetworkCommunication.Message.RemoveLobbyMessage;
 import MyProject.MyProject;
 import MyProject.MyProjectData;
 
@@ -156,7 +157,18 @@ public class LobbyPanel extends JLayeredPane {
 
             addJList();
             inviteListScrollPane.setVisible(true); // Show the JList
+
         });
+
+        closeButton.addActionListener(e->{
+
+            RemoveLobbyMessage removeLobbyMessage = new RemoveLobbyMessage();
+            removeLobbyMessage.setMessageType(MessageType.REMOVE_LOBBY_MESSAGE);
+            removeLobbyMessage.setLobbyName(MyProject.activeClient.getActiveLobbyScreen().getModel().getLobbyName());
+            MyProject.activeClient.sendToServer(removeLobbyMessage);
+
+        });
+
     }
 
 }

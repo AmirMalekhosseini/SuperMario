@@ -1,10 +1,12 @@
 package View.Menu;
 
+import Controller.Menu.SwingUtils;
 import Model.Item.CoinForStore;
 import Model.Item.Online.*;
 import Model.OnlineStorePack.StorePack;
 import MyProject.MyProject;
 import MyProject.MyProjectData;
+import View.Button.RefreshButton;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
@@ -32,6 +34,7 @@ public class OnlineStoreScreen extends JFrame {
     public JLabel userDiamondValue;
     Diamond userDiamond;
     JButton offlineStoreButton;
+    RefreshButton refreshButton;
 
     public OnlineStoreScreen() {
 
@@ -57,7 +60,11 @@ public class OnlineStoreScreen extends JFrame {
         backgroundImageLabel.setBounds(0, 0, 670, 700);
         backgroundPanel.add(backgroundImageLabel, Integer.valueOf(0));
 
-        userCoinValue = new JLabel(String.valueOf(MyProject.activeOfflineUser.getUserData().getUserCoinValue()));
+        if (MyProject.isProjectOnline) {
+            userCoinValue = new JLabel(String.valueOf(MyProject.activeClient.getUserData().getUserCoinValue()));
+        } else {
+            userCoinValue = new JLabel(String.valueOf(MyProject.activeOfflineUser.getUserData().getUserCoinValue()));
+        }
         userCoinValue.setBounds(40, 0, 55, 40);
         userCoinValue.setFont(font22);
         backgroundPanel.add(userCoinValue, Integer.valueOf(1));
@@ -65,7 +72,11 @@ public class OnlineStoreScreen extends JFrame {
         userCoin = new CoinForStore(5, 10);
         backgroundPanel.add(userCoin, Integer.valueOf(1));
 
-        userDiamondValue = new JLabel(String.valueOf(MyProject.activeOfflineUser.getUserData().getUserDiamondValue()));
+        if (MyProject.isProjectOnline) {
+            userDiamondValue = new JLabel(String.valueOf(MyProject.activeClient.getUserData().getUserCoinValue()));
+        } else {
+            userDiamondValue = new JLabel(String.valueOf(MyProject.activeOfflineUser.getUserData().getUserCoinValue()));
+        }
         userDiamondValue.setBounds(140, 0, 55, 40);
         userDiamondValue.setFont(font22);
         backgroundPanel.add(userDiamondValue, Integer.valueOf(1));
@@ -93,6 +104,9 @@ public class OnlineStoreScreen extends JFrame {
         backButton.setFocusable(false);
         backButton.setFont(font22);
         backgroundPanel.add(backButton, Integer.valueOf(1));
+
+        refreshButton = new RefreshButton(570, 70);
+        backgroundPanel.add(refreshButton, Integer.valueOf(1));
 
         offlineStoreButton = new JButton("Offline Store");
         offlineStoreButton.setBounds(460, 550, 150, 60);
@@ -229,6 +243,11 @@ public class OnlineStoreScreen extends JFrame {
         offlineStoreButton.addActionListener(e -> {
             new OfflineStoreScreen();
             dispose();
+        });
+
+        refreshButton.addActionListener(e->{
+            SwingUtils.closeAllFrames();
+            new OnlineStoreScreen();
         });
 
     }
