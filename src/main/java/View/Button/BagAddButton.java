@@ -84,13 +84,13 @@ public class BagAddButton extends JButton {
                 setBackground(Color.green);
                 setText("add");
                 setFont(MyProjectData.getProjectData().getFont15());
-                bagItemMessage.setItemAdded(true);
+                bagItemMessage.setItemAdded(false);
                 isItemChoose = false;
             } else {
                 setBackground(Color.red);
                 setText("remove");
                 setFont(MyProjectData.getProjectData().getFont10());
-                bagItemMessage.setItemAdded(false);
+                bagItemMessage.setItemAdded(true);
                 isItemChoose = true;
             }
 
