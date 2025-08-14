@@ -49,6 +49,17 @@ Adjust as needed in the in-game menu or key settings.
 
 ---
 
+## 📸 Screenshots
+<!-- Simple, stacked images -->
+![Image1](https://github.com/AmirMalekhosseini/SuperMario/blob/master/GameImages/Screenshot%202025-08-14%20165727.png)
+![Image2](https://github.com/AmirMalekhosseini/SuperMario/blob/master/GameImages/Screenshot%202025-08-14%20165752.png)
+![Image3](https://github.com/AmirMalekhosseini/SuperMario/blob/master/GameImages/Screenshot%202025-08-14%20165805.png)
+![Image4](https://github.com/AmirMalekhosseini/SuperMario/blob/master/GameImages/Screenshot%202025-08-14%20165836.png)
+![Image5](https://github.com/AmirMalekhosseini/SuperMario/blob/master/GameImages/Screenshot%202025-08-14%20165907.png)
+
+
+---
+
 ## Development Notes
 
 - **Rendering/UI**: Java Swing; double-buffering and timers for the main loop.
